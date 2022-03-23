@@ -1,0 +1,1059 @@
+macro "default"
+	elem
+		name = "TAB"
+		command = ".winset \"mainwindow.macro=hotkeys mapwindow.map.focus=true input.background-color=#e0e0e0\""
+	elem
+		name = "CENTER+REP"
+		command = ".center"
+	elem
+		name = "NORTHEAST"
+		command = ".northeast"
+	elem
+		name = "SOUTHEAST"
+		command = ".southeast"
+	elem
+		name = "SOUTHWEST"
+		command = ".southwest"
+	elem
+		name = "NORTHWEST"
+		command = ".northwest"
+	elem
+		name = "CTRL+WEST"
+		command = "westface"
+	elem
+		name = "WEST+REP"
+		command = ".moveleft"
+	elem
+		name = "CTRL+NORTH"
+		command = "northface"
+	elem
+		name = "NORTH+REP"
+		command = ".moveup"
+	elem
+		name = "CTRL+EAST"
+		command = "eastface"
+	elem
+		name = "EAST+REP"
+		command = ".moveright"
+	elem
+		name = "CTRL+SOUTH"
+		command = "southface"
+	elem
+		name = "SOUTH+REP"
+		command = ".movedown"
+	elem
+		name = "INSERT"
+		command = "a-intent right"
+	elem
+		name = "DELETE"
+		command = "delete-key-pressed"
+	elem
+		name = "CTRL+1"
+		command = "a-intent help"
+	elem
+		name = "CTRL+2"
+		command = "a-intent disarm"
+	elem
+		name = "CTRL+3"
+		command = "a-intent grab"
+	elem
+		name = "CTRL+4"
+		command = "a-intent harm"
+	elem
+		name = "CTRL+A+REP"
+		command = ".moveleft"
+	elem
+		name = "CTRL+B"
+		command = "resist"
+	elem
+		name = "CTRL+D+REP"
+		command = ".moveright"
+	elem
+		name = "CTRL+E"
+		command = "quick-equip"
+	elem
+		name = "CTRL+F"
+		command = "a-intent left"
+	elem
+		name = "CTRL+G"
+		command = "a-intent right"
+	elem
+		name = "CTRL+O"
+		command = "ooc"
+	elem
+		name = "CTRL+L"
+		command = "looc"
+	elem
+		name = "CTRL+Q"
+		command = ".northwest"
+	elem
+		name = "CTRL+R"
+		command = ".southwest"
+	elem
+		name = "CTRL+S+REP"
+		command = ".movedown"
+	elem
+		name = "CTRL+W+REP"
+		command = ".moveup"
+	elem
+		name = "CTRL+X"
+		command = ".northeast"
+	elem
+		name = "CTRL+Y"
+		command = "Activate-Held-Object"
+	elem
+		name = "CTRL+Z"
+		command = "Activate-Held-Object"
+	elem
+		name = "CTRL+NUMPAD1"
+		command = "body-r-leg"
+	elem
+		name = "CTRL+NUMPAD2"
+		command = "body-groin"
+	elem
+		name = "CTRL+NUMPAD3"
+		command = "body-l-leg"
+	elem
+		name = "CTRL+NUMPAD4"
+		command = "body-r-arm"
+	elem
+		name = "CTRL+NUMPAD5"
+		command = "body-chest"
+	elem
+		name = "CTRL+NUMPAD6"
+		command = "body-l-arm"
+	elem
+		name = "CTRL+NUMPAD8"
+		command = "body-toggle-head"
+	elem
+		name = "CTRL+ADD"
+		command = "Add-View-Range 1"
+	elem
+		name = "CTRL+SUBTRACT"
+		command = "Add-View-Range -1"
+	elem
+		name = "F1"
+		command = "adminhelp"
+	elem
+		name = "CTRL+SHIFT+F1+REP"
+		command = ".options"
+	elem
+		name = "F2+REP"
+		command = ".screenshot auto"
+	elem
+		name = "SHIFT+F2+REP"
+		command = ".screenshot"
+	elem
+		name = "F5"
+		command = "Aghost"
+	elem
+		name = "F6"
+		command = "Player-Panel"
+	elem
+		name = "F7"
+		command = "Toggle-Build-Mode-Self"
+	elem
+		name = "CTRL+F7"
+		command = "Stealth-Mode"
+	elem
+		name = "F8"
+		command = "Invisimin"
+	elem
+		name = "F12"
+		command = "F12"
+	elem
+		name = "ALT"
+		command = "toggle-walk-run"
+	elem
+		name = "ALT+UP"
+		command = "toggle-walk-run"
+
+macro "hotkeys"
+	elem
+		name = "TAB"
+		command = ".winset \"mainwindow.macro=default input.focus=true input.background-color=#d3b5b5\""
+	elem
+		name = "CENTER+REP"
+		command = ".center"
+	elem
+		name = "NORTHEAST"
+		command = ".northeast"
+	elem
+		name = "SOUTHEAST"
+		command = ".southeast"
+	elem
+		name = "SOUTHWEST"
+		command = ".southwest"
+	elem
+		name = "NORTHWEST"
+		command = ".northwest"
+	elem
+		name = "CTRL+WEST"
+		command = "westface"
+	elem
+		name = "WEST+REP"
+		command = ".moveleft"
+	elem
+		name = "CTRL+NORTH"
+		command = "northface"
+	elem
+		name = "NORTH+REP"
+		command = ".moveup"
+	elem
+		name = "CTRL+EAST"
+		command = "eastface"
+	elem
+		name = "EAST+REP"
+		command = ".moveright"
+	elem
+		name = "CTRL+SOUTH"
+		command = "southface"
+	elem
+		name = "SOUTH+REP"
+		command = ".movedown"
+	elem
+		name = "INSERT"
+		command = "a-intent right"
+	elem
+		name = "DELETE"
+		command = "delete-key-pressed"
+	elem
+		name = "1"
+		command = "a-intent help"
+	elem
+		name = "CTRL+1"
+		command = "a-intent help"
+	elem
+		name = "2"
+		command = "a-intent disarm"
+	elem
+		name = "CTRL+2"
+		command = "a-intent disarm"
+	elem
+		name = "3"
+		command = "a-intent grab"
+	elem
+		name = "CTRL+3"
+		command = "a-intent grab"
+	elem
+		name = "4"
+		command = "a-intent harm"
+	elem
+		name = "CTRL+4"
+		command = "a-intent harm"
+	elem
+		name = "A+REP"
+		command = ".moveleft"
+	elem
+		name = "CTRL+A+REP"
+		command = ".moveleft"
+	elem
+		name = "B"
+		command = "resist"
+	elem
+		name = "CTRL+B"
+		command = "resist"
+	elem
+		name = "D+REP"
+		command = ".moveright"
+	elem
+		name = "CTRL+D+REP"
+		command = ".moveright"
+	elem
+		name = "E"
+		command = "quick-equip"
+	elem
+		name = "CTRL+E"
+		command = "quick-equip"
+	elem
+		name = "F"
+		command = "a-intent left"
+	elem
+		name = "CTRL+F"
+		command = "a-intent left"
+	elem
+		name = "G"
+		command = "a-intent right"
+	elem
+		name = "CTRL+G"
+		command = "a-intent right"
+	elem
+		name = "M"
+		command = "me"
+	elem
+		name = "O"
+		command = "ooc"
+	elem
+		name = "L"
+		command = "looc"
+	elem
+		name = "CTRL+O"
+		command = "ooc"
+	elem
+		name = "CTRL+L"
+		command = "looc"
+	elem
+		name = "Q"
+		command = ".northwest"
+	elem
+		name = "CTRL+Q"
+		command = ".northwest"
+	elem
+		name = "R"
+		command = ".southwest"
+	elem
+		name = "CTRL+R"
+		command = ".southwest"
+	elem "s_key"
+		name = "S+REP"
+		command = ".movedown"
+	elem
+		name = "CTRL+S+REP"
+		command = ".movedown"
+	elem
+		name = "T"
+		command = "say"
+	elem "w_key"
+		name = "W+REP"
+		command = ".moveup"
+	elem
+		name = "CTRL+W+REP"
+		command = ".moveup"
+	elem
+		name = "X"
+		command = ".northeast"
+	elem
+		name = "CTRL+X"
+		command = ".northeast"
+	elem
+		name = "Y"
+		command = "Activate-Held-Object"
+	elem
+		name = "CTRL+Y"
+		command = "Activate-Held-Object"
+	elem
+		name = "Z"
+		command = "Activate-Held-Object"
+	elem
+		name = "CTRL+Z"
+		command = "Activate-Held-Object"
+	elem
+		name = "NUMPAD1"
+		command = "body-r-leg"
+	elem
+		name = "NUMPAD2"
+		command = "body-groin"
+	elem
+		name = "NUMPAD3"
+		command = "body-l-leg"
+	elem
+		name = "NUMPAD4"
+		command = "body-r-arm"
+	elem
+		name = "NUMPAD5"
+		command = "body-chest"
+	elem
+		name = "NUMPAD6"
+		command = "body-l-arm"
+	elem
+		name = "NUMPAD8"
+		command = "body-toggle-head"
+	elem
+		name = "CTRL+ADD"
+		command = "Add-View-Range 1"
+	elem
+		name = "CTRL+SUBTRACT"
+		command = "Add-View-Range -1"
+	elem
+		name = "F1"
+		command = "adminhelp"
+	elem
+		name = "CTRL+SHIFT+F1+REP"
+		command = ".options"
+	elem
+		name = "F2+REP"
+		command = ".screenshot auto"
+	elem
+		name = "SHIFT+F2+REP"
+		command = ".screenshot"
+	elem
+		name = "F5"
+		command = "Aghost"
+	elem
+		name = "F6"
+		command = "Player-Panel"
+	elem
+		name = "F7"
+		command = "Stealth-Mode"
+	elem
+		name = "CTRL+F7"
+		command = "Stealth-Mode"
+	elem
+		name = "F8"
+		command = "Toggle-Build-Mode-Self"
+	elem
+		name = "F12"
+		command = "F12"
+	elem
+		name = "ALT"
+		command = "toggle-walk-run"
+	elem
+		name = "ALT+UP"
+		command = "toggle-walk-run"
+
+macro "robot-default"
+	elem
+		name = "TAB"
+		command = ".winset \"mainwindow.macro=robot-hotkeys mapwindow.map.focus=true input.background-color=#e0e0e0\""
+	elem
+		name = "CENTER+REP"
+		command = ".center"
+	elem
+		name = "NORTHEAST"
+		command = ".northeast"
+	elem
+		name = "SOUTHEAST"
+		command = ".southeast"
+	elem
+		name = "NORTHWEST"
+		command = "unequip-module"
+	elem
+		name = "CTRL+WEST"
+		command = "westface"
+	elem
+		name = "WEST+REP"
+		command = ".moveleft"
+	elem
+		name = "CTRL+NORTH"
+		command = "northface"
+	elem
+		name = "NORTH+REP"
+		command = ".moveup"
+	elem
+		name = "CTRL+EAST"
+		command = "eastface"
+	elem
+		name = "EAST+REP"
+		command = ".moveright"
+	elem
+		name = "CTRL+SOUTH"
+		command = "southface"
+	elem
+		name = "SOUTH+REP"
+		command = ".movedown"
+	elem
+		name = "INSERT"
+		command = "a-intent right"
+	elem
+		name = "DELETE"
+		command = "delete-key-pressed"
+	elem
+		name = "CTRL+1"
+		command = "toggle-module 1"
+	elem
+		name = "CTRL+2"
+		command = "toggle-module 2"
+	elem
+		name = "CTRL+3"
+		command = "toggle-module 3"
+	elem
+		name = "CTRL+4"
+		command = "a-intent left"
+	elem
+		name = "CTRL+A+REP"
+		command = ".moveleft"
+	elem
+		name = "CTRL+B"
+		command = "resist"
+	elem
+		name = "CTRL+O"
+		command = "ooc"
+	elem
+		name = "CTRL+L"
+		command = "looc"
+	elem
+		name = "CTRL+D+REP"
+		command = ".moveright"
+	elem
+		name = "CTRL+F"
+		command = "a-intent left"
+	elem
+		name = "CTRL+G"
+		command = "a-intent right"
+	elem
+		name = "CTRL+Q"
+		command = "unequip-module"
+	elem
+		name = "CTRL+S+REP"
+		command = ".movedown"
+	elem
+		name = "CTRL+W+REP"
+		command = ".moveup"
+	elem
+		name = "CTRL+X"
+		command = ".northeast"
+	elem
+		name = "CTRL+Y"
+		command = "Activate-Held-Object"
+	elem
+		name = "CTRL+Z"
+		command = "Activate-Held-Object"
+	elem
+		name = "CTRL+NUMPAD1"
+		command = "body-r-leg"
+	elem
+		name = "CTRL+NUMPAD2"
+		command = "body-groin"
+	elem
+		name = "CTRL+NUMPAD3"
+		command = "body-l-leg"
+	elem
+		name = "CTRL+NUMPAD4"
+		command = "body-r-arm"
+	elem
+		name = "CTRL+NUMPAD5"
+		command = "body-chest"
+	elem
+		name = "CTRL+NUMPAD6"
+		command = "body-l-arm"
+	elem
+		name = "CTRL+NUMPAD8"
+		command = "body-toggle-head"
+	elem
+		name = "F1"
+		command = "adminhelp"
+	elem
+		name = "CTRL+SHIFT+F1+REP"
+		command = ".options"
+	elem
+		name = "F2+REP"
+		command = ".screenshot auto"
+	elem
+		name = "SHIFT+F2+REP"
+		command = ".screenshot"
+	elem
+		name = "F5"
+		command = "Aghost"
+	elem
+		name = "F6"
+		command = "Player-Panel"
+	elem
+		name = "F7"
+		command = "Toggle-Build-Mode-Self"
+	elem
+		name = "CTRL+F7"
+		command = "Stealth-Mode"
+	elem
+		name = "F8"
+		command = "Invisimin"
+	elem
+		name = "F12"
+		command = "F12"
+
+macro "robot-hotkeys"
+	elem
+		name = "TAB"
+		command = ".winset \"mainwindow.macro=robot-default input.focus=true input.background-color=#d3b5b5\""
+	elem
+		name = "CENTER+REP"
+		command = ".center"
+	elem
+		name = "NORTHEAST"
+		command = ".northeast"
+	elem
+		name = "SOUTHEAST"
+		command = ".southeast"
+	elem
+		name = "NORTHWEST"
+		command = "unequip-module"
+	elem
+		name = "CTRL+WEST"
+		command = "westface"
+	elem
+		name = "WEST+REP"
+		command = ".moveleft"
+	elem
+		name = "CTRL+NORTH"
+		command = "northface"
+	elem
+		name = "NORTH+REP"
+		command = ".moveup"
+	elem
+		name = "CTRL+EAST"
+		command = "eastface"
+	elem
+		name = "EAST+REP"
+		command = ".moveright"
+	elem
+		name = "CTRL+SOUTH"
+		command = "southface"
+	elem
+		name = "SOUTH+REP"
+		command = ".movedown"
+	elem
+		name = "INSERT"
+		command = "a-intent right"
+	elem
+		name = "DELETE"
+		command = "delete-key-pressed"
+	elem
+		name = "1"
+		command = "toggle-module 1"
+	elem
+		name = "CTRL+1"
+		command = "toggle-module 1"
+	elem
+		name = "2"
+		command = "toggle-module 2"
+	elem
+		name = "CTRL+2"
+		command = "toggle-module 2"
+	elem
+		name = "3"
+		command = "toggle-module 3"
+	elem
+		name = "CTRL+3"
+		command = "toggle-module 3"
+	elem
+		name = "4"
+		command = "a-intent left"
+	elem
+		name = "CTRL+4"
+		command = "a-intent left"
+	elem
+		name = "A+REP"
+		command = ".moveleft"
+	elem
+		name = "CTRL+A+REP"
+		command = ".moveleft"
+	elem
+		name = "B"
+		command = "resist"
+	elem
+		name = "CTRL+B"
+		command = "resist"
+	elem
+		name = "M"
+		command = "me"
+	elem
+		name = "O"
+		command = "ooc"
+	elem
+		name = "L"
+		command = "looc"
+	elem
+		name = "CTRL+O"
+		command = "ooc"
+	elem
+		name = "CTRL+L"
+		command = "looc"
+	elem
+		name = "D+REP"
+		command = ".moveright"
+	elem
+		name = "CTRL+D+REP"
+		command = ".moveright"
+	elem
+		name = "F"
+		command = "a-intent left"
+	elem
+		name = "CTRL+F"
+		command = "a-intent left"
+	elem
+		name = "G"
+		command = "a-intent right"
+	elem
+		name = "CTRL+G"
+		command = "a-intent right"
+	elem
+		name = "Q"
+		command = "unequip-module"
+	elem
+		name = "CTRL+Q"
+		command = "unequip-module"
+	elem "s_key"
+		name = "S+REP"
+		command = ".movedown"
+	elem
+		name = "CTRL+S+REP"
+		command = ".movedown"
+	elem
+		name = "T"
+		command = "say"
+	elem "w_key"
+		name = "W+REP"
+		command = ".moveup"
+	elem
+		name = "CTRL+W+REP"
+		command = ".moveup"
+	elem
+		name = "X"
+		command = ".northeast"
+	elem
+		name = "CTRL+X"
+		command = ".northeast"
+	elem
+		name = "Y"
+		command = "Activate-Held-Object"
+	elem
+		name = "CTRL+Y"
+		command = "Activate-Held-Object"
+	elem
+		name = "Z"
+		command = "Activate-Held-Object"
+	elem
+		name = "CTRL+Z"
+		command = "Activate-Held-Object"
+	elem
+		name = "NUMPAD1"
+		command = "body-r-leg"
+	elem
+		name = "NUMPAD2"
+		command = "body-groin"
+	elem
+		name = "NUMPAD3"
+		command = "body-l-leg"
+	elem
+		name = "NUMPAD4"
+		command = "body-r-arm"
+	elem
+		name = "NUMPAD5"
+		command = "body-chest"
+	elem
+		name = "NUMPAD6"
+		command = "body-l-arm"
+	elem
+		name = "NUMPAD8"
+		command = "body-toggle-head"
+	elem
+		name = "F1"
+		command = "adminhelp"
+	elem
+		name = "CTRL+SHIFT+F1+REP"
+		command = ".options"
+	elem
+		name = "F2+REP"
+		command = ".screenshot auto"
+	elem
+		name = "SHIFT+F2+REP"
+		command = ".screenshot"
+	elem
+		name = "F5"
+		command = "Aghost"
+	elem
+		name = "F6"
+		command = "Player-Panel"
+	elem
+		name = "F7"
+		command = "Toggle-Build-Mode-Self"
+	elem
+		name = "CTRL+F7"
+		command = "Stealth-Mode"
+	elem
+		name = "F8"
+		command = "Invisimin"
+	elem
+		name = "F12"
+		command = "F12"
+
+
+menu "menu"
+	elem
+		name = "&File"
+		command = ""
+		saved-params = "is-checked"
+	elem
+		name = "&Quick screenshot\tF2"
+		command = ".screenshot auto"
+		category = "&File"
+		saved-params = "is-checked"
+	elem
+		name = "&Save screenshot as...\tShift+F2"
+		command = ".screenshot"
+		category = "&File"
+		saved-params = "is-checked"
+	elem
+		name = ""
+		command = ""
+		category = "&File"
+		saved-params = "is-checked"
+	elem "reconnectbutton"
+		name = "&Reconnect"
+		command = ".reconnect"
+		category = "&File"
+		saved-params = "is-checked"
+	elem
+		name = "&Quit\tAlt-F4"
+		command = ".quit"
+		category = "&File"
+		saved-params = "is-checked"
+	elem
+		name = "&Help"
+		command = ""
+		saved-params = "is-checked"
+	elem
+		name = "&Admin Help\tF1"
+		command = "adminhelp"
+		category = "&Help"
+		saved-params = "is-checked"
+	elem
+		name = "&Hotkeys"
+		command = "hotkeys-help"
+		category = "&Help"
+		saved-params = "is-checked"
+
+
+window "mainwindow"
+	elem "mainwindow"
+		type = MAIN
+		pos = 0,0
+		size = 640x440
+		anchor1 = none
+		anchor2 = none
+		background-color = #272727
+		is-default = true
+		saved-params = "pos;size;is-minimized;is-maximized"
+		icon = 'icons\\oracle_eye.png'
+		macro = "macro"
+		menu = "menu"
+	elem "split"
+		type = CHILD
+		pos = 3,0
+		size = 634x417
+		anchor1 = 0,0
+		anchor2 = 100,100
+		background-color = #272727
+		saved-params = "splitter"
+		left = "mapwindow"
+		right = "infowindow"
+		is-vert = true
+	elem "input"
+		type = INPUT
+		pos = 5,420
+		size = 595x20
+		anchor1 = 0,100
+		anchor2 = 100,100
+		font-size = 10
+		background-color = #d3b5b5
+		is-default = true
+		saved-params = "command"
+	elem "say"
+		type = BUTTON
+		pos = 600,420
+		size = 37x20
+		anchor1 = 100,100
+		anchor2 = none
+		text-color = #ffffff
+		background-color = #272727
+		saved-params = "is-checked"
+		text = "Chat"
+		command = ".winset \"say.is-checked=true ? input.command=\"!say \\\"\" : input.command=\""
+		is-flat = true
+		button-type = pushbox
+	elem "asset_cache_browser"
+		type = BROWSER
+		pos = 0,0
+		size = 200x200
+		anchor1 = none
+		anchor2 = none
+		background-color = #272727
+		is-visible = false
+		saved-params = ""
+	elem "tooltip"
+		type = BROWSER
+		pos = 0,0
+		size = 999x999
+		anchor1 = none
+		anchor2 = none
+		background-color = #272727
+		is-visible = false
+		saved-params = ""
+
+window "mapwindow"
+	elem "mapwindow"
+		type = MAIN
+		pos = 0,0
+		size = 640x480
+		anchor1 = none
+		anchor2 = none
+		background-color = #272727
+		saved-params = "pos;size;is-minimized;is-maximized"
+		is-pane = true
+	elem "map"
+		type = MAP
+		pos = 0,0
+		size = 640x480
+		anchor1 = 0,0
+		anchor2 = 100,100
+		font-family = "Arial"
+		font-size = 7
+		text-color = none
+		is-default = true
+		saved-params = "icon-size"
+		zoom-mode = distort
+
+window "infowindow"
+	elem "infowindow"
+		type = MAIN
+		pos = 0,0
+		size = 640x480
+		anchor1 = none
+		anchor2 = none
+		background-color = #272727
+		saved-params = "pos;size;is-minimized;is-maximized"
+		is-pane = true
+	elem "info"
+		type = CHILD
+		pos = 0,30
+		size = 640x445
+		anchor1 = 0,0
+		anchor2 = 100,100
+		background-color = #272727
+		saved-params = "splitter"
+		left = "statwindow"
+		right = "outputwindow"
+		is-vert = false
+	elem "discord"
+		type = BUTTON
+		pos = 192,5
+		size = 88x20
+		anchor1 = 30,0
+		anchor2 = 44,0
+		font-family = "Verdana"
+		text-color = #ffffff
+		background-color = #40628a
+		saved-params = "is-checked"
+		text = "Join Discord"
+		command = "discord"
+	elem "changelog"
+		type = BUTTON
+		pos = 8,5
+		size = 80x20
+		anchor1 = 1,0
+		anchor2 = 14,0
+		font-family = "Verdana"
+		text-color = #ffffff
+		background-color = #40628a
+		saved-params = "is-checked"
+		text = "Changelog"
+		command = "changelog"
+	elem "rules"
+		type = BUTTON
+		pos = 96,5
+		size = 88x20
+		anchor1 = 15,0
+		anchor2 = 29,0
+		font-family = "Verdana"
+		text-color = #ffffff
+		background-color = #40628a
+		saved-params = "is-checked"
+		text = "Rules"
+		command = "rules"
+	elem "wiki"
+		type = BUTTON
+		pos = 288,5
+		size = 80x20
+		anchor1 = 45,0
+		anchor2 = 58,0
+		font-family = "Verdana"
+		text-color = #ffffff
+		background-color = #40628a
+		saved-params = "is-checked"
+		text = "Wiki"
+		command = "wiki"
+	elem "forum"
+		type = BUTTON
+		pos = 376,5
+		size = 80x20
+		anchor1 = 59,0
+		anchor2 = 71,0
+		font-family = "Verdana"
+		text-color = #ffffff
+		background-color = #40628a
+		saved-params = "is-checked"
+		text = "Forum"
+		command = "forum"
+	elem "github"
+		type = BUTTON
+		pos = 464,5
+		size = 80x20
+		anchor1 = 73,0
+		anchor2 = 85,0
+		font-family = "Verdana"
+		text-color = #ffffff
+		background-color = #40628a
+		saved-params = "is-checked"
+		text = "GitHub"
+		command = "github"
+	elem "report-issue"
+		type = BUTTON
+		pos = 552,5
+		size = 80x20
+		anchor1 = 86,0
+		anchor2 = 99,0
+		font-family = "Verdana"
+		font-size = 8
+		text-color = #ffffff
+		background-color = #40628a
+		saved-params = "is-checked"
+		text = "Report Issue"
+		command = "report-issue"
+
+window "outputwindow"
+	elem "outputwindow"
+		type = MAIN
+		pos = 0,0
+		size = 640x480
+		anchor1 = none
+		anchor2 = none
+		background-color = #272727
+		saved-params = "pos;size;is-minimized;is-maximized"
+		is-pane = true
+	elem "browseroutput"
+		type = BROWSER
+		pos = 0,0
+		size = 640x480
+		anchor1 = 0,0
+		anchor2 = 100,100
+		background-color = #272727
+		is-visible = false
+		is-disabled = true
+		saved-params = ""
+		auto-format = false
+	elem "output"
+		type = OUTPUT
+		pos = 0,0
+		size = 640x480
+		anchor1 = 0,0
+		anchor2 = 100,100
+		text-color = #40628a
+		background-color = #272727
+		is-default = true
+		saved-params = ""
+
+window "statwindow"
+	elem "statwindow"
+		type = MAIN
+		pos = 0,0
+		size = 640x480
+		anchor1 = none
+		anchor2 = none
+		background-color = #272727
+		saved-params = "pos;size;is-minimized;is-maximized"
+		is-pane = true
+	elem "stat"
+		type = INFO
+		pos = 0,0
+		size = 640x480
+		anchor1 = 0,0
+		anchor2 = 100,100
+		font-family = "Verdana"
+		text-color = #ffffff
+		background-color = #383838
+		is-default = true
+		saved-params = ""
+		tab-text-color = #ffffff
+		tab-background-color = #272727
+		tab-font-family = "Verdana"
+		prefix-color = #ebebeb
+		suffix-color = #ebebeb
