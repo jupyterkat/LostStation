@@ -110,7 +110,7 @@ GLOBAL_LIST_INIT(bibleitemstates, list("bible", "koran", "scrapbook", "bible",  
 
 	var/smack = 1
 
-	if (M.stat != STATS_DEAD)
+	if (M.stat != STAT_DEAD)
 		if(chaplain && user == M)
 			to_chat(user, "<span class='warning'>You can't heal yourself!</span>")
 			return

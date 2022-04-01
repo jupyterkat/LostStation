@@ -30,19 +30,19 @@
 	if(..()) //not dead
 		handle_active_genes()
 
-	if(stat != STATS_DEAD)
+	if(stat != STAT_DEAD)
 		//heart attack stuff
 		handle_heart()
 
-	if(stat != STATS_DEAD)
+	if(stat != STAT_DEAD)
 		//Stuff jammed in your limbs hurts
 		handle_embedded_objects()
 
-	if(stat != STATS_DEAD)
+	if(stat != STAT_DEAD)
 		//Fractured bones
 		handle_fractures()
 
-	if(stat != STATS_DEAD)
+	if(stat != STAT_DEAD)
 		//pain
 		handle_shock()
 
@@ -51,7 +51,7 @@
 
 	dna.species.spec_life(src) // for mutantraces
 
-	if(stat != STATS_DEAD)
+	if(stat != STAT_DEAD)
 		return 1
 
 
@@ -381,7 +381,7 @@
 				return
 
 	if(shock_stage > 90)
-		if(prob(2) && stat == STATS_CONSCIOUS)
+		if(prob(2) && stat == STAT_CONSCIOUS)
 			visible_message("<span class='warning'><b>[src]</b> blacks out.</span>", "<span class='userdanger'>[pick("You black out from the pain!", "The pain is too much to bear!")]</span>")
 			Unconscious(100)
 

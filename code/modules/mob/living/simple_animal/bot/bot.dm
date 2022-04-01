@@ -908,9 +908,9 @@ Pass a positive integer as an argument to override a bot's default speed.
 		. = 1
 
 /mob/living/simple_animal/bot/ghost()
-	if(stat != STATS_DEAD) // Only ghost if we're doing this while alive, the pAI probably isn't dead yet.
+	if(stat != STAT_DEAD) // Only ghost if we're doing this while alive, the pAI probably isn't dead yet.
 		..()
-	if(paicard && (!client || stat == STATS_DEAD))
+	if(paicard && (!client || stat == STAT_DEAD))
 		ejectpai(0)
 
 /mob/living/simple_animal/bot/sentience_act()

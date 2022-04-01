@@ -109,7 +109,7 @@
 		if(isliving(M))
 			if(isclockmob(M) || istype(M, /mob/living/simple_animal/drone/cogscarab))
 				var/mob/living/simple_animal/S = M
-				if(S.health == S.maxHealth || S.stat == STATS_DEAD)
+				if(S.health == S.maxHealth || S.stat == STAT_DEAD)
 					continue
 				T = get_turf(M)
 				for(var/i in 1 to heal_attempts)
@@ -124,7 +124,7 @@
 						break
 			else if(issilicon(M))
 				var/mob/living/silicon/S = M
-				if(S.health == S.maxHealth || S.stat == STATS_DEAD || !is_servant_of_ratvar(S))
+				if(S.health == S.maxHealth || S.stat == STAT_DEAD || !is_servant_of_ratvar(S))
 					continue
 				T = get_turf(M)
 				for(var/i in 1 to heal_attempts)
@@ -139,7 +139,7 @@
 						break
 			else if(ishuman(M))
 				var/mob/living/carbon/human/H = M
-				if(H.health == H.maxHealth || H.stat == STATS_DEAD || !is_servant_of_ratvar(H))
+				if(H.health == H.maxHealth || H.stat == STAT_DEAD || !is_servant_of_ratvar(H))
 					continue
 				T = get_turf(M)
 				var/heal_ticks = 0 //one heal tick for each piece of ratvarian armor worn

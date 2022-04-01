@@ -26,7 +26,7 @@
 	C.faction -= "vines"
 
 /datum/species/pod/spec_life(mob/living/carbon/human/H)
-	if(H.stat == STATS_DEAD)
+	if(H.stat == STAT_DEAD)
 		return
 	var/light_amount = 0 //how much light there is in the place, affects receiving nutrition and healing
 	if(isturf(H.loc)) //else, there's considered to be no light

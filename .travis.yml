@@ -48,7 +48,7 @@ before_script:
   - tools/travis/before_build_byond.sh
 
 script:
-  - tools/travis/check_filedirs.sh tgstation.dme
+  - tools/travis/check_filedirs.sh spacestation13-lost.dme
   - tools/travis/build_changelog.sh
   - tools/travis/build_tools.sh
   - tools/travis/build_byond.sh

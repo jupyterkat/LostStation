@@ -68,7 +68,7 @@
 		to_chat(src, "<span class='warning'><i>I must be conscious to do this...</i></span>")
 		return 0
 
-	if(M.stat == STATS_DEAD)
+	if(M.stat == STAT_DEAD)
 		to_chat(src, "<span class='warning'><i>This subject does not have a strong enough life energy...</i></span>")
 		return 0
 

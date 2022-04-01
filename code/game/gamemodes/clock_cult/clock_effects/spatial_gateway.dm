@@ -181,7 +181,7 @@
 		if(!is_servant_of_ratvar(L))
 			to_chat(invoker, "<span class='warning'>That target is no longer a Servant!</span>")
 			return procure_gateway(invoker, time_duration, gateway_uses, two_way)
-		if(L.stat != STATS_CONSCIOUS)
+		if(L.stat != STAT_CONSCIOUS)
 			to_chat(invoker, "<span class='warning'>That Servant is no longer conscious!</span>")
 			return procure_gateway(invoker, time_duration, gateway_uses, two_way)
 	var/istargetobelisk = istype(target, /obj/structure/destructible/clockwork/powered/clockwork_obelisk)

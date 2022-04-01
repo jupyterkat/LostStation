@@ -112,7 +112,7 @@
 			shaved = 1
 			icon_living = "[initial(icon_living)]_shaved"
 			icon_dead = "[initial(icon_living)]_shaved_dead"
-			if(stat == STATS_CONSCIOUS)
+			if(stat == STAT_CONSCIOUS)
 				icon_state = icon_living
 			else
 				icon_state = icon_dead
@@ -561,9 +561,9 @@
 /mob/living/simple_animal/pet/dog/proc/wuv(change, mob/M)
 	if(change)
 		if(change > 0)
-			if(M && stat != STATS_DEAD) // Added check to see if this mob (the dog) is dead to fix issue 2454
+			if(M && stat != STAT_DEAD) // Added check to see if this mob (the dog) is dead to fix issue 2454
 				new /obj/effect/temp_visual/heart(loc)
 				emote("me", 1, "yaps happily!")
 		else
-			if(M && stat != STATS_DEAD) // Same check here, even though emote checks it as well (poor form to check it only in the help case)
+			if(M && stat != STAT_DEAD) // Same check here, even though emote checks it as well (poor form to check it only in the help case)
 				emote("me", 1, "growls!")

@@ -214,7 +214,7 @@
 		else if(isliving(A))
 			var/dist = get_dist(source, A)
 			var/mob/living/L = A
-			if(dist <= zap_range && (dist < closest_dist || !closest_mob) && L.stat != STATS_DEAD && !(L.flags_2 & TESLA_IGNORE_2))
+			if(dist <= zap_range && (dist < closest_dist || !closest_mob) && L.stat != STAT_DEAD && !(L.flags_2 & TESLA_IGNORE_2))
 				closest_mob = L
 				closest_atom = A
 				closest_dist = dist

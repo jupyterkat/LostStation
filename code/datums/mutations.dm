@@ -56,7 +56,7 @@ GLOBAL_LIST_EMPTY(mutations_list)
 		. = on_losing(owner)
 
 /datum/mutation/human/proc/on_acquiring(mob/living/carbon/human/owner)
-	if(!owner || !istype(owner) || owner.stat == STATS_DEAD || (src in owner.dna.mutations))
+	if(!owner || !istype(owner) || owner.stat == STAT_DEAD || (src in owner.dna.mutations))
 		return 1
 	if(species_allowed.len && !species_allowed.Find(owner.dna.species.id))
 		return 1
@@ -93,7 +93,7 @@ GLOBAL_LIST_EMPTY(mutations_list)
 
 /datum/mutation/human/proc/on_losing(mob/living/carbon/human/owner)
 	if(owner && istype(owner) && (owner.dna.mutations.Remove(src)))
-		if(text_lose_indication && owner.stat != STATS_DEAD)
+		if(text_lose_indication && owner.stat != STAT_DEAD)
 			to_chat(owner, text_lose_indication)
 		if(visual_indicators.len)
 			var/list/mut_overlay = list()

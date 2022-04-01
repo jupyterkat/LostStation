@@ -539,7 +539,7 @@
 					var/mob/living/carbon/human/H = M
 					if(!H.undergoing_cardiac_arrest() && H.can_heartattack())
 						H.set_heartattack(TRUE)
-						if(H.stat == STATS_CONSCIOUS)
+						if(H.stat == STAT_CONSCIOUS)
 							H.visible_message("<span class='userdanger'>[H] clutches at [H.p_their()] chest as if [H.p_their()] heart stopped!</span>")
 					else
 						H.losebreath += 10

@@ -11,7 +11,7 @@
 
 /mob/living/carbon/human/proc/resume_bleeding()
 	bleedsuppress = 0
-	if(stat != STATS_DEAD && bleed_rate)
+	if(stat != STAT_DEAD && bleed_rate)
 		to_chat(src, "<span class='warning'>The blood soaks through your bandage.</span>")
 
 

@@ -22,7 +22,7 @@
 	layer = MOB_LAYER
 	max_integrity = 100
 
-	var/stat = STATS_CONSCIOUS //STATS_UNCONSCIOUS is the idle state in this case
+	var/stat = STAT_CONSCIOUS //STATS_UNCONSCIOU is the idle state in this case
 
 	var/sterile = FALSE
 	var/real = TRUE //0 for the toy, 1 for real. Sure I could istype, but fuck that.
@@ -37,12 +37,12 @@
 /obj/item/clothing/mask/facehugger/dead
 	icon_state = "facehugger_dead"
 	item_state = "facehugger_inactive"
-	stat = STATS_DEAD
+	stat = STAT_DEAD
 
 /obj/item/clothing/mask/facehugger/impregnated
 	icon_state = "facehugger_impregnated"
 	item_state = "facehugger_impregnated"
-	stat = STATS_DEAD
+	stat = STAT_DEAD
 
 /obj/item/clothing/mask/facehugger/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
 	..()
@@ -57,7 +57,7 @@
 	return
 
 /obj/item/clothing/mask/facehugger/attack_hand(mob/user)
-	if((stat == STATS_CONSCIOUS && !sterile) && !isalien(user))
+	if((stat == STAT_CONSCIOUS && !sterile) && !isalien(user))
 		if(Leap(user))
 			return
 	..()
@@ -72,9 +72,9 @@
 	if(!real)//So that giant red text about probisci doesn't show up.
 		return
 	switch(stat)
-		if(STATS_DEAD,STATS_UNCONSCIOUS)
+		if(STAT_DEAD,STATS_UNCONSCIOU)
 			to_chat(user, "<span class='boldannounce'>[src] is not moving.</span>")
-		if(STATS_CONSCIOUS)
+		if(STAT_CONSCIOUS)
 			to_chat(user, "<span class='boldannounce'>[src] seems to be active!</span>")
 	if (sterile)
 		to_chat(user, "<span class='boldannounce'>It looks like the proboscis has been removed.</span>")
@@ -92,7 +92,7 @@
 	return
 
 /obj/item/clothing/mask/facehugger/on_found(mob/finder)
-	if(stat == STATS_CONSCIOUS)
+	if(stat == STAT_CONSCIOUS)
 		return HasProximity(finder)
 	return 0
 
@@ -104,7 +104,7 @@
 /obj/item/clothing/mask/facehugger/throw_at(atom/target, range, speed, mob/thrower, spin=1, diagonals_first = 0, datum/callback/callback)
 	if(!..())
 		return
-	if(stat == STATS_CONSCIOUS)
+	if(stat == STAT_CONSCIOUS)
 		icon_state = "[initial(icon_state)]_thrown"
 		addtimer(CALLBACK(src, .proc/clear_throw_icon_state), 15)
 
@@ -114,14 +114,14 @@
 
 /obj/item/clothing/mask/facehugger/throw_impact(atom/hit_atom)
 	..()
-	if(stat == STATS_CONSCIOUS)
+	if(stat == STAT_CONSCIOUS)
 		icon_state = "[initial(icon_state)]"
 		Leap(hit_atom)
 
 /obj/item/clothing/mask/facehugger/proc/valid_to_attach(mob/living/M)
 	// valid targets: corgis, carbons except aliens and devils
 	// facehugger state early exit checks
-	if(stat != STATS_CONSCIOUS)
+	if(stat != STAT_CONSCIOUS)
 		return FALSE
 	if(attached)
 		return FALSE
@@ -201,7 +201,7 @@
 	attached = 0
 
 /obj/item/clothing/mask/facehugger/proc/Impregnate(mob/living/target)
-	if(!target || target.stat == STATS_DEAD) //was taken off or something
+	if(!target || target.stat == STAT_DEAD) //was taken off or something
 		return
 
 	if(iscarbon(target))
@@ -230,35 +230,35 @@
 								"<span class='userdanger'>[src] violates [target]'s face!</span>")
 
 /obj/item/clothing/mask/facehugger/proc/GoActive()
-	if(stat == STATS_DEAD || stat == STATS_CONSCIOUS)
+	if(stat == STAT_DEAD || stat == STAT_CONSCIOUS)
 		return
 
-	stat = STATS_CONSCIOUS
+	stat = STAT_CONSCIOUS
 	icon_state = "[initial(icon_state)]"
 
 /obj/item/clothing/mask/facehugger/proc/GoIdle()
-	if(stat == STATS_DEAD || stat == STATS_UNCONSCIOUS)
+	if(stat == STAT_DEAD || stat == STATS_UNCONSCIOU)
 		return
 
-	stat = STATS_UNCONSCIOUS
+	stat = STATS_UNCONSCIOU
 	icon_state = "[initial(icon_state)]_inactive"
 
 	addtimer(CALLBACK(src, .proc/GoActive), rand(MIN_ACTIVE_TIME, MAX_ACTIVE_TIME))
 
 /obj/item/clothing/mask/facehugger/proc/Die()
-	if(stat == STATS_DEAD)
+	if(stat == STAT_DEAD)
 		return
 
 	icon_state = "[initial(icon_state)]_dead"
 	item_state = "facehugger_inactive"
-	stat = STATS_DEAD
+	stat = STAT_DEAD
 
 	visible_message("<span class='danger'>[src] curls up into a ball!</span>")
 
 /proc/CanHug(mob/living/M)
 	if(!istype(M))
 		return 0
-	if(M.stat == STATS_DEAD)
+	if(M.stat == STAT_DEAD)
 		return 0
 	if(M.getorgan(/obj/item/organ/alien/hivenode))
 		return 0

@@ -500,7 +500,7 @@
 		return
 	for(var/datum/spacevine_mutation/SM in mutations)
 		SM.on_buckle(src, V)
-	if((V.stat != STATS_DEAD) && (V.buckled != src)) //not dead or captured
+	if((V.stat != STAT_DEAD) && (V.buckled != src)) //not dead or captured
 		to_chat(V, "<span class='danger'>The vines [pick("wind", "tangle", "tighten")] around you!</span>")
 		buckle_mob(V, 1)
 

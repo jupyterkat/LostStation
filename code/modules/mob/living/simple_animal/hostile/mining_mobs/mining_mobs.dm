@@ -32,7 +32,7 @@
 
 /mob/living/simple_animal/hostile/asteroid/LoseAggro()
 	..()
-	if(stat == STATS_DEAD)
+	if(stat == STAT_DEAD)
 		return
 	icon_state = icon_living
 

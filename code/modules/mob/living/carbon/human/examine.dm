@@ -139,7 +139,7 @@
 			msg += "<span class='warning'>[t_He] [t_is] twitching ever so slightly.</span>\n"
 
 	var/appears_dead = 0
-	if(stat == STATS_DEAD || (status_flags & FAKEDEATH))
+	if(stat == STAT_DEAD || (status_flags & FAKEDEATH))
 		appears_dead = 1
 		if(hellbound)
 			msg += "<span class='warning'>[t_His] soul seems to have been ripped out of [t_his] body.  Revival is impossible.</span>\n"
@@ -294,7 +294,7 @@
 	msg += "</span>"
 
 	if(!appears_dead)
-		if(stat == STATS_UNCONSCIOUS)
+		if(stat == STATS_UNCONSCIOU)
 			msg += "[t_He] [t_is]n't responding to anything around [t_him] and seems to be asleep.\n"
 		else if(disabilities & DUMB)
 			msg += "[t_He] [t_has] a stupid expression on [t_his] face.\n"

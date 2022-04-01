@@ -49,7 +49,7 @@
 			enemies = list()
 			LoseTarget()
 			src.visible_message("<span class='notice'>[src] calms down.</span>")
-	if(stat == STATS_CONSCIOUS)
+	if(stat == STAT_CONSCIOUS)
 		udder.generateMilk()
 		eat_plants()
 		if(!pulledby)
@@ -84,7 +84,7 @@
 		say("Nom")
 
 /mob/living/simple_animal/hostile/retaliate/goat/attackby(obj/item/O, mob/user, params)
-	if(stat == STATS_CONSCIOUS && istype(O, /obj/item/reagent_containers/glass))
+	if(stat == STAT_CONSCIOUS && istype(O, /obj/item/reagent_containers/glass))
 		udder.milkAnimal(O, user)
 		return 1
 	else
@@ -128,7 +128,7 @@
 	return ..()
 
 /mob/living/simple_animal/cow/attackby(obj/item/O, mob/user, params)
-	if(stat == STATS_CONSCIOUS && istype(O, /obj/item/reagent_containers/glass))
+	if(stat == STAT_CONSCIOUS && istype(O, /obj/item/reagent_containers/glass))
 		udder.milkAnimal(O, user)
 		return 1
 	else
@@ -136,7 +136,7 @@
 
 /mob/living/simple_animal/cow/Life()
 	. = ..()
-	if(stat == STATS_CONSCIOUS)
+	if(stat == STAT_CONSCIOUS)
 		udder.generateMilk()
 
 /mob/living/simple_animal/cow/attack_hand(mob/living/carbon/M)
@@ -214,7 +214,7 @@
 	..()
 
 /mob/living/simple_animal/chick/Destroy()
-	if(stat != STATS_DEAD)
+	if(stat != STAT_DEAD)
 		GLOB.total_chickens--
 	return ..()
 
@@ -273,7 +273,7 @@
 	..()
 
 /mob/living/simple_animal/chicken/Destroy()
-	if(stat != STATS_DEAD)
+	if(stat != STAT_DEAD)
 		GLOB.total_chickens--
 	return ..()
 

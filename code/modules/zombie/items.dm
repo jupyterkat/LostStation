@@ -50,7 +50,7 @@
 		infection.Insert(target)
 
 /obj/item/zombie_hand/proc/check_feast(mob/living/target, mob/living/user)
-	if(target.stat == STATS_DEAD)
+	if(target.stat == STAT_DEAD)
 		var/hp_gained = target.maxHealth
 		target.gib()
 		// zero as argument for no instant health update

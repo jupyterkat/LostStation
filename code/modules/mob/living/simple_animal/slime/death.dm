@@ -1,5 +1,5 @@
 /mob/living/simple_animal/slime/death(gibbed)
-	if(stat == STATS_DEAD)
+	if(stat == STAT_DEAD)
 		return
 	if(!gibbed)
 		if(is_adult)
@@ -22,7 +22,7 @@
 		Feedstop(silent = 1) //releases ourselves from the mob we fed on.
 
 	GLOB.total_slimes--
-	stat = STATS_DEAD
+	stat = STAT_DEAD
 	cut_overlays()
 
 	update_canmove()
@@ -41,6 +41,6 @@
 	for(var/obj/machinery/computer/camera_advanced/xenobio/X in GLOB.machines)
 		if(src in X.stored_slimes)
 			X.stored_slimes -= src
-	if(stat != STATS_DEAD)
+	if(stat != STAT_DEAD)
 		GLOB.total_slimes--
 	return ..()

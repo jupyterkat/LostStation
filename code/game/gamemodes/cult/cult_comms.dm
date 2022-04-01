@@ -169,7 +169,7 @@
 			return
 		if(do_after(owner, 30, target = owner))
 			for(var/datum/mind/B in SSticker.mode.cult)
-				if(B.current && B.current.stat != STATS_DEAD)
+				if(B.current && B.current.stat != STAT_DEAD)
 					var/turf/mobloc = get_turf(B.current)
 					switch(i)
 						if(1)
@@ -278,7 +278,7 @@
 		GLOB.blood_target_image.pixel_x = -target.pixel_x
 		GLOB.blood_target_image.pixel_y = -target.pixel_y
 		for(var/datum/mind/B in SSticker.mode.cult)
-			if(B.current && B.current.stat != STATS_DEAD && B.current.client)
+			if(B.current && B.current.stat != STAT_DEAD && B.current.client)
 				to_chat(B.current, "<span class='cultlarge'><b>Master [ranged_ability_user] has marked [GLOB.blood_target] in the [A.name] as the cult's top priority, get there immediately!</b></span>")
 				SEND_SOUND(B.current, sound(pick('sound/hallucinations/over_here2.ogg','sound/hallucinations/over_here3.ogg'),0,1,75))
 				B.current.client.images += GLOB.blood_target_image
@@ -290,7 +290,7 @@
 
 /proc/reset_blood_target()
 	for(var/datum/mind/B in SSticker.mode.cult)
-		if(B.current && B.current.stat != STATS_DEAD && B.current.client)
+		if(B.current && B.current.stat != STAT_DEAD && B.current.client)
 			if(GLOB.blood_target)
 				to_chat(B.current,"<span class='cultlarge'><b>The blood mark has expired!</b></span>")
 			B.current.client.images -= GLOB.blood_target_image

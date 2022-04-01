@@ -17,6 +17,6 @@
 
 /mob/living/carbon/proc/experience_dream(dream_image)
 	dreaming--
-	if(stat != STATS_UNCONSCIOUS || InCritical())
+	if(stat != STATS_UNCONSCIOU || InCritical())
 		return
 	to_chat(src, "<span class='notice'><i>... [dream_image] ...</i></span>")

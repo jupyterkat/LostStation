@@ -94,7 +94,7 @@ GLOBAL_LIST_EMPTY(objectives)
 		var/mob/living/carbon/human/H
 		if(ishuman(target.current))
 			H = target.current
-		if(target.current.stat == STATS_DEAD || issilicon(target.current) || isbrain(target.current) || target.current.z > 6 || !target.current.ckey || (H && H.dna.species.id == "memezombies")) //Borgs/brains/AIs count as dead for traitor objectives. --NeoFite
+		if(target.current.stat == STAT_DEAD || issilicon(target.current) || isbrain(target.current) || target.current.z > 6 || !target.current.ckey || (H && H.dna.species.id == "memezombies")) //Borgs/brains/AIs count as dead for traitor objectives. --NeoFite
 			return 1
 		return 0
 	return 1
@@ -127,7 +127,7 @@ GLOBAL_LIST_EMPTY(objectives)
 
 /datum/objective/mutiny/check_completion()
 	if(target && target.current)
-		if(target.current.stat == STATS_DEAD || !ishuman(target.current) || !target.current.ckey)
+		if(target.current.stat == STAT_DEAD || !ishuman(target.current) || !target.current.ckey)
 			return 1
 		var/turf/T = get_turf(target.current)
 		if(T && (!(T.z in GLOB.station_z_levels)) || (target.current.client && target.current.client.is_afk()))			//If they leave the station or go afk they count as dead for this
@@ -159,7 +159,7 @@ GLOBAL_LIST_EMPTY(objectives)
 		var/mob/living/carbon/human/H
 		if(ishuman(target.current))
 			H = target.current
-		if(target.current.stat == STATS_DEAD || issilicon(target.current) || isbrain(target.current) || target.current.z > 6 || !target.current.ckey || (H && H.dna.species.id == "memezombies")) //Borgs/brains/AIs count as dead for traitor objectives. --NeoFite
+		if(target.current.stat == STAT_DEAD || issilicon(target.current) || isbrain(target.current) || target.current.z > 6 || !target.current.ckey || (H && H.dna.species.id == "memezombies")) //Borgs/brains/AIs count as dead for traitor objectives. --NeoFite
 			return 1
 		if(target.current.onCentCom() || target.current.onSyndieBase())
 			return 0
@@ -185,7 +185,7 @@ GLOBAL_LIST_EMPTY(objectives)
 /datum/objective/debrain/check_completion()
 	if(!target)//If it's a free objective.
 		return 1
-	if( !owner.current || owner.current.stat==STATS_DEAD )//If you're otherwise dead.
+	if( !owner.current || owner.current.stat==STAT_DEAD )//If you're otherwise dead.
 		return 0
 	if( !target.current || !isbrain(target.current) )
 		return 0
@@ -219,7 +219,7 @@ GLOBAL_LIST_EMPTY(objectives)
 	if(!target)			//If it's a free objective.
 		return 1
 	if(target.current)
-		if(target.current.stat == STATS_DEAD || issilicon(target.current) || isbrain(target.current))
+		if(target.current.stat == STAT_DEAD || issilicon(target.current) || isbrain(target.current))
 			return 0
 		return 1
 	return 0
@@ -263,7 +263,7 @@ GLOBAL_LIST_EMPTY(objectives)
 	for(var/mob/living/player in GLOB.player_list) //Make sure nobody else is onboard
 		if(SSshuttle.emergency.shuttle_areas[get_area(player)])
 			if(player.mind && player.mind != owner)
-				if(player.stat != STATS_DEAD)
+				if(player.stat != STAT_DEAD)
 					if(issilicon(player)) //Borgs are technically dead anyways
 						continue
 					if(isanimal(player)) //animals don't count
@@ -295,7 +295,7 @@ GLOBAL_LIST_EMPTY(objectives)
 		if(issilicon(player))
 			continue
 		if(player.mind)
-			if(player.stat != STATS_DEAD)
+			if(player.stat != STAT_DEAD)
 				if(get_area(player) in SSshuttle.emergency.shuttle_areas)
 					return 0
 
@@ -311,7 +311,7 @@ GLOBAL_LIST_EMPTY(objectives)
 		return 1
 
 	for(var/mob/living/player in GLOB.player_list)
-		if(get_area(player) in SSshuttle.emergency.shuttle_areas && player.mind && player.stat != STATS_DEAD && ishuman(player))
+		if(get_area(player) in SSshuttle.emergency.shuttle_areas && player.mind && player.stat != STAT_DEAD && ishuman(player))
 			var/mob/living/carbon/human/H = player
 			if(H.dna.species.id != "human")
 				return 0
@@ -331,7 +331,7 @@ GLOBAL_LIST_EMPTY(objectives)
 	var/counter = 0
 
 	for(var/mob/living/silicon/robot/R in A.connected_robots)
-		if(R.stat != STATS_DEAD)
+		if(R.stat != STAT_DEAD)
 			counter++
 
 	if(counter < 8)
@@ -346,7 +346,7 @@ GLOBAL_LIST_EMPTY(objectives)
 		return 0
 	if(isbrain(owner.current))
 		return 0
-	if(!owner.current || owner.current.stat == STATS_DEAD)
+	if(!owner.current || owner.current.stat == STAT_DEAD)
 		return 0
 	if(SSticker.force_ending) //This one isn't their fault, so lets just assume good faith
 		return 1
@@ -373,7 +373,7 @@ GLOBAL_LIST_EMPTY(objectives)
 /datum/objective/escape/escape_with_identity/find_target()
 	var/list/possible_targets = list()
 	for(var/datum/mind/possible_target in get_crewmember_minds())
-		if(possible_target != owner && ishuman(possible_target.current) && possible_target.current.has_dna() && (possible_target.current.stat != STATS_DEAD) && is_unique_objective(possible_target))
+		if(possible_target != owner && ishuman(possible_target.current) && possible_target.current.has_dna() && (possible_target.current.stat != STAT_DEAD) && is_unique_objective(possible_target))
 			possible_targets += possible_target
 	if(possible_targets.len > 0)
 		target = pick(possible_targets)
@@ -414,7 +414,7 @@ GLOBAL_LIST_EMPTY(objectives)
 	explanation_text = "Stay alive until the end."
 
 /datum/objective/survive/check_completion()
-	if(!owner.current || owner.current.stat == STATS_DEAD || isbrain(owner.current))
+	if(!owner.current || owner.current.stat == STAT_DEAD || isbrain(owner.current))
 		return 0		//Brains no longer win survive objectives. --NEO
 	if(!is_special_character(owner.current)) //This fails borg'd traitors
 		return 0
@@ -427,7 +427,7 @@ GLOBAL_LIST_EMPTY(objectives)
 /datum/objective/martyr/check_completion()
 	if(!owner.current) //Gibbed, etc.
 		return 1
-	if(owner.current && owner.current.stat == STATS_DEAD) //You're dead! Yay!
+	if(owner.current && owner.current.stat == STAT_DEAD) //You're dead! Yay!
 		return 1
 	return 0
 
@@ -572,7 +572,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 		return 0
 
 	var/mob/living/carbon/human/H = owner.current
-	if(!H || H.stat == STATS_DEAD)
+	if(!H || H.stat == STAT_DEAD)
 		return 0
 
 	if(!istype(H.wear_suit, /obj/item/clothing/suit/space/space_ninja))
@@ -672,7 +672,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 
 /datum/objective/destroy/check_completion()
 	if(target && target.current)
-		if(target.current.stat == STATS_DEAD || target.current.z > 6 || !target.current.ckey) //Borgs/brains/AIs count as dead for traitor objectives. --NeoFite
+		if(target.current.stat == STAT_DEAD || target.current.z > 6 || !target.current.ckey) //Borgs/brains/AIs count as dead for traitor objectives. --NeoFite
 			return 1
 		return 0
 	return 1

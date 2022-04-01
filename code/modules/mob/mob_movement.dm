@@ -125,7 +125,7 @@
 		return Move_object(direct)
 	if(!isliving(mob))
 		return mob.Move(n,direct)
-	if(mob.stat == STATS_DEAD)
+	if(mob.stat == STAT_DEAD)
 		mob.ghostize()
 		return FALSE
 	if(moving)

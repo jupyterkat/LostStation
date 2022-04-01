@@ -204,7 +204,7 @@
 /datum/game_mode/cult/proc/check_survive()
 	var/acolytes_survived = 0
 	for(var/datum/mind/cult_mind in cult)
-		if (cult_mind.current && cult_mind.current.stat != STATS_DEAD)
+		if (cult_mind.current && cult_mind.current.stat != STAT_DEAD)
 			if(cult_mind.current.onCentCom() || cult_mind.current.onSyndieBase())
 				acolytes_survived++
 	if(acolytes_survived>=acolytes_needed)
@@ -218,6 +218,10 @@
 	if(!check_cult_victory())
 		SSticker.mode_result = "win - cult win"
 		to_chat(world, "<span class='greentext'>The cult has succeeded! Nar-sie has snuffed out another torch in the void!</span>")
+
+		for(var/datum/mind/M in cult)
+			var/client/c = M.current.client
+			c.inc_antag_tokens_count(ATOKEN_GREENTEXT_BONUS)
 	else
 		SSticker.mode_result = "loss - staff stopped the cult"
 		to_chat(world, "<span class='redtext'>The staff managed to stop the cult! Dark words and heresy are no match for Nanotrasen's finest!</span>")

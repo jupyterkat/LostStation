@@ -556,7 +556,7 @@
 	color = "#FFEBEB"
 
 /datum/reagent/flightpotion/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1)
-	if(iscarbon(M) && M.stat != STATS_DEAD)
+	if(iscarbon(M) && M.stat != STAT_DEAD)
 		if(!ishumanbasic(M) || reac_volume < 5) // implying xenohumans are holy
 			if(method == INGEST && show_message)
 				to_chat(M, "<span class='notice'><i>You feel nothing but a terrible aftertaste.</i></span>")

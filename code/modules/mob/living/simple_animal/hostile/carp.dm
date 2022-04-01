@@ -33,7 +33,7 @@
 
 	faction = list("carp")
 	movement_type = FLYING
-	pressure_resistance = 200
+	spacewind_immune = TRUE
 	gold_core_spawnable = 1
 
 /mob/living/simple_animal/hostile/carp/AttackingTarget()

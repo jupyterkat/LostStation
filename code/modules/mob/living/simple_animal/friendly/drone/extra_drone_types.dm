@@ -164,7 +164,7 @@
 	..()
 
 /mob/living/simple_animal/drone/attackby(obj/item/I, mob/user)
-	if(istype(I, /obj/item/screwdriver) && stat == STATS_DEAD)
+	if(istype(I, /obj/item/screwdriver) && stat == STAT_DEAD)
 		try_reactivate(user)
 	else
 		..()
@@ -199,7 +199,7 @@
 	fully_heal(TRUE)
 
 /mob/living/simple_animal/drone/cogscarab/update_icons()
-	if(stat != STATS_DEAD)
+	if(stat != STAT_DEAD)
 		if(incapacitated())
 			icon_state = "[visualAppearence]_flipped"
 		else

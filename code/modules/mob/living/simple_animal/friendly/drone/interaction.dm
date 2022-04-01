@@ -7,7 +7,7 @@
 
 
 /mob/living/simple_animal/drone/attack_drone(mob/living/simple_animal/drone/D)
-	if(D != src && stat == STATS_DEAD)
+	if(D != src && stat == STAT_DEAD)
 		var/d_input = alert(D,"Perform which action?","Drone Interaction","Reactivate","Cannibalize","Nothing")
 		if(d_input)
 			switch(d_input)
@@ -32,7 +32,7 @@
 
 /mob/living/simple_animal/drone/attack_hand(mob/user)
 	if(ishuman(user))
-		if(stat == STATS_DEAD || status_flags & GODMODE || !can_be_held)
+		if(stat == STAT_DEAD || status_flags & GODMODE || !can_be_held)
 			..()
 			return
 		if(user.get_active_held_item())
@@ -81,7 +81,7 @@
 
 
 /mob/living/simple_animal/drone/attackby(obj/item/I, mob/user)
-	if(istype(I, /obj/item/screwdriver) && stat != STATS_DEAD)
+	if(istype(I, /obj/item/screwdriver) && stat != STAT_DEAD)
 		if(health < maxHealth)
 			to_chat(user, "<span class='notice'>You start to tighten loose screws on [src]...</span>")
 			if(do_after(user,80*I.toolspeed,target=user))
@@ -189,7 +189,7 @@
 
 	icon_living = "[visualAppearence]"
 	icon_dead = "[visualAppearence]_dead"
-	if(stat == STATS_DEAD)
+	if(stat == STAT_DEAD)
 		icon_state = icon_dead
 	else
 		icon_state = icon_living

@@ -89,7 +89,7 @@
 	. = ..()
 	if(. && isliving(target))
 		var/mob/living/L = target
-		if(L.stat != STATS_DEAD)
+		if(L.stat != STAT_DEAD)
 			if(!client && ranged && ranged_cooldown <= world.time)
 				OpenFire()
 		else

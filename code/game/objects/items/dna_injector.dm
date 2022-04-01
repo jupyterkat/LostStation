@@ -310,7 +310,7 @@
 
 /obj/item/dnainjector/timed/inject(mob/living/carbon/M, mob/user)
 	prepare()
-	if(M.stat == STATS_DEAD)	//prevents dead people from having their DNA changed
+	if(M.stat == STAT_DEAD)	//prevents dead people from having their DNA changed
 		to_chat(user, "<span class='notice'>You can't modify [M]'s DNA while [M.p_theyre()] dead.</span>")
 		return FALSE
 

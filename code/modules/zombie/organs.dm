@@ -48,7 +48,7 @@
 
 	if(timer_id)
 		return
-	if(owner.stat != STATS_DEAD && !converts_living)
+	if(owner.stat != STAT_DEAD && !converts_living)
 		return
 	if(!iszombie(owner))
 		to_chat(owner, "<span class='cultlarge'>You can feel your heart stopping, but something isn't right... \
@@ -65,10 +65,10 @@
 		old_species = owner.dna.species.type
 		owner.set_species(/datum/species/zombie/infectious)
 
-	if(!converts_living && owner.stat != STATS_DEAD)
+	if(!converts_living && owner.stat != STAT_DEAD)
 		return
 
-	var/stand_up = (owner.stat == STATS_DEAD) || (owner.stat == STATS_UNCONSCIOUS)
+	var/stand_up = (owner.stat == STAT_DEAD) || (owner.stat == STATS_UNCONSCIOU)
 
 	if(!owner.revive(full_heal = TRUE))
 		return

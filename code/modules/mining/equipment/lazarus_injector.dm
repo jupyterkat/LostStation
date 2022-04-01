@@ -25,7 +25,7 @@
 			if(M.sentience_type != revive_type)
 				to_chat(user, "<span class='info'>[src] does not work on this sort of creature.</span>")
 				return
-			if(M.stat == STATS_DEAD)
+			if(M.stat == STAT_DEAD)
 				M.faction = list("neutral")
 				M.revive(full_heal = 1, admin_revive = 1)
 				if(ishostile(target))

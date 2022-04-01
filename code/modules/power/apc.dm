@@ -918,7 +918,7 @@
 /obj/machinery/power/apc/proc/malfvacate(forced)
 	if(!occupier)
 		return
-	if(occupier.parent && occupier.parent.stat != STATS_DEAD)
+	if(occupier.parent && occupier.parent.stat != STAT_DEAD)
 		occupier.mind.transfer_to(occupier.parent)
 		occupier.parent.shunted = 0
 		occupier.parent.setOxyLoss(occupier.getOxyLoss())

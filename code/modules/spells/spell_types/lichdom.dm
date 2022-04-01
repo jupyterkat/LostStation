@@ -110,11 +110,11 @@
 		qdel(src)
 		return
 
-	if(!mind.current || (mind.current && mind.current.stat == STATS_DEAD))
+	if(!mind.current || (mind.current && mind.current.stat == STAT_DEAD))
 		addtimer(CALLBACK(src, .proc/rise), respawn_time, TIMER_UNIQUE)
 
 /obj/item/phylactery/proc/rise()
-	if(mind.current && mind.current.stat != STATS_DEAD)
+	if(mind.current && mind.current.stat != STAT_DEAD)
 		return "[mind] already has a living body: [mind.current]"
 
 	var/turf/item_turf = get_turf(src)

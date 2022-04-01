@@ -207,7 +207,7 @@
 	if(nuke_off_station == NUKE_SYNDICATE_BASE)
 		SSticker.mode_result = "loss - syndicate nuked - disk secured"
 		to_chat(world, "<FONT size = 3><B>Humiliating Syndicate Defeat</B></FONT>")
-		to_chat(world, "<B>The crew of [station_name()] gave [syndicate_name()] operatives back their bomb! The syndicate base was destroyed!</B> Next time, don't lose the nuke!")
+		to_chat(world, "<B>The crew of [station_name()] gave [syndicate_name()] operatives back their bomb! The syndicate base was destroyed!</B>")
 
 		SSticker.news_report = NUKE_SYNDICATE_BASE
 
@@ -216,26 +216,30 @@
 		to_chat(world, "<FONT size = 3><B>Syndicate Major Victory!</B></FONT>")
 		to_chat(world, "<B>[syndicate_name()] operatives have destroyed [station_name()]!</B>")
 
+		for(var/list/datum/mind/m in syndicates)
+			var/client/c = m.current.client
+			c.inc_antag_tokens_count(ATOKEN_GREENTEXT_BONUS)
+
 		SSticker.news_report = STATION_NUKED
 
 	else if (!disk_rescued &&  station_was_nuked && syndies_didnt_escape)
 		SSticker.mode_result = "halfwin - syndicate nuke - did not evacuate in time"
 		to_chat(world, "<FONT size = 3><B>Total Annihilation</B></FONT>")
-		to_chat(world, "<B>[syndicate_name()] operatives destroyed [station_name()] but did not leave the area in time and got caught in the explosion.</B> Next time, don't lose the disk!")
+		to_chat(world, "<B>[syndicate_name()] operatives destroyed [station_name()] but did not leave the area in time and got caught in the explosion.</B>")
 
 		SSticker.news_report = STATION_NUKED
 
 	else if (!disk_rescued && !station_was_nuked && nuke_off_station && !syndies_didnt_escape)
 		SSticker.mode_result = "halfwin - blew wrong station"
 		to_chat(world, "<FONT size = 3><B>Crew Minor Victory</B></FONT>")
-		to_chat(world, "<B>[syndicate_name()] operatives secured the authentication disk but blew up something that wasn't [station_name()].</B> Next time, don't do that!")
+		to_chat(world, "<B>[syndicate_name()] operatives secured the authentication disk but blew up something that wasn't [station_name()].</B>")
 
 		SSticker.news_report = NUKE_MISS
 
 	else if (!disk_rescued && !station_was_nuked && nuke_off_station && syndies_didnt_escape)
 		SSticker.mode_result = "halfwin - blew wrong station - did not evacuate in time"
 		to_chat(world, "<FONT size = 3><B>[syndicate_name()] operatives have earned Darwin Award!</B></FONT>")
-		to_chat(world, "<B>[syndicate_name()] operatives blew up something that wasn't [station_name()] and got caught in the explosion.</B> Next time, don't do that!")
+		to_chat(world, "<B>[syndicate_name()] operatives blew up something that wasn't [station_name()] and got caught in the explosion.</B>")
 
 		SSticker.news_report = NUKE_MISS
 
@@ -263,7 +267,7 @@
 	else if (!disk_rescued &&  crew_evacuated)
 		SSticker.mode_result = "halfwin - detonation averted"
 		to_chat(world, "<FONT size = 3><B>Syndicate Minor Victory!</B></FONT>")
-		to_chat(world, "<B>[syndicate_name()] operatives survived the assault but did not achieve the destruction of [station_name()].</B> Next time, don't lose the disk!")
+		to_chat(world, "<B>[syndicate_name()] operatives survived the assault but did not achieve the destruction of [station_name()].</B>")
 
 		SSticker.news_report = OPERATIVE_SKIRMISH
 

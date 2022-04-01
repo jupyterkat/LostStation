@@ -1,6 +1,6 @@
 /mob/living/gib(no_brain, no_organs, no_bodyparts)
 	var/prev_lying = lying
-	if(stat != STATS_DEAD)
+	if(stat != STAT_DEAD)
 		death(1)
 
 	if(!prev_lying)
@@ -44,7 +44,7 @@
 
 
 /mob/living/death(gibbed)
-	stat = STATS_DEAD
+	stat = STAT_DEAD
 	unset_machine()
 	timeofdeath = world.time
 	tod = worldtime2text()

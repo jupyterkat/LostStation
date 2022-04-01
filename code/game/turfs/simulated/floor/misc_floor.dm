@@ -171,7 +171,7 @@
 
 /turf/open/floor/clockwork/proc/healservants()
 	for(var/mob/living/L in src)
-		if(L.stat == STATS_DEAD)
+		if(L.stat == STAT_DEAD)
 			continue
 		. = 1
 		if(!is_servant_of_ratvar(L) || !L.toxloss)
@@ -184,7 +184,7 @@
 		I.pixel_y = rand(-9, 0)
 		var/list/viewing = list()
 		for(var/mob/M in viewers(src))
-			if(M.client && (is_servant_of_ratvar(M) || isobserver(M) || M.stat == STATS_DEAD))
+			if(M.client && (is_servant_of_ratvar(M) || isobserver(M) || M.stat == STAT_DEAD))
 				viewing += M.client
 		flick_overlay(I, viewing, 8)
 		L.adjustToxLoss(-3, TRUE, TRUE)

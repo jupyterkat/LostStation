@@ -396,7 +396,7 @@
 
 // Simple helper to face what you clicked on, in case it should be needed in more than one place
 /mob/proc/face_atom(atom/A)
-	if( stat != STATS_CONSCIOUS || !A || !x || !y || !A.x || !A.y )
+	if( stat != STAT_CONSCIOUS || !A || !x || !y || !A.x || !A.y )
 		return
 
 	if(buckled) //allows rolling chairs to rotate with you, a nice touch

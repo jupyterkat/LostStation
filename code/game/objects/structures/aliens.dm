@@ -312,7 +312,7 @@
 			return
 
 		var/mob/living/carbon/C = AM
-		if(C.stat == STATS_CONSCIOUS && C.getorgan(/obj/item/organ/body_egg/alien_embryo))
+		if(C.stat == STAT_CONSCIOUS && C.getorgan(/obj/item/organ/body_egg/alien_embryo))
 			return
 
 		Burst(kill=FALSE)

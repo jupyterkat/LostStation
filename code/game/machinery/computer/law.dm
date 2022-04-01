@@ -26,7 +26,7 @@
 		return ..()
 
 /obj/machinery/computer/upload/proc/can_upload_to(mob/living/silicon/S)
-	if(S.stat == STATS_DEAD)
+	if(S.stat == STAT_DEAD)
 		return 0
 	return 1
 

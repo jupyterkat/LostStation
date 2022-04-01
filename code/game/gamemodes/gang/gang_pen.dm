@@ -14,7 +14,7 @@
 /obj/item/pen/gang/attack(mob/living/M, mob/user, stealth = TRUE)
 	if(!istype(M))
 		return
-	if(ishuman(M) && ishuman(user) && M.stat != STATS_DEAD)
+	if(ishuman(M) && ishuman(user) && M.stat != STAT_DEAD)
 		if(user.mind && (user.mind in SSticker.mode.get_gang_bosses()))
 			if(..(M,user,1))
 				if(cooldown)

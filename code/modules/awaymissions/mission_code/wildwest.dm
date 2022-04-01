@@ -125,7 +125,7 @@
 
 	var/mob/living/carbon/human/M = AM
 
-	if(M.stat != STATS_DEAD && M.ckey)
+	if(M.stat != STAT_DEAD && M.ckey)
 		visible_message("<span class='warning'>[M] triggered the [src]!</span>")
 		triggered = 1
 

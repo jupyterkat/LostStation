@@ -145,10 +145,10 @@
 
 
 /obj/item/device/assembly/flash/proc/terrible_conversion_proc(mob/living/carbon/human/H, mob/user)
-	if(istype(H) && ishuman(user) && H.stat != STATS_DEAD)
+	if(istype(H) && ishuman(user) && H.stat != STAT_DEAD)
 		if(user.mind && (user.mind in SSticker.mode.head_revolutionaries))
 			if(H.client)
-				if(H.stat == STATS_CONSCIOUS)
+				if(H.stat == STAT_CONSCIOUS)
 					H.mind_initialize() //give them a mind datum if they don't have one.
 					var/resisted
 					if(!H.isloyal())

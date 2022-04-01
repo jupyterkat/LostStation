@@ -16,7 +16,7 @@
 /datum/objective/crew/cyborgs/check_completion()
 	var/borgcount = target_amount
 	for(var/mob/living/silicon/robot/R in GLOB.living_mob_list)
-		if(!(R.stat == STATS_DEAD))
+		if(!(R.stat == STAT_DEAD))
 			borgcount--
 	if(borgcount <= 0)
 		return TRUE

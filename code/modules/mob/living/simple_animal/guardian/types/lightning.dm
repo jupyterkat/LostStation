@@ -97,7 +97,7 @@
 	for(var/turf in turfs)
 		var/turf/T = turf
 		for(var/mob/living/L in T)
-			if(L.stat != STATS_DEAD && L != src && L != summoner)
+			if(L.stat != STAT_DEAD && L != src && L != summoner)
 				if(hasmatchingsummoner(L)) //if the summoner matches don't hurt them
 					continue
 				if(successfulshocks > 4)

@@ -48,7 +48,7 @@ To draw a rune, use an arcane tome.
 
 /obj/effect/rune/examine(mob/user)
 	..()
-	if(iscultist(user) || user.stat == STATS_DEAD) //If they're a cultist or a ghost, tell them the effects
+	if(iscultist(user) || user.stat == STAT_DEAD) //If they're a cultist or a ghost, tell them the effects
 		to_chat(user, "<b>Name:</b> [cultist_name]")
 		to_chat(user, "<b>Effects:</b> [capitalize(cultist_desc)]")
 		to_chat(user, "<b>Required Acolytes:</b> [req_cultists_text ? "[req_cultists_text]":"[req_cultists]"]")
@@ -350,7 +350,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 	var/mob/living/L = pick(myriad_targets)
 	var/is_clock = is_servant_of_ratvar(L)
 	var/is_convertable = is_convertable_to_cult(L)
-	if(L.stat != STATS_DEAD && (is_clock || is_convertable))
+	if(L.stat != STAT_DEAD && (is_clock || is_convertable))
 		invocation = "Mah'weyh pleggh at e'ntrath!"
 		..()
 		if(is_clock)
@@ -398,7 +398,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 
 /obj/effect/rune/convert/proc/do_sacrifice(mob/living/sacrificial, list/invokers)
 	var/big_sac = FALSE
-	if((((ishuman(sacrificial) || iscyborg(sacrificial)) && sacrificial.stat != STATS_DEAD) || is_sacrifice_target(sacrificial.mind)) && invokers.len < 3)
+	if((((ishuman(sacrificial) || iscyborg(sacrificial)) && sacrificial.stat != STAT_DEAD) || is_sacrifice_target(sacrificial.mind)) && invokers.len < 3)
 		for(var/M in invokers)
 			to_chat(M, "<span class='cultitalic'>[sacrificial] is too greatly linked to the world! You need three acolytes!</span>")
 		log_game("Offer rune failed - not enough acolytes and target is living or sac target")
@@ -508,7 +508,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 
 /obj/effect/rune/raise_dead/examine(mob/user)
 	..()
-	if(iscultist(user) || user.stat == STATS_DEAD)
+	if(iscultist(user) || user.stat == STAT_DEAD)
 		var/revive_number = LAZYLEN(GLOB.sacrificed) - revives_used
 		to_chat(user, "<b>Revives Remaining:</b> [revive_number]")
 
@@ -521,7 +521,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 		return
 	rune_in_use = TRUE
 	for(var/mob/living/M in T.contents)
-		if(iscultist(M) && M.stat == STATS_DEAD)
+		if(iscultist(M) && M.stat == STAT_DEAD)
 			potential_revive_mobs |= M
 	if(!potential_revive_mobs.len)
 		to_chat(user, "<span class='cultitalic'>There are no dead cultists on the rune!</span>")
@@ -584,7 +584,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 /obj/effect/rune/raise_dead/fail_invoke()
 	..()
 	for(var/mob/living/M in range(1,src))
-		if(iscultist(M) && M.stat == STATS_DEAD)
+		if(iscultist(M) && M.stat == STAT_DEAD)
 			M.visible_message("<span class='warning'>[M] twitches.</span>")
 
 
@@ -673,11 +673,11 @@ structure_check() searches for nearby cultist structures required for the invoca
 			affecting.remove_atom_colour(ADMIN_COLOUR_PRIORITY, RUNE_COLOR_DARKRED)
 			affecting.Knockdown(60)
 			break
-		if(affecting.stat == STATS_UNCONSCIOUS)
+		if(affecting.stat == STATS_UNCONSCIOU)
 			if(prob(1))
 				var/mob/dead/observer/G = affecting.get_ghost()
 				to_chat(G, "<span class='cultitalic'>You feel the link between you and your body weakening... you must hurry!</span>")
-		else if(affecting.stat == STATS_DEAD)
+		else if(affecting.stat == STAT_DEAD)
 			affecting.remove_atom_colour(ADMIN_COLOUR_PRIORITY, RUNE_COLOR_DARKRED)
 			var/mob/dead/observer/G = affecting.get_ghost()
 			to_chat(G, "<span class='cultitalic'><b>You suddenly feel your physical form pass on. [src]'s exertion has killed you!</b></span>")
@@ -782,7 +782,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 	var/mob/living/user = invokers[1]
 	var/list/cultists = list()
 	for(var/datum/mind/M in SSticker.mode.cult)
-		if(!(M.current in invokers) && M.current && M.current.stat != STATS_DEAD)
+		if(!(M.current in invokers) && M.current && M.current.stat != STAT_DEAD)
 			cultists |= M.current
 	var/mob/living/cultist_to_summon = input(user, "Who do you wish to call to [src]?", "Followers of the Geometer") as null|anything in cultists
 	if(!Adjacent(user) || !src || QDELETED(src) || user.incapacitated())
@@ -792,7 +792,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 		fail_invoke()
 		log_game("Summon Cultist rune failed - no target")
 		return
-	if(cultist_to_summon.stat == STATS_DEAD)
+	if(cultist_to_summon.stat == STAT_DEAD)
 		to_chat(user, "<span class='cultitalic'>[cultist_to_summon] has died!</span>")
 		fail_invoke()
 		log_game("Summon Cultist rune failed - target died")

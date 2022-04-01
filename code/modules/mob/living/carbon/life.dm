@@ -9,29 +9,29 @@
 		damageoverlaytemp = 0
 		update_damage_hud()
 
-	if(stat != STATS_DEAD) //Reagent processing needs to come before breathing, to prevent edge cases.
+	if(stat != STAT_DEAD) //Reagent processing needs to come before breathing, to prevent edge cases.
 		handle_organs()
 
 	if(..()) //not dead
 		handle_blood()
 
-	if(stat != STATS_DEAD)
+	if(stat != STAT_DEAD)
 		handle_brain_damage()
 
 	if(isLivingSSD())//if you're disconnected, you're going to sleep
 		if(AmountSleeping() < 20)
 			AdjustSleeping(20)
 
-	if(stat != STATS_DEAD)
+	if(stat != STAT_DEAD)
 		handle_liver()
 
-	if(stat == STATS_DEAD)
+	if(stat == STAT_DEAD)
 		stop_sound_channel(CHANNEL_HEARTBEAT)
 
 	//Updates the number of stored chemicals for powers
 	handle_changeling()
 
-	if(stat != STATS_DEAD)
+	if(stat != STAT_DEAD)
 		return 1
 
 ///////////////
@@ -239,7 +239,7 @@
 		if(prob(D.infectivity))
 			D.spread()
 
-		if(stat != STATS_DEAD || D.process_dead)
+		if(stat != STAT_DEAD || D.process_dead)
 			D.stage_act()
 
 /mob/living/carbon/proc/handle_changeling()
@@ -306,8 +306,8 @@
 		if(M.loc != src)
 			stomach_contents.Remove(M)
 			continue
-		if(iscarbon(M) && stat != STATS_DEAD)
-			if(M.stat == STATS_DEAD)
+		if(iscarbon(M) && stat != STAT_DEAD)
+			if(M.stat == STAT_DEAD)
 				M.death(1)
 				stomach_contents.Remove(M)
 				qdel(M)

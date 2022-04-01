@@ -72,7 +72,7 @@
 	var/show_when_dead = FALSE
 
 /obj/screen/fullscreen/proc/should_show_to(mob/mymob)
-	if(!show_when_dead && mymob.stat == STATS_DEAD)
+	if(!show_when_dead && mymob.stat == STAT_DEAD)
 		return FALSE
 	return TRUE
 

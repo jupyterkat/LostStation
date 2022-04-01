@@ -251,7 +251,7 @@
 
 	for(var/mob/living/player in GLOB.player_list)
 		if(player.mind)
-			if(player.stat != STATS_DEAD)
+			if(player.stat != STAT_DEAD)
 				if(issilicon(player)) //Borgs are technically dead anyways
 					continue
 				if(isanimal(player)) //animals don't count

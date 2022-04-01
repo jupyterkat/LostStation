@@ -27,7 +27,7 @@
 			if(I != src)
 				qdel(I)
 
-		if(!target.mind || target.stat == STATS_DEAD)
+		if(!target.mind || target.stat == STAT_DEAD)
 			return 0
 
 		var/success

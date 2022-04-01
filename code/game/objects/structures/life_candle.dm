@@ -63,14 +63,14 @@
 
 	for(var/m in linked_minds)
 		var/datum/mind/mind = m
-		if(!mind.current || (mind.current && mind.current.stat == STATS_DEAD))
+		if(!mind.current || (mind.current && mind.current.stat == STAT_DEAD))
 			addtimer(CALLBACK(src, .proc/respawn, mind), respawn_time, TIMER_UNIQUE)
 
 /obj/structure/life_candle/proc/respawn(datum/mind/mind)
 	var/turf/T = get_turf(src)
 	var/mob/living/body
 	if(mind.current)
-		if(mind.current.stat != STATS_DEAD)
+		if(mind.current.stat != STAT_DEAD)
 			return
 		else
 			body = mind.current

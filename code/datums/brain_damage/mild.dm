@@ -49,7 +49,7 @@
 	owner.derpspeech = min(owner.derpspeech + 5, 25)
 	if(prob(3))
 		owner.emote("drool")
-	else if(owner.stat == STATS_CONSCIOUS && prob(3))
+	else if(owner.stat == STAT_CONSCIOUS && prob(3))
 		owner.say(pick_list_replacements(BRAIN_DAMAGE_FILE, "brain_damage"))
 	..()
 

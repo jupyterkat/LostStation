@@ -73,7 +73,7 @@
 	var/turf/here = get_turf(src)
 	for(var/V in SSticker.mode.syndicates)
 		var/datum/mind/M = V
-		if(M.current && M.current.stat != STATS_DEAD)
+		if(M.current && M.current.stat != STAT_DEAD)
 			possible_targets |= M.current
 	var/mob/living/closest_operative = get_closest_atom(/mob/living/carbon/human, possible_targets, here)
 	if(closest_operative)

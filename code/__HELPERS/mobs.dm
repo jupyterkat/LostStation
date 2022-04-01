@@ -437,7 +437,7 @@ Proc for attack log creation, because really why not
 			adminoverride = 1
 		if(isnewplayer(M) && !adminoverride)
 			continue
-		if(M.stat != STATS_DEAD && !adminoverride)
+		if(M.stat != STAT_DEAD && !adminoverride)
 			continue
 		if(speaker_key && speaker_key in prefs.ignoring)
 			continue

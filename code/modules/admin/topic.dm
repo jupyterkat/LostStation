@@ -57,6 +57,15 @@
 			return
 		toggle_exempt_status(C)
 
+	else if(href_list["modantagtokens"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		var/mob/M = locate(href_list["mob"]) in GLOB.mob_list
+		var/client/C = M.client
+		usr.client.cmd_admin_mod_antag_tokens(C, href_list["modantagtokens"])
+		show_player_panel(M)
+
 	else if(href_list["makeAntag"])
 		if(!check_rights(R_ADMIN))
 			return
@@ -2509,7 +2518,7 @@
 		to_chat(src.owner, "<span class='notice'>Message transmitted successfully.</span>")
 		if(notify == "Yes")
 			var/mob/living/carbon/human/H = sender
-			if(istype(H) && H.stat == STATS_CONSCIOUS && (istype(H.ears, /obj/item/device/radio/headset)))
+			if(istype(H) && H.stat == STAT_CONSCIOUS && (istype(H.ears, /obj/item/device/radio/headset)))
 				to_chat(sender, "<span class='notice'>Your headset pings, notifying you that a reply to your fax has arrived.</span>")
 		if(sender)
 			log_admin("[key_name(src.owner)] replied to a fax message from [key_name(sender)]: [input_text]")
@@ -2555,7 +2564,7 @@
 		//we have to physically teleport the fax paper
 		fax.handle_animation()
 		P.forceMove(fax.loc)
-		if(istype(H) && H.stat == STATS_CONSCIOUS && (istype(H.ears, /obj/item/device/radio/headset)))
+		if(istype(H) && H.stat == STAT_CONSCIOUS && (istype(H.ears, /obj/item/device/radio/headset)))
 			to_chat(H, "<span class='notice'>Your headset pings, notifying you that a reply to your fax has arrived.</span>")
 		to_chat(src.owner, "<span class='notice'>You sent a [eviltype] fax to [H].</span>")
 		log_admin("[key_name(src.owner)] sent [key_name(H)] a [eviltype] fax")
@@ -2595,7 +2604,7 @@
 		P.y = rand(-1, 2)
 		P.update_icon()
 		fax.receivefax(P)
-		if(istype(H) && H.stat == STATS_CONSCIOUS && (istype(H.ears, /obj/item/device/radio/headset)))
+		if(istype(H) && H.stat == STAT_CONSCIOUS && (istype(H.ears, /obj/item/device/radio/headset)))
 			to_chat(H, "<span class='notice'>Your headset pings, notifying you that a reply to your fax has arrived.</span>")
 		to_chat(src.owner, "<span class='notice'>You sent a standard '[stype]' fax to [H].</span>")
 		log_admin("[key_name(src.owner)] sent [key_name(H)] a standard '[stype]' fax")

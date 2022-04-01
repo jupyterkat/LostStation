@@ -133,7 +133,7 @@
 						continue
 					var/datum/objective/assassinate/internal/objective = objective_
 					var/mob/current = objective.target.current
-					if(current&&current.stat!=STATS_DEAD)
+					if(current&&current.stat!=STAT_DEAD)
 						scan_target = current
 					break
 
@@ -183,7 +183,7 @@
 /datum/antagonist/traitor/proc/steal_targets(datum/mind/victim)
 	var/datum/antagonist/traitor/human/sleeper_agent/this = src //Should only use this if sleeper agent
 
-	if(!owner.current||owner.current.stat==STATS_DEAD)
+	if(!owner.current||owner.current.stat==STAT_DEAD)
 		return
 	to_chat(owner.current, "<span class='userdanger'> Target eliminated: [victim.name]</span>")
 	for(var/objective_ in victim.objectives)
@@ -230,7 +230,7 @@
 
 /datum/antagonist/traitor/proc/sleeper_agent_process()
 	var/datum/antagonist/traitor/human/sleeper_agent/this = src //Should only use this if sleeper agent
-	if(owner&&owner.current&&owner.current.stat!=STATS_DEAD)
+	if(owner&&owner.current&&owner.current.stat!=STAT_DEAD)
 		for(var/objective_ in owner.objectives)
 			if(!is_internal_objective(objective_))
 				continue

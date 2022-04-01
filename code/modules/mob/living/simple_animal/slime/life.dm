@@ -23,9 +23,9 @@
 				handle_mood()
 				handle_speech()
 
-// Unlike most of the simple animals, slimes support STATS_UNCONSCIOUS
+// Unlike most of the simple animals, slimes support STATS_UNCONSCIOU
 /mob/living/simple_animal/slime/update_stat()
-	if(stat == STATS_UNCONSCIOUS && health > 0)
+	if(stat == STATS_UNCONSCIOU && health > 0)
 		return
 	..()
 
@@ -42,14 +42,14 @@
 
 	AIproc = 1
 
-	while(AIproc && stat != STATS_DEAD && (attacked || hungry || rabid || buckled))
+	while(AIproc && stat != STAT_DEAD && (attacked || hungry || rabid || buckled))
 		if(buckled) // can't eat AND have this little process at the same time
 			break
 
 		if(!Target || client)
 			break
 
-		if(Target.health <= -70 || Target.stat == STATS_DEAD)
+		if(Target.health <= -70 || Target.stat == STAT_DEAD)
 			Target = null
 			AIproc = 0
 			break
@@ -132,22 +132,22 @@
 	else
 		Tempstun = 0
 
-	if(stat != STATS_DEAD)
+	if(stat != STAT_DEAD)
 		var/bz_percentage =0
 		if("bz" in environment.gases)
 			bz_percentage = environment.gases["bz"][MOLES] / environment.total_moles()
 		var/stasis = (bz_percentage >= 0.05 && bodytemperature < (T0C + 100)) || force_stasis
 
-		if(stat == STATS_CONSCIOUS && stasis)
+		if(stat == STAT_CONSCIOUS && stasis)
 			to_chat(src, "<span class='danger'>Nerve gas in the air has put you in stasis!</span>")
-			stat = STATS_UNCONSCIOUS
+			stat = STATS_UNCONSCIOU
 			powerlevel = 0
 			rabid = 0
 			update_canmove()
 			regenerate_icons()
-		else if(stat == STATS_UNCONSCIOUS && !stasis)
+		else if(stat == STATS_UNCONSCIOU && !stasis)
 			to_chat(src, "<span class='notice'>You wake up from the stasis.</span>")
-			stat = STATS_CONSCIOUS
+			stat = STAT_CONSCIOUS
 			update_canmove()
 			regenerate_icons()
 
@@ -186,7 +186,7 @@
 	if(stat)
 		Feedstop(silent = 1)
 
-	if(M.stat == STATS_DEAD) // our victim died
+	if(M.stat == STAT_DEAD) // our victim died
 		if(!client)
 			if(!rabid && !attacked)
 				if(M.LAssailant && M.LAssailant != M)
@@ -334,7 +334,7 @@
 
 				for(var/mob/living/L in view(7,src))
 
-					if(isslime(L) || L.stat == STATS_DEAD) // Ignore other slimes and dead mobs
+					if(isslime(L) || L.stat == STAT_DEAD) // Ignore other slimes and dead mobs
 						continue
 
 					if(L in Friends) // No eating friends!
@@ -529,7 +529,7 @@
 		for (var/mob/living/L in view(7,src))
 			if(isslime(L) && L != src)
 				++slimes_near
-				if (L.stat == STATS_DEAD)
+				if (L.stat == STAT_DEAD)
 					++dead_slimes
 			if (L in Friends)
 				t += 20

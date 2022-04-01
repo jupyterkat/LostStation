@@ -116,7 +116,7 @@
 	cut_overlays()
 	var/icon_text = "[colour] [is_adult ? "adult" : "baby"] slime"
 	icon_dead = "[icon_text] dead"
-	if(stat != STATS_DEAD)
+	if(stat != STAT_DEAD)
 		icon_state = icon_text
 		if(mood && !stat)
 			add_overlay("aslime-[mood]")
@@ -191,7 +191,7 @@
 			else
 				stat(null, "You can evolve!")
 
-		if(stat == STATS_UNCONSCIOUS)
+		if(stat == STATS_UNCONSCIOU)
 			stat(null,"You are knocked out by high levels of BZ!")
 		else
 			stat(null,"Power Level: [powerlevel]")
@@ -295,7 +295,7 @@
 
 				discipline_slime(M)
 	else
-		if(stat == STATS_DEAD && surgeries.len)
+		if(stat == STAT_DEAD && surgeries.len)
 			if(M.a_intent == INTENT_HELP)
 				for(var/datum/surgery/S in surgeries)
 					if(S.next_step(M))
@@ -310,7 +310,7 @@
 
 
 /mob/living/simple_animal/slime/attackby(obj/item/W, mob/living/user, params)
-	if(stat == STATS_DEAD && surgeries.len)
+	if(stat == STAT_DEAD && surgeries.len)
 		if(user.a_intent == INTENT_HELP)
 			for(var/datum/surgery/S in surgeries)
 				if(S.next_step(user))
@@ -352,10 +352,10 @@
 /mob/living/simple_animal/slime/examine(mob/user)
 
 	var/msg = "<span class='info'>*---------*\nThis is [icon2html(src, user)] \a <EM>[src]</EM>!\n"
-	if (src.stat == STATS_DEAD)
+	if (src.stat == STAT_DEAD)
 		msg += "<span class='deadsay'>It is limp and unresponsive.</span>\n"
 	else
-		if (stat == STATS_UNCONSCIOUS) // Slime stasis
+		if (stat == STATS_UNCONSCIOU) // Slime stasis
 			msg += "<span class='deadsay'>It appears to be alive but unresponsive.</span>\n"
 		if (src.getBruteLoss())
 			msg += "<span class='warning'>"

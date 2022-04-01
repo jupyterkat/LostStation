@@ -546,7 +546,7 @@ Difficulty: Very Hard
 				continue
 			if(ishuman(i))
 				var/mob/living/carbon/human/H = i
-				if(H.stat == STATS_DEAD)
+				if(H.stat == STAT_DEAD)
 					H.set_species(/datum/species/shadow, 1)
 					H.regenerate_limbs()
 					H.regenerate_organs()
@@ -636,7 +636,7 @@ Difficulty: Very Hard
 	. = ..()
 	if(isliving(target) && target != src)
 		var/mob/living/L = target
-		if(L.stat != STATS_DEAD)
+		if(L.stat != STAT_DEAD)
 			L.heal_overall_damage(heal_power, heal_power)
 			new /obj/effect/temp_visual/heal(get_turf(target), "#80F5FF")
 
@@ -702,7 +702,7 @@ Difficulty: Very Hard
 
 /obj/structure/closet/stasis/process()
 	if(holder_animal)
-		if(holder_animal.stat == STATS_DEAD)
+		if(holder_animal.stat == STAT_DEAD)
 			dump_contents()
 			holder_animal.gib()
 			return

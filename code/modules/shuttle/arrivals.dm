@@ -119,7 +119,7 @@
 /obj/docking_port/mobile/arrivals/proc/PersonCheck()
 	for(var/M in (GLOB.living_mob_list & GLOB.player_list))
 		var/mob/living/L = M
-		if((get_area(M) in areas) && L.stat != STATS_DEAD)
+		if((get_area(M) in areas) && L.stat != STAT_DEAD)
 			return TRUE
 	return FALSE
 

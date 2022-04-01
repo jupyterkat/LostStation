@@ -38,7 +38,7 @@
 		..(target)
 
 /obj/machinery/abductor/experiment/relaymove(mob/user)
-	if(user.stat != STATS_CONSCIOUS)
+	if(user.stat != STAT_CONSCIOUS)
 		return
 	container_resist(user)
 
@@ -50,7 +50,7 @@
 	user.visible_message("<span class='italics'>You hear a metallic creaking from [src]!</span>")
 
 	if(do_after(user,(breakout_time), target = src))
-		if(!user || user.stat != STATS_CONSCIOUS || user.loc != src || state_open)
+		if(!user || user.stat != STAT_CONSCIOUS || user.loc != src || state_open)
 			return
 
 		visible_message("<span class='warning'>[user] successfully broke out of [src]!</span>")
@@ -118,11 +118,11 @@
 		dat += "[occupant.name] => "
 		var/mob/living/mob_occupant = occupant
 		switch(mob_occupant.stat)
-			if(STATS_CONSCIOUS)
+			if(STAT_CONSCIOUS)
 				dat += "<span class='good'>Conscious</span>"
-			if(STATS_UNCONSCIOUS)
+			if(STATS_UNCONSCIOU)
 				dat += "<span class='average'>Unconscious</span>"
-			else // STATS_DEAD
+			else // STAT_DEAD
 				dat += "<span class='bad'>Deceased</span>"
 	dat += "<br>"
 	dat += "[flash]"
@@ -149,7 +149,7 @@
 		return
 	if(occupant)
 		var/mob/living/mob_occupant = occupant
-		if(mob_occupant.stat != STATS_DEAD)
+		if(mob_occupant.stat != STAT_DEAD)
 			if(href_list["experiment"])
 				flash = Experiment(occupant,href_list["experiment"])
 	updateUsrDialog()
@@ -161,7 +161,7 @@
 	var/point_reward = 0
 	if(H in history)
 		return "<span class='bad'>Specimen already in database.</span>"
-	if(H.stat == STATS_DEAD)
+	if(H.stat == STAT_DEAD)
 		say("Specimen deceased - please provide fresh sample.")
 		return "<span class='bad'>Specimen deceased.</span>"
 	var/obj/item/organ/heart/gland/GlandTest = locate() in H.internal_organs

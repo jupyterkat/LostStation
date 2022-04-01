@@ -85,7 +85,7 @@
 
 /datum/brain_trauma/mild/phobia/proc/freak_out(atom/reason, trigger_word)
 	next_scare = world.time + 120
-	if(owner.stat == STATS_DEAD)
+	if(owner.stat == STAT_DEAD)
 		return
 	var/message = pick("spooks you to the bone", "shakes you up", "terrifies you", "sends you into a panic", "sends chills down your spine")
 	if(reason)

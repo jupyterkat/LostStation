@@ -398,7 +398,7 @@
 				continue
 
 			//If emagged, target all but dead carbons
-			if(mode == TURRET_LETHAL && C.stat == STATS_DEAD)
+			if(mode == TURRET_LETHAL && C.stat == STAT_DEAD)
 				continue
 
 			//if the target is a human and not in our faction, analyze threat level

@@ -91,7 +91,7 @@
 		if(!is_servant_of_ratvar(L))
 			to_chat(ranged_ability_user, "<span class='inathneq'>\"[L] does not yet serve Ratvar.\"</span>")
 			return TRUE
-		if(L.stat == STATS_DEAD)
+		if(L.stat == STAT_DEAD)
 			to_chat(ranged_ability_user, "<span class='inathneq'>\"[L.p_they(TRUE)] [L.p_are()] dead. [text2ratvar("Oh, child. To have your life cut short...")]\"</span>")
 			return TRUE
 
@@ -218,7 +218,7 @@
 		if(!is_servant_of_ratvar(L))
 			to_chat(ranged_ability_user, "<span class='inathneq'>\"[L] does not yet serve Ratvar.\"</span>")
 			return TRUE
-		if(L.stat == STATS_DEAD)
+		if(L.stat == STAT_DEAD)
 			to_chat(ranged_ability_user, "<span class='inathneq'>\"[L.p_they(TRUE)] [L.p_are()] dead. [text2ratvar("Oh, child. To have your life cut short...")]\"</span>")
 			return TRUE
 		if(islist(L.stun_absorption) && L.stun_absorption["vanguard"] && L.stun_absorption["vanguard"]["end_time"] > world.time)
@@ -229,7 +229,7 @@
 
 		if(L == ranged_ability_user)
 			for(var/mob/living/LT in spiral_range(7, T))
-				if(LT.stat == STATS_DEAD || !is_servant_of_ratvar(LT) || LT == ranged_ability_user || !(LT in view(7, get_turf(ranged_ability_user))) || \
+				if(LT.stat == STAT_DEAD || !is_servant_of_ratvar(LT) || LT == ranged_ability_user || !(LT in view(7, get_turf(ranged_ability_user))) || \
 				(islist(LT.stun_absorption) && LT.stun_absorption["vanguard"] && LT.stun_absorption["vanguard"]["end_time"] > world.time))
 					continue
 				L = LT

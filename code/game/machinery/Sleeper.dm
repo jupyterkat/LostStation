@@ -69,7 +69,7 @@
 	if((isnull(user) || istype(user)) && state_open && !panel_open)
 		..(user)
 		var/mob/living/mob_occupant = occupant
-		if(mob_occupant && mob_occupant.stat != STATS_DEAD)
+		if(mob_occupant && mob_occupant.stat != STAT_DEAD)
 			to_chat(occupant, "[enter_message]")
 
 /obj/machinery/sleeper/emp_act(severity)

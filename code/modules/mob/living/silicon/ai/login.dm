@@ -5,7 +5,7 @@
 		blood.override = 1
 		client.images += blood
 
-	if(stat != STATS_DEAD)
+	if(stat != STAT_DEAD)
 		for(var/obj/machinery/ai_status_display/O in GLOB.ai_status_displays) //change status
 			O.mode = 1
 			O.emotion = "Neutral"

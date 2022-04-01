@@ -12,12 +12,12 @@
 /datum/antagonist/cult/proc/add_objectives()
 	var/list/target_candidates = list()
 	for(var/mob/living/carbon/human/player in GLOB.player_list)
-		if(player.mind && !player.mind.has_antag_datum(ANTAG_DATUM_CULT) && !is_convertable_to_cult(player) && (player != owner) && player.stat != STATS_DEAD)
+		if(player.mind && !player.mind.has_antag_datum(ANTAG_DATUM_CULT) && !is_convertable_to_cult(player) && (player != owner) && player.stat != STAT_DEAD)
 			target_candidates += player.mind
 	if(target_candidates.len == 0)
 		message_admins("Cult Sacrifice: Could not find unconvertable target, checking for convertable target.")
 		for(var/mob/living/carbon/human/player in GLOB.player_list)
-			if(player.mind && !player.mind.has_antag_datum(ANTAG_DATUM_CULT) && (player != owner) && player.stat != STATS_DEAD)
+			if(player.mind && !player.mind.has_antag_datum(ANTAG_DATUM_CULT) && (player != owner) && player.stat != STAT_DEAD)
 				target_candidates += player.mind
 	listclearnulls(target_candidates)
 	if(LAZYLEN(target_candidates))

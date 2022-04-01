@@ -209,7 +209,7 @@
 	if(revolutionaries) //Head Revs are not in this list
 		var/list/promotable_revs = list()
 		for(var/datum/mind/khrushchev in revolutionaries)
-			if(khrushchev.current && !khrushchev.current.incapacitated() && !khrushchev.current.restrained() && khrushchev.current.client && khrushchev.current.stat != STATS_DEAD)
+			if(khrushchev.current && !khrushchev.current.incapacitated() && !khrushchev.current.restrained() && khrushchev.current.client && khrushchev.current.stat != STAT_DEAD)
 				if(ROLE_REV in khrushchev.current.client.prefs.be_special)
 					promotable_revs += khrushchev
 		if(promotable_revs.len)
@@ -335,7 +335,7 @@
 /datum/game_mode/revolution/proc/check_heads_victory()
 	for(var/datum/mind/rev_mind in head_revolutionaries)
 		var/turf/T = get_turf(rev_mind.current)
-		if((rev_mind) && (rev_mind.current) && (rev_mind.current.stat != STATS_DEAD) && T && (T.z in GLOB.station_z_levels))
+		if((rev_mind) && (rev_mind.current) && (rev_mind.current.stat != STAT_DEAD) && T && (T.z in GLOB.station_z_levels))
 			if(ishuman(rev_mind.current))
 				return 0
 	return 1
@@ -349,6 +349,14 @@
 		to_chat(world, "<span class='redtext'>The heads of staff were killed or exiled! The revolutionaries win!</span>")
 
 		SSticker.news_report = REVS_WIN
+
+		for(var/datum/mind/headrev in head_revolutionaries)
+			var/client/c = headrev.current.client
+			c.inc_antag_tokens_count(ATOKEN_GREENTEXT_BONUS)
+
+		for(var/datum/mind/rev in revolutionaries)
+			var/client/c = rev.current.client
+			c.inc_antag_tokens_count(ATOKEN_GREENTEXT_BONUS)
 
 	else if(finished == 2)
 		SSticker.mode_result = "loss - rev heads killed"

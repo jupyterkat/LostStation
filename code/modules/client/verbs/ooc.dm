@@ -13,7 +13,7 @@
 		if(!GLOB.ooc_allowed)
 			to_chat(src, "<span class='danger'>OOC is globally muted.</span>")
 			return
-		if(!GLOB.dooc_allowed && (mob.stat == STATS_DEAD))
+		if(!GLOB.dooc_allowed && (mob.stat == STAT_DEAD))
 			to_chat(usr, "<span class='danger'>OOC for dead mobs has been turned off.</span>")
 			return
 		if(prefs.muted & MUTE_OOC)
@@ -99,7 +99,7 @@
 		if(!GLOB.looc_allowed)
 			to_chat(src, "<span class='danger'>LOOC is globally muted.</span>")
 			return
-		if(!GLOB.dlooc_allowed && (mob.stat == STATS_DEAD))
+		if(!GLOB.dlooc_allowed && (mob.stat == STAT_DEAD))
 			to_chat(usr, "<span class='danger'>LOOC for dead mobs has been turned off.</span>")
 			return
 		if(prefs.muted & MUTE_LOOC)

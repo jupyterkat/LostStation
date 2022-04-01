@@ -16,7 +16,7 @@
 	var/one_use = FALSE
 
 /obj/item/borg/upgrade/proc/action(mob/living/silicon/robot/R)
-	if(R.stat == STATS_DEAD)
+	if(R.stat == STAT_DEAD)
 		to_chat(usr, "<span class='notice'>[src] will not function on a deceased cyborg.</span>")
 		return 1
 	if(module_type && !istype(R.module, module_type))
@@ -270,7 +270,7 @@
 		repair_tick = 1
 		return
 
-	if(cyborg && (cyborg.stat != STATS_DEAD) && on)
+	if(cyborg && (cyborg.stat != STAT_DEAD) && on)
 		if(!cyborg.cell)
 			to_chat(cyborg, "<span class='warning'>Self-repair module deactivated. Please, insert the power cell.</span>")
 			deactivate()

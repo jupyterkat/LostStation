@@ -22,7 +22,7 @@
 	qdel(src)
 
 /obj/item/grenade/flashbang/proc/bang(turf/T , mob/living/M)
-	if(M.stat == STATS_DEAD)	//They're dead!
+	if(M.stat == STAT_DEAD)	//They're dead!
 		return
 	M.show_message("<span class='warning'>BANG</span>", 2)
 	playsound(loc, 'sound/weapons/flashbang.ogg', 100, 1)

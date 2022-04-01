@@ -110,7 +110,7 @@
 	if(mess)
 		to_chat(user, "It's filled with blood and viscera. You swear you can see it moving...")
 	if(is_operational() && mob_occupant)
-		if(mob_occupant.stat != STATS_DEAD)
+		if(mob_occupant.stat != STAT_DEAD)
 			to_chat(user, "Current clone cycle is [round(get_completion())]% complete.")
 
 /obj/machinery/clonepod/return_air()
@@ -140,7 +140,7 @@
 	clonemind = locate(mindref) in SSticker.minds
 	if(!istype(clonemind))	//not a mind
 		return FALSE
-	if( clonemind.current && clonemind.current.stat != STATS_DEAD )	//mind is associated with a non-dead body
+	if( clonemind.current && clonemind.current.stat != STAT_DEAD )	//mind is associated with a non-dead body
 		return FALSE
 	if(clonemind.active)	//somebody is using that mind
 		if( ckey(clonemind.key)!=ckey )
@@ -220,7 +220,7 @@
 			connected_message("Clone Ejected: Loss of power.")
 
 	else if(mob_occupant && (mob_occupant.loc == src))
-		if((mob_occupant.stat == STATS_DEAD) || mob_occupant.hellbound)  //Autoeject corpses and unclonables
+		if((mob_occupant.stat == STAT_DEAD) || mob_occupant.hellbound)  //Autoeject corpses and unclonables
 			connected_message("Clone Rejected: Deceased.")
 			SPEAK("The cloning of [mob_occupant.real_name] has been \
 				aborted due to unrecoverable tissue failure.")
@@ -391,7 +391,7 @@
 		QDEL_IN(mob_occupant, 40)
 
 /obj/machinery/clonepod/relaymove(mob/user)
-	if(user.stat == STATS_CONSCIOUS)
+	if(user.stat == STAT_CONSCIOUS)
 		go_out()
 
 /obj/machinery/clonepod/emp_act(severity)

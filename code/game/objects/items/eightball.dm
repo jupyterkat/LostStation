@@ -88,7 +88,7 @@
 	return fixed_answer
 
 // Haunted eightball is identical in description and function to toy,
-// except it actually ASKS THE STATS_DEAD (wooooo)
+// except it actually ASKS THE STAT_DEAD (wooooo)
 
 /obj/item/toy/eightball/haunted
 	flags_1 = HEAR_1

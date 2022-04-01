@@ -55,7 +55,7 @@
 	mind.announce_objectives()
 
 /mob/living/carbon/true_devil/death(gibbed)
-	stat = STATS_DEAD
+	stat = STAT_DEAD
 	..(gibbed)
 	drop_all_held_items()
 	INVOKE_ASYNC(mind.has_antag_datum(ANTAG_DATUM_DEVIL), /datum/antagonist/devil/proc/beginResurrectionCheck, src)
@@ -73,11 +73,11 @@
 				msg += "It is holding [icon2html(I, user)] \a [I] in its [get_held_index_name(get_held_index_of_item(I))].\n"
 
 	//Braindead
-	if(!client && stat != STATS_DEAD)
+	if(!client && stat != STAT_DEAD)
 		msg += "The devil seems to be in deep contemplation.\n"
 
 	//Damaged
-	if(stat == STATS_DEAD)
+	if(stat == STAT_DEAD)
 		msg += "<span class='deadsay'>The hellfire seems to have been extinguished, for now at least.</span>\n"
 	else if(health < (maxHealth/10))
 		msg += "<span class='warning'>You can see hellfire inside its gaping wounds.</span>\n"

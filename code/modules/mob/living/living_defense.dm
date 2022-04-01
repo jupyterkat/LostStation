@@ -197,7 +197,7 @@
 		to_chat(M, "<span class='notice'>You don't want to hurt anyone!</span>")
 		return FALSE
 
-	if (stat != STATS_DEAD)
+	if (stat != STAT_DEAD)
 		add_logs(M, src, "attacked")
 		M.do_attack_animation(src)
 		visible_message("<span class='danger'>The [M.name] glomps [src]!</span>", \
@@ -361,7 +361,7 @@
 /mob/living/ratvar_act()
 	if(status_flags & GODMODE)
 		return
-	if(stat != STATS_DEAD && !is_servant_of_ratvar(src))
+	if(stat != STAT_DEAD && !is_servant_of_ratvar(src))
 		to_chat(src, "<span class='userdanger'>A blinding light boils you alive! <i>Run!</i></span>")
 		adjust_fire_stacks(20)
 		IgniteMob()

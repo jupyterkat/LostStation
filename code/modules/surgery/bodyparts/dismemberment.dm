@@ -146,7 +146,7 @@
 		brainmob = null
 		LB.brainmob.loc = LB
 		LB.brainmob.container = LB
-		LB.brainmob.stat = STATS_DEAD
+		LB.brainmob.stat = STAT_DEAD
 
 /obj/item/organ/eyes/transfer_to_limb(obj/item/bodypart/head/LB, mob/living/carbon/human/C)
 	LB.eyes = src

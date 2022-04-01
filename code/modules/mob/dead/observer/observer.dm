@@ -9,7 +9,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	icon = 'icons/mob/mob.dmi'
 	icon_state = "ghost"
 	layer = GHOST_LAYER
-	stat = STATS_DEAD
+	stat = STAT_DEAD
 	density = FALSE
 	canmove = 0
 	anchored = TRUE	//  don't get pushed around
@@ -276,9 +276,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		C.despawn_occupant()
 		return
 
-	if(stat != STATS_DEAD)
+	if(stat != STAT_DEAD)
 		succumb()
-	if(stat == STATS_DEAD)
+	if(stat == STAT_DEAD)
 		ghostize(1)
 	else
 		var/response = alert(src, "Are you -sure- you want to ghost?\n(You are alive. If you ghost whilst still alive you may not play again this round! You can't change your mind so choose wisely!!)","Are you sure you want to ghost?","Ghost","Stay in body")

@@ -25,7 +25,7 @@
 		regenerate_limbs.Grant(C)
 
 /datum/species/jelly/spec_life(mob/living/carbon/human/H)
-	if(H.stat == STATS_DEAD) //can't farm slime jelly from a dead slime/jelly person indefinitely
+	if(H.stat == STAT_DEAD) //can't farm slime jelly from a dead slime/jelly person indefinitely
 		return
 	if(!H.blood_volume)
 		H.blood_volume += 5
@@ -257,14 +257,14 @@
 		L["area"] = A.name
 		var/stat = "error"
 		switch(body.stat)
-			if(STATS_CONSCIOUS)
+			if(STAT_CONSCIOUS)
 				stat = "Conscious"
-			if(STATS_UNCONSCIOUS)
+			if(STATS_UNCONSCIOU)
 				stat = "Unconscious"
-			if(STATS_DEAD)
+			if(STAT_DEAD)
 				stat = "Dead"
 		var/current = body.mind
-		var/is_conscious = (body.stat == STATS_CONSCIOUS)
+		var/is_conscious = (body.stat == STAT_CONSCIOUS)
 
 		L["status"] = stat
 		L["exoticblood"] = body.blood_volume
@@ -312,7 +312,7 @@
 				return
 			if(M.current == selected)
 				return
-			if(selected.stat != STATS_CONSCIOUS)
+			if(selected.stat != STAT_CONSCIOUS)
 				return
 
 			swap_to_dupe(M, selected)

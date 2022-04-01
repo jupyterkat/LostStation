@@ -15,7 +15,7 @@
 
 /datum/objective/crew/enjoyyourstay/check_completion()
 	if(owner && owner.current)
-		if(owner.current.stat != STATS_DEAD)
+		if(owner.current.stat != STAT_DEAD)
 			return TRUE
 	return FALSE
 
@@ -25,7 +25,7 @@
 
 /datum/objective/crew/shawshankgonewrong/check_completion()
 	for(var/mob/living/carbon/human/H in GLOB.mob_list)
-		if(H.stat == STATS_DEAD && H.z == ZLEVEL_STATION_PRIMARY)
+		if(H.stat == STAT_DEAD && H.z == ZLEVEL_STATION_PRIMARY)
 			if(istype(get_area(H), /area/security/prison))
 				return FALSE
 	return TRUE

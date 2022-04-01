@@ -30,7 +30,7 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/blob/blob_act(obj/structure/blob/B)
-	if(stat != STATS_DEAD && health < maxHealth)
+	if(stat != STAT_DEAD && health < maxHealth)
 		for(var/i in 1 to 2)
 			var/obj/effect/temp_visual/heal/H = new /obj/effect/temp_visual/heal(get_turf(src)) //hello yes you are being healed
 			if(overmind)
@@ -111,7 +111,7 @@
 /mob/living/simple_animal/hostile/blob/blobspore/Life()
 	if(!is_zombie && isturf(src.loc))
 		for(var/mob/living/carbon/human/H in view(src,1)) //Only for corpse right next to/on same tile
-			if(H.stat == STATS_DEAD)
+			if(H.stat == STAT_DEAD)
 				Zombify(H)
 				break
 	if(factory && z != factory.z)
@@ -216,7 +216,7 @@
 	verb_exclaim = "roars"
 	verb_yell = "bellows"
 	force_threshold = 10
-	pressure_resistance = 50
+	spacewind_immune = TRUE
 	mob_size = MOB_SIZE_LARGE
 	see_in_dark = 8
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE

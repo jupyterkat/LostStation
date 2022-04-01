@@ -75,7 +75,7 @@
 	user.visible_message("<span class='italics'>You hear a metallic creaking from [src]!</span>")
 
 	if(do_after(user,(breakout_time*60*10), target = src)) //minutes * 60seconds * 10deciseconds
-		if(!user || user.stat != STATS_CONSCIOUS || user.loc != src || state_open || !locked)
+		if(!user || user.stat != STAT_CONSCIOUS || user.loc != src || state_open || !locked)
 			return
 
 		locked = FALSE

@@ -8,7 +8,7 @@
 
 
 /mob/proc/CanContractDisease(datum/disease/D)
-	if(stat == STATS_DEAD)
+	if(stat == STAT_DEAD)
 		return 0
 
 	if(D.GetDiseaseID() in resistances)

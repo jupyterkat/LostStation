@@ -9,7 +9,7 @@
 	text_gain_indication = "<span class='danger'>You get a headache.</span>"
 
 /datum/mutation/human/epilepsy/on_life(mob/living/carbon/human/owner)
-	if(prob(1) && owner.stat == STATS_CONSCIOUS)
+	if(prob(1) && owner.stat == STAT_CONSCIOUS)
 		owner.visible_message("<span class='danger'>[owner] starts having a seizure!</span>", "<span class='userdanger'>You have a seizure!</span>")
 		owner.Unconscious(200)
 		owner.Jitter(1000)
@@ -45,7 +45,7 @@
 	text_gain_indication = "<span class='danger'>You start coughing.</span>"
 
 /datum/mutation/human/cough/on_life(mob/living/carbon/human/owner)
-	if(prob(5) && owner.stat == STATS_CONSCIOUS)
+	if(prob(5) && owner.stat == STAT_CONSCIOUS)
 		owner.drop_item()
 		owner.emote("cough")
 
@@ -94,7 +94,7 @@
 	text_gain_indication = "<span class='danger'>You twitch.</span>"
 
 /datum/mutation/human/tourettes/on_life(mob/living/carbon/human/owner)
-	if(prob(5) && owner.stat == STATS_CONSCIOUS)
+	if(prob(5) && owner.stat == STAT_CONSCIOUS)
 		owner.Stun(125)
 		switch(rand(1, 3))
 			if(1)
@@ -134,5 +134,5 @@
 	. = owner.monkeyize(TR_KEEPITEMS | TR_KEEPIMPLANTS | TR_KEEPORGANS | TR_KEEPDAMAGE | TR_KEEPVIRUS | TR_KEEPSE)
 
 /datum/mutation/human/race/on_losing(mob/living/carbon/monkey/owner)
-	if(owner && istype(owner) && owner.stat != STATS_DEAD && (owner.dna.mutations.Remove(src)))
+	if(owner && istype(owner) && owner.stat != STAT_DEAD && (owner.dna.mutations.Remove(src)))
 		. = owner.humanize(TR_KEEPITEMS | TR_KEEPIMPLANTS | TR_KEEPORGANS | TR_KEEPDAMAGE | TR_KEEPVIRUS | TR_KEEPSE)

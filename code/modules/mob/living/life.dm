@@ -18,17 +18,17 @@
 			return
 	var/datum/gas_mixture/environment = loc.return_air()
 
-	if(stat != STATS_DEAD)
+	if(stat != STAT_DEAD)
 		//Mutations and radiation
 		handle_mutations_and_radiation()
 
-	if(stat != STATS_DEAD)
+	if(stat != STAT_DEAD)
 		//Breathing, if applicable
 		handle_breathing(times_fired)
 
-	handle_diseases() // STATS_DEAD check is in the proc itself; we want it to spread even if the mob is dead, but to handle its disease-y properties only if you're not.
+	handle_diseases() // STAT_DEAD check is in the proc itself; we want it to spread even if the mob is dead, but to handle its disease-y properties only if you're not.
 
-	if(stat != STATS_DEAD)
+	if(stat != STAT_DEAD)
 		//Random events (vomiting etc)
 		handle_random_events()
 
@@ -46,12 +46,12 @@
 	if(machine)
 		machine.check_eye(src)
 
-	if(stat != STATS_DEAD)
+	if(stat != STAT_DEAD)
 		handle_disabilities() // eye, ear, brain damages
-	if(stat != STATS_DEAD)
+	if(stat != STAT_DEAD)
 		handle_status_effects() //all special effects, stun, knockdown, jitteryness, hallucination, sleeping, etc
 
-	if(stat != STATS_DEAD)
+	if(stat != STAT_DEAD)
 		return 1
 
 /mob/living/proc/handle_breathing(times_fired)

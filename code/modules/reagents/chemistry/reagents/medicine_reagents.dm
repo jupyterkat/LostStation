@@ -312,7 +312,7 @@
 	. = 1
 
 /datum/reagent/medicine/mine_salve/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1)
-	if(iscarbon(M) && M.stat != STATS_DEAD)
+	if(iscarbon(M) && M.stat != STAT_DEAD)
 		if(method in list(INGEST, VAPOR, INJECT))
 			M.nutrition -= 5
 			if(show_message)
@@ -343,7 +343,7 @@
 
 /datum/reagent/medicine/synthflesh/reaction_mob(mob/living/M, method=TOUCH, reac_volume,show_message = 1)
 	if(iscarbon(M))
-		if (M.stat == STATS_DEAD)
+		if (M.stat == STAT_DEAD)
 			show_message = 0
 		if(method in list(PATCH, TOUCH))
 			M.adjustBruteLoss(-1.25 * reac_volume)
@@ -767,7 +767,7 @@
 	taste_description = "magnets"
 
 /datum/reagent/medicine/strange_reagent/reaction_mob(mob/living/carbon/human/M, method=TOUCH, reac_volume)
-	if(M.stat == STATS_DEAD)
+	if(M.stat == STAT_DEAD)
 		if(M.getBruteLoss() >= 100 || M.getFireLoss() >= 100)
 			M.visible_message("<span class='warning'>[M]'s body convulses a bit, and then falls still once more.</span>")
 			return

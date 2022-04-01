@@ -86,7 +86,7 @@ The console is located at computer/gulag_teleporter.dm
 
 
 /obj/machinery/gulag_teleporter/relaymove(mob/user)
-	if(user.stat != STATS_CONSCIOUS)
+	if(user.stat != STAT_CONSCIOUS)
 		return
 	if(locked)
 		to_chat(user, "[src] is locked!")
@@ -104,7 +104,7 @@ The console is located at computer/gulag_teleporter.dm
 	user.visible_message("<span class='italics'>You hear a metallic creaking from [src]!</span>")
 
 	if(do_after(user,(breakout_time), target = src))
-		if(!user || user.stat != STATS_CONSCIOUS || user.loc != src || state_open || !locked)
+		if(!user || user.stat != STAT_CONSCIOUS || user.loc != src || state_open || !locked)
 			return
 
 		locked = FALSE

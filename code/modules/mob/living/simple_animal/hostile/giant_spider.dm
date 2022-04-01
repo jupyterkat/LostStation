@@ -203,7 +203,7 @@
 
 	var/T = src.loc
 
-	if(stat == STATS_DEAD)
+	if(stat == STAT_DEAD)
 		return
 	if(busy != SPINNING_WEB)
 		busy = SPINNING_WEB
@@ -221,7 +221,7 @@
 	set category = "Spider"
 	set desc = "Wrap up prey to feast upon and objects for safe keeping."
 
-	if(stat == STATS_DEAD)
+	if(stat == STAT_DEAD)
 		return
 	if(!cocoon_target)
 		var/list/choices = list()
@@ -241,7 +241,7 @@
 		if(temp_input && !cocoon_target)
 			cocoon_target = temp_input
 
-	if(stat != STATS_DEAD && cocoon_target && Adjacent(cocoon_target) && !cocoon_target.anchored)
+	if(stat != STAT_DEAD && cocoon_target && Adjacent(cocoon_target) && !cocoon_target.anchored)
 		if(busy == SPINNING_COCOON)
 			return //we're already doing this, don't cancel out or anything
 		busy = SPINNING_COCOON
@@ -253,7 +253,7 @@
 				var/obj/structure/spider/cocoon/C = new(cocoon_target.loc)
 				if(isliving(cocoon_target))
 					var/mob/living/L = cocoon_target
-					if(L.blood_volume && (L.stat != STATS_DEAD || !consumed_mobs[L.tag])) //if they're not dead, you can consume them anyway
+					if(L.blood_volume && (L.stat != STAT_DEAD || !consumed_mobs[L.tag])) //if they're not dead, you can consume them anyway
 						consumed_mobs[L.tag] = TRUE
 						fed++
 						visible_message("<span class='danger'>\the [src] sticks a proboscis into \the [L] and sucks a viscous substance out.</span>")
@@ -274,7 +274,7 @@
 	set desc = "Lay a clutch of eggs, but you must wrap a creature for feeding first."
 
 	var/obj/structure/spider/eggcluster/E = locate() in get_turf(src)
-	if(stat == STATS_DEAD)
+	if(stat == STAT_DEAD)
 		return
 	if(E)
 		to_chat(src, "<span class='warning'>There is already a cluster of eggs here!</span>")

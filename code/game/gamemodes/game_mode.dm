@@ -113,7 +113,7 @@
 	var/list/living_crew = list()
 
 	for(var/mob/Player in GLOB.mob_list)
-		if(Player.mind && Player.stat != STATS_DEAD && !isnewplayer(Player) && !isbrain(Player) && Player.client)
+		if(Player.mind && Player.stat != STAT_DEAD && !isnewplayer(Player) && !isbrain(Player) && Player.client)
 			living_crew += Player
 	var/malc = CONFIG_GET(number/midround_antag_life_check)
 	if(living_crew.len / GLOB.joined_player_list.len <= malc) //If a lot of the player base died, we start fresh
@@ -210,11 +210,11 @@
 				return 0
 
 
-		if(living_antag_player && living_antag_player.mind && isliving(living_antag_player) && living_antag_player.stat != STATS_DEAD && !isnewplayer(living_antag_player) &&!isbrain(living_antag_player))
+		if(living_antag_player && living_antag_player.mind && isliving(living_antag_player) && living_antag_player.stat != STAT_DEAD && !isnewplayer(living_antag_player) &&!isbrain(living_antag_player))
 			return 0 //A resource saver: once we find someone who has to die for all antags to be dead, we can just keep checking them, cycling over everyone only when we lose our mark.
 
 		for(var/mob/Player in GLOB.living_mob_list)
-			if(Player.mind && Player.stat != STATS_DEAD && !isnewplayer(Player) &&!isbrain(Player) && Player.client)
+			if(Player.mind && Player.stat != STAT_DEAD && !isnewplayer(Player) &&!isbrain(Player) && Player.client)
 				if(Player.mind.special_role) //Someone's still antaging!
 					living_antag_player = Player
 					return 0
@@ -385,7 +385,7 @@
 /datum/game_mode/proc/get_living_by_department(var/department)
 	. = list()
 	for(var/mob/living/carbon/human/player in GLOB.mob_list)
-		if(player.stat != STATS_DEAD && player.mind && (player.mind.assigned_role in department))
+		if(player.stat != STAT_DEAD && player.mind && (player.mind.assigned_role in department))
 			. |= player.mind
 
 
@@ -404,7 +404,7 @@
 /datum/game_mode/proc/get_living_silicon()
 	. = list()
 	for(var/mob/living/silicon/player in GLOB.mob_list)
-		if(player.stat != STATS_DEAD && player.mind && (player.mind.assigned_role in GLOB.nonhuman_positions))
+		if(player.stat != STAT_DEAD && player.mind && (player.mind.assigned_role in GLOB.nonhuman_positions))
 			. |= player.mind
 
 ///////////////////////////////////////
@@ -439,17 +439,17 @@
 				msg += "<b>[L.name]</b> ([L.ckey]), the [L.job] (<font color='#ffcc00'><b>Connected, Inactive</b></font>)\n"
 				continue //AFK client
 			if(L.stat)
-				if(L.stat == STATS_UNCONSCIOUS)
+				if(L.stat == STATS_UNCONSCIOU)
 					msg += "<b>[L.name]</b> ([L.ckey]), the [L.job] (Dying)\n"
 					continue //Unconscious
-				if(L.stat == STATS_DEAD)
+				if(L.stat == STAT_DEAD)
 					msg += "<b>[L.name]</b> ([L.ckey]), the [L.job] (Dead)\n"
 					continue //Dead
 
 			continue //Happy connected client
 		for(var/mob/dead/observer/D in GLOB.mob_list)
 			if(D.mind && D.mind.current == L)
-				if(L.stat == STATS_DEAD)
+				if(L.stat == STAT_DEAD)
 					msg += "<b>[L.name]</b> ([ckey(D.mind.key)]), the [L.job] (Dead)\n"
 					continue //Dead mob, ghost abandoned
 				else
@@ -468,7 +468,7 @@
 /datum/game_mode/proc/printplayer(datum/mind/ply, fleecheck)
 	var/text = "<br><b>[ply.key]</b> was <b>[ply.name]</b> the <b>[ply.assigned_role]</b> and"
 	if(ply.current)
-		if(ply.current.stat == STATS_DEAD)
+		if(ply.current.stat == STAT_DEAD)
 			text += " <span class='boldannounce'>died</span>"
 		else
 			text += " <span class='greenannounce'>survived</span>"

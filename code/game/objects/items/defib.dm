@@ -428,7 +428,7 @@
 				busy = FALSE
 				update_icon()
 				return
-			if(H && H.stat == STATS_DEAD)
+			if(H && H.stat == STAT_DEAD)
 				to_chat(user, "<span class='warning'>[H] is dead.</span>")
 				playsound(get_turf(src), 'sound/machines/defib_failed.ogg', 50, 0)
 				busy = FALSE
@@ -484,7 +484,7 @@
 						busy = FALSE
 						update_icon()
 						return
-			if(H.stat == STATS_DEAD)
+			if(H.stat == STAT_DEAD)
 				H.visible_message("<span class='warning'>[H]'s body convulses a bit.</span>")
 				playsound(get_turf(src), "bodyfall", 50, 1)
 				playsound(get_turf(src), 'sound/machines/defib_zap.ogg', 50, 1, -1)

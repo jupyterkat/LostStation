@@ -48,11 +48,11 @@ SUBSYSTEM_DEF(npcpool)
 			--currentrun.len
 
 			if(!SA.ckey)
-				if(SA.stat != STATS_DEAD)
+				if(SA.stat != STAT_DEAD)
 					SA.handle_automated_movement()
-				if(SA.stat != STATS_DEAD)
+				if(SA.stat != STAT_DEAD)
 					SA.handle_automated_action()
-				if(SA.stat != STATS_DEAD)
+				if(SA.stat != STAT_DEAD)
 					SA.handle_automated_speech()
 			if (MC_TICK_CHECK)
 				return

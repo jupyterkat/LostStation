@@ -18,13 +18,13 @@
 /obj/item/device/mmi/update_icon()
 	if(brain)
 		if(istype(brain, /obj/item/organ/brain/alien))
-			if(brainmob && brainmob.stat == STATS_DEAD)
+			if(brainmob && brainmob.stat == STAT_DEAD)
 				icon_state = "mmi_alien_dead"
 			else
 				icon_state = "mmi_alien"
 			braintype = "Xenoborg" //HISS....Beep.
 		else
-			if(brainmob && brainmob.stat == STATS_DEAD)
+			if(brainmob && brainmob.stat == STAT_DEAD)
 				icon_state = "mmi_dead"
 			else
 				icon_state = "mmi_full"
@@ -61,7 +61,7 @@
 		brainmob.loc = src
 		brainmob.container = src
 		if(!newbrain.damaged_brain) // the brain organ hasn't been beaten to death.
-			brainmob.stat = STATS_CONSCIOUS //we manually revive the brain mob
+			brainmob.stat = STAT_CONSCIOUS //we manually revive the brain mob
 			GLOB.dead_mob_list -= brainmob
 			GLOB.living_mob_list += brainmob
 
@@ -92,7 +92,7 @@
 /obj/item/device/mmi/proc/eject_brain(mob/user)
 	brainmob.container = null //Reset brainmob mmi var.
 	brainmob.loc = brain //Throw mob into brain.
-	brainmob.stat = STATS_DEAD
+	brainmob.stat = STAT_DEAD
 	brainmob.emp_damage = 0
 	brainmob.reset_perspective() //so the brainmob follows the brain organ instead of the mmi. And to update our vision
 	GLOB.living_mob_list -= brainmob //Get outta here
@@ -190,7 +190,7 @@
 	..()
 	if(brainmob)
 		var/mob/living/brain/B = brainmob
-		if(!B.key || !B.mind || B.stat == STATS_DEAD)
+		if(!B.key || !B.mind || B.stat == STAT_DEAD)
 			to_chat(user, "<span class='warning'>The MMI indicates the brain is completely unresponsive.</span>")
 
 		else if(!B.client)

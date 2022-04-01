@@ -36,7 +36,7 @@
 	add_logs(A, D, "punched (boxing) ")
 	if(D.getStaminaLoss() > 50)
 		var/knockout_prob = D.getStaminaLoss() + rand(-15,15)
-		if((D.stat != STATS_DEAD) && prob(knockout_prob))
+		if((D.stat != STAT_DEAD) && prob(knockout_prob))
 			D.visible_message("<span class='danger'>[A] has knocked [D] out with a haymaker!</span>", \
 								"<span class='userdanger'>[A] has knocked [D] out with a haymaker!</span>")
 			D.apply_effect(200,KNOCKDOWN,armor_block)

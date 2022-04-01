@@ -108,7 +108,7 @@
 	return TRUE//Humans can use guns and such
 
 /mob/living/carbon/human/InCritical()
-	return (health <= HEALTH_THRESHOLD_CRIT && stat == STATS_UNCONSCIOUS)
+	return (health <= HEALTH_THRESHOLD_CRIT && stat == STATS_UNCONSCIOU)
 
 /mob/living/carbon/human/reagent_check(datum/reagent/R)
 	return dna.species.handle_chemicals(R,src)

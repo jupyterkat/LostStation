@@ -5,7 +5,7 @@
 	chemical_cost = 30
 	dna_cost = 2
 	req_human = 1
-	req_stat = STATS_UNCONSCIOUS
+	req_stat = STATS_UNCONSCIOU
 
 //Recover from stuns.
 /obj/effect/proc_holder/changeling/adrenaline/sting_action(mob/living/user)

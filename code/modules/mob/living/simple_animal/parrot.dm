@@ -295,7 +295,7 @@
 		else
 			parrot_state |= PARROT_FLEE		//Otherwise, fly like a bat out of hell!
 			drop_held_item(0)
-	if(stat != STATS_DEAD && M.a_intent == INTENT_HELP)
+	if(stat != STAT_DEAD && M.a_intent == INTENT_HELP)
 		handle_automated_speech(1) //assured speak/emote
 	return
 
@@ -368,7 +368,7 @@
 	..()
 
 	//Sprite update for when a parrot gets pulled
-	if(pulledby && stat == STATS_CONSCIOUS)
+	if(pulledby && stat == STAT_CONSCIOUS)
 		icon_state = "parrot_fly"
 		if(!client)
 			parrot_state = PARROT_WANDER
@@ -605,7 +605,7 @@
  */
 
 /mob/living/simple_animal/parrot/movement_delay()
-	if(client && stat == STATS_CONSCIOUS && parrot_state != "parrot_fly")
+	if(client && stat == STAT_CONSCIOUS && parrot_state != "parrot_fly")
 		icon_state = "parrot_fly"
 		//Because the most appropriate place to set icon_state is movement_delay(), clearly
 	return ..()

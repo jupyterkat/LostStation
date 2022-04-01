@@ -176,7 +176,7 @@
 			continue
 		// Anyone in crit, automatically reap
 		var/mob/living/M = i
-		if(M.InCritical() || M.stat == STATS_DEAD)
+		if(M.InCritical() || M.stat == STAT_DEAD)
 			ctf_dust_old(M)
 		else
 			// The changes that you've been hit with no shield but not

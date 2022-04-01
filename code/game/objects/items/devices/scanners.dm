@@ -121,9 +121,9 @@ MASS SPECTROMETER
 
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if(H.undergoing_cardiac_arrest() && H.stat != STATS_DEAD)
+		if(H.undergoing_cardiac_arrest() && H.stat != STAT_DEAD)
 			to_chat(user, "<span class='danger'>Subject suffering from heart attack: apply defibrillator immediately!</span>")
-		if(H.undergoing_liver_failure() && H.stat != STATS_DEAD)
+		if(H.undergoing_liver_failure() && H.stat != STAT_DEAD)
 			to_chat(user, "<span class='danger'>Subject suffering from liver failure: apply corazone and begin a liver transplant immediately!</span>")
 
 	to_chat(user, "<span class='info'>Analyzing results for [M]:\n\tOverall status: [mob_status]</span>")
@@ -187,7 +187,7 @@ MASS SPECTROMETER
 	to_chat(user, "<span class='info'>Body temperature: [round(M.bodytemperature-T0C,0.1)] &deg;C ([round(M.bodytemperature*1.8-459.67,0.1)] &deg;F)</span>")
 
 	// Time of death
-	if(M.tod && (M.stat == STATS_DEAD || (M.status_flags & FAKEDEATH)))
+	if(M.tod && (M.stat == STAT_DEAD || (M.status_flags & FAKEDEATH)))
 		to_chat(user, "<span class='info'>Time of Death:</span> [M.tod]")
 		var/tdelta = round(world.time - M.timeofdeath)
 		if(tdelta < (DEFIB_TIME_LIMIT * 10))

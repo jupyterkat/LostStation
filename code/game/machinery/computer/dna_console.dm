@@ -85,12 +85,12 @@
 			if(viable_occupant.has_dna() && (!(RADIMMUNE in viable_occupant.dna.species.species_traits)) && (!(NOSCAN in viable_occupant.dna.species.species_traits)) && (!(viable_occupant.disabilities & NOCLONE) && (!(DIFFICULTCLONE in viable_occupant.dna.species.species_traits)) || (connected.scan_level == 3))) //occupant is viable for dna modification
 				occupant_status += "[viable_occupant.name] => "
 				switch(viable_occupant.stat)
-					if(STATS_CONSCIOUS)
+					if(STAT_CONSCIOUS)
 						occupant_status += "<span class='good'>Conscious</span>"
-					if(STATS_UNCONSCIOUS)
+					if(STATS_UNCONSCIOU)
 						occupant_status += "<span class='average'>Unconscious</span>"
 					else
-						occupant_status += "<span class='bad'>STATS_DEAD</span>"
+						occupant_status += "<span class='bad'>STAT_DEAD</span>"
 				occupant_status += "</div></div>"
 				occupant_status += "<div class='line'><div class='statusLabel'>Health:</div><div class='progressBar'><div style='width: [viable_occupant.health]%;' class='progressFill good'></div></div><div class='statusValue'>[viable_occupant.health] %</div></div>"
 				occupant_status += "<div class='line'><div class='statusLabel'>Radiation Level:</div><div class='progressBar'><div style='width: [viable_occupant.radiation]%;' class='progressFill bad'></div></div><div class='statusValue'>[viable_occupant.radiation] %</div></div>"

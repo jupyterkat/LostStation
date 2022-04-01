@@ -4,11 +4,11 @@
 /data/**/*
 
 #ignore any files in config/, except those in subdirectories.
-/config/*
-!config/**/*/
+#/config/*
+#!config/**/*/
 
 #Ignore byond config folder.
-/cfg/**/*
+#/cfg/**/*
 
 #Ignore compiled files and other files generated during compilation.
 *.mdme

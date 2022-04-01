@@ -52,7 +52,7 @@
 
 	else if(isliving(target))
 		var/mob/living/M = target
-		if(M.stat == STATS_DEAD)
+		if(M.stat == STAT_DEAD)
 			return
 		if(chassis.occupant.a_intent == INTENT_HARM)
 			M.take_overall_damage(dam_force)
@@ -104,7 +104,7 @@
 
 	else if(isliving(target))
 		var/mob/living/M = target
-		if(M.stat == STATS_DEAD)
+		if(M.stat == STAT_DEAD)
 			return
 		if(chassis.occupant.a_intent == INTENT_HARM)
 			target.visible_message("<span class='danger'>[chassis] destroys [target] in an unholy fury.</span>", \

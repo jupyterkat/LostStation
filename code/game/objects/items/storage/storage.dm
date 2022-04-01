@@ -126,7 +126,7 @@
 /obj/item/storage/proc/show_to(mob/user)
 	if(!user.client)
 		return
-	if(user.s_active != src && (user.stat == STATS_CONSCIOUS))
+	if(user.s_active != src && (user.stat == STAT_CONSCIOUS))
 		for(var/obj/item/I in src)
 			if(I.on_found(user))
 				return

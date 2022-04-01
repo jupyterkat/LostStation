@@ -146,7 +146,7 @@
 	if(!istype(user) || !user.canUseTopic(M,1))
 		return
 
-	if(M.stat != STATS_DEAD)
+	if(M.stat != STAT_DEAD)
 		to_chat(user, "<span class='warning'>This artifact can only affect the dead!</span>")
 		return
 
@@ -178,7 +178,7 @@
 			spooky_scaries.Remove(X)
 			continue
 		var/mob/living/carbon/human/H = X
-		if(H.stat == STATS_DEAD)
+		if(H.stat == STAT_DEAD)
 			H.dust(TRUE)
 			spooky_scaries.Remove(X)
 			continue

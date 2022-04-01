@@ -235,7 +235,7 @@ Turf and target are separate in case you want to teleport some distance from a t
 	for(var/mob/living/silicon/robot/R in GLOB.living_mob_list)
 		if(R.connected_ai || R.shell)
 			continue
-		if(R.stat == STATS_DEAD)
+		if(R.stat == STAT_DEAD)
 			continue
 		if(R.emagged || R.scrambledcodes)
 			continue
@@ -245,7 +245,7 @@ Turf and target are separate in case you want to teleport some distance from a t
 /proc/active_ais(check_mind=0)
 	. = list()
 	for(var/mob/living/silicon/ai/A in GLOB.living_mob_list)
-		if(A.stat == STATS_DEAD)
+		if(A.stat == STAT_DEAD)
 			continue
 		if(A.control_disabled == 1)
 			continue
@@ -298,7 +298,7 @@ Turf and target are separate in case you want to teleport some distance from a t
 
 		if(M.real_name && M.real_name != M.name)
 			name += " \[[M.real_name]\]"
-		if(M.stat == STATS_DEAD)
+		if(M.stat == STAT_DEAD)
 			if(isobserver(M))
 				name += " \[ghost\]"
 			else

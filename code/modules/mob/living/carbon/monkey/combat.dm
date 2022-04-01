@@ -163,7 +163,7 @@
 				var/list/around = view(src, MONKEY_ENEMY_VISION) // scan for enemies
 				for(var/mob/living/L in around)
 					if( should_target(L) )
-						if(L.stat == STATS_CONSCIOUS)
+						if(L.stat == STAT_CONSCIOUS)
 							battle_screech()
 							retaliate(L)
 							return TRUE
@@ -210,7 +210,7 @@
 
 			// switch targets
 			for(var/mob/living/L in around)
-				if(L != target && should_target(L) && L.stat == STATS_CONSCIOUS && prob(MONKEY_SWITCH_TARGET_PROB))
+				if(L != target && should_target(L) && L.stat == STAT_CONSCIOUS && prob(MONKEY_SWITCH_TARGET_PROB))
 					target = L
 					return TRUE
 
@@ -219,7 +219,7 @@
 				back_to_idle()
 				return TRUE
 
-			if(target && target.stat == STATS_CONSCIOUS)		// make sure target exists
+			if(target && target.stat == STAT_CONSCIOUS)		// make sure target exists
 				if(Adjacent(target) && isturf(target.loc))	// if right next to perp
 
 					// check if target has a weapon
@@ -256,7 +256,7 @@
 
 			// flee from anyone who attacked us and we didn't beat down
 			for(var/mob/living/L in around)
-				if( enemies[L] && L.stat == STATS_CONSCIOUS )
+				if( enemies[L] && L.stat == STAT_CONSCIOUS )
 					target = L
 
 			if(target != null)

@@ -601,7 +601,7 @@
 	force = 100
 	throwforce = 100
 	force_unwielded = 100
-	force_wielded = 500000 // Kills you STATS_DEAD.
+	force_wielded = 500000 // Kills you STAT_DEAD.
 
 /obj/item/twohanded/pitchfork/update_icon()
 	icon_state = "pitchfork[wielded]"

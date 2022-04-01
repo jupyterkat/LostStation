@@ -24,7 +24,7 @@
 	tag = "mob_[next_mob_id++]"
 	GLOB.mob_list += src
 	GLOB.mob_directory[tag] = src
-	if(stat == STATS_DEAD)
+	if(stat == STAT_DEAD)
 		GLOB.dead_mob_list += src
 	else
 		GLOB.living_mob_list += src
@@ -86,7 +86,7 @@
 				if(type & 1 && eye_blind)
 					return
 	// voice muffling
-	if(stat == STATS_UNCONSCIOUS)
+	if(stat == STATS_UNCONSCIOU)
 		if(type & 2) //audio
 			to_chat(src, "<I>... You can almost hear something ...</I>")
 	else
@@ -794,7 +794,7 @@
 
 //Can the mob see reagents inside of containers?
 /mob/proc/can_see_reagents()
-	if(stat == STATS_DEAD) //Ghosts and such can always see reagents
+	if(stat == STAT_DEAD) //Ghosts and such can always see reagents
 		return 1
 	if(has_unlimited_silicon_privilege) //Silicons can automatically view reagents
 		return 1
@@ -910,10 +910,10 @@
 /mob/living/vv_edit_var(var_name, var_value)
 	switch(var_name)
 		if("stat")
-			if((stat == STATS_DEAD) && (var_value < STATS_DEAD))//Bringing the dead back to life
+			if((stat == STAT_DEAD) && (var_value < STAT_DEAD))//Bringing the dead back to life
 				GLOB.dead_mob_list -= src
 				GLOB.living_mob_list += src
-			if((stat < STATS_DEAD) && (var_value == STATS_DEAD))//Kill he
+			if((stat < STAT_DEAD) && (var_value == STAT_DEAD))//Kill he
 				GLOB.living_mob_list -= src
 				GLOB.dead_mob_list += src
 	. = ..()

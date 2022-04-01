@@ -165,6 +165,12 @@
 	icon_state = "com_headset"
 	keyslot = new /obj/item/device/encryptionkey/heads/hop
 
+/obj/item/device/radio/headset/heads/qm
+	name = "\proper the quartermaster's headset"
+	desc = "The headset of the station's latest head of staff. \nChannels are as follows: :u - supply, :c - command."
+	icon_state = "com_headset"
+	keyslot = new /obj/item/device/encryptionkey/heads/qm
+
 /obj/item/device/radio/headset/heads/blueshield
 	name = "\proper the blueshield's headset"
 	desc = "The headset of the Blueshield."
@@ -185,7 +191,7 @@
 
 /obj/item/device/radio/headset/headset_cargo
 	name = "supply radio headset"
-	desc = "A headset used by the QM and his slaves. \nTo access the supply channel, use :u."
+	desc = "A headset used by the QM's slaves. \nTo access the supply channel, use :u."
 	icon_state = "cargo_headset"
 	keyslot = new /obj/item/device/encryptionkey/headset_cargo
 

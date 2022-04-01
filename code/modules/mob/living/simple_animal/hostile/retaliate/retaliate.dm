@@ -43,5 +43,5 @@
 
 /mob/living/simple_animal/hostile/retaliate/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
 	. = ..()
-	if(. > 0 && stat == STATS_CONSCIOUS)
+	if(. > 0 && stat == STAT_CONSCIOUS)
 		Retaliate()

@@ -109,7 +109,7 @@
 		if(field == F)
 			var/turf/currentpos = get_turf(src)
 			var/mob/living/user = src.loc
-			if((currentpos == startpos) && (field in view(CHRONO_BEAM_RANGE, currentpos)) && !user.lying && (user.stat == STATS_CONSCIOUS))
+			if((currentpos == startpos) && (field in view(CHRONO_BEAM_RANGE, currentpos)) && !user.lying && (user.stat == STAT_CONSCIOUS))
 				return 1
 		field_disconnect(F)
 		return 0

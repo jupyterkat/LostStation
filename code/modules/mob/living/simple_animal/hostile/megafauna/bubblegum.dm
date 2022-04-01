@@ -199,7 +199,7 @@ Difficulty: Hard
 	. = list()
 	for(var/mob/living/L in targets)
 		var/list/bloodpool = get_pools(get_turf(L), 0)
-		if(bloodpool.len && (!faction_check_mob(L) || L.stat == STATS_DEAD))
+		if(bloodpool.len && (!faction_check_mob(L) || L.stat == STAT_DEAD))
 			. += L
 
 /mob/living/simple_animal/hostile/megafauna/bubblegum/proc/try_bloodattack()
@@ -217,7 +217,7 @@ Difficulty: Hard
 	if(targets.len)
 		target_two = pick_n_take(targets)
 		var/turf/target_two_turf = get_turf(target_two)
-		if(target_two.stat != STATS_CONSCIOUS || prob(10))
+		if(target_two.stat != STAT_CONSCIOUS || prob(10))
 			bloodgrab(target_two_turf, handedness)
 		else
 			bloodsmack(target_two_turf, handedness)
@@ -227,7 +227,7 @@ Difficulty: Hard
 		if(pools.len)
 			target_one_turf = get_turf(target_one)
 			if(target_one_turf)
-				if(target_one.stat != STATS_CONSCIOUS || prob(10))
+				if(target_one.stat != STAT_CONSCIOUS || prob(10))
 					bloodgrab(target_one_turf, !handedness)
 				else
 					bloodsmack(target_one_turf, !handedness)
@@ -237,7 +237,7 @@ Difficulty: Hard
 		if(poolstwo.len)
 			target_one_turf = get_turf(target_one)
 			if(target_one_turf)
-				if(target_one.stat != STATS_CONSCIOUS || prob(10))
+				if(target_one.stat != STAT_CONSCIOUS || prob(10))
 					bloodgrab(target_one_turf, handedness)
 				else
 					bloodsmack(target_one_turf, handedness)
@@ -271,7 +271,7 @@ Difficulty: Hard
 			var/turf/targetturf = get_step(src, dir)
 			L.forceMove(targetturf)
 			playsound(targetturf, 'sound/magic/exit_blood.ogg', 100, 1, -1)
-			if(L.stat != STATS_CONSCIOUS)
+			if(L.stat != STAT_CONSCIOUS)
 				addtimer(CALLBACK(src, .proc/devour, L), 2)
 	sleep(1)
 

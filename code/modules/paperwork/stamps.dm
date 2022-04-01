@@ -10,7 +10,6 @@
 	throw_range = 7
 	materials = list(MAT_METAL=60)
 	item_color = "cargo"
-	pressure_resistance = 2
 	attack_verb = list("stamped")
 
 /obj/item/stamp/qm

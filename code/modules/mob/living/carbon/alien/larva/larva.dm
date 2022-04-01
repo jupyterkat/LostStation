@@ -35,7 +35,7 @@
 		stat(null, "Progress: [amount_grown]/[max_grown]")
 
 /mob/living/carbon/alien/larva/adjustPlasma(amount)
-	if(stat != STATS_DEAD && amount > 0)
+	if(stat != STAT_DEAD && amount > 0)
 		amount_grown = min(amount_grown + 1, max_grown)
 	..(amount)
 

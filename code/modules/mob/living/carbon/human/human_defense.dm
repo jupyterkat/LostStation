@@ -233,7 +233,7 @@
 			var/damage = rand(1, 3)
 			if(check_shields(M, damage, "the [M.name]"))
 				return 0
-			if(stat != STATS_DEAD)
+			if(stat != STAT_DEAD)
 				apply_damage(damage, BRUTE, affecting, run_armor_check(affecting, "melee"))
 				damage_clothes(damage, BRUTE, "melee", affecting.body_zone)
 		return 1
@@ -286,7 +286,7 @@
 		var/damage = rand(1, 3)
 		if(check_shields(L, damage, "the [L.name]"))
 			return 0
-		if(stat != STATS_DEAD)
+		if(stat != STAT_DEAD)
 			L.amount_grown = min(L.amount_grown + damage, L.max_grown)
 			var/obj/item/bodypart/affecting = get_bodypart(ran_zone(L.zone_selected))
 			if(!affecting)
@@ -428,7 +428,7 @@
 
 
 /mob/living/carbon/human/blob_act(obj/structure/blob/B)
-	if(stat == STATS_DEAD)
+	if(stat == STAT_DEAD)
 		return
 	show_message("<span class='userdanger'>The blob attacks you!</span>")
 	var/dam_zone = pick("chest", "l_hand", "r_hand", "l_leg", "r_leg")
@@ -463,7 +463,7 @@
 		if(shock_damage * siemens_coeff >= 1 && prob(25))
 			var/obj/item/organ/heart/heart = getorganslot(ORGAN_SLOT_HEART)
 			heart.beating = TRUE
-			if(stat == STATS_CONSCIOUS)
+			if(stat == STAT_CONSCIOUS)
 				to_chat(src, "<span class='notice'>You feel your heart beating again!</span>")
 	. = ..(shock_damage,source,siemens_coeff,safety,override,tesla_shock, illusion, stun)
 	if(.)

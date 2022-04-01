@@ -2,7 +2,7 @@
 	set category = "Robot Commands"
 	set name = "Show Laws"
 
-	if(usr.stat == STATS_DEAD)
+	if(usr.stat == STAT_DEAD)
 		return //won't work if dead
 	show_laws()
 

@@ -9,7 +9,7 @@
 	invisibility = INVISIBILITY_ABSTRACT
 
 	density = FALSE
-	stat = STATS_DEAD
+	stat = STAT_DEAD
 	canmove = FALSE
 
 	anchored = TRUE	//  don't get pushed around

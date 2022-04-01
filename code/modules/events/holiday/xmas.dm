@@ -47,7 +47,7 @@
 	var/cracked = 0
 
 /obj/item/toy/xmas_cracker/attack(mob/target, mob/user)
-	if( !cracked && ishuman(target) && (target.stat == STATS_CONSCIOUS) && !target.get_active_held_item() )
+	if( !cracked && ishuman(target) && (target.stat == STAT_CONSCIOUS) && !target.get_active_held_item() )
 		target.visible_message("[user] and [target] pop \an [src]! *pop*", "<span class='notice'>You pull \an [src] with [target]! *pop*</span>", "<span class='italics'>You hear a pop.</span>")
 		var/obj/item/paper/Joke = new /obj/item/paper(user.loc)
 		Joke.name = "[pick("awful","terrible","unfunny")] joke"
@@ -112,7 +112,7 @@
 	for(var/mob/M in GLOB.dead_mob_list)
 		spawn(0)
 			var/response = alert(M, "Santa is coming to town! Do you want to be santa?", "Ho ho ho!", "Yes", "No")
-			if(response == "Yes" && M && M.client && M.stat == STATS_DEAD && !santa)
+			if(response == "Yes" && M && M.client && M.stat == STAT_DEAD && !santa)
 				santa = new /mob/living/carbon/human(pick(GLOB.blobstart))
 				santa.key = M.key
 				qdel(M)

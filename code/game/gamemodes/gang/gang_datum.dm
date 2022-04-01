@@ -185,7 +185,7 @@
 		return
 	for(var/obj/item/device/gangtool/tool in gangtools)
 		var/mob/living/mob = get(tool.loc, /mob/living)
-		if(mob && mob.mind && mob.stat == STATS_CONSCIOUS)
+		if(mob && mob.mind && mob.stat == STAT_CONSCIOUS)
 			if(mob.mind.gang_datum == src)
 				to_chat(mob, "<span class='[warning ? "warning" : "notice"]'>[icon2html(tool, mob)] [message]</span>")
 			return
@@ -254,7 +254,7 @@
 /datum/gang/proc/pay_clothing_bonus(var/datum/mind/gangsta)
 	var/mob/living/carbon/human/gangbanger = gangsta.current
 	. = 0
-	if(!istype(gangbanger) || gangbanger.stat == STATS_DEAD)	//Dead gangsters aren't influential at all!
+	if(!istype(gangbanger) || gangbanger.stat == STAT_DEAD)	//Dead gangsters aren't influential at all!
 		return 0
 	var/static/inner = inner_outfit
 	var/static/outer = outer_outfit
@@ -316,7 +316,7 @@
 		bosses[gangster_mind] += amount
 
 /datum/gang/proc/announce_to_mind(datum/mind/gangster_mind, message)
-	if(gangster_mind.current && gangster_mind.current.stat != STATS_DEAD)
+	if(gangster_mind.current && gangster_mind.current.stat != STAT_DEAD)
 		to_chat(gangster_mind.current, message)
 
 /datum/gang/proc/announce_total_influence(datum/mind/gangster_mind)

@@ -362,7 +362,7 @@
 
 
 /obj/effect/mob_spawn/human/demonic_friend/special(mob/living/L)
-	if(!QDELETED(owner.current) && owner.current.stat != STATS_DEAD)
+	if(!QDELETED(owner.current) && owner.current.stat != STAT_DEAD)
 		L.real_name = "[owner.name]'s best friend"
 		L.name = L.real_name
 		soullink(/datum/soullink/oneway, owner.current, L)

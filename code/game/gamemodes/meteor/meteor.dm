@@ -35,7 +35,7 @@
 	var/survivors = 0
 
 	for(var/mob/living/player in GLOB.player_list)
-		if(player.stat != STATS_DEAD)
+		if(player.stat != STAT_DEAD)
 			++survivors
 
 			if(player.onCentCom())

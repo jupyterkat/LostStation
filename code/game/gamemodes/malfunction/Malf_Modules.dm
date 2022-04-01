@@ -149,7 +149,7 @@ GLOBAL_LIST_INIT(blacklisted_malf_machines, typecacheof(list(
 		return
 	var/mob/living/silicon/ai/A = usr
 
-	if(A.stat == STATS_DEAD)
+	if(A.stat == STAT_DEAD)
 		to_chat(A, "<span class='warning'>You are already dead!</span>")
 		return
 
@@ -385,6 +385,10 @@ GLOBAL_LIST_INIT(blacklisted_malf_machines, typecacheof(list(
 		to_chat(L, "<span class='userdanger'>The blast wave from [src] tears you atom from atom!</span>")
 		L.dust()
 	to_chat(world, "<B>The AI cleansed the station of life with the doomsday device!</B>")
+	for(var/A in GLOB.ai_list)
+		var/mob/living/silicon/ai/AI = A
+		var/client/c = AI.client
+		c.inc_antag_tokens_count(ATOKEN_GREENTEXT_BONUS)
 	SSticker.force_ending = 1
 
 

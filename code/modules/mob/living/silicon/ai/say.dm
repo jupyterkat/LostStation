@@ -85,7 +85,7 @@
 
 	last_announcement = message
 
-	if(!message || stat != STATS_CONSCIOUS)
+	if(!message || stat != STAT_CONSCIOUS)
 		return
 
 	if(control_disabled)

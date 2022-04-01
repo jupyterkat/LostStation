@@ -124,7 +124,7 @@
 		CG.get_chameleon_projectile(picked_item)
 	if(isliving(user))
 		var/mob/living/C = user
-		if(C.stat != STATS_CONSCIOUS)
+		if(C.stat != STAT_CONSCIOUS)
 			return
 
 		update_item(picked_item)

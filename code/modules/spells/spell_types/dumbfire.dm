@@ -73,7 +73,7 @@
 			break
 
 		var/mob/living/L = locate(/mob/living) in range(projectile, proj_trigger_range) - user
-		if(L && L.stat != STATS_DEAD)
+		if(L && L.stat != STAT_DEAD)
 			projectile.cast(L.loc,user=user)
 			break
 

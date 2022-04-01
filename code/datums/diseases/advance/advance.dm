@@ -7,7 +7,7 @@
 
 */
 
-#define SYMPTOM_LIMIT 6
+#define SYMPTOM_LIMIT 8
 
 
 
@@ -307,7 +307,7 @@
 	if(HasSymptom(S))
 		return
 
-	if(symptoms.len < (SYMPTOM_LIMIT - 1) + rand(-1, 1))
+	if(symptoms.len <= SYMPTOM_LIMIT)
 		symptoms += S
 	else
 		RemoveSymptom(pick(symptoms))

@@ -12,7 +12,7 @@
 	var/dna_cost = -1 //cost of the sting in dna points. 0 = auto-purchase, -1 = cannot be purchased
 	var/req_dna = 0  //amount of dna needed to use this ability. Changelings always have atleast 1
 	var/req_human = 0 //if you need to be human to use this ability
-	var/req_stat = STATS_CONSCIOUS // STATS_CONSCIOUS, UNCONSCIOUS or STATS_DEAD
+	var/req_stat = STAT_CONSCIOUS // STAT_CONSCIOUS, UNCONSCIOUS or STAT_DEAD
 	var/always_keep = 0 // important for abilities like revive that screw you if you lose them.
 	var/ignores_fakedeath = FALSE // usable with the FAKEDEATH flag
 

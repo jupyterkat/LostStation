@@ -1,6 +1,6 @@
 
 /mob/living/silicon/ai/attacked_by(obj/item/I, mob/living/user, def_zone)
-	if(I.force && I.damtype != STAMINA && stat != STATS_DEAD) //only sparks if real damage is dealt.
+	if(I.force && I.damtype != STAMINA && stat != STAT_DEAD) //only sparks if real damage is dealt.
 		spark_system.start()
 	return ..()
 
@@ -15,7 +15,7 @@
 	return //immune to slimes
 
 /mob/living/silicon/ai/blob_act(obj/structure/blob/B)
-	if (stat != STATS_DEAD)
+	if (stat != STAT_DEAD)
 		adjustBruteLoss(60)
 		updatehealth()
 		return 1
@@ -36,11 +36,11 @@
 		if(1)
 			gib()
 		if(2)
-			if (stat != STATS_DEAD)
+			if (stat != STAT_DEAD)
 				adjustBruteLoss(60)
 				adjustFireLoss(60)
 		if(3)
-			if (stat != STATS_DEAD)
+			if (stat != STAT_DEAD)
 				adjustBruteLoss(30)
 
 

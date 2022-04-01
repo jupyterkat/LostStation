@@ -38,14 +38,14 @@
 		msg += "<span class='warning'>Its eyes are glowing a blazing yellow!</span>\n"
 
 	switch(stat)
-		if(STATS_CONSCIOUS)
+		if(STAT_CONSCIOUS)
 			if(shell)
 				msg += "It appears to be an [deployed ? "active" : "empty"] AI shell.\n"
 			else if(!client)
 				msg += "It appears to be in stand-by mode.\n" //afk
-		if(STATS_UNCONSCIOUS)
+		if(STATS_UNCONSCIOU)
 			msg += "<span class='warning'>It doesn't seem to be responding.</span>\n"
-		if(STATS_DEAD)
+		if(STAT_DEAD)
 			msg += "<span class='deadsay'>It looks like its system is corrupted and requires a reset.</span>\n"
 	msg += "*---------*</span>"
 

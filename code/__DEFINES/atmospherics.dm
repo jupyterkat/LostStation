@@ -163,7 +163,7 @@
 //Tanks
 #define TANK_MAX_RELEASE_PRESSURE (ONE_ATMOSPHERE*3)
 #define TANK_MIN_RELEASE_PRESSURE 0
-#define TANK_DEFAULT_RELEASE_PRESSURE 16
+#define TANK_DEFAULT_RELEASE_PRESSURE 18
 
 
 #define ATMOS_PASS_YES 1
@@ -173,7 +173,7 @@
 #define CANATMOSPASS(A, O) ( A.CanAtmosPass == ATMOS_PASS_PROC ? A.CanAtmosPass(O) : ( A.CanAtmosPass == ATMOS_PASS_DENSITY ? !A.density : A.CanAtmosPass ) )
 
 #define LAVALAND_EQUIPMENT_EFFECT_PRESSURE 50 //what pressure you have to be under to increase the effect of equipment meant for lavaland
-#define LAVALAND_DEFAULT_ATMOS "o2=0.2;TEMP=300"
+#define LAVALAND_DEFAULT_ATMOS "n2=1.8;TEMP=300"
 
 #define THERMAL_ENERGY(gas) (gas.temperature * gas.heat_capacity())
 

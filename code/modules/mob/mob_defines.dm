@@ -4,7 +4,6 @@
 	animate_movement = 2
 	flags_1 = HEAR_1
 	hud_possible = list(ANTAG_HUD)
-	pressure_resistance = 8
 	var/lighting_alpha = LIGHTING_PLANE_ALPHA_VISIBLE
 	var/datum/mind/mind
 	var/list/datum/action/actions = list()

@@ -20,17 +20,17 @@
 				else
 					entry += " - Playing as [C.mob.real_name]"
 					switch(C.mob.stat)
-						if(STATS_UNCONSCIOUS)
+						if(STATS_UNCONSCIOU)
 							entry += " - <font color='darkgray'><b>Unconscious</b></font>"
-						if(STATS_DEAD)
+						if(STAT_DEAD)
 							if(isobserver(C.mob))
 								var/mob/dead/observer/O = C.mob
 								if(O.started_as_observer)
 									entry += " - <font color='gray'>Observing</font>"
 								else
-									entry += " - <font color='black'><b>STATS_DEAD</b></font>"
+									entry += " - <font color='black'><b>STAT_DEAD</b></font>"
 							else
-								entry += " - <font color='black'><b>STATS_DEAD</b></font>"
+								entry += " - <font color='black'><b>STAT_DEAD</b></font>"
 					if(is_special_character(C.mob))
 						entry += " - <b><font color='red'>Antagonist</font></b>"
 				entry += " [ADMIN_QUE(C.mob)]"

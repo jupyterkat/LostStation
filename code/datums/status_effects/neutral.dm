@@ -4,7 +4,7 @@
 	id = "sigil_mark"
 	duration = -1
 	alert_type = null
-	var/stat_allowed = STATS_DEAD //if owner's stat is below this, will remove itself
+	var/stat_allowed = STAT_DEAD //if owner's stat is below this, will remove itself
 
 /datum/status_effect/sigil_mark/tick()
 	if(owner.stat < stat_allowed)
@@ -31,7 +31,7 @@
 		reward_target = new_reward_target
 
 /datum/status_effect/syphon_mark/on_apply()
-	if(owner.stat == STATS_DEAD)
+	if(owner.stat == STAT_DEAD)
 		return FALSE
 	return ..()
 
@@ -40,7 +40,7 @@
 		reward_target.get_kill(owner)
 
 /datum/status_effect/syphon_mark/tick()
-	if(owner.stat == STATS_DEAD)
+	if(owner.stat == STAT_DEAD)
 		get_kill()
 		qdel(src)
 

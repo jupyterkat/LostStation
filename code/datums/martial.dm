@@ -66,7 +66,7 @@
 
 	add_logs(A, D, "punched")
 
-	if((D.stat != STATS_DEAD) && damage >= A.dna.species.punchstunthreshold)
+	if((D.stat != STAT_DEAD) && damage >= A.dna.species.punchstunthreshold)
 		D.visible_message("<span class='danger'>[A] has knocked [D] down!!</span>", \
 								"<span class='userdanger'>[A] has knocked [D] down!</span>")
 		D.apply_effect(40, KNOCKDOWN, armor_block)

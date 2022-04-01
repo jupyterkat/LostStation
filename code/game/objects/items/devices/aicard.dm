@@ -28,7 +28,7 @@
 	cut_overlays()
 	if(AI)
 		name = "[initial(name)]- [AI.name]"
-		if(AI.stat == STATS_DEAD)
+		if(AI.stat == STAT_DEAD)
 			icon_state = "aicard-404"
 		else
 			icon_state = "aicard-full"
@@ -54,7 +54,7 @@
 		data["health"] = (AI.health + 100) / 2
 		data["wireless"] = !AI.control_disabled //todo disabled->enabled
 		data["radio"] = AI.radio_enabled
-		data["isDead"] = AI.stat == STATS_DEAD
+		data["isDead"] = AI.stat == STAT_DEAD
 		data["isBraindead"] = AI.client ? FALSE : TRUE
 	data["wiping"] = flush
 	return data
@@ -72,7 +72,7 @@
 					flush = TRUE
 					if(AI && AI.loc == src)
 						to_chat(AI, "Your core files are being wiped!")
-						while(AI.stat != STATS_DEAD && flush)
+						while(AI.stat != STAT_DEAD && flush)
 							AI.adjustOxyLoss(1)
 							AI.updatehealth()
 							sleep(5)

@@ -67,7 +67,7 @@
 			var/datum/mind/agent_mind = M
 			if(ishuman(agent_mind.current))
 				var/mob/living/carbon/human/H = agent_mind.current
-				if(H.stat != STATS_DEAD)
+				if(H.stat != STAT_DEAD)
 					if(H.client)
 						continue // It all checks out.
 

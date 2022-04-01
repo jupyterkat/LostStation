@@ -197,7 +197,7 @@
 
 
 /mob/living/carbon/blob_act(obj/structure/blob/B)
-	if (stat == STATS_DEAD)
+	if (stat == STAT_DEAD)
 		return
 	else
 		show_message("<span class='userdanger'>The blob attacks!</span>")

@@ -125,7 +125,7 @@
 /datum/game_mode/wizard/check_finished()
 
 	for(var/datum/mind/wizard in wizards)
-		if(isliving(wizard.current) && wizard.current.stat!=STATS_DEAD)
+		if(isliving(wizard.current) && wizard.current.stat!=STAT_DEAD)
 			return ..()
 
 	if(SSevents.wizardmode) //If summon events was active, turn it off
@@ -153,7 +153,7 @@
 
 			text += "<br><b>[wizard.key]</b> was <b>[wizard.name]</b> ("
 			if(wizard.current)
-				if(wizard.current.stat == STATS_DEAD)
+				if(wizard.current.stat == STAT_DEAD)
 					text += "died"
 				else
 					text += "survived"
@@ -177,6 +177,10 @@
 
 			if(wizard.current && wizard.current.stat!=2 && wizardwin)
 				text += "<br><font color='green'><B>The wizard was successful!</B></font>"
+
+				var/client/c = wizard.current.client
+				c.inc_antag_tokens_count(ATOKEN_SURVIVE_REWARD)
+				
 				SSblackbox.add_details("wizard_success","SUCCESS")
 			else
 				text += "<br><font color='red'><B>The wizard has failed!</B></font>"

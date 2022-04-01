@@ -22,7 +22,7 @@
 	if(!target.mind)
 		to_chat(user, "<span class='warning'>The victim has no mind to link to!</span>")
 		return
-	if(target.stat == STATS_DEAD)
+	if(target.stat == STAT_DEAD)
 		to_chat(user, "<span class='warning'>The victim is dead, you cannot link to a dead mind!</span>")
 		return
 	if(target.mind.changeling)

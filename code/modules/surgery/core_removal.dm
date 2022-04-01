@@ -5,7 +5,7 @@
 	possible_locs = list("r_arm","l_arm","r_leg","l_leg","chest","head")
 
 /datum/surgery/core_removal/can_start(mob/user, mob/living/target)
-	if(target.stat == STATS_DEAD)
+	if(target.stat == STAT_DEAD)
 		return 1
 	return 0
 

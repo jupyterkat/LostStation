@@ -6,7 +6,6 @@
 	density = TRUE
 	anchored = FALSE
 	container_type = DRAWABLE_1
-	pressure_resistance = 2*ONE_ATMOSPHERE
 	max_integrity = 300
 	var/tank_volume = 1000 //In units, how much the dispenser can hold
 	var/reagent_id = "water" //The ID of the reagent that the dispenser uses

@@ -54,6 +54,8 @@
 			text += "<b>(<font color=\"[B.blob_reagent_datum.color]\">[B.blob_reagent_datum.name]</font>)</b> and"
 			if(B.blob_core)
 				text += " <span class='greenannounce'>survived</span>"
+				var/client/c = ply.current.client
+				c.inc_antag_tokens_count(ATOKEN_GREENTEXT_BONUS)
 			else
 				text += " <span class='boldannounce'>was destroyed</span>"
 		else

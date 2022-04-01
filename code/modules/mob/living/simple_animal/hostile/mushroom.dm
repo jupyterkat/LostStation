@@ -72,7 +72,7 @@
 	retreat_distance = null
 
 /mob/living/simple_animal/hostile/mushroom/attack_animal(mob/living/L)
-	if(istype(L, /mob/living/simple_animal/hostile/mushroom) && stat == STATS_DEAD)
+	if(istype(L, /mob/living/simple_animal/hostile/mushroom) && stat == STAT_DEAD)
 		var/mob/living/simple_animal/hostile/mushroom/M = L
 		if(faint_ticker < 2)
 			M.visible_message("[M] chews a bit on [src].")
@@ -136,7 +136,7 @@
 
 /mob/living/simple_animal/hostile/mushroom/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/reagent_containers/food/snacks/grown/mushroom))
-		if(stat == STATS_DEAD && !recovery_cooldown)
+		if(stat == STAT_DEAD && !recovery_cooldown)
 			Recover()
 			qdel(I)
 		else

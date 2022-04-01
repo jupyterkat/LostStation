@@ -2,7 +2,7 @@
 	set category = "IC"
 	set name = "Give"
 
-	if(target.stat != STATS_CONSCIOUS | target.client == null)
+	if(target.stat != STAT_CONSCIOUS | target.client == null)
 		return // Fail silently. Don't want to give any hints.
 	if(target.handcuffed)
 		to_chat(usr, "<span class='warning'>[target.name] is handcuffed!</span>")

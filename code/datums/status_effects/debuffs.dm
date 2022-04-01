@@ -215,7 +215,7 @@
 		if(owner.confused)
 			owner.confused = 0
 		severity = 0
-	else if(!owner.null_rod_check() && owner.stat != STATS_DEAD && severity)
+	else if(!owner.null_rod_check() && owner.stat != STAT_DEAD && severity)
 		var/static/hum = get_sfx('sound/effects/screech.ogg') //same sound for every proc call
 		if(owner.getToxLoss() > MANIA_DAMAGE_TO_CONVERT)
 			if(is_eligible_servant(owner))
@@ -300,7 +300,7 @@
 	return ..()
 
 /datum/status_effect/saw_bleed/on_apply()
-	if(owner.stat == STATS_DEAD)
+	if(owner.stat == STAT_DEAD)
 		return FALSE
 	bleed_overlay = mutable_appearance('icons/effects/bleed.dmi', "bleed[bleed_amount]")
 	bleed_underlay = mutable_appearance('icons/effects/bleed.dmi', "bleed[bleed_amount]")
@@ -317,7 +317,7 @@
 	return ..()
 
 /datum/status_effect/saw_bleed/tick()
-	if(owner.stat == STATS_DEAD)
+	if(owner.stat == STAT_DEAD)
 		qdel(src)
 	else
 		add_bleed(-1)
@@ -396,7 +396,7 @@
 	curse_flags &= ~remove_curse
 
 /datum/status_effect/necropolis_curse/tick()
-	if(owner.stat == STATS_DEAD)
+	if(owner.stat == STAT_DEAD)
 		return
 	if(curse_flags & CURSE_WASTING)
 		wasting_effect.forceMove(owner.loc)

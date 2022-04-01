@@ -105,7 +105,7 @@
 /datum/food_processor_process/mob/slime/process_food(loc, what, obj/machinery/processor/processor)
 	var/mob/living/simple_animal/slime/S = what
 	var/C = S.cores
-	if(S.stat != STATS_DEAD)
+	if(S.stat != STAT_DEAD)
 		S.loc = loc
 		S.visible_message("<span class='notice'>[C] crawls free of the processor!</span>")
 		return

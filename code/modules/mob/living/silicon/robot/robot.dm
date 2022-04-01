@@ -168,8 +168,8 @@
 		if(T)
 			mmi.loc = T
 		if(mmi.brainmob)
-			if(mmi.brainmob.stat == STATS_DEAD)
-				mmi.brainmob.stat = STATS_CONSCIOUS
+			if(mmi.brainmob.stat == STAT_DEAD)
+				mmi.brainmob.stat = STAT_CONSCIOUS
 				GLOB.dead_mob_list -= mmi.brainmob
 				GLOB.living_mob_list += mmi.brainmob
 			mind.transfer_to(mmi.brainmob)
@@ -241,7 +241,7 @@
 /mob/living/silicon/robot/verb/cmd_robot_alerts()
 	set category = "Robot Commands"
 	set name = "Show Alerts"
-	if(usr.stat == STATS_DEAD)
+	if(usr.stat == STAT_DEAD)
 		to_chat(src, "<span class='userdanger'>Alert: You are dead.</span>")
 		return //won't work if dead
 	robot_alerts()
@@ -326,7 +326,7 @@
 /mob/living/silicon/robot/triggerAlarm(class, area/A, O, obj/alarmsource)
 	if(alarmsource.z != z)
 		return
-	if(stat == STATS_DEAD)
+	if(stat == STAT_DEAD)
 		return 1
 	var/list/L = alarms[class]
 	for (var/I in L)
@@ -542,7 +542,7 @@
 	set category = "Robot Commands"
 	set name = "Unlock Cover"
 	set desc = "Unlocks your own cover if it is locked. You can not lock it again. A human will have to lock it for you."
-	if(stat == STATS_DEAD)
+	if(stat == STAT_DEAD)
 		return //won't work if dead
 	if(locked)
 		switch(alert("You cannot lock your cover again, are you sure?\n      (You can still ask for a human to lock it)", "Unlock Own Cover", "Yes", "No"))
@@ -591,7 +591,7 @@
 /mob/living/silicon/robot/update_icons()
 	cut_overlays()
 	icon_state = module.cyborg_base_icon
-	if(stat != STATS_DEAD && !(IsUnconscious() || IsStun() || IsKnockdown() || low_power_mode)) //Not dead, not stunned.
+	if(stat != STAT_DEAD && !(IsUnconscious() || IsStun() || IsKnockdown() || low_power_mode)) //Not dead, not stunned.
 		if(!eye_lights)
 			eye_lights = new()
 		if(lamp_intensity > 2)
@@ -675,7 +675,7 @@
 	set category = "Robot Commands"
 	set name = "State Laws"
 
-	if(usr.stat == STATS_DEAD)
+	if(usr.stat == STAT_DEAD)
 		return //won't work if dead
 	checklaws()
 
@@ -684,7 +684,7 @@
 	set desc = "Modify the default radio setting for stating your laws."
 	set category = "Robot Commands"
 
-	if(usr.stat == STATS_DEAD)
+	if(usr.stat == STAT_DEAD)
 		return //won't work if dead
 	set_autosay()
 
@@ -833,7 +833,7 @@
 /mob/living/silicon/robot/update_sight()
 	if(!client)
 		return
-	if(stat == STATS_DEAD)
+	if(stat == STAT_DEAD)
 		sight = (SEE_TURFS|SEE_MOBS|SEE_OBJS)
 		see_in_dark = 8
 		see_invisible = SEE_INVISIBLE_OBSERVER
@@ -876,19 +876,19 @@
 /mob/living/silicon/robot/update_stat()
 	if(status_flags & GODMODE)
 		return
-	if(stat != STATS_DEAD)
+	if(stat != STAT_DEAD)
 		if(health <= -maxHealth) //die only once
 			death()
 			return
 		if(IsUnconscious() || IsStun() || IsKnockdown() || getOxyLoss() > maxHealth*0.5)
-			if(stat == STATS_CONSCIOUS)
-				stat = STATS_UNCONSCIOUS
+			if(stat == STAT_CONSCIOUS)
+				stat = STATS_UNCONSCIOU
 				blind_eyes(1)
 				update_canmove()
 				update_headlamp()
 		else
-			if(stat == STATS_UNCONSCIOUS)
-				stat = STATS_CONSCIOUS
+			if(stat == STATS_UNCONSCIOU)
+				stat = STAT_CONSCIOUS
 				adjust_blindness(-1)
 				update_canmove()
 				update_headlamp()

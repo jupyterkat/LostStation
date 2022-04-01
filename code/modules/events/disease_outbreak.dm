@@ -37,7 +37,7 @@
 			continue
 		if(!H.client)
 			continue
-		if(H.stat == STATS_DEAD)
+		if(H.stat == STAT_DEAD)
 			continue
 		if(VIRUSIMMUNE in H.dna.species.species_traits) //Don't pick someone who's virus immune, only for it to not do anything.
 			continue

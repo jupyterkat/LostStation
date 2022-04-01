@@ -85,7 +85,7 @@
 /mob/living/simple_animal/bot/cleanbot/process_scan(atom/A)
 	if(iscarbon(A))
 		var/mob/living/carbon/C = A
-		if(C.stat != STATS_DEAD && C.lying)
+		if(C.stat != STAT_DEAD && C.lying)
 			return C
 	else if(is_type_in_typecache(A, target_types))
 		return A
@@ -226,7 +226,7 @@
 	else if(emagged == 2) //Emag functions
 		if(istype(A, /mob/living/carbon))
 			var/mob/living/carbon/victim = A
-			if(victim.stat == STATS_DEAD)//cleanbots always finish the job
+			if(victim.stat == STAT_DEAD)//cleanbots always finish the job
 				return
 
 			victim.visible_message("<span class='danger'>[src] sprays hydrofluoric acid at [victim]!</span>", "<span class='userdanger'>[src] sprays you with hydrofluoric acid!</span>")

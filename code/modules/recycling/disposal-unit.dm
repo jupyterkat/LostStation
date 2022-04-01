@@ -449,7 +449,7 @@
 	return
 
 /obj/machinery/disposal/bin/get_remote_view_fullscreens(mob/user)
-	if(user.stat == STATS_DEAD || !(user.sight & (SEEOBJS|SEEMOBS)))
+	if(user.stat == STAT_DEAD || !(user.sight & (SEEOBJS|SEEMOBS)))
 		user.overlay_fullscreen("remote_view", /obj/screen/fullscreen/impaired, 2)
 
 //Delivery Chute

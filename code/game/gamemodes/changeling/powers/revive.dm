@@ -2,7 +2,7 @@
 	name = "Revive"
 	desc = "We regenerate, healing all damage from our form."
 	helptext = "Does not regrow lost organs or a missing head."
-	req_stat = STATS_DEAD
+	req_stat = STAT_DEAD
 	always_keep = TRUE
 	ignores_fakedeath = TRUE
 
@@ -29,7 +29,7 @@
 	return TRUE
 
 /obj/effect/proc_holder/changeling/revive/can_be_used_by(mob/user)
-	if((user.stat != STATS_DEAD) && !(user.status_flags & FAKEDEATH))
+	if((user.stat != STAT_DEAD) && !(user.status_flags & FAKEDEATH))
 		user.mind.changeling.purchasedpowers -= src
 		return 0
 	. = ..()

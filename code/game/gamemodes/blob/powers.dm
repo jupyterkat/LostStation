@@ -250,7 +250,7 @@
 		for(var/mob/living/L in T)
 			if("blob" in L.faction) //no friendly/dead fire
 				continue
-			if(L.stat != STATS_DEAD)
+			if(L.stat != STAT_DEAD)
 				attacksuccess = TRUE
 			var/mob_protection = L.get_permeability_protection()
 			blob_reagent_datum.reaction_mob(L, VAPOR, 25, 1, mob_protection, src)
@@ -315,7 +315,7 @@
 		to_chat(src, "You broadcast with your minions, <B>[speak_text]</B>")
 	for(var/BLO in blob_mobs)
 		var/mob/living/simple_animal/hostile/blob/BM = BLO
-		if(BM.stat == STATS_CONSCIOUS)
+		if(BM.stat == STAT_CONSCIOUS)
 			BM.say(speak_text)
 
 /mob/camera/blob/verb/chemical_reroll()

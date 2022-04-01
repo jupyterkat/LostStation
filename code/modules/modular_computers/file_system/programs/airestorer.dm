@@ -78,7 +78,7 @@
 	A.adjustToxLoss(-1, 0)
 	A.adjustBruteLoss(-1, 0)
 	A.updatehealth()
-	if(A.health >= 0 && A.stat == STATS_DEAD)
+	if(A.health >= 0 && A.stat == STAT_DEAD)
 		A.revive()
 	// Finished restoring
 	if(A.health >= 100)
@@ -111,7 +111,7 @@
 				data["restoring"] = restoring
 				data["laws"] = AI.laws.get_law_list(include_zeroth = 1)
 				data["health"] = (AI.health + 100) / 2
-				data["isDead"] = AI.stat == STATS_DEAD
+				data["isDead"] = AI.stat == STAT_DEAD
 				data["ai_laws"] = AI.laws.get_law_list(include_zeroth = 1)
 
 	return data

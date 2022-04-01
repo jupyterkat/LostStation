@@ -19,7 +19,7 @@
 	var/restraint_check = FALSE //Checks if the mob is restrained before performing the emote
 	var/list/mob_type_allowed_typecache //Types that are allowed to use that emote
 	var/list/mob_type_blacklist_typecache //Types that are NOT allowed to use that emote
-	var/stat_allowed = STATS_CONSCIOUS
+	var/stat_allowed = STAT_CONSCIOUS
 	var/static/list/emote_list = list()
 	var/cooldown = 20 //deciseconds of cooldown
 	var/robotic_emote = FALSE
@@ -66,7 +66,7 @@
 		if(!M.client || isnewplayer(M))
 			continue
 		var/T = get_turf(src)
-		if(M.stat == STATS_DEAD && M.client && (M.client.prefs.chat_toggles & CHAT_GHOSTSIGHT) && !(M in viewers(T, null)))
+		if(M.stat == STAT_DEAD && M.client && (M.client.prefs.chat_toggles & CHAT_GHOSTSIGHT) && !(M in viewers(T, null)))
 			M.show_message(msg)
 
 	if(emote_type == EMOTE_AUDIBLE)

@@ -213,7 +213,7 @@
 
 /mob/living/simple_animal/hostile/retaliate/clown/insane/proc/stalk()
 	var/mob/living/M = target
-	if(M.stat == STATS_DEAD)
+	if(M.stat == STAT_DEAD)
 		playsound(M.loc, 'sound/spookoween/insane_low_laugh.ogg', 300, 1)
 		qdel(src)
 	if(timer == 0)

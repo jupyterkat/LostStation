@@ -124,6 +124,9 @@
 		if(win)
 			text += "<br><font color='green'><B>The blood brothers were successful!</B></font>"
 			SSblackbox.add_details("brother_success","SUCCESS")
+			for(var/datum/mind/M in team.members)
+				var/client/c = M.current.client
+				c.inc_antag_tokens_count(ATOKEN_GREENTEXT_BONUS)
 		else
 			text += "<br><font color='red'><B>The blood brothers have failed!</B></font>"
 			SSblackbox.add_details("brother_success","FAIL")

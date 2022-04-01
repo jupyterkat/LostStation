@@ -96,7 +96,7 @@
 	icon_state = "interdiction_lens_active"
 	hierophant_message("<span class='big bold brass'>The beacon's activation has given your team great power! Many of your objects are permanently empowered!</span>")
 	for(var/mob/living/simple_animal/hostile/clockwork/C in GLOB.all_clockwork_mobs)
-		if(C.stat == STATS_DEAD)
+		if(C.stat == STAT_DEAD)
 			continue
 		C.update_values()
 		to_chat(C, C.empower_string)

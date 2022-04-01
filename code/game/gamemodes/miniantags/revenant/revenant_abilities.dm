@@ -29,7 +29,7 @@
 		if(target.ckey)
 			to_chat(src, "<span class='revennotice'>[target.p_their(TRUE)] soul burns with intelligence.</span>")
 			essence_drained += rand(20, 30)
-		if(target.stat != STATS_DEAD)
+		if(target.stat != STAT_DEAD)
 			to_chat(src, "<span class='revennotice'>[target.p_their(TRUE)] soul blazes with life!</span>")
 			essence_drained += rand(40, 50)
 		else
@@ -52,7 +52,7 @@
 					essence_drained = 0
 					return //hey, wait a minute...
 				to_chat(src, "<span class='revenminor'>You begin siphoning essence from [target]'s soul.</span>")
-				if(target.stat != STATS_DEAD)
+				if(target.stat != STAT_DEAD)
 					to_chat(target, "<span class='warning'>You feel a horribly unpleasant draining sensation as your grip on life weakens...</span>")
 				reveal(46)
 				stun(46)
@@ -60,7 +60,7 @@
 				var/datum/beam/B = Beam(target,icon_state="drain_life",time=INFINITY)
 				if(do_after(src, 46, 0, target)) //As one cannot prove the existance of ghosts, ghosts cannot prove the existance of the target they were draining.
 					change_essence_amount(essence_drained, FALSE, target)
-					if(essence_drained <= 90 && target.stat != STATS_DEAD)
+					if(essence_drained <= 90 && target.stat != STAT_DEAD)
 						essence_regen_cap += 5
 						to_chat(src, "<span class='revenboldnotice'>The absorption of [target]'s living soul has increased your maximum essence level. Your new maximum essence is [essence_regen_cap].</span>")
 					if(essence_drained > 90)

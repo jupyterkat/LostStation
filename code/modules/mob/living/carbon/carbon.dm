@@ -536,14 +536,14 @@
 		total_burn	+= BP.burn_dam
 	health = maxHealth - getOxyLoss() - getToxLoss() - getCloneLoss() - total_burn - total_brute
 	update_stat()
-	if(((maxHealth - total_burn) < HEALTH_THRESHOLD_DEAD) && stat == STATS_DEAD )
+	if(((maxHealth - total_burn) < HEALTH_THRESHOLD_DEAD) && stat == STAT_DEAD )
 		become_husk()
 	med_hud_set_health()
 
 /mob/living/carbon/update_sight()
 	if(!client)
 		return
-	if(stat == STATS_DEAD)
+	if(stat == STAT_DEAD)
 		sight = (SEE_TURFS|SEE_MOBS|SEE_OBJS)
 		see_in_dark = 8
 		see_invisible = SEE_INVISIBLE_OBSERVER
@@ -621,7 +621,7 @@
 	if(!client)
 		return
 
-	if(stat == STATS_UNCONSCIOUS && health <= HEALTH_THRESHOLD_CRIT)
+	if(stat == STATS_UNCONSCIOU && health <= HEALTH_THRESHOLD_CRIT)
 		var/severity = 0
 		switch(health)
 			if(-20 to -10) severity = 1
@@ -670,7 +670,7 @@
 	if(!client || !hud_used)
 		return
 	if(hud_used.healths)
-		if(stat != STATS_DEAD)
+		if(stat != STAT_DEAD)
 			. = 1
 			if(!shown_health_amount)
 				shown_health_amount = health
@@ -698,18 +698,18 @@
 /mob/living/carbon/update_stat()
 	if(status_flags & GODMODE)
 		return
-	if(stat != STATS_DEAD)
+	if(stat != STAT_DEAD)
 		if(health<= HEALTH_THRESHOLD_DEAD)
 			death()
 			return
 		if(IsUnconscious() || IsSleeping() || getOxyLoss() > 50 || (status_flags & FAKEDEATH) || health <= HEALTH_THRESHOLD_CRIT)
-			if(stat == STATS_CONSCIOUS)
-				stat = STATS_UNCONSCIOUS
+			if(stat == STAT_CONSCIOUS)
+				stat = STATS_UNCONSCIOU
 				blind_eyes(1)
 				update_canmove()
 		else
-			if(stat == STATS_UNCONSCIOUS)
-				stat = STATS_CONSCIOUS
+			if(stat == STATS_UNCONSCIOU)
+				stat = STAT_CONSCIOUS
 				resting = 0
 				adjust_blindness(-1)
 				update_canmove()

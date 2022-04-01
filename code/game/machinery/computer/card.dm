@@ -36,6 +36,7 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 		"Chief Engineer",
 		"Research Director",
 		"Chief Medical Officer",
+		"Quartermaster",
 		"Blueshield",
 		"Brig Physician",
 		"Internal Affairs Agent")

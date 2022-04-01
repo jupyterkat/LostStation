@@ -276,7 +276,7 @@ GLOBAL_LIST_INIT(gang_outfit_pool, list(/obj/item/clothing/suit/jacket/leather, 
 		return
 	var/alive = 0
 	for(var/mob/living/L in GLOB.player_list)
-		if(L.stat != STATS_DEAD)
+		if(L.stat != STAT_DEAD)
 			alive++
 
 	if((alive < (GLOB.joined_player_list.len * 0.4)) && ((SSshuttle.emergency.timeLeft(1) > (SSshuttle.emergencyCallTime * 0.4))))
@@ -304,6 +304,16 @@ GLOBAL_LIST_INIT(gang_outfit_pool, list(/obj/item/clothing/suit/jacket/leather, 
 	else
 		to_chat(world, "<span class='redtext'>The [winner.name] Gang successfully performed a hostile takeover of the station!</span><br>")
 		SSticker.mode_result = "win - gang domination complete"
+
+		for(var/datum/gang/G in gangs)
+			if(G == winner)
+				for(var/datum/mind/boss in G.bosses)
+					var/client/c = boss.current.client
+					c.inc_antag_tokens_count(ATOKEN_GREENTEXT_BONUS)
+
+				for(var/datum/mind/gangster in G.gangsters)
+					var/client/c = gangster.current.client
+					c.inc_antag_tokens_count(ATOKEN_GREENTEXT_BONUS)
 
 		SSticker.news_report = GANG_TAKEOVER
 

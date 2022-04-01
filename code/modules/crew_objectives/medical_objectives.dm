@@ -6,7 +6,7 @@
 
 /datum/objective/crew/morgue/check_completion()
 	for(var/mob/living/carbon/human/H in GLOB.mob_list)
-		if(H.stat == STATS_DEAD && H.z == ZLEVEL_STATION_PRIMARY)
+		if(H.stat == STAT_DEAD && H.z == ZLEVEL_STATION_PRIMARY)
 			if(get_area(H) != /area/medical/morgue)
 				return FALSE
 	return TRUE
@@ -33,7 +33,7 @@
 
 /datum/objective/crew/chems/check_completion()
 	if(owner.current)
-		if(!owner.current.stat == STATS_DEAD && owner.current.reagents)
+		if(!owner.current.stat == STAT_DEAD && owner.current.reagents)
 			if(owner.current.reagents.has_reagent(targetchem))
 				return TRUE
 	else
@@ -79,7 +79,7 @@
 
 /datum/objective/crew/noinfections/check_completion()
 	for(var/mob/living/carbon/human/H in GLOB.mob_list)
-		if(!H.stat == STATS_DEAD)
+		if(!H.stat == STAT_DEAD)
 			if(H.z == ZLEVEL_STATION_PRIMARY || SSshuttle.emergency.shuttle_areas[get_area(H)])
 				if(H.check_virus() == 2) //Harmful viruses only
 					return FALSE

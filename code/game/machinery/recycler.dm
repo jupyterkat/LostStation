@@ -162,7 +162,7 @@
 	// By default, the emagged recycler will gib all non-carbons. (human simple animal mobs don't count)
 	if(iscarbon(L))
 		gib = FALSE
-		if(L.stat == STATS_CONSCIOUS)
+		if(L.stat == STAT_CONSCIOUS)
 			L.say("ARRRRRRRRRRRGH!!!")
 		add_mob_blood(L)
 

@@ -269,30 +269,37 @@ GLOBAL_VAR(iceoverlaymaster)
 		pressure_difference = difference
 
 /turf/open/proc/high_pressure_movements()
-	for(var/atom/movable/M in src)
-		M.experience_pressure_difference(pressure_difference, pressure_direction)
+	var/atom/movable/M
+	for(var/thing in src)
+		M = thing
+		if (!M.anchored && !M.pulledby && M.last_high_pressure_movement_air_cycle < SSair.times_fired)
+			M.experience_pressure_difference(pressure_difference, pressure_direction)
 
-/atom/movable/var/pressure_resistance = 10
 /atom/movable/var/last_high_pressure_movement_air_cycle = 0
+/atom/movable/var/spacewind_immune = FALSE
 
-/atom/movable/proc/experience_pressure_difference(pressure_difference, direction, pressure_resistance_prob_delta = 0)
-	var/const/PROBABILITY_BASE_PRECENT = 80
-	set waitfor = 0
-	. = 0
-	if (!anchored && !pulledby)
-		. = 1
-		var/move_prob = 0
-		if (pressure_resistance > 0)
-			move_prob = (pressure_difference/pressure_resistance*PROBABILITY_BASE_PRECENT)
-		
-		move_prob += pressure_resistance_prob_delta
-		if (prob(move_prob))
-			if(move_prob > 95)
-				var/atom/target = get_edge_target_turf(src, direction)
-				src.throw_at(target, 5, 1)
+/atom/movable/proc/experience_pressure_difference(pressure_difference, direction)
+	if(spacewind_immune || pressure_difference < 2)
+		return
+
+	var/atom/target = get_ranged_target_turf(src, direction,2)
+	var/mob/living/carbon/c
+	
+	if(iscarbon(src))
+		c = src
+
+	if(istype(target, /turf/open/space) && (c?.incapacitated() || !c))
+		src.throw_at(target, 5, 2)
+	else
+		if(!c)
+			if(prob(50))
+				src.throw_at(target, 5, 2)
 			else
 				step(src, direction)
-
+		else if(prob(80))
+			step(src, direction)
+			
+	last_high_pressure_movement_air_cycle = SSair.times_fired
 ///////////////////////////EXCITED GROUPS/////////////////////////////
 
 /datum/excited_group

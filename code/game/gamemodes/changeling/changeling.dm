@@ -249,6 +249,10 @@ GLOBAL_LIST_INIT(slot2type, list("head" = /obj/item/clothing/head/changeling, "w
 			if(changelingwin)
 				text += "<br><font color='green'><b>The changeling was successful!</b></font>"
 				SSblackbox.add_details("changeling_success","SUCCESS")
+
+				for(var/datum/mind/M in changeling)
+					var/client/c = M.current.client
+					c.inc_antag_tokens_count(ATOKEN_GREENTEXT_BONUS)
 			else
 				text += "<br><span class='boldannounce'>The changeling has failed.</span>"
 				SSblackbox.add_details("changeling_success","FAIL")
@@ -312,7 +316,7 @@ GLOBAL_LIST_INIT(slot2type, list("head" = /obj/item/clothing/head/changeling, "w
 /datum/changeling/proc/regenerate(var/mob/living/carbon/the_ling)
 	if(istype(the_ling))
 		emporium_action.Grant(the_ling)
-		if(the_ling.stat == STATS_DEAD)
+		if(the_ling.stat == STAT_DEAD)
 			chem_charges = min(max(0, chem_charges + chem_recharge_rate - chem_recharge_slowdown), (chem_storage*0.5))
 			geneticdamage = max(LING_DEAD_GENETICDAMAGE_HEAL_CAP,geneticdamage-1)
 		else //not dead? no chem/geneticdamage caps.

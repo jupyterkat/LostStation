@@ -59,7 +59,7 @@
 /datum/antagonist/ninja/proc/addObjectives(quantity = 6)
 	var/list/possible_targets = list()
 	for(var/datum/mind/M in SSticker.minds)
-		if(M.current && M.current.stat != STATS_DEAD)
+		if(M.current && M.current.stat != STAT_DEAD)
 			if(ishuman(M.current))
 				if(M.special_role)
 					possible_targets[M] = 0						//bad-guy

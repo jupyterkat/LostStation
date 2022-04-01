@@ -65,7 +65,7 @@
 		to_chat(user, "<span class='nezbere'>\"It would be more wise to revive your allies, friend.\"</span>")
 		return
 	var/mob/living/carbon/human/H = target
-	if(H.stat == STATS_CONSCIOUS)
+	if(H.stat == STAT_CONSCIOUS)
 		to_chat(user, "<span class='warning'>[H] must be dead or unconscious for you to claim [H.p_their()] mind!</span>")
 		return
 	if(H.head)

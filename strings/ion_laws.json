@@ -852,7 +852,7 @@
         "NOT HAVING PETS",
         "PASSING GAS",
         "BREATHING",
-        "BEING STATS_DEAD",
+        "BEING STAT_DEAD",
         "ELECTRICITY",
         "EXISTING",
         "TAKING ORDERS",

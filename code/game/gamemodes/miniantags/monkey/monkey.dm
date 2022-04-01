@@ -71,12 +71,12 @@
 	if(!round_converted)
 		for(var/datum/mind/monkey_mind in ape_infectees)
 			continuous_sanity_checked = 1
-			if(monkey_mind.current && monkey_mind.current.stat != STATS_DEAD)
+			if(monkey_mind.current && monkey_mind.current.stat != STAT_DEAD)
 				return 0
 
 		var/datum/disease/D = new /datum/disease/transformation/jungle_fever() //ugly but unfortunately needed
 		for(var/mob/living/carbon/human/H in GLOB.living_mob_list)
-			if(H.mind && H.stat != STATS_DEAD)
+			if(H.mind && H.stat != STAT_DEAD)
 				if(H.HasDisease(D))
 					return 0
 

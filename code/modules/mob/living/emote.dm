@@ -83,7 +83,7 @@
 	message_monkey = "lets out a faint chimper as it collapses and stops moving..."
 	message_ipc = "gives one shrill beep before falling limp, their monitor flashing blue before completely shutting off..."
 	message_simple =  "stops moving..."
-	stat_allowed = STATS_UNCONSCIOUS
+	stat_allowed = STATS_UNCONSCIOU
 
 /datum/emote/living/deathgasp/run_emote(mob/user, params)
 	var/mob/living/simple_animal/S = user
@@ -217,7 +217,7 @@
 	key_third_person = "gasps"
 	message = "gasps!"
 	emote_type = EMOTE_SPEAK
-	stat_allowed = STATS_UNCONSCIOUS
+	stat_allowed = STATS_UNCONSCIOU
 
 /datum/emote/living/giggle
 	key = "giggle"

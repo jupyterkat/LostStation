@@ -161,7 +161,7 @@
 	set name = "Print Image"
 	set src in usr
 
-	if(usr.stat == STATS_DEAD)
+	if(usr.stat == STAT_DEAD)
 		return //won't work if dead
 	borgprint()
 

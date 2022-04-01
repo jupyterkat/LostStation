@@ -1,7 +1,7 @@
 /mob/living/silicon/pai/death(gibbed)
-	if(stat == STATS_DEAD)
+	if(stat == STAT_DEAD)
 		return
-	stat = STATS_DEAD
+	stat = STAT_DEAD
 	canmove = 0
 	card.removePersonality()
 	card.forceMove(loc)

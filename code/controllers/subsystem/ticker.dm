@@ -425,7 +425,7 @@ SUBSYSTEM_DEF(ticker)
 		cinematic = null
 	for(var/mob/M in GLOB.mob_list)
 		M.notransform = FALSE
-		if(actually_blew_up && !isnull(killz) && M.stat != STATS_DEAD && M.z == killz)
+		if(actually_blew_up && !isnull(killz) && M.stat != STAT_DEAD && M.z == killz)
 			M.gib()
 
 /datum/controller/subsystem/ticker/proc/create_characters()
@@ -495,10 +495,23 @@ SUBSYSTEM_DEF(ticker)
 			C.RollCredits()
 		C.playtitlemusic(40)
 
+		var/mob/M = C.mob
+		if(M.mind && !isnewplayer(M))
+			if(M.stat != STAT_DEAD && !isbrain(M))
+				if(EMERGENCY_ESCAPED_OR_ENDGAMED)
+					if(!M.onCentCom() && !M.onSyndieBase())
+						C.inc_antag_tokens_count(ATOKEN_SURVIVE_REWARD)
+					else
+						C.inc_antag_tokens_count(ATOKEN_ESCAPE_REWARD)
+				else
+					C.inc_antag_tokens_count(ATOKEN_ESCAPE_REWARD)
+			else
+				C.inc_antag_tokens_count(ATOKEN_CASUALTY_REWARD)
+
 	//Player status report
 	for(var/mob/Player in GLOB.mob_list)
 		if(Player.mind && !isnewplayer(Player))
-			if(Player.stat != STATS_DEAD && !isbrain(Player))
+			if(Player.stat != STAT_DEAD && !isbrain(Player))
 				num_survivors++
 				if(station_evacuated) //If the shuttle has already left the station
 					var/list/area/shuttle_areas

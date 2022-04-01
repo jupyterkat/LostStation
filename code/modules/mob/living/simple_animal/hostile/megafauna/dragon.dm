@@ -187,9 +187,9 @@ Difficulty: Medium
 	animate(src, alpha = 204, transform = matrix()*0.9, time = 3, easing = BOUNCE_EASING)
 	for(var/i in 1 to 3)
 		sleep(1)
-		if(QDELETED(src) || stat == STATS_DEAD) //we got hit and died, rip us
+		if(QDELETED(src) || stat == STAT_DEAD) //we got hit and died, rip us
 			qdel(F)
-			if(stat == STATS_DEAD)
+			if(stat == STAT_DEAD)
 				swooping &= ~SWOOP_DAMAGEABLE
 				animate(src, alpha = 255, transform = oldtransform, time = 0, flags = ANIMATION_END_NOW) //reset immediately
 			return
@@ -208,7 +208,7 @@ Difficulty: Medium
 				break //we're not spewing fire at our target, slam they
 			if(isliving(target))
 				var/mob/living/L = target
-				if(L.stat == STATS_DEAD)
+				if(L.stat == STAT_DEAD)
 					break //target is dead and we're on em, slam they
 		if(fire_rain)
 			new /obj/effect/temp_visual/target(loc, flame_hit)
@@ -218,7 +218,7 @@ Difficulty: Medium
 				break
 			if(isliving(target))
 				var/mob/living/L = target
-				if(L.stat == STATS_DEAD)
+				if(L.stat == STAT_DEAD)
 					break
 		var/swoop_speed = 1.5
 		swoop_duration -= swoop_speed

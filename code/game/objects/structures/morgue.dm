@@ -105,7 +105,7 @@
 	update_icon()
 
 /obj/structure/bodycontainer/get_remote_view_fullscreens(mob/user)
-	if(user.stat == STATS_DEAD || !(user.sight & (SEEOBJS|SEEMOBS)))
+	if(user.stat == STAT_DEAD || !(user.sight & (SEEOBJS|SEEMOBS)))
 		user.overlay_fullscreen("remote_view", /obj/screen/fullscreen/impaired, 2)
 /*
  * Morgue
@@ -200,7 +200,7 @@ GLOBAL_LIST_EMPTY(crematoriums)
 		update_icon()
 
 		for(var/mob/living/M in conts)
-			if (M.stat != STATS_DEAD)
+			if (M.stat != STAT_DEAD)
 				M.emote("scream")
 			if(user)
 				user.log_message("Cremated <b>[M]/[M.ckey]</b>", INDIVIDUAL_ATTACK_LOG)

@@ -24,7 +24,7 @@
 	healable = 0
 	faction = list("cult")
 	movement_type = FLYING
-	pressure_resistance = 100
+	spacewind_immune = TRUE
 	unique_name = 1
 	AIStatus = AI_OFF //normal constructs don't have AI
 	loot = list(/obj/item/ectoplasm)
@@ -188,11 +188,11 @@
 	if(. && isnum(prev_stat))
 		var/mob/living/L = target
 		var/refund = 0
-		if(QDELETED(L) || (L.stat == STATS_DEAD && prev_stat != STATS_DEAD)) //they're dead, you killed them
+		if(QDELETED(L) || (L.stat == STAT_DEAD && prev_stat != STAT_DEAD)) //they're dead, you killed them
 			refund += kill_refund
-		else if(L.InCritical() && prev_stat == STATS_CONSCIOUS) //you knocked them into critical
+		else if(L.InCritical() && prev_stat == STAT_CONSCIOUS) //you knocked them into critical
 			refund += crit_refund
-		if(L.stat != STATS_DEAD && prev_stat != STATS_DEAD)
+		if(L.stat != STAT_DEAD && prev_stat != STAT_DEAD)
 			refund += attack_refund
 		for(var/obj/effect/proc_holder/spell/targeted/ethereal_jaunt/shift/S in mob_spell_list)
 			S.charge_counter = min(S.charge_counter + refund, S.charge_max)

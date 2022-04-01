@@ -186,7 +186,7 @@
 /mob/living/simple_animal/hostile/morph/AttackingTarget()
 	if(isliving(target)) //Eat Corpses to regen health
 		var/mob/living/L = target
-		if(L.stat == STATS_DEAD)
+		if(L.stat == STAT_DEAD)
 			if(do_after(src, 30, target = L))
 				if(eat(L))
 					adjustHealth(-50)

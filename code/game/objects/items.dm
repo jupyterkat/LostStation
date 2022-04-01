@@ -36,7 +36,6 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	var/w_class = WEIGHT_CLASS_NORMAL
 	var/slot_flags = 0		//This is used to determine on which slots an item can fit.
 	pass_flags = PASSTABLE
-	pressure_resistance = 4
 	var/obj/item/master = null
 
 	var/heat_protection = 0 //flags which determine which body parts are protected from heat. Use the HEAD, CHEST, GROIN, etc. flags. See setup.dm
@@ -538,13 +537,13 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		return
 	if(eyes.eye_damage >= 10)
 		M.adjust_blurriness(15)
-		if(M.stat != STATS_DEAD)
+		if(M.stat != STAT_DEAD)
 			to_chat(M, "<span class='danger'>Your eyes start to bleed profusely!</span>")
 		if(!(M.disabilities & (NEARSIGHT | BLIND)))
 			if(M.become_nearsighted())
 				to_chat(M, "<span class='danger'>You become nearsighted!</span>")
 		if(prob(50))
-			if(M.stat != STATS_DEAD)
+			if(M.stat != STAT_DEAD)
 				if(M.drop_item())
 					to_chat(M, "<span class='danger'>You drop what you're holding and clutch at your eyes!</span>")
 			M.adjust_blurriness(10)

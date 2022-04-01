@@ -633,7 +633,7 @@ INITIALIZE_IMMEDIATE(/mob/living/carbon/human/dummy)
 /mob/living/carbon/human/proc/do_cpr(mob/living/carbon/C)
 	CHECK_DNA_AND_SPECIES(C)
 
-	if(C.stat == STATS_DEAD || (C.status_flags & FAKEDEATH))
+	if(C.stat == STAT_DEAD || (C.status_flags & FAKEDEATH))
 		to_chat(src, "<span class='warning'>[C.name] is dead!</span>")
 		return
 	if(is_mouth_covered())
@@ -782,7 +782,7 @@ INITIALIZE_IMMEDIATE(/mob/living/carbon/human/dummy)
 						hud_used.healths.icon_state = "health0"
 		if(hud_used.healthdoll)
 			hud_used.healthdoll.cut_overlays()
-			if(stat != STATS_DEAD)
+			if(stat != STAT_DEAD)
 				hud_used.healthdoll.icon_state = "healthdoll_OVERLAY"
 				for(var/X in bodyparts)
 					var/obj/item/bodypart/BP = X
@@ -905,7 +905,7 @@ INITIALIZE_IMMEDIATE(/mob/living/carbon/human/dummy)
 		return
 	if(!riding_datum)
 		riding_datum = new /datum/riding/human(src)
-	if(buckled_mobs && ((M in buckled_mobs) || (buckled_mobs.len >= max_buckled_mobs)) || buckled || (M.stat != STATS_CONSCIOUS))
+	if(buckled_mobs && ((M in buckled_mobs) || (buckled_mobs.len >= max_buckled_mobs)) || buckled || (M.stat != STAT_CONSCIOUS))
 		return
 	visible_message("<span class='notice'>[M] starts to climb onto [src]...</span>")
 	if(do_after(M, 15, target = src))

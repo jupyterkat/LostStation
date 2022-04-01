@@ -4,7 +4,7 @@
 #define POWER_RESTORATION_APC_FOUND 3
 
 /mob/living/silicon/ai/Life()
-	if (stat == STATS_DEAD)
+	if (stat == STAT_DEAD)
 		return
 	else //I'm not removing that shitton of tabs, unneeded as they are. -- Urist
 		//Being dead doesn't mean your temperature never changes
@@ -70,12 +70,12 @@
 /mob/living/silicon/ai/update_stat()
 	if(status_flags & GODMODE)
 		return
-	if(stat != STATS_DEAD)
+	if(stat != STAT_DEAD)
 		if(health <= HEALTH_THRESHOLD_DEAD)
 			death()
 			return
-		else if(stat == STATS_UNCONSCIOUS)
-			stat = STATS_CONSCIOUS
+		else if(stat == STATS_UNCONSCIOU)
+			stat = STAT_CONSCIOUS
 			adjust_blindness(-1)
 	diag_hud_set_status()
 

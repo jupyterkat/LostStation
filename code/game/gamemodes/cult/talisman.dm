@@ -7,7 +7,7 @@
 	var/creation_time = 100 //how long it takes an imbue rune to make this type of talisman
 
 /obj/item/paper/talisman/examine(mob/user)
-	if(iscultist(user) || user.stat == STATS_DEAD)
+	if(iscultist(user) || user.stat == STAT_DEAD)
 		to_chat(user, "<b>Name:</b> [cultist_name]")
 		to_chat(user, "<b>Effect:</b> [cultist_desc]")
 		to_chat(user, "<b>Uses Remaining:</b> [uses]")
@@ -308,7 +308,7 @@
 
 /obj/item/paper/talisman/shackle/attack(mob/living/carbon/target, mob/living/user)
 	if(iscultist(user) && istype(target))
-		if(target.stat == STATS_DEAD)
+		if(target.stat == STAT_DEAD)
 			user.visible_message("<span class='cultitalic'>This talisman's magic does not affect the dead!</span>")
 			return
 		CuffAttack(target, user)

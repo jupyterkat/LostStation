@@ -1,4 +1,4 @@
-# OracleStation
+# Space Station 13 Lost
 
 [![Build Status](https://travis-ci.org/OracleStation/OracleStation.svg?branch=master)](https://travis-ci.org/OracleStation/OracleStation)
 
@@ -54,7 +54,7 @@ byondkey = Rank
 where the admin rank must be properly capitalised.
 
 Finally, to start the server, run Dream Daemon and enter the path to your
-compiled `tgstation.dmb` file.  Make sure to set the port to the one you
+compiled `spacestation13-lost.dmb` file.  Make sure to set the port to the one you
 specified in the config.txt, and set the Security box to 'Safe'.  Then press GO
 and the server should start up and be ready to join. It is also recommended that
 you set up the SQL backend (see below).
@@ -81,7 +81,7 @@ https://github.com/tgstation/tgstation-server
 
 ## MAPS
 
-Oraclestation currently comes equipped with five maps.
+Spacestation 13 Lost currently comes equipped with five maps.
 
 * [BoxStation (default)](http://tgstation13.org/wiki/Boxstation)
 * [MetaStation](https://tgstation13.org/wiki/MetaStation)

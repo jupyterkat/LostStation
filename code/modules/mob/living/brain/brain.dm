@@ -3,7 +3,7 @@
 	var/timeofhostdeath = 0
 	var/emp_damage = 0//Handles a type of MMI damage
 	var/datum/dna/stored/stored_dna // dna var for brain. Used to store dna, brain dna is not considered like actual dna, brain.has_dna() returns FALSE.
-	stat = STATS_DEAD //we start dead by default
+	stat = STAT_DEAD //we start dead by default
 	see_invisible = SEE_INVISIBLE_LIVING
 
 /mob/living/brain/Initialize()
@@ -24,7 +24,7 @@
 
 /mob/living/brain/Destroy()
 	if(key)				//If there is a mob connected to this thing. Have to check key twice to avoid false death reporting.
-		if(stat!=STATS_DEAD)	//If not dead.
+		if(stat!=STAT_DEAD)	//If not dead.
 			death(1)	//Brains can die again. AND THEY SHOULD AHA HA HA HA HA HA
 		if(mind)	//You aren't allowed to return to brains that don't exist
 			mind.current = null

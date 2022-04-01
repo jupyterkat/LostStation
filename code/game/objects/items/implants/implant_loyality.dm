@@ -44,7 +44,7 @@
 
 /obj/item/implant/mindshield/removed(mob/target, silent = 0, special = 0)
 	if(..())
-		if(target.stat != STATS_DEAD && !silent)
+		if(target.stat != STAT_DEAD && !silent)
 			to_chat(target, "<span class='boldnotice'>Your mind suddenly feels terribly vulnerable. You are no longer safe from brainwashing.</span>")
 		return 1
 	return 0

@@ -385,7 +385,7 @@
 	var/valid_repeat = FALSE
 	if(isliving(target))
 		var/mob/living/L = target
-		if(L.stat != STATS_DEAD)
+		if(L.stat != STAT_DEAD)
 			valid_repeat = TRUE
 	if(ismineralturf(target_turf))
 		valid_repeat = TRUE
@@ -404,7 +404,7 @@
 /obj/item/borg/upgrade/modkit/lifesteal/projectile_prehit(obj/item/projectile/kinetic/K, atom/target, obj/item/gun/energy/kinetic_accelerator/KA)
 	if(isliving(target) && isliving(K.firer))
 		var/mob/living/L = target
-		if(L.stat == STATS_DEAD)
+		if(L.stat == STAT_DEAD)
 			return
 		L = K.firer
 		L.heal_ordered_damage(modifier, damage_heal_order)

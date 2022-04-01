@@ -392,7 +392,7 @@
 	icon_state = "potlightpink"
 
 /obj/item/slimepotion/genderchange/attack(mob/living/L, mob/user)
-	if(!istype(L) || L.stat == STATS_DEAD)
+	if(!istype(L) || L.stat == STAT_DEAD)
 		to_chat(user, "<span class='warning'>The potion can only be used on living things!</span>")
 		return
 
@@ -497,7 +497,7 @@
 	for(var/mob/dead/observer/O in src.loc)
 		if(!O.client)
 			continue
-		if(O.mind && O.mind.current && O.mind.current.stat != STATS_DEAD)
+		if(O.mind && O.mind.current && O.mind.current.stat != STAT_DEAD)
 			continue
 		if (O.orbiting)
 			continue
@@ -513,7 +513,7 @@
 	for(var/mob/dead/observer/O in src.loc)
 		if(!O.client)
 			continue
-		if(O.mind && O.mind.current && O.mind.current.stat != STATS_DEAD)
+		if(O.mind && O.mind.current && O.mind.current.stat != STAT_DEAD)
 			continue
 		if (O.orbiting)
 			continue

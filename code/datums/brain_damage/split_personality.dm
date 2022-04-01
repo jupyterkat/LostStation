@@ -33,7 +33,7 @@
 		qdel(src)
 
 /datum/brain_trauma/severe/split_personality/on_life()
-	if(owner.stat == STATS_DEAD)
+	if(owner.stat == STAT_DEAD)
 		if(current_controller != OWNER)
 			switch_personalities()
 		qdel(src)
@@ -49,7 +49,7 @@
 	..()
 
 /datum/brain_trauma/severe/split_personality/proc/switch_personalities()
-	if(QDELETED(owner) || owner.stat == STATS_DEAD || QDELETED(stranger_backseat) || QDELETED(owner_backseat))
+	if(QDELETED(owner) || owner.stat == STAT_DEAD || QDELETED(stranger_backseat) || QDELETED(owner_backseat))
 		return
 
 	var/mob/living/split_personality/current_backseat
@@ -122,7 +122,7 @@
 	if(QDELETED(body))
 		qdel(src) //in case trauma deletion doesn't already do it
 
-	if((body.stat == STATS_DEAD && trauma.owner_backseat == src))
+	if((body.stat == STAT_DEAD && trauma.owner_backseat == src))
 		trauma.switch_personalities()
 		qdel(trauma)
 

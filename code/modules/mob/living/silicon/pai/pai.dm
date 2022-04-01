@@ -162,7 +162,7 @@
 /mob/living/silicon/pai/attackby(obj/item/W as obj, mob/user as mob, params)
 	if(istype(W, /obj/item/stack/nanopaste))
 		var/obj/item/stack/nanopaste/N = W
-		if(stat == STATS_DEAD)
+		if(stat == STAT_DEAD)
 			to_chat(user, "<span class='danger'>[src] is beyond help, at this point.</span>")
 		else if(getBruteLoss() || getFireLoss())
 			adjustBruteLoss(-15)
@@ -240,7 +240,7 @@
 	to_chat(user, "A personal AI in holochassis mode. Its master ID string seems to be [master].")
 
 /mob/living/silicon/pai/Life()
-	if(stat == STATS_DEAD)
+	if(stat == STAT_DEAD)
 		return
 	if(cable)
 		if(get_dist(src, cable) > 1)

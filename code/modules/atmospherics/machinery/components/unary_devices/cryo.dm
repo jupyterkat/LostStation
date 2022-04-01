@@ -169,7 +169,7 @@
 				radio.talk_into(src, "Auto ejecting patient now", radio_channel, get_spans(), get_default_language())
 				open_machine()
 			return
-		else if(mob_occupant.stat == STATS_DEAD) // We don't bother with dead people.
+		else if(mob_occupant.stat == STAT_DEAD) // We don't bother with dead people.
 			return
 			if(autoeject) // Eject if configured.
 				open_machine()

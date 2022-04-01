@@ -8,7 +8,7 @@
 	bubble_icon = "alienroyal"
 	mob_size = MOB_SIZE_LARGE
 	layer = LARGE_MOB_LAYER //above most mobs, but below speechbubbles
-	pressure_resistance = 200 //Because big, stompy xenos should not be blown around like paper.
+	spacewind_immune = TRUE //Because big, stompy xenos should not be blown around like paper.
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab/xeno = 20, /obj/item/stack/sheet/animalhide/xeno = 3)
 
 	var/alt_inhands_file = 'icons/mob/alienqueen.dmi'
@@ -49,7 +49,7 @@
 	for(var/mob/living/carbon/alien/humanoid/royal/queen/Q in GLOB.living_mob_list)
 		if(Q == src)
 			continue
-		if(Q.stat == STATS_DEAD)
+		if(Q.stat == STAT_DEAD)
 			continue
 		if(Q.client)
 			name = "alien princess ([rand(1, 999)])"	//if this is too cutesy feel free to change it/remove it.
@@ -135,7 +135,7 @@
 		return
 
 	var/mob/living/carbon/alien/humanoid/A = M
-	if(A.stat == STATS_CONSCIOUS && A.mind && A.key)
+	if(A.stat == STAT_CONSCIOUS && A.mind && A.key)
 		if(!user.usePlasma(500))
 			to_chat(user, "<span class='noticealien'>You must have 500 plasma stored to use this!</span>")
 			return

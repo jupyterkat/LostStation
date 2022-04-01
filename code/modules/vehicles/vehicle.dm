@@ -81,7 +81,7 @@
 	return 0
 
 /obj/vehicle/space
-	pressure_resistance = INFINITY
+	spacewind_immune = TRUE
 
 
 /obj/vehicle/run_obj_armor(damage_amount, damage_type, damage_flag = 0, attack_dir)

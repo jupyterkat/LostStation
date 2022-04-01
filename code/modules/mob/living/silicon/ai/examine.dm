@@ -1,6 +1,6 @@
 /mob/living/silicon/ai/examine(mob/user)
 	var/msg = "<span class='info'>*---------*\nThis is [icon2html(src, user)] <EM>[src]</EM>!\n"
-	if (stat == STATS_DEAD)
+	if (stat == STAT_DEAD)
 		msg += "<span class='deadsay'>It appears to be powered-down.</span>\n"
 	else
 		msg += "<span class='warning'>"

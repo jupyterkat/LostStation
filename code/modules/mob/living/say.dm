@@ -101,7 +101,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 			client.dsay(message)
 		return
 
-	if(stat == STATS_DEAD)
+	if(stat == STAT_DEAD)
 		say_dead(original_message)
 		return
 
@@ -111,7 +111,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	if(in_critical)
 		if(!(crit_allowed_modes[message_mode]))
 			return
-	else if(stat == STATS_UNCONSCIOUS)
+	else if(stat == STATS_UNCONSCIOU)
 		if(!(unconscious_allowed_modes[message_mode]))
 			return
 
@@ -227,7 +227,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	var/list/the_dead = list()
 	for(var/_M in GLOB.player_list)
 		var/mob/M = _M
-		if(M.stat != STATS_DEAD) //not dead, not important
+		if(M.stat != STAT_DEAD) //not dead, not important
 			continue
 		if(!M.client || !client) //client is so that ghosts don't have to listen to mice
 			continue

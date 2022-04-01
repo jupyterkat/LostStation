@@ -120,7 +120,7 @@
 	audible_message("<span class='italics'>You hear a metallic creaking from [src]!</span>",hearing_distance = 2)
 
 	if(do_after(user, 600, target = src))
-		if(!user || user.stat != STATS_CONSCIOUS || user.loc != src || state_open)
+		if(!user || user.stat != STAT_CONSCIOUS || user.loc != src || state_open)
 			return
 		visible_message("<span class='warning'>[user] successfully broke out of [src]!</span>")
 		to_chat(user, "<span class='notice'>You successfully break out of [src]!</span>")

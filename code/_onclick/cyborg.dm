@@ -85,8 +85,12 @@
 			return
 	return
 
-//Middle click cycles through selected modules.
 /mob/living/silicon/robot/MiddleClickOn(atom/A)
+	pointed(A)
+	return
+
+//ShiftMiddle click cycles through selected modules.
+/mob/living/silicon/robot/ShiftMiddleClickOn(atom/A)
 	cycle_modules()
 	return
 

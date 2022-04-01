@@ -141,7 +141,7 @@
 	message = lowertext(message)
 	var/mob/living/list/listeners = list()
 	for(var/mob/living/L in get_hearers_in_view(8, user))
-		if(L.can_hear() && !L.null_rod_check() && L.stat != STATS_DEAD)
+		if(L.can_hear() && !L.null_rod_check() && L.stat != STAT_DEAD)
 			if(L == user && !include_speaker)
 				continue
 			if(ishuman(L))
@@ -533,7 +533,7 @@
 			L.emote("salute")
 			sleep(5) //So the chat flows more naturally
 
-	//PLAY STATS_DEAD
+	//PLAY STAT_DEAD
 	else if((findtext(message, deathgasp_words)))
 		cooldown = COOLDOWN_MEME
 		for(var/V in listeners)

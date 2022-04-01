@@ -134,11 +134,11 @@
 		data["can_delete_avatar"] = TRUE
 		var/status
 		switch(user.stat)
-			if(STATS_CONSCIOUS)
+			if(STAT_CONSCIOUS)
 				status = "Conscious"
-			if(STATS_DEAD)
+			if(STAT_DEAD)
 				status = "Dead"
-			if(STATS_UNCONSCIOUS)
+			if(STATS_UNCONSCIOU)
 				status = "Unconscious"
 		data["vr_avatar"] = list("name" = vr_human.name, "status" = status, "health" = vr_human.health, "maxhealth" = vr_human.maxHealth)
 	data["toggle_open"] = state_open

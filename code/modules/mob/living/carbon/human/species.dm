@@ -1032,7 +1032,7 @@
 			H.update_inv_wear_suit()
 
 	// nutrition decrease and satiety
-	if (H.nutrition > 0 && H.stat != STATS_DEAD && \
+	if (H.nutrition > 0 && H.stat != STAT_DEAD && \
 		H.dna && H.dna.species && (!(NOHUNGER in H.dna.species.species_traits)))
 		// THEY HUNGER
 		var/hunger_rate = HUNGER_FACTOR
@@ -1279,7 +1279,7 @@
 			target.dismembering_strike(user, affecting.body_zone)
 		target.apply_damage(damage, BRUTE, affecting, armor_block)
 		add_logs(user, target, "punched")
-		if((target.stat != STATS_DEAD) && damage >= user.dna.species.punchstunthreshold)
+		if((target.stat != STAT_DEAD) && damage >= user.dna.species.punchstunthreshold)
 			target.visible_message("<span class='danger'>[user] has knocked  [target] down!</span>", \
 							"<span class='userdanger'>[user] has knocked [target] down!</span>", null, COMBAT_MESSAGE_RANGE)
 			target.apply_effect(80, KNOCKDOWN, armor_block)
@@ -1414,7 +1414,7 @@
 
 		switch(hit_area)
 			if("head")
-				if(H.stat == STATS_CONSCIOUS && armor_block < 50)
+				if(H.stat == STAT_CONSCIOUS && armor_block < 50)
 					if(prob(I.force))
 						H.visible_message("<span class='danger'>[H] has been knocked senseless!</span>", \
 										"<span class='userdanger'>[H] has been knocked senseless!</span>")
@@ -1442,7 +1442,7 @@
 						H.update_inv_glasses()
 
 			if("chest")
-				if(H.stat == STATS_CONSCIOUS && armor_block < 50)
+				if(H.stat == STAT_CONSCIOUS && armor_block < 50)
 					if(prob(I.force))
 						H.visible_message("<span class='danger'>[H] has been knocked down!</span>", \
 									"<span class='userdanger'>[H] has been knocked down!</span>")
@@ -1531,7 +1531,7 @@
 	var/loc_temp = H.get_temperature(environment)
 
 	//Body temperature is adjusted in two steps. First, your body tries to stabilize itself a bit.
-	if(H.stat != STATS_DEAD)
+	if(H.stat != STAT_DEAD)
 		H.natural_bodytemperature_stabilization()
 
 	//Then, it reacts to the surrounding atmosphere based on your thermal protection

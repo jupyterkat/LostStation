@@ -27,7 +27,7 @@
 	if (back)
 		msg += "[t_He] [t_has] [icon2html(back, user)] \a [src.back] on [t_his] back.\n"
 	var/appears_dead = 0
-	if (stat == STATS_DEAD)
+	if (stat == STAT_DEAD)
 		appears_dead = 1
 		if(getorgan(/obj/item/organ/brain))
 			msg += "<span class='deadsay'>[t_He] [t_is] limp and unresponsive, with no signs of life.</span>\n"
@@ -84,7 +84,7 @@
 	msg += "</span>"
 
 	if(!appears_dead)
-		if(stat == STATS_UNCONSCIOUS)
+		if(stat == STATS_UNCONSCIOU)
 			msg += "[t_He] [t_is]n't responding to anything around [t_him] and seems to be asleep.\n"
 
 		if(digitalcamo)

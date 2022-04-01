@@ -36,7 +36,7 @@
 		if(target.revive(full_heal = 1))
 			target.grab_ghost(force = TRUE) // even suicides
 			to_chat(target, "<span class='notice'>You rise with a start, you're alive!!!</span>")
-		else if(target.stat != STATS_DEAD)
+		else if(target.stat != STAT_DEAD)
 			to_chat(target, "<span class='notice'>You feel great!</span>")
 
 /obj/item/projectile/magic/teleport
@@ -104,7 +104,7 @@
 	qdel(src)
 
 /proc/wabbajack(mob/living/M)
-	if(!istype(M) || M.stat == STATS_DEAD || M.notransform || (GODMODE & M.status_flags))
+	if(!istype(M) || M.stat == STAT_DEAD || M.notransform || (GODMODE & M.status_flags))
 		return
 
 	M.notransform = 1
@@ -357,7 +357,7 @@
 /obj/item/projectile/magic/aoe/Range()
 	if(proxdet)
 		for(var/mob/living/L in range(1, get_turf(src)))
-			if(L.stat != STATS_DEAD && L != firer)
+			if(L.stat != STAT_DEAD && L != firer)
 				return Collide(L)
 	..()
 

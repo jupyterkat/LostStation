@@ -13,7 +13,7 @@
 	if(..())
 
 		if(!client)
-			if(stat == STATS_CONSCIOUS)
+			if(stat == STAT_CONSCIOUS)
 				if(on_fire || buckled || restrained())
 					if(!resisting && prob(MONKEY_RESIST_PROB))
 						resisting = TRUE
@@ -76,7 +76,7 @@
 
 	var/loc_temp = get_temperature(environment)
 
-	if(stat != STATS_DEAD)
+	if(stat != STAT_DEAD)
 		natural_bodytemperature_stabilization()
 
 	if(!on_fire) //If you're on fire, you do not heat up or cool down based on surrounding gases

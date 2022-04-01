@@ -205,7 +205,7 @@ GLOBAL_PROTECT(exp_to_update)
 			play_records[rtype] = 0
 	var/list/old_records = play_records.Copy()
 	if(isliving(mob))
-		if(mob.stat != STATS_DEAD)
+		if(mob.stat != STAT_DEAD)
 			var/rolefound = FALSE
 			play_records[EXP_TYPE_LIVING] += minutes
 			if(announce_changes)

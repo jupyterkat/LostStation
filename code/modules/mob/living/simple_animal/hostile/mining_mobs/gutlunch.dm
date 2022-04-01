@@ -24,7 +24,7 @@
 	a_intent = INTENT_HELP
 	ventcrawler = VENTCRAWLER_ALWAYS
 	gold_core_spawnable = 2
-	stat_attack = STATS_UNCONSCIOUS
+	stat_attack = STATS_UNCONSCIOU
 	gender = NEUTER
 	stop_automated_movement = FALSE
 	stop_automated_movement_when_pulled = TRUE
@@ -56,7 +56,7 @@
 	..()
 
 /mob/living/simple_animal/hostile/asteroid/gutlunch/attackby(obj/item/O, mob/user, params)
-	if(stat == STATS_CONSCIOUS && istype(O, /obj/item/reagent_containers/glass))
+	if(stat == STAT_CONSCIOUS && istype(O, /obj/item/reagent_containers/glass))
 		udder.milkAnimal(O, user)
 		regenerate_icons()
 	else

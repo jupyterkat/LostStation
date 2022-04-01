@@ -103,11 +103,11 @@
 /mob/living/simple_animal/update_stat()
 	if(status_flags & GODMODE)
 		return
-	if(stat != STATS_DEAD)
+	if(stat != STAT_DEAD)
 		if(health <= 0)
 			death()
 		else
-			stat = STATS_CONSCIOUS
+			stat = STAT_CONSCIOUS
 	med_hud_set_status()
 
 
@@ -304,7 +304,7 @@
 		return 0
 	if (isliving(the_target))
 		var/mob/living/L = the_target
-		if(L.stat != STATS_CONSCIOUS)
+		if(L.stat != STAT_CONSCIOUS)
 			return 0
 	if (istype(the_target, /obj/mecha))
 		var/obj/mecha/M = the_target
@@ -337,7 +337,7 @@
 	var/mob/living/simple_animal/partner
 	var/children = 0
 	for(var/mob/M in view(7, src))
-		if(M.stat != STATS_CONSCIOUS) //Check if it's conscious FIRST.
+		if(M.stat != STAT_CONSCIOUS) //Check if it's conscious FIRST.
 			continue
 		else if(istype(M, childtype)) //Check for children SECOND.
 			children++
@@ -419,7 +419,7 @@
 /mob/living/simple_animal/update_sight()
 	if(!client)
 		return
-	if(stat == STATS_DEAD)
+	if(stat == STAT_DEAD)
 		sight = (SEE_TURFS|SEE_MOBS|SEE_OBJS)
 		see_in_dark = 8
 		see_invisible = SEE_INVISIBLE_OBSERVER

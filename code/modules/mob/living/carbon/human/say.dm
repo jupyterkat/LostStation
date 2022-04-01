@@ -103,7 +103,7 @@
 		return " (as [get_id_name("Unknown")])"
 
 /mob/living/carbon/human/proc/forcesay(list/append) //this proc is at the bottom of the file because quote fuckery makes notepad++ cri
-	if(stat == STATS_CONSCIOUS)
+	if(stat == STAT_CONSCIOUS)
 		if(client)
 			var/virgin = 1	//has the text been modified yet?
 			var/temp = winget(client, "input", "text")

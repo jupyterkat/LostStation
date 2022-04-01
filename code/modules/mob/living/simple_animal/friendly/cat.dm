@@ -214,11 +214,11 @@
 /mob/living/simple_animal/pet/cat/proc/wuv(change, mob/M)
 	if(change)
 		if(change > 0)
-			if(M && stat != STATS_DEAD)
+			if(M && stat != STAT_DEAD)
 				new /obj/effect/temp_visual/heart(loc)
 				emote("me", 1, "purrs!")
 		else
-			if(M && stat != STATS_DEAD)
+			if(M && stat != STAT_DEAD)
 				emote("me", 1, "hisses!")
 
 /mob/living/simple_animal/pet/cat/cak //I told you I'd do it, Remie

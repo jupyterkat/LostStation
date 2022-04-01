@@ -142,6 +142,9 @@
 			if(traitorwin)
 				text += "<br><font color='green'><B>The [special_role_text] was successful!</B></font>"
 				SSblackbox.add_details("traitor_success","SUCCESS")
+				
+				var/client/c = traitor.current.client
+				c.inc_antag_tokens_count(ATOKEN_SURVIVE_REWARD)
 			else
 				text += "<br><font color='red'><B>The [special_role_text] has failed!</B></font>"
 				SSblackbox.add_details("traitor_success","FAIL")

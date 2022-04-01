@@ -10,7 +10,7 @@
 	for(var/mob/living/carbon/human/H in shuffle(GLOB.living_mob_list))
 		if(!H.client)
 			continue
-		if(H.stat == STATS_DEAD)
+		if(H.stat == STAT_DEAD)
 			continue
 		if(!H.getorgan(/obj/item/organ/appendix)) //Don't give the disease to some who lacks it, only for it to be auto-cured
 			continue

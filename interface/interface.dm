@@ -102,6 +102,16 @@ Admin:
 	if(holder)
 		to_chat(src, adminhotkeys)
 
+
+/client/verb/show_atokens()
+	set name = "Show Antag Tokens"
+	set category = "OOC"
+
+	var/atokens = get_antag_tokens_count()
+
+	if(holder)
+		to_chat(src, "You have [atokens] antag tokens.")
+
 /client/verb/changelog()
 	set name = "Changelog"
 	set category = "OOC"

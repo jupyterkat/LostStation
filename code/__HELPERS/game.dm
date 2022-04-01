@@ -332,7 +332,7 @@
 	while(!candidates.len && afk_bracket < afk_period)
 		for(var/mob/dead/observer/G in GLOB.player_list)
 			if(G.client != null)
-				if(!(G.mind && G.mind.current && G.mind.current.stat != STATS_DEAD))
+				if(!(G.mind && G.mind.current && G.mind.current.stat != STAT_DEAD))
 					if(!G.client.is_afk(afk_bracket) && (be_special_type in G.client.prefs.be_special))
 						if (jobbanType)
 							if(!(jobban_isbanned(G, jobbanType) || jobban_isbanned(G, "Syndicate")))
@@ -572,7 +572,7 @@
 	
 	var/datum/gas_mixture/environment = T.return_air()
 
-	if(!environment)
+	if(environment)
 		var/pressure = environment.return_pressure()
 		if(pressure <= LAVALAND_EQUIPMENT_EFFECT_PRESSURE)
 			return TRUE

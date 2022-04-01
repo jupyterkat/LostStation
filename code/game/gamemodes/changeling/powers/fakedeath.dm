@@ -4,12 +4,12 @@
 	chemical_cost = 15
 	dna_cost = 0
 	req_dna = 1
-	req_stat = STATS_DEAD
+	req_stat = STAT_DEAD
 
 //Fake our own death and fully heal. You will appear to be dead but regenerate fully after a short delay.
 /obj/effect/proc_holder/changeling/fakedeath/sting_action(mob/living/user)
 	to_chat(user, "<span class='notice'>We begin our stasis, preparing energy to arise once more.</span>")
-	if(user.stat != STATS_DEAD)
+	if(user.stat != STAT_DEAD)
 		user.emote("deathgasp")
 		user.tod = worldtime2text()
 	user.status_flags |= FAKEDEATH //play dead

@@ -301,7 +301,7 @@
 //Cogscarabs get special interaction because they're drones and have innate self-heals/revives.
 /mob/living/simple_animal/drone/cogscarab/fabrication_vals(mob/living/user, obj/item/clockwork/replica_fabricator/fabricator, silent)
 	. = TRUE
-	if(stat == STATS_DEAD)
+	if(stat == STAT_DEAD)
 		try_reactivate(user) //if we're dead, try to repair us
 		return
 	if(health == maxHealth)

@@ -16,7 +16,7 @@
 			triggerAlarm()
 	else if (detectTime == -1)
 		for (var/mob/target in getTargetList())
-			if (target.stat == STATS_DEAD || (!area_motion && !in_range(src, target)))
+			if (target.stat == STAT_DEAD || (!area_motion && !in_range(src, target)))
 				//If not part of a monitored area and the camera is not in range or the target is dead
 				lostTarget(target)
 

@@ -11,12 +11,12 @@
 	handle_robot_cell()
 
 /mob/living/silicon/robot/proc/handle_robot_cell()
-	if(stat != STATS_DEAD)
+	if(stat != STAT_DEAD)
 		if(low_power_mode)
 			if(cell && cell.charge)
 				low_power_mode = 0
 				update_headlamp()
-		else if(stat == STATS_CONSCIOUS)
+		else if(stat == STAT_CONSCIOUS)
 			use_power()
 
 /mob/living/silicon/robot/proc/use_power()
@@ -41,7 +41,7 @@
 	if(!client || !hud_used)
 		return
 	if(hud_used.healths)
-		if(stat != STATS_DEAD)
+		if(stat != STAT_DEAD)
 			if(health >= maxHealth)
 				hud_used.healths.icon_state = "health0"
 			else if(health > maxHealth*0.6)

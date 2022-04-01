@@ -103,10 +103,10 @@ Difficulty: Hard
 				visible_message("<span class='hierophant'>\"Vitemvw gsqtpixi. Stivexmsrep ijjmgmirgc gsqtvsqmwih.\"</span>")
 
 /mob/living/simple_animal/hostile/megafauna/hierophant/death()
-	if(health > 0 || stat == STATS_DEAD)
+	if(health > 0 || stat == STAT_DEAD)
 		return
 	else
-		stat = STATS_DEAD
+		stat = STAT_DEAD
 		blinking = TRUE //we do a fancy animation, release a huge burst(), and leave our staff.
 		burst_range = 10
 		visible_message("<span class='hierophant'>\"Mrmxmexmrk wipj-hiwxvygx wiuyirgi...\"</span>")
@@ -150,7 +150,7 @@ Difficulty: Hard
 	if(!blinking)
 		if(target && isliving(target))
 			var/mob/living/L = target
-			if(L.stat != STATS_DEAD)
+			if(L.stat != STAT_DEAD)
 				if(ranged_cooldown <= world.time)
 					calculate_rage()
 					ranged_cooldown = world.time + max(5, ranged_cooldown_time - anger_modifier * 0.75)
@@ -199,7 +199,7 @@ Difficulty: Hard
 	var/target_slowness = 0
 	if(isliving(target))
 		var/mob/living/L = target
-		if(!blinking && L.stat == STATS_DEAD && get_dist(src, L) > 2)
+		if(!blinking && L.stat == STAT_DEAD && get_dist(src, L) > 2)
 			blink(L)
 			return
 		target_slowness += L.movement_delay()
@@ -274,9 +274,9 @@ Difficulty: Hard
 						var/mob/living/pickedtarget = pick(targets)
 						if(targets.len >= cardinal_copy.len)
 							pickedtarget = pick_n_take(targets)
-						if(!istype(pickedtarget) || pickedtarget.stat == STATS_DEAD)
+						if(!istype(pickedtarget) || pickedtarget.stat == STAT_DEAD)
 							pickedtarget = target
-							if(QDELETED(pickedtarget) || (istype(pickedtarget) && pickedtarget.stat == STATS_DEAD))
+							if(QDELETED(pickedtarget) || (istype(pickedtarget) && pickedtarget.stat == STAT_DEAD))
 								break //main target is dead and we're out of living targets, cancel out
 						var/obj/effect/temp_visual/hierophant/chaser/C = new(loc, src, pickedtarget, chaser_speed, FALSE)
 						C.moving = 3
@@ -354,7 +354,7 @@ Difficulty: Hard
 
 /mob/living/simple_animal/hostile/megafauna/hierophant/proc/arena_trap(mob/victim) //trap a target in an arena
 	var/turf/T = get_turf(victim)
-	if(!istype(victim) || victim.stat == STATS_DEAD || !T || arena_cooldown > world.time)
+	if(!istype(victim) || victim.stat == STAT_DEAD || !T || arena_cooldown > world.time)
 		return
 	if((istype(get_area(T), /area/ruin/unpowered/hierophant) || istype(get_area(src), /area/ruin/unpowered/hierophant)) && victim != src)
 		return
@@ -622,7 +622,7 @@ Difficulty: Hard
 		return
 	for(var/mob/living/L in T.contents - hit_things) //find and damage mobs...
 		hit_things += L
-		if((friendly_fire_check && caster && caster.faction_check_mob(L)) || L.stat == STATS_DEAD)
+		if((friendly_fire_check && caster && caster.faction_check_mob(L)) || L.stat == STAT_DEAD)
 			continue
 		if(L.client)
 			flash_color(L.client, "#660099", 1)
@@ -633,7 +633,7 @@ Difficulty: Hard
 		L.apply_damage(damage, BURN, limb_to_hit, armor)
 		if(ishostile(L))
 			var/mob/living/simple_animal/hostile/H = L //mobs find and damage you...
-			if(H.stat == STATS_CONSCIOUS && !H.target && H.AIStatus != AI_OFF && !H.client)
+			if(H.stat == STAT_CONSCIOUS && !H.target && H.AIStatus != AI_OFF && !H.client)
 				if(!QDELETED(caster))
 					if(get_dist(H, caster) <= H.aggro_vision_range)
 						H.FindTarget(list(caster), 1)

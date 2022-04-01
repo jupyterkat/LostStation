@@ -236,7 +236,7 @@
 
 
 /mob/proc/drop_item_v()		//this is dumb.
-	if(stat == STATS_CONSCIOUS && isturf(loc))
+	if(stat == STAT_CONSCIOUS && isturf(loc))
 		return drop_item()
 	return FALSE
 

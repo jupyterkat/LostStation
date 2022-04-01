@@ -22,7 +22,6 @@
 	throw_speed = 3
 	throw_range = 7
 	materials = list(MAT_METAL=10)
-	pressure_resistance = 2
 	var/colour = "black"	//what colour the ink is!
 	var/traitor_unlock_degrees = 0
 	var/degrees = 0

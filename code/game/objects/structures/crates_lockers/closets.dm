@@ -374,7 +374,7 @@
 	to_chat(user, "<span class='notice'>You lean on the back of [src] and start pushing the door open.</span>")
 	visible_message("<span class='warning'>[src] begins to shake violently!</span>")
 	if(do_after(user,(breakout_time * 60 * 10), target = src)) //minutes * 60seconds * 10deciseconds
-		if(!user || user.stat != STATS_CONSCIOUS || user.loc != src || opened || (!locked && !welded) )
+		if(!user || user.stat != STAT_CONSCIOUS || user.loc != src || opened || (!locked && !welded) )
 			return
 		//we check after a while whether there is a point of resisting anymore and whether the user is capable of resisting
 		user.visible_message("<span class='danger'>[user] successfully broke out of [src]!</span>",
@@ -425,7 +425,7 @@
 		update_icon()
 
 /obj/structure/closet/get_remote_view_fullscreens(mob/user)
-	if(user.stat == STATS_DEAD || !(user.sight & (SEEOBJS|SEEMOBS)))
+	if(user.stat == STAT_DEAD || !(user.sight & (SEEOBJS|SEEMOBS)))
 		user.overlay_fullscreen("remote_view", /obj/screen/fullscreen/impaired, 1)
 
 /obj/structure/closet/emp_act(severity)

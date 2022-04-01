@@ -352,7 +352,7 @@
 	onclose(src, "airoster")
 
 /mob/living/silicon/ai/proc/ai_call_shuttle()
-	if(stat == STATS_DEAD)
+	if(stat == STAT_DEAD)
 		return //won't work if dead
 	if(isAI(usr))
 		var/mob/living/silicon/ai/AI = src
@@ -441,7 +441,7 @@ GLOBAL_LIST_EMPTY(empty_playable_ai_cores)
 	set name = "Toggle Floor Bolts"
 	if(!isturf(loc)) // if their location isn't a turf
 		return // stop
-	if(stat == STATS_DEAD)
+	if(stat == STAT_DEAD)
 		return //won't work if dead
 	anchored = !anchored // Toggles the anchor
 
@@ -453,7 +453,7 @@ GLOBAL_LIST_EMPTY(empty_playable_ai_cores)
 
 /mob/living/silicon/ai/proc/ai_cancel_call()
 	set category = "Malfunction"
-	if(stat == STATS_DEAD)
+	if(stat == STAT_DEAD)
 		return //won't work if dead
 	if(isAI(usr))
 		var/mob/living/silicon/ai/AI = src
@@ -486,7 +486,7 @@ GLOBAL_LIST_EMPTY(empty_playable_ai_cores)
 	//Carn: holopad requests
 	if(href_list["jumptoholopad"])
 		var/obj/machinery/holopad/H = locate(href_list["jumptoholopad"])
-		if(stat == STATS_CONSCIOUS)
+		if(stat == STAT_CONSCIOUS)
 			if(H)
 				H.attack_ai(src) //may as well recycle
 			else
@@ -550,7 +550,7 @@ GLOBAL_LIST_EMPTY(empty_playable_ai_cores)
 	if(!tracking)
 		cameraFollow = null
 
-	if (!C || stat == STATS_DEAD) //C.can_use())
+	if (!C || stat == STAT_DEAD) //C.can_use())
 		return 0
 
 	if(!src.eyeobj)
@@ -835,7 +835,7 @@ GLOBAL_LIST_EMPTY(empty_playable_ai_cores)
 	apc.malfvacate()
 
 /mob/living/silicon/ai/proc/toggle_camera_light()
-	if(stat != STATS_CONSCIOUS)
+	if(stat != STAT_CONSCIOUS)
 		return
 
 	camera_light_on = !camera_light_on
@@ -1045,7 +1045,7 @@ GLOBAL_LIST_EMPTY(empty_playable_ai_cores)
 
 	for(var/borgie in GLOB.available_ai_shells)
 		var/mob/living/silicon/robot/R = borgie
-		if(R.shell && !R.deployed && (R.stat != STATS_DEAD) && (!R.connected_ai ||(R.connected_ai == src)))
+		if(R.shell && !R.deployed && (R.stat != STAT_DEAD) && (!R.connected_ai ||(R.connected_ai == src)))
 			possible += R
 
 	if(!LAZYLEN(possible))
@@ -1054,7 +1054,7 @@ GLOBAL_LIST_EMPTY(empty_playable_ai_cores)
 	if(!target || !(target in possible)) //If the AI is looking for a new shell, or its pre-selected shell is no longer valid
 		target = input(src, "Which body to control?") as null|anything in possible
 
-	if (!target || target.stat == STATS_DEAD || target.deployed || !(!target.connected_ai ||(target.connected_ai == src)))
+	if (!target || target.stat == STAT_DEAD || target.deployed || !(!target.connected_ai ||(target.connected_ai == src)))
 		return
 
 	else if(mind)

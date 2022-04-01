@@ -73,7 +73,7 @@
 			to_chat(user, "<span class='notice'>[src] has decayed and can no longer be used to heal.</span>")
 			return
 		else
-			if(H.stat == STATS_DEAD)
+			if(H.stat == STAT_DEAD)
 				to_chat(user, "<span class='notice'>[src] are useless on the dead.</span>")
 				return
 			if(H != user)

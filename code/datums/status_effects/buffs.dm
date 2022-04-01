@@ -89,7 +89,7 @@
 	if(vanguard)
 		stuns_blocked = Floor(min(vanguard["stuns_absorbed"] * 0.25, 400))
 		vanguard["end_time"] = 0 //so it doesn't absorb the stuns we're about to apply
-	if(owner.stat != STATS_DEAD)
+	if(owner.stat != STAT_DEAD)
 		var/message_to_owner = "<span class='warning'>You feel your Vanguard quietly fade...</span>"
 		var/otheractiveabsorptions = FALSE
 		for(var/i in owner.stun_absorption)
@@ -251,10 +251,10 @@
 			to_chat(M, "<span class='cultlarge'>The Cult's Master, [owner], has fallen in \the [A]!</span>")
 
 /datum/status_effect/cult_master/tick()
-	if(owner.stat != STATS_DEAD && !alive)
+	if(owner.stat != STAT_DEAD && !alive)
 		alive = TRUE
 		return
-	if(owner.stat == STATS_DEAD && alive)
+	if(owner.stat == STAT_DEAD && alive)
 		alive = FALSE
 		deathrattle()
 

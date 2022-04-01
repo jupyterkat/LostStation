@@ -8,7 +8,7 @@
 	alpha = 50
 	resistance_flags = NONE
 	var/affects_servants = FALSE
-	var/stat_affected = STATS_CONSCIOUS
+	var/stat_affected = STAT_CONSCIOUS
 	var/sigil_name = "Sigil"
 	var/resist_string = "glows blinding white" //string for when a null rod blocks its effects, "glows [resist_string]"
 
@@ -98,7 +98,7 @@
 	light_range = 2 //soft light
 	light_power = 0.9
 	light_color = "#FAE48C"
-	stat_affected = STATS_UNCONSCIOUS
+	stat_affected = STATS_UNCONSCIOU
 	resist_string = "glows faintly yellow"
 	var/convert_time = 80
 	var/delete_on_finish = TRUE
@@ -257,7 +257,7 @@
 	alpha = 75
 	color = "#123456"
 	affects_servants = TRUE
-	stat_affected = STATS_DEAD
+	stat_affected = STAT_DEAD
 	resist_string = "glows shimmering yellow"
 	sigil_name = "Vitality Matrix"
 	var/revive_cost = 150
@@ -289,7 +289,7 @@
 		animation_number++
 		if(!is_servant_of_ratvar(L))
 			var/vitality_drained = 0
-			if(L.stat == STATS_DEAD)
+			if(L.stat == STAT_DEAD)
 				vitality_drained = L.maxHealth
 				var/obj/effect/temp_visual/ratvar/sigil/vitality/V = new /obj/effect/temp_visual/ratvar/sigil/vitality(get_turf(src))
 				animate(V, alpha = 0, transform = matrix()*2, time = 8)
@@ -301,7 +301,7 @@
 						qdel(W)
 				L.dust()
 			else
-				if(!GLOB.ratvar_awakens && L.stat == STATS_CONSCIOUS)
+				if(!GLOB.ratvar_awakens && L.stat == STAT_CONSCIOUS)
 					vitality_drained = L.adjustToxLoss(1)
 				else
 					vitality_drained = L.adjustToxLoss(1.5)
@@ -310,7 +310,7 @@
 			else
 				break
 		else
-			if(L.stat == STATS_DEAD)
+			if(L.stat == STAT_DEAD)
 				var/revival_cost = revive_cost
 				if(GLOB.ratvar_awakens)
 					revival_cost = 0
@@ -327,7 +327,7 @@
 				break
 			var/vitality_for_cycle = 3
 			if(!GLOB.ratvar_awakens)
-				if(L.stat == STATS_CONSCIOUS)
+				if(L.stat == STAT_CONSCIOUS)
 					vitality_for_cycle = 2
 				vitality_for_cycle = min(GLOB.clockwork_vitality, vitality_for_cycle)
 			var/vitality_used = L.heal_ordered_damage(vitality_for_cycle, damage_heal_order)

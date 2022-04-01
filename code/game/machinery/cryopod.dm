@@ -197,7 +197,7 @@
 	if((isnull(user) || istype(user)) && state_open && !panel_open)
 		..(user)
 		var/mob/living/mob_occupant = occupant
-		if(mob_occupant && mob_occupant.stat != STATS_DEAD)
+		if(mob_occupant && mob_occupant.stat != STAT_DEAD)
 			to_chat(occupant, "<span class='boldnotice'>You feel cool air surround you. You go numb as your senses turn inward.</span>")
 		if(mob_occupant.client)//if they're logged in
 			despawn_world_time = world.time + (time_till_despawn * 0.1)
@@ -226,7 +226,7 @@
 	var/mob/living/mob_occupant = occupant
 	if(mob_occupant)
 		// Eject dead people
-		if(mob_occupant.stat == STATS_DEAD)
+		if(mob_occupant.stat == STAT_DEAD)
 			open_machine()
 
 		if(!(world.time > despawn_world_time + 100))//+ 10 seconds
@@ -371,7 +371,7 @@
 		to_chat(user, "<span class='boldnotice'>The cryo pod is already occupied!</span>")
 		return
 
-	if(target.stat == STATS_DEAD)
+	if(target.stat == STAT_DEAD)
 		to_chat(user, "<span class='notice'>Dead people can not be put into cryo.</span>")
 		return
 

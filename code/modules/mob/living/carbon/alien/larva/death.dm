@@ -1,5 +1,5 @@
 /mob/living/carbon/alien/larva/death(gibbed)
-	if(stat == STATS_DEAD)
+	if(stat == STAT_DEAD)
 		return
 
 	. = ..()

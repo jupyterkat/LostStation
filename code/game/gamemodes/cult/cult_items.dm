@@ -402,7 +402,7 @@
 
 		var/list/cultists = list()
 		for(var/datum/mind/M in SSticker.mode.cult)
-			if(M.current && M.current.stat != STATS_DEAD)
+			if(M.current && M.current.stat != STAT_DEAD)
 				cultists |= M.current
 		var/mob/living/cultist_to_receive = input(user, "Who do you wish to call to [src]?", "Followers of the Geometer") as null|anything in (cultists - user)
 		if(!Adjacent(user) || !src || QDELETED(src) || user.incapacitated())
@@ -411,7 +411,7 @@
 			to_chat(user, "<span class='cultitalic'>You require a destination!</span>")
 			log_game("Void torch failed - no target")
 			return
-		if(cultist_to_receive.stat == STATS_DEAD)
+		if(cultist_to_receive.stat == STAT_DEAD)
 			to_chat(user, "<span class='cultitalic'>[cultist_to_receive] has died!</span>")
 			log_game("Void torch failed  - target died")
 			return

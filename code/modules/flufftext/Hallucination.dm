@@ -213,7 +213,7 @@ GLOBAL_LIST_INIT(hallucinations_major, list(
 
 /obj/effect/hallucination/simple/xeno/throw_impact(A)
 	update_icon("alienh_pounce")
-	if(A == target && target.stat!=STATS_DEAD)
+	if(A == target && target.stat!=STAT_DEAD)
 		target.Knockdown(100)
 		target.visible_message("<span class='danger'>[target] flails around wildly.</span>","<span class ='userdanger'>[name] pounces on you!</span>")
 
@@ -294,7 +294,7 @@ GLOBAL_LIST_INIT(hallucinations_major, list(
 
 /datum/hallucination/oh_yeah/proc/bubble_attack(turf/landing)
 	var/charged = FALSE //only get hit once
-	while(get_turf(bubblegum) != landing && target && target.stat != STATS_DEAD)
+	while(get_turf(bubblegum) != landing && target && target.stat != STAT_DEAD)
 		bubblegum.forceMove(get_step_towards(bubblegum, landing))
 		bubblegum.setDir(get_dir(bubblegum, landing))
 		target.playsound_local(get_turf(bubblegum), 'sound/effects/meteorimpact.ogg', 150, 1)
@@ -1075,7 +1075,7 @@ GLOBAL_LIST_INIT(hallucinations_major, list(
 			fakemob = target //ever been so lonely you had to haunt yourself?
 		if(fakemob)
 			sleep(rand(20, 50))
-			to_chat(target, "<span class='deadsay'><b>STATS_DEAD: [fakemob.name]</b> says, \"[pick("rip","hey [target.first_name()]","you too?","is the AI rogue?",\
+			to_chat(target, "<span class='deadsay'><b>STAT_DEAD: [fakemob.name]</b> says, \"[pick("rip","hey [target.first_name()]","you too?","is the AI rogue?",\
 			 "i[prob(50)?" fucking":""] hate [pick("blood cult", "clock cult", "revenants", "abductors","double agents","viruses","badmins","you")]")]\"</span>")
 	sleep(rand(70,90))
 	target.set_screwyhud(SCREWYHUD_NONE)

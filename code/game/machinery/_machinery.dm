@@ -98,7 +98,6 @@ Class Procs:
 	icon = 'icons/obj/stationobjs.dmi'
 	verb_say = "beeps"
 	verb_yell = "blares"
-	pressure_resistance = 15
 	max_integrity = 200
 
 	var/stat = 0

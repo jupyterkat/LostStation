@@ -386,7 +386,7 @@
 	ranged_cooldown_time = 10
 	pass_flags = LETPASSTHROW
 	robust_searching = TRUE
-	stat_attack = STATS_UNCONSCIOUS
+	stat_attack = STATS_UNCONSCIOU
 	attack_sound = 'sound/weapons/rapierhit.ogg'
 	death_sound = 'sound/voice/mook_death.ogg'
 	aggro_vision_range = 15 //A little more aggressive once in combat to balance out their really low HP
@@ -491,7 +491,7 @@
 			if(target)
 				if(isliving(target))
 					var/mob/living/L = target
-					if(L.incapacitated() && L.stat != STATS_DEAD)
+					if(L.incapacitated() && L.stat != STAT_DEAD)
 						addtimer(CALLBACK(src, .proc/WarmupAttack, TRUE), ATTACK_INTERMISSION_TIME)
 						return
 			addtimer(CALLBACK(src, .proc/WarmupAttack), ATTACK_INTERMISSION_TIME)
@@ -617,7 +617,7 @@
 	projectiletype = /obj/item/projectile/seedling
 	projectilesound = 'sound/weapons/pierce.ogg'
 	robust_searching = TRUE
-	stat_attack = STATS_UNCONSCIOUS
+	stat_attack = STATS_UNCONSCIOU
 	anchored = TRUE
 	var/combatant_state = SEEDLING_STATE_NEUTRAL
 	var/obj/seedling_weakpoint/weak_point

@@ -1,5 +1,5 @@
 /mob/living/carbon/alien/humanoid/death(gibbed)
-	if(stat == STATS_DEAD)
+	if(stat == STAT_DEAD)
 		return
 
 	. = ..()
@@ -10,7 +10,7 @@
 
 //When the alien queen dies, all others must pay the price for letting her die.
 /mob/living/carbon/alien/humanoid/royal/queen/death(gibbed)
-	if(stat == STATS_DEAD)
+	if(stat == STAT_DEAD)
 		return
 
 	for(var/mob/living/carbon/C in GLOB.living_mob_list)

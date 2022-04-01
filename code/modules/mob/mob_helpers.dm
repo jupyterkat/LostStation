@@ -9,7 +9,7 @@
 		return 1
 
 /mob/proc/isLivingSSD()
-	if(player_logged && stat != STATS_DEAD)
+	if(player_logged && stat != STAT_DEAD)
 		return TRUE
 
 /proc/check_zone(zone)

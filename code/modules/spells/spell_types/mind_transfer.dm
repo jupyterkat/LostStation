@@ -42,7 +42,7 @@ Also, you never added distance checking after target is selected. I've went ahea
 		to_chat(user, "<span class='warning'>This creature is too powerful to control!</span>")
 		return
 
-	if(target.stat == STATS_DEAD)
+	if(target.stat == STAT_DEAD)
 		to_chat(user, "<span class='warning'>You don't particularly want to be dead!</span>")
 		return
 

@@ -207,6 +207,11 @@ Credit where due:
 		var/datum/game_mode/clockwork_cult/C = SSticker.mode
 		if(C.check_clockwork_victory())
 			text += "<span class='bold large_brass'>Ratvar's servants defended the Ark until its activation!</span>"
+
+			for(var/datum/mind/M in servants_of_ratvar)
+				var/client/c = M.current.client
+				c.inc_antag_tokens_count(ATOKEN_GREENTEXT_BONUS)
+
 			SSticker.mode_result = "win - servants completed their objective (summon ratvar)"
 		else
 			text += "<span class='userdanger'>The Ark was destroyed! Ratvar will rust away for all eternity!</span>"

@@ -30,7 +30,7 @@
 /obj/effect/proc_holder/changeling/strained_muscles/proc/muscle_loop(mob/living/carbon/user)
 	while(active)
 		user.status_flags |= GOTTAGOFAST
-		if(user.stat != STATS_CONSCIOUS || user.staminaloss >= 90)
+		if(user.stat != STAT_CONSCIOUS || user.staminaloss >= 90)
 			active = !active
 			to_chat(user, "<span class='notice'>Our muscles relax without the energy to strengthen them.</span>")
 			user.Knockdown(40)

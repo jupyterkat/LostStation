@@ -7,7 +7,7 @@
 		regenerated. Can be used while unconscious."
 	chemical_cost = 10
 	dna_cost = 0
-	req_stat = STATS_UNCONSCIOUS
+	req_stat = STATS_UNCONSCIOU
 	always_keep = TRUE
 
 /obj/effect/proc_holder/changeling/regenerate/sting_action(mob/living/user)
