@@ -156,14 +156,9 @@ All ShuttleMove procs go here
 
 /turf/open/afterShuttleMove(turf/oldT) //Recalculates SSair stuff for turfs on both sides
 	. = ..()
-	SSair.remove_from_active(src)
-	SSair.remove_from_active(oldT)
-
 	src.CalculateAdjacentTurfs()
 	oldT.CalculateAdjacentTurfs()
 
-	SSair.add_to_active(src, TRUE)
-	SSair.add_to_active(oldT, TRUE)
 
 /************************************Area move procs************************************/
 

@@ -93,11 +93,6 @@
 		return FALSE
 
 	var/gas_breathed = 0
-
-	var/list/breath_gases = breath.gases
-
-	breath.assert_gases("o2", "n2", "plasma", "co2", "n2o", "bz")
-
 	//Partial pressures in our breath
 	var/O2_pp = breath.get_breath_partial_pressure(breath_gases["o2"][MOLES])
 	var/N2_pp = breath.get_breath_partial_pressure(breath_gases["n2"][MOLES])

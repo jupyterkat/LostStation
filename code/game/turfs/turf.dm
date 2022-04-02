@@ -5,7 +5,9 @@
 	var/intact = 1
 	var/turf/baseturf = /turf/open/space
 
-	var/temperature = T20C
+	/// How hot the turf is, in kelvin
+	var/initial_temperature = T20C
+
 	var/to_be_destroyed = 0 //Used for fire, if a melting temperature was reached, it will be destroyed
 	var/max_fire_temperature_sustained = 0 //The max temperature of the fire which it was subjected to
 
@@ -49,7 +51,6 @@
 
 	if(requires_activation)
 		CalculateAdjacentTurfs()
-		SSair.add_to_active(src)
 
 	if (light_power && light_range)
 		update_light()
@@ -57,6 +58,12 @@
 	if (opacity)
 		has_opaque_atom = TRUE
 	return INITIALIZE_HINT_NORMAL
+
+/turf/proc/__auxtools_update_turf_temp_info()
+
+/turf/return_temperature()
+
+/turf/proc/set_temperature()
 
 /turf/proc/Initalize_Atmos(times_fired)
 	CalculateAdjacentTurfs()
@@ -154,7 +161,7 @@
 		return FALSE
 
 	return TRUE //Nothing found to block so return success!
-
+	
 /turf/Entered(atom/movable/AM)
 	..()
 	if(explosion_level && AM.ex_check(explosion_id))
@@ -276,34 +283,19 @@
 
 //////Assimilate Air//////
 /turf/open/proc/Assimilate_Air()
-	if(blocks_air)
+	var/turf_count = LAZYLEN(atmos_adjacent_turfs)
+	if(blocks_air || !turf_count) //if there weren't any open turfs, no need to update.
 		return
 
 	var/datum/gas_mixture/total = new//Holders to assimilate air from nearby turfs
-	var/list/total_gases = total.gases
-	var/turf_count = LAZYLEN(atmos_adjacent_turfs)
 
 	for(var/T in atmos_adjacent_turfs)
 		var/turf/open/S = T
 		if(!S.air)
 			continue
-		var/list/S_gases = S.air.gases
-		for(var/id in S_gases)
-			total.assert_gas(id)
-			total_gases[id][MOLES] += S_gases[id][MOLES]
-		total.temperature += S.air.temperature
+		total.merge(S.air)
 
-	air.copy_from(total)
-
-	if(!turf_count) //if there weren't any open turfs, no need to update.
-		return
-
-	var/list/air_gases = air.gases
-	for(var/id in air_gases)
-		air_gases[id][MOLES] /= turf_count //Averages contents of the turfs, ignoring walls and the like
-
-	air.temperature /= turf_count
-	SSair.add_to_active(src)
+	air.copy_from(total.remove_ratio(1/turf_count))
 
 /turf/proc/ReplaceWithLattice()
 	ChangeTurf(baseturf)
@@ -449,7 +441,6 @@
 
 	SSair.remove_from_active(newT)
 	newT.CalculateAdjacentTurfs()
-	SSair.add_to_active(newT,1)
 
 /turf/proc/is_transition_turf()
 	return
