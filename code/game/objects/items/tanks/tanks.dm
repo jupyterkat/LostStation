@@ -48,12 +48,13 @@
 		H.update_internals_hud_icon(1)
 	H.update_action_buttons_icon()
 
-
-/obj/item/tank/New()
-	..()
+/obj/item/tank/Initialize(mapload)
+	. = ..()
 
 	air_contents = new(volume) //liters
-	air_contents.temperature = T20C
+	air_contents.set_temperature(T20C)
+
+	populate_gas()
 
 	START_PROCESSING(SSobj, src)
 
@@ -63,6 +64,9 @@
 
 	STOP_PROCESSING(SSobj, src)
 	. = ..()
+
+/obj/item/tank/proc/populate_gas()
+	return
 
 /obj/item/tank/examine(mob/user)
 	var/obj/icon = src
@@ -76,7 +80,7 @@
 
 	to_chat(user, "<span class='notice'>The pressure gauge reads [src.air_contents.return_pressure()] kPa.</span>")
 
-	var/celsius_temperature = src.air_contents.temperature-T0C
+	var/celsius_temperature = src.air_contents.return_temperature()-T0C
 	var/descriptive
 
 	if (celsius_temperature < 20)
@@ -195,7 +199,7 @@
 	if(tank_pressure < distribute_pressure)
 		distribute_pressure = tank_pressure
 
-	var/moles_needed = distribute_pressure*volume_to_return/(R_IDEAL_GAS_EQUATION*air_contents.temperature)
+	var/moles_needed = distribute_pressure*volume_to_return/(R_IDEAL_GAS_EQUATION*air_contents.return_temperature())
 
 	return remove_air(moles_needed)
 

@@ -31,12 +31,11 @@ GLOBAL_LIST_EMPTY(rad_collectors)
 
 /obj/machinery/power/rad_collector/process()
 	if(loaded_tank)
-		if(!loaded_tank.air_contents.gases["plasma"])
+		if(!loaded_tank.air_contents.get_moles(GAS_PLASMA))
 			investigate_log("<font color='red'>out of fuel</font>.", INVESTIGATE_SINGULO)
 			eject()
 		else
-			loaded_tank.air_contents.gases["plasma"][MOLES] -= 0.001*drainratio
-			loaded_tank.air_contents.garbage_collect()
+			loaded_tank.air_contents.adjust_moles(GAS_PLASMA, -0.001*drainratio)
 	return
 
 
@@ -48,10 +47,7 @@ GLOBAL_LIST_EMPTY(rad_collectors)
 			toggle_power()
 			user.visible_message("[user.name] turns the [src.name] [active? "on":"off"].", \
 			"<span class='notice'>You turn the [src.name] [active? "on":"off"].</span>")
-			var/fuel
-			if(loaded_tank)
-				fuel = loaded_tank.air_contents.gases["plasma"]
-			fuel = fuel ? fuel[MOLES] : 0
+			var/fuel = loaded_tank.air_contents.get_moles(GAS_PLASMA)
 			investigate_log("turned [active?"<font color='green'>on</font>":"<font color='red'>off</font>"] by [user.key]. [loaded_tank?"Fuel: [round(fuel/0.29)]%":"<font color='red'>It is empty</font>"].", INVESTIGATE_SINGULO)
 			return
 		else
@@ -139,7 +135,7 @@ GLOBAL_LIST_EMPTY(rad_collectors)
 
 /obj/machinery/power/rad_collector/proc/receive_pulse(pulse_strength)
 	if(loaded_tank && active)
-		var/power_produced = loaded_tank.air_contents.gases["plasma"] ? loaded_tank.air_contents.gases["plasma"][MOLES] : 0
+		var/power_produced = loaded_tank.air_contents.get_moles(GAS_PLASMA)
 		power_produced *= pulse_strength*10
 		add_avail(power_produced)
 		last_power = power_produced

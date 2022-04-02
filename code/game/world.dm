@@ -1,4 +1,7 @@
 /world/New()
+	//Keep the auxtools stuff at the top
+	AUXTOOLS_CHECK(AUXMOS)
+
 	log_world("World loaded at [time_stamp()]")
 
 	SetupExternalRSC()
@@ -258,6 +261,11 @@
 				to_chat(world, "<span class='narsiesmall'>Server is updating! You may need to reconnect!</span>")
 				shutdown()
 				return
+	AUXTOOLS_SHUTDOWN(AUXMOS)
+	..()
+
+/world/Del()
+	AUXTOOLS_SHUTDOWN(AUXMOS)
 	..()
 
 /world/proc/load_motd()

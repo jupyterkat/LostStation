@@ -20,6 +20,10 @@
 /turf/open/lava/MakeDry(wet_setting = TURF_WET_WATER)
 	return
 
+/turf/open/lava/Melt()
+	to_be_destroyed = FALSE
+	return src
+
 /turf/open/lava/airless
 	initial_gas_mix = "TEMP=2.7"
 

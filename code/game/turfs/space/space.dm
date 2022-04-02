@@ -4,7 +4,7 @@
 	name = "\proper space"
 	intact = 0
 
-	temperature = TCMB
+	initial_temperature = TCMB
 	thermal_conductivity = OPEN_HEAT_TRANSFER_COEFFICIENT
 	heat_capacity = 700000
 
@@ -12,7 +12,7 @@
 	var/destination_x
 	var/destination_y
 
-	var/global/datum/gas_mixture/immutable/space/space_gas = new
+	var/global/datum/gas_mixture/immutable/space/space_gas
 	plane = PLANE_SPACE
 	light_power = 0.25
 	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
@@ -24,7 +24,11 @@
 
 /turf/open/space/Initialize()
 	icon_state = SPACE_ICON_STATE
+	if(!space_gas)
+		space_gas = new
 	air = space_gas
+	
+	update_air_ref(0)
 
 	if(initialized)
 		stack_trace("Warning: [src]([type]) initialized multiple times!")
@@ -33,9 +37,6 @@
 	var/area/A = loc
 	if(!IS_DYNAMIC_LIGHTING(src) && IS_DYNAMIC_LIGHTING(A))
 		add_overlay(/obj/effect/fullbright)
-
-	if(requires_activation)
-		SSair.add_to_active(src)
 
 	if (light_power && light_range)
 		update_light()

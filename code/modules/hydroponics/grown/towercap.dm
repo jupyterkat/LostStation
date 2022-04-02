@@ -181,9 +181,8 @@
 	if(isopenturf(loc))
 		var/turf/open/O = loc
 		if(O.air)
-			var/G = O.air.gases
-			if(G["o2"][MOLES] > 13)
-				return 1
+			if(O.air.get_moles(GAS_O2) > 13)
+				return TRUE
 	return 0
 
 /obj/structure/bonfire/proc/StartBurning()

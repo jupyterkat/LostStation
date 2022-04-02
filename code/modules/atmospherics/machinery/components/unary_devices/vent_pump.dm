@@ -83,7 +83,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/high_volume/New()
 	..()
 	var/datum/gas_mixture/air_contents = AIR1
-	air_contents.volume = 1000
+	air_contents.set_volume(1000)
 
 /obj/machinery/atmospherics/components/unary/vent_pump/update_icon_nopipes()
 	cut_overlays()
@@ -114,7 +114,10 @@
 
 	var/datum/gas_mixture/air_contents = AIR1
 	var/datum/gas_mixture/environment = loc.return_air()
-	var/environment_pressure = environment.return_pressure()
+	var/environment_pressure = environment?.return_pressure()
+
+	if(!environment_pressure)
+		return 0
 
 	if(pump_direction & RELEASING) //internal -> external
 		var/pressure_delta = 10000
@@ -125,8 +128,8 @@
 			pressure_delta = min(pressure_delta, (air_contents.return_pressure() - internal_pressure_bound))
 
 		if(pressure_delta > 0)
-			if(air_contents.temperature > 0)
-				var/transfer_moles = pressure_delta*environment.volume/(air_contents.temperature * R_IDEAL_GAS_EQUATION)
+			if(air_contents.return_temperature() > 0)
+				var/transfer_moles = pressure_delta*environment.return_volume()/(air_contents.return_temperature() * R_IDEAL_GAS_EQUATION)
 
 				var/datum/gas_mixture/removed = air_contents.remove(transfer_moles)
 
@@ -141,8 +144,8 @@
 			pressure_delta = min(pressure_delta, (internal_pressure_bound - air_contents.return_pressure()))
 
 		if(pressure_delta > 0)
-			if(environment.temperature > 0)
-				var/transfer_moles = pressure_delta*air_contents.volume/(environment.temperature * R_IDEAL_GAS_EQUATION)
+			if(environment.return_temperature() > 0)
+				var/transfer_moles = pressure_delta*air_contents.return_volume()/(environment.return_temperature() * R_IDEAL_GAS_EQUATION)
 
 				var/datum/gas_mixture/removed = loc.remove_air(transfer_moles)
 				if (isnull(removed)) //in space

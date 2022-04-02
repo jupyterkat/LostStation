@@ -852,27 +852,49 @@ GLOBAL_LIST_INIT(WALLITEMS_INVERSE, typecacheof(list(
 /proc/format_text(text)
 	return replacetext(replacetext(text,"\proper ",""),"\improper ","")
 
-/obj/proc/atmosanalyzer_scan(datum/gas_mixture/air_contents, mob/user, obj/target = src)
-	var/obj/icon = target
-	user.visible_message("[user] has used the analyzer on [icon2html(icon, viewers(src))] [target].", "<span class='notice'>You use the analyzer on [icon2html(icon, user)] [target].</span>")
-	var/pressure = air_contents.return_pressure()
-	var/total_moles = air_contents.total_moles()
+/proc/atmosanalyzer_scan(mob/user, atom/target, silent=FALSE)
+	var/mixture = target.return_analyzable_air()
+	if(!mixture)
+		return FALSE
 
-	to_chat(user, "<span class='notice'>Results of analysis of [icon2html(icon, user)] [target].</span>")
-	if(total_moles>0)
-		to_chat(user, "<span class='notice'>Pressure: [round(pressure,0.1)] kPa</span>")
+	var/icon = target
+	if(!silent && isliving(user))
+		user.visible_message("[user] has used the analyzer on [icon2html(icon, viewers(user))] [target].", "<span class='notice'>You use the analyzer on [icon2html(icon, user)] [target].</span>")
+	to_chat(user, "<span class='boldnotice'>Results of analysis of [icon2html(icon, user)] [target].</span>")
 
-		var/list/cached_gases = air_contents.gases
+	var/list/airs = islist(mixture) ? mixture : list(mixture)
+	for(var/g in airs)
+		if(airs.len > 1) //not a unary gas mixture
+			to_chat(user, "<span class='boldnotice'>Node [airs.Find(g)]</span>")
+		var/datum/gas_mixture/air_contents = g
 
-		for(var/id in cached_gases)
-			var/gas_concentration = cached_gases[id][MOLES]/total_moles
-			if((id in GLOB.hardcoded_gases) || gas_concentration > 0.001) //ensures the four primary gases are always shown.
-				to_chat(user, "<span class='notice'>[cached_gases[id][GAS_META][META_GAS_NAME]]: [round(gas_concentration*100, 0.01)] %</span>")
+		var/total_moles = air_contents.total_moles()
+		var/pressure = air_contents.return_pressure()
+		var/volume = air_contents.return_volume() //could just do mixture.volume... but safety, I guess?
+		var/temperature = air_contents.return_temperature()
+		var/cached_scan_results = air_contents.analyzer_results
 
-		to_chat(user, "<span class='notice'>Temperature: [round(air_contents.temperature-T0C)] &deg;C</span>")
-	else
-		to_chat(user, "<span class='notice'>[target] is empty!</span>")
-	return
+		if(total_moles > 0)
+			to_chat(user, "<span class='notice'>Moles: [round(total_moles, 0.01)] mol</span>")
+			to_chat(user, "<span class='notice'>Volume: [volume] L</span>")
+			to_chat(user, "<span class='notice'>Pressure: [round(pressure,0.01)] kPa</span>")
+
+			for(var/id in air_contents.get_gases())
+				var/gas_concentration = air_contents.get_moles(id)/total_moles
+				to_chat(user, "<span class='notice'>[GLOB.gas_data.names[id]]: [round(gas_concentration*100, 0.01)] % ([round(air_contents.get_moles(id), 0.01)] mol)</span>")
+			to_chat(user, "<span class='notice'>Temperature: [round(temperature - T0C,0.01)] &deg;C ([round(temperature, 0.01)] K)</span>")
+
+		else
+			if(airs.len > 1)
+				to_chat(user, "<span class='notice'>This node is empty!</span>")
+			else
+				to_chat(user, "<span class='notice'>[target] is empty!</span>")
+
+		if(cached_scan_results && cached_scan_results["fusion"]) //notify the user if a fusion reaction was detected
+			var/instability = round(cached_scan_results["fusion"], 0.01)
+			to_chat(user, "<span class='boldnotice'>Large amounts of free neutrons detected in the air indicate that a fusion reaction took place.</span>")
+			to_chat(user, "<span class='notice'>Instability of the last fusion reaction: [instability].</span>")
+	return TRUE
 
 /proc/check_target_facings(mob/living/initator, mob/living/target)
 	/*This can be used to add additional effects on interactions between mobs depending on how the mobs are facing each other, such as adding a crit damage to blows to the back of a guy's head.
@@ -1039,6 +1061,9 @@ B --><-- A
 		. += T.contents
 		if(areas)
 			. |= T.loc
+
+//Better performant than an artisanal proc and more reliable than Turn(). From TGMC.
+#define REVERSE_DIR(dir) ( ((dir & 85) << 1) | ((dir & 170) >> 1) )
 
 //similar function to range(), but with no limitations on the distance; will search spiralling outwards from the center
 /proc/spiral_range(dist=0, center=usr, orange=0)

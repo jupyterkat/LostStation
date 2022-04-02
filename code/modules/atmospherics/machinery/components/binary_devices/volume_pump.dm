@@ -61,7 +61,7 @@ Thus, the two variables affect pump operation are set in New():
 	if((input_starting_pressure < 0.01) || (output_starting_pressure > 9000))
 		return 1
 
-	var/transfer_ratio = min(1, transfer_rate/air1.volume)
+	var/transfer_ratio = min(1, transfer_rate/air1.return_volume())
 
 	var/datum/gas_mixture/removed = air1.remove_ratio(transfer_ratio)
 
@@ -154,7 +154,7 @@ Thus, the two variables affect pump operation are set in New():
 
 	if("set_transfer_rate" in signal.data)
 		var/datum/gas_mixture/air1 = AIR1
-		transfer_rate = clamp(text2num(signal.data["set_transfer_rate"]),0,air1.volume)
+		transfer_rate = clamp(text2num(signal.data["set_transfer_rate"]),0,air1.return_volume())
 
 	if(on != old_on)
 		investigate_log("was turned [on ? "on" : "off"] by a remote signal", INVESTIGATE_ATMOS)

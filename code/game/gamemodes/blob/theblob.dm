@@ -61,7 +61,7 @@
 						result++
 		. -= result - 1
 
-/obj/structure/blob/BlockSuperconductivity()
+/obj/structure/blob/BlockThermalConductivity()
 	return atmosblock
 
 /obj/structure/blob/CanPass(atom/movable/mover, turf/target)

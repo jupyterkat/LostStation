@@ -174,7 +174,7 @@
 			if(autoeject) // Eject if configured.
 				open_machine()
 			return
-		if(air1.gases.len)
+		if(air1.total_moles())
 			if(mob_occupant.bodytemperature < T0C) // Sleepytime. Why? More cryo magic.
 				mob_occupant.Sleeping((mob_occupant.bodytemperature / sleep_factor) * 2000)
 				mob_occupant.Unconscious((mob_occupant.bodytemperature / unconscious_factor) * 2000)
@@ -183,7 +183,7 @@
 				if(reagent_transfer == 0) // Magically transfer reagents. Because cryo magic.
 					beaker.reagents.trans_to(occupant, 1, 10 * efficiency) // Transfer reagents, multiplied because cryo magic.
 					beaker.reagents.reaction(occupant, VAPOR)
-					air1.gases["o2"][MOLES] -= 2 / efficiency // Lets use gas for this.
+					air1.adjust_moles(GAS_O2, - 2 / efficiency) // Lets use gas for this.
 				if(++reagent_transfer >= 10 * efficiency) // Throttle reagent transfer (higher efficiency will transfer the same amount but consume less from the beaker).
 					reagent_transfer = 0
 	return 1
@@ -193,7 +193,7 @@
 	if(!on)
 		return
 	var/datum/gas_mixture/air1 = AIR1
-	if(!NODE1 || !AIR1 || !air1.gases.len || air1.gases["o2"][MOLES] < 5) // Turn off if the machine won't work.
+	if(!NODE1 || !AIR1 || !air1.total_moles() || air1.get_moles(GAS_O2) < 5) // Turn off if the machine won't work.
 		on = FALSE
 		update_icon()
 		return
@@ -202,18 +202,18 @@
 		var/cold_protection = 0
 		var/mob/living/carbon/human/H = occupant
 		if(istype(H))
-			cold_protection = H.get_cold_protection(air1.temperature)
+			cold_protection = H.get_cold_protection(air1.return_temperature())
 
-		var/temperature_delta = air1.temperature - mob_occupant.bodytemperature // The only semi-realistic thing here: share temperature between the cell and the occupant.
+		var/temperature_delta = air1.return_temperature() - mob_occupant.bodytemperature // The only semi-realistic thing here: share temperature between the cell and the occupant.
 		if(abs(temperature_delta) > 1)
 			var/air_heat_capacity = air1.heat_capacity()
 			var/heat = ((1 - cold_protection) / 10 + conduction_coefficient) \
 						* temperature_delta * \
 						(air_heat_capacity * heat_capacity / (air_heat_capacity + heat_capacity))
-			air1.temperature = max(air1.temperature - heat / air_heat_capacity, TCMB)
+			air1.set_temperature(max(air1.return_temperature() - heat / air_heat_capacity, TCMB))
 			mob_occupant.bodytemperature = max(mob_occupant.bodytemperature + heat / heat_capacity, TCMB)
 
-		air1.gases["o2"][MOLES] -= 0.5 / efficiency // Magically consume gas? Why not, we run on cryo magic.
+		air1.adjust_moles(-0.5 / efficiency) // Magically consume gas? Why not, we run on cryo magic.
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/power_change()
 	..()
@@ -325,7 +325,7 @@
 
 
 	var/datum/gas_mixture/air1 = AIR1
-	data["cellTemperature"] = round(air1.temperature)
+	data["cellTemperature"] = round(air1.return_temperature())
 
 	data["isBeakerLoaded"] = beaker ? 1 : 0
 	var beakerContents = list()

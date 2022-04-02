@@ -5,8 +5,8 @@
 	density = FALSE
 	can_unwrench = 1
 	var/on = FALSE
-	var/target_pressure = ONE_ATMOSPHERE
-	var/filter_type = ""
+	var/transfer_rate = MAX_TRANSFER_RATE
+	var/filter_type = null
 	var/frequency = 0
 	var/datum/radio_frequency/radio_connection
 
@@ -75,46 +75,21 @@
 
 	var/output_starting_pressure = air3.return_pressure()
 
-	if(output_starting_pressure >= target_pressure)
+	if(output_starting_pressure >= MAX_OUTPUT_PRESSURE)
 		//No need to mix if target is already full!
 		return 1
 
-	//Calculate necessary moles to transfer using PV=nRT
-
-	var/pressure_delta = target_pressure - output_starting_pressure
-	var/transfer_moles
-
-	if(air1.temperature > 0)
-		transfer_moles = pressure_delta*air3.volume/(air1.temperature * R_IDEAL_GAS_EQUATION)
+	var/transfer_ratio = transfer_rate / air1.return_volume()
 
 	//Actually transfer the gas
 
-	if(transfer_moles > 0)
-		var/datum/gas_mixture/removed = air1.remove(transfer_moles)
+	if(transfer_ratio <= 0)
+		return
 
-		if(!removed)
-			return
-
-		var/filtering = filter_type ? TRUE : FALSE
-
-		if(filtering && !istext(filter_type))
-			WARNING("Wrong gas ID in [src]'s filter_type var. filter_type == [filter_type]")
-			filtering = FALSE
-
-		if(filtering && removed.gases[filter_type])
-			var/datum/gas_mixture/filtered_out = new
-
-			filtered_out.temperature = removed.temperature
-			filtered_out.assert_gas(filter_type)
-			filtered_out.gases[filter_type][MOLES] = removed.gases[filter_type][MOLES]
-
-			removed.gases[filter_type][MOLES] = 0
-			removed.garbage_collect()
-
-			var/datum/gas_mixture/target = (air2.return_pressure() < target_pressure ? air2 : air1) //if there's no room for the filtered gas; just leave it in air1
-			target.merge(filtered_out)
-
-		air3.merge(removed)
+	if(filter_type && air2.return_pressure() <= 9000)
+		air1.scrub_into(air2, transfer_ratio, list(filter_type))
+	if(air3.return_pressure() <= 9000)
+		air1.transfer_ratio_to(air3, transfer_ratio)
 
 	update_parents()
 
@@ -128,15 +103,17 @@
 																	datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "atmos_filter", name, 475, 155, master_ui, state)
+		ui = new(user, src, ui_key, "atmos_filter", name, 475, 195, master_ui, state)
 		ui.open()
 
 /obj/machinery/atmospherics/components/trinary/filter/ui_data()
 	var/data = list()
 	data["on"] = on
-	data["pressure"] = round(target_pressure)
-	data["max_pressure"] = round(MAX_OUTPUT_PRESSURE)
-	data["filter_type"] = filter_type
+	data["max_rate"] = round(MAX_TRANSFER_RATE)
+	data["filter_types"] = list()
+	data["filter_types"] += list(list("name" = "Nothing", "path" = "", "selected" = !filter_type))
+	for(var/id in GLOB.gas_data.ids)
+		data["filter_types"] += list(list("name" = GLOB.gas_data.names[id], "id" = id, "selected" = (id == filter_type)))
 	return data
 
 /obj/machinery/atmospherics/components/trinary/filter/ui_act(action, params)
@@ -147,28 +124,28 @@
 			on = !on
 			investigate_log("was turned [on ? "on" : "off"] by [key_name(usr)]", INVESTIGATE_ATMOS)
 			. = TRUE
-		if("pressure")
-			var/pressure = params["pressure"]
-			if(pressure == "max")
-				pressure = MAX_OUTPUT_PRESSURE
+		if("rate")
+			var/rate = params["rate"]
+			if(rate == "max")
+				rate = MAX_TRANSFER_RATE
 				. = TRUE
-			else if(pressure == "input")
-				pressure = input("New output pressure (0-[MAX_OUTPUT_PRESSURE] kPa):", name, target_pressure) as num|null
-				if(!isnull(pressure) && !..())
+			else if(rate == "input")
+				rate = input("New transfer rate (0-[MAX_TRANSFER_RATE] L/s):", name, transfer_rate) as num|null
+				if(!isnull(rate) && !..())
 					. = TRUE
-			else if(text2num(pressure) != null)
-				pressure = text2num(pressure)
+			else if(text2num(rate) != null)
+				rate = text2num(rate)
 				. = TRUE
 			if(.)
-				target_pressure = clamp(pressure, 0, MAX_OUTPUT_PRESSURE)
-				investigate_log("was set to [target_pressure] kPa by [key_name(usr)]", INVESTIGATE_ATMOS)
+				transfer_rate = clamp(rate, 0, MAX_TRANSFER_RATE)
+				investigate_log("was set to [transfer_rate] L/s by [key_name(usr)]", INVESTIGATE_ATMOS)
 		if("filter")
 			filter_type = ""
 			var/filter_name = "nothing"
 			var/gas = params["mode"]
-			if(gas in GLOB.meta_gas_info)
+			if(gas in GLOB.gas_data.names)
 				filter_type = gas
-				filter_name	= GLOB.meta_gas_info[gas][META_GAS_NAME]
+				filter_name	= GLOB.gas_data.names[gas]
 			investigate_log("was set to filter [filter_name] by [key_name(usr)]", INVESTIGATE_ATMOS)
 			. = TRUE
 	update_icon()
