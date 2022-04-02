@@ -171,30 +171,11 @@
 			else
 				M.forceMove(src)
 
-///Return atom temperature
-/atom/proc/return_temperature()
-	return
-
 /atom/proc/assume_air(datum/gas_mixture/giver)
 	qdel(giver)
 	return null
 
-/atom/proc/assume_air_moles(datum/gas_mixture/giver, moles)
-	return null
-
-/atom/proc/assume_air_ratio(datum/gas_mixture/giver, ratio)
-	return null
-
 /atom/proc/remove_air(amount)
-	return null
-
-/atom/proc/remove_air_ratio(ratio)
-	return null
-
-/atom/proc/transfer_air(datum/gas_mixture/taker, amount)
-	return null
-
-/atom/proc/transfer_air_ratio(datum/gas_mixture/taker, ratio)
 	return null
 
 /atom/proc/return_air()
@@ -202,10 +183,6 @@
 		return loc.return_air()
 	else
 		return null
-
-///Return the air if we can analyze it
-/atom/proc/return_analyzable_air()
-	return null
 
 /atom/proc/check_eye(mob/user)
 	return

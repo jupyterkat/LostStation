@@ -214,6 +214,28 @@ GLOBAL_PROTECT(LastAdminCalledProc)
 	else
 		. = "<font color='blue'>[procname] returned: [!isnull(returnval) ? returnval : "null"]</font>"
 
+
+/client/proc/Cell()
+	set category = "Debug"
+	set name = "Air Status in Location"
+	if(!mob)
+		return
+	var/turf/T = mob.loc
+
+	if(!isturf(T))
+		return
+
+	var/datum/gas_mixture/env = T.return_air()
+	var/list/env_gases = env.gases
+
+	var/t = ""
+	for(var/id in env_gases)
+		if(id in GLOB.hardcoded_gases || env_gases[id][MOLES])
+			t+= "[env_gases[id][GAS_META][META_GAS_NAME]] : [env_gases[id][MOLES]]\n"
+
+	to_chat(usr, t)
+	SSblackbox.add_details("admin_verb","Air Status In Location") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
 /client/proc/cmd_admin_robotize(mob/M in GLOB.mob_list)
 	set category = "Fun"
 	set name = "Make Robot"
@@ -698,7 +720,8 @@ GLOBAL_PROTECT(LastAdminCalledProc)
 		if(Rad.anchored)
 			if(!Rad.loaded_tank)
 				var/obj/item/tank/internals/plasma/Plasma = new/obj/item/tank/internals/plasma(Rad)
-				Plasma.air_contents.set_moles(GAS_PLASMA, 70)
+				Plasma.air_contents.assert_gas("plasma")
+				Plasma.air_contents.gases["plasma"][MOLES] = 70
 				Rad.drainratio = 0
 				Rad.loaded_tank = Plasma
 				Plasma.loc = Rad

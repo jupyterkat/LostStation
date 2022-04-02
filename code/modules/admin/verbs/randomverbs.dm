@@ -1220,11 +1220,17 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 		return
 	if(size == "Cancel")
 		return 0
-	var/datum/gas_mixture/GM = new
 	for(var/turf/open/floor/T in range(size))
-		CHECK_TICK
-		GM.parse_gas_string(T.initial_gas_mix)
-		T.copy_air(GM)
+		if(T.air)
+			var/datum/gas_mixture/A = T.air
+			T.overlays.Cut()
+			if(A)
+				A.assert_gases(arglist(GLOB.hardcoded_gases))
+				A.gases["o2"][MOLES] = MOLES_O2STANDARD
+				A.gases["n2"][MOLES] = MOLES_N2STANDARD
+				A.gases["co2"][MOLES] = 0
+				A.gases["plasma"][MOLES] = 0
+				A.temperature = T20C
 	message_admins("[key_name(src)] cleaned air within [size] tiles.")
 	log_game("[key_name(src)] cleaned air within [size] tiles.")
 
@@ -1239,13 +1245,19 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 	if(size == "Cancel")
 		return 0
 	for(var/turf/open/space/T in range(size))
-		CHECK_TICK
 		T.ChangeTurf(/turf/open/floor/plating)
-	var/datum/gas_mixture/GM = new
+	spawn(1)
 	for(var/turf/open/floor/T in range(size))
-		CHECK_TICK
-		GM.parse_gas_string(T.initial_gas_mix)
-		T.copy_air(GM)
+		if(T.air)
+			var/datum/gas_mixture/A = T.air
+			T.overlays.Cut()
+			if(A)
+				A.assert_gases(arglist(GLOB.hardcoded_gases))
+				A.gases["o2"][MOLES] = MOLES_O2STANDARD
+				A.gases["n2"][MOLES] = MOLES_N2STANDARD
+				A.gases["co2"][MOLES] = 0
+				A.gases["plasma"][MOLES] = 0
+				A.temperature = T20C
 	message_admins("[key_name(src)] filled the hull breaches in [size] tiles.")
 	log_game("[key_name(src)] filled the hull breaches in [size] tiles.")
 

@@ -1372,7 +1372,7 @@
 	},
 /turf/open/floor/plating{
 		heat_capacity = 1e+006;
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a4{
 	has_gravity = 1;
@@ -1401,7 +1401,7 @@
 /turf/open/floor/plasteel/loadingarea{
 		dir = 8;
 	heat_capacity = 1e+006;
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a4{
 	has_gravity = 1;
@@ -1411,7 +1411,7 @@
 /turf/open/floor/plasteel/floorgrime{
 		dir = 8;
 	heat_capacity = 1e+006;
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a4{
 	has_gravity = 1;
@@ -1423,7 +1423,7 @@
 /turf/open/floor/plasteel/red/side{
 		dir = 4;
 	heat_capacity = 1e+006;
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a4{
 	has_gravity = 1;
@@ -1434,7 +1434,7 @@
 /turf/open/floor/plasteel/red/side{
 		dir = 8;
 	heat_capacity = 1e+006;
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a4{
 	has_gravity = 1;
@@ -1452,7 +1452,7 @@
 		dir = 8;
 	heat_capacity = 1e+006;
 	icon_state = "floorscorched2";
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a4{
 	has_gravity = 1;
@@ -1468,7 +1468,7 @@
 	},
 /turf/open/floor/plasteel{
 		heat_capacity = 1e+006;
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a4{
 	has_gravity = 1;
@@ -1486,7 +1486,7 @@
 	},
 /turf/open/floor/plasteel{
 		heat_capacity = 1e+006;
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a4{
 	has_gravity = 1;
@@ -1501,7 +1501,7 @@
 	},
 /turf/open/floor/plasteel{
 		heat_capacity = 1e+006;
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a4{
 	has_gravity = 1;
@@ -1518,7 +1518,7 @@
 /turf/open/floor/plasteel/red/side{
 		dir = 4;
 	heat_capacity = 1e+006;
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a4{
 	has_gravity = 1;
@@ -1620,7 +1620,7 @@
 	},
 /turf/open/floor/plasteel{
 		heat_capacity = 1e+006;
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a4{
 	has_gravity = 1;
@@ -1638,7 +1638,7 @@
 /turf/open/floor/plasteel/red/side{
 		dir = 4;
 	heat_capacity = 1e+006;
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a4{
 	has_gravity = 1;
@@ -1667,7 +1667,7 @@
 /turf/open/floor/plasteel/red/side{
 		dir = 8;
 	heat_capacity = 1e+006;
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a4{
 	has_gravity = 1;
@@ -1700,7 +1700,7 @@
 /turf/open/floor/plasteel/floorgrime{
 		dir = 8;
 	heat_capacity = 1e+006;
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a4{
 	has_gravity = 1;
@@ -1715,7 +1715,7 @@
 /turf/open/floor/plasteel/red/side{
 		dir = 4;
 	heat_capacity = 1e+006;
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a4{
 	has_gravity = 1;
@@ -1826,7 +1826,7 @@
 	},
 /turf/open/floor/plating{
 		heat_capacity = 1e+006;
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a4{
 	has_gravity = 1;
@@ -1848,7 +1848,7 @@
 	},
 /turf/open/floor/plasteel{
 		heat_capacity = 1e+006;
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a4{
 	has_gravity = 1;
@@ -1859,7 +1859,7 @@
 /turf/open/floor/plasteel/red/side{
 		dir = 4;
 	heat_capacity = 1e+006;
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a4{
 	has_gravity = 1;
@@ -1886,7 +1886,7 @@
 /turf/open/floor/plasteel/red/side{
 		dir = 10;
 	heat_capacity = 1e+006;
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a4{
 	has_gravity = 1;
@@ -1896,7 +1896,7 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/red/side{
 		heat_capacity = 1e+006;
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a4{
 	has_gravity = 1;
@@ -1905,7 +1905,7 @@
 "cJ" = (
 /turf/open/floor/plasteel/red/side{
 		heat_capacity = 1e+006;
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a4{
 	has_gravity = 1;
@@ -1923,7 +1923,7 @@
 	},
 /turf/open/floor/plasteel/red/side{
 		heat_capacity = 1e+006;
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a4{
 	has_gravity = 1;
@@ -1934,7 +1934,7 @@
 /turf/open/floor/plasteel/red/side{
 		dir = 6;
 	heat_capacity = 1e+006;
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a4{
 	has_gravity = 1;
@@ -2009,7 +2009,7 @@
 	},
 /turf/open/floor/plasteel{
 		heat_capacity = 1e+006;
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a4{
 	has_gravity = 1;
@@ -2021,7 +2021,7 @@
 		dir = 8;
 	heat_capacity = 1e+006;
 	icon_state = "damaged4";
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a4{
 	has_gravity = 1;
@@ -2044,7 +2044,7 @@
 /turf/open/floor/plasteel/red/side{
 		dir = 4;
 	heat_capacity = 1e+006;
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a4{
 	has_gravity = 1;
@@ -2087,7 +2087,7 @@
 	},
 /turf/open/floor/plasteel{
 		heat_capacity = 1e+006;
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a4{
 	has_gravity = 1;
@@ -2099,7 +2099,7 @@
 		dir = 8;
 	heat_capacity = 1e+006;
 	icon_state = "damaged2";
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a4{
 	has_gravity = 1;
@@ -2111,7 +2111,7 @@
 		dir = 8;
 	heat_capacity = 1e+006;
 	icon_state = "damaged3";
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a4{
 	has_gravity = 1;
@@ -2130,7 +2130,7 @@
 /turf/open/floor/plasteel{
 		dir = 1;
 	heat_capacity = 1e+006;
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a4{
 	has_gravity = 1;
@@ -2217,7 +2217,7 @@
 	},
 /turf/open/floor/plating{
 		heat_capacity = 1e+006;
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a4{
 	has_gravity = 1;
@@ -2244,7 +2244,7 @@
 /turf/open/floor/plasteel{
 		dir = 1;
 	heat_capacity = 1e+006;
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a4{
 	has_gravity = 1;
@@ -2309,7 +2309,7 @@
 /obj/structure/alien/weeds,
 /turf/open/floor/plasteel/loadingarea{
 		heat_capacity = 1e+006;
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a4{
 	has_gravity = 1;
@@ -2322,7 +2322,7 @@
 	},
 /turf/open/floor/plasteel{
 		heat_capacity = 1e+006;
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a4{
 	has_gravity = 1;
@@ -2334,7 +2334,7 @@
 	},
 /turf/open/floor/plasteel{
 		heat_capacity = 1e+006;
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a4{
 	has_gravity = 1;
@@ -2346,7 +2346,7 @@
 		dir = 8;
 	heat_capacity = 1e+006;
 	icon_state = "damaged1";
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a4{
 	has_gravity = 1;
@@ -2363,7 +2363,7 @@
 	broken = 1;
 		heat_capacity = 1e+006;
 	icon_state = "platingdmg3";
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a4{
 	has_gravity = 1;
@@ -2482,7 +2482,7 @@
 	},
 /turf/open/floor/plating{
 		heat_capacity = 1e+006;
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a4{
 	has_gravity = 1;
@@ -2508,7 +2508,7 @@
 	},
 /turf/open/floor/plating{
 		heat_capacity = 1e+006;
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a4{
 	has_gravity = 1;
@@ -2556,7 +2556,7 @@
 	},
 /turf/open/floor/plating{
 		heat_capacity = 1e+006;
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a4{
 	has_gravity = 1;
@@ -2567,7 +2567,7 @@
 	broken = 1;
 		heat_capacity = 1e+006;
 	icon_state = "platingdmg1";
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a4{
 	has_gravity = 1;
@@ -2581,7 +2581,7 @@
 	},
 /turf/open/floor/plating{
 		heat_capacity = 1e+006;
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a4{
 	has_gravity = 1;
@@ -2677,7 +2677,7 @@
 		heat_capacity = 1e+006;
 	icon_plating = "asteroidplating";
 	icon_state = "asteroidplating";
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a4{
 	has_gravity = 1;
@@ -2721,7 +2721,7 @@
 		heat_capacity = 1e+006;
 	icon_plating = "asteroidplating";
 	icon_state = "asteroidplating";
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a4{
 	has_gravity = 1;
@@ -2732,7 +2732,7 @@
 		heat_capacity = 1e+006;
 	icon_plating = "asteroidplating";
 	icon_state = "asteroidplating";
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a3{
 	always_unpowered = 1;
@@ -6791,7 +6791,7 @@
 	broken = 1;
 		heat_capacity = 1e+006;
 	icon_state = "platingdmg1";
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a1{
 	has_gravity = 1;
@@ -7161,7 +7161,7 @@
 		dir = 8;
 	heat_capacity = 1e+006;
 	icon_state = "floorscorched2";
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a1{
 	has_gravity = 1;
@@ -7178,7 +7178,7 @@
 		dir = 8;
 	heat_capacity = 1e+006;
 	icon_state = "damaged1";
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a1{
 	has_gravity = 1;
@@ -7194,7 +7194,7 @@
 /turf/open/floor/plasteel/floorgrime{
 		dir = 8;
 	heat_capacity = 1e+006;
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a1{
 	has_gravity = 1;
@@ -7212,7 +7212,7 @@
 /turf/open/floor/plasteel/floorgrime{
 		dir = 8;
 	heat_capacity = 1e+006;
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a1{
 	has_gravity = 1;
@@ -7229,7 +7229,7 @@
 		dir = 8;
 	heat_capacity = 1e+006;
 	icon_state = "floorscorched1";
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a1{
 	has_gravity = 1;
@@ -7245,7 +7245,7 @@
 	broken = 1;
 		heat_capacity = 1e+006;
 	icon_state = "platingdmg1";
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a1{
 	has_gravity = 1;
@@ -7262,7 +7262,7 @@
 		dir = 8;
 	heat_capacity = 1e+006;
 	icon_state = "damaged3";
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a1{
 	has_gravity = 1;
@@ -7508,7 +7508,7 @@
 		dir = 8;
 	heat_capacity = 1e+006;
 	icon_state = "damaged2";
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a1{
 	has_gravity = 1;
@@ -7532,7 +7532,7 @@
 		dir = 8;
 	heat_capacity = 1e+006;
 	icon_state = "damaged4";
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a1{
 	has_gravity = 1;
@@ -7542,7 +7542,7 @@
 /turf/open/floor/plasteel/floorgrime{
 		dir = 8;
 	heat_capacity = 1e+006;
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a1{
 	has_gravity = 1;
@@ -7554,7 +7554,7 @@
 		dir = 8;
 	heat_capacity = 1e+006;
 	icon_state = "damaged5";
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a1{
 	has_gravity = 1;
@@ -7565,7 +7565,7 @@
 /turf/open/floor/plasteel/floorgrime{
 		dir = 8;
 	heat_capacity = 1e+006;
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a1{
 	has_gravity = 1;
@@ -7691,7 +7691,7 @@
 	broken = 1;
 		heat_capacity = 1e+006;
 	icon_state = "platingdmg3";
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a1{
 	has_gravity = 1;
@@ -7943,7 +7943,7 @@
 /turf/open/floor/plasteel/neutral/corner{
 		dir = 8;
 	heat_capacity = 1e+006;
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a1{
 	has_gravity = 1;
@@ -7954,7 +7954,7 @@
 /turf/open/floor/plasteel/neutral/side{
 		dir = 4;
 	heat_capacity = 1e+006;
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a1{
 	has_gravity = 1;
@@ -8088,7 +8088,7 @@
 "lv" = (
 /turf/open/floor/plasteel/showroomfloor{
 	heat_capacity = 1e+006;
-	initial_temperature = 273.15
+	temperature = 273.15
 	},
 /area/awaycontent/a1{
 	has_gravity = 1;
@@ -8102,7 +8102,7 @@
 	},
 /turf/open/floor/plasteel/showroomfloor{
 	heat_capacity = 1e+006;
-	initial_temperature = 273.15
+	temperature = 273.15
 	},
 /area/awaycontent/a1{
 	has_gravity = 1;
@@ -8117,7 +8117,7 @@
 /obj/item/clothing/under/waiter,
 /turf/open/floor/plasteel/showroomfloor{
 	heat_capacity = 1e+006;
-	initial_temperature = 273.15
+	temperature = 273.15
 	},
 /area/awaycontent/a1{
 	has_gravity = 1;
@@ -8174,7 +8174,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating{
-		initial_temperature = 251
+		temperature = 251
 	},
 /area/awaycontent/a1{
 	has_gravity = 1;
@@ -8230,7 +8230,7 @@
 /turf/open/floor/plasteel/neutral/corner{
 		dir = 8;
 	heat_capacity = 1e+006;
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a1{
 	has_gravity = 1;
@@ -8240,7 +8240,7 @@
 /turf/open/floor/plasteel/neutral/corner{
 		dir = 4;
 	heat_capacity = 1e+006;
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a1{
 	has_gravity = 1;
@@ -8348,7 +8348,7 @@
 /obj/item/gun/ballistic/shotgun/sc_pump,
 /turf/open/floor/plasteel/showroomfloor{
 	heat_capacity = 1e+006;
-	initial_temperature = 273.15
+	temperature = 273.15
 	},
 /area/awaycontent/a1{
 	has_gravity = 1;
@@ -8467,7 +8467,7 @@
 /turf/open/floor/plasteel/neutral/corner{
 		dir = 2;
 	heat_capacity = 1e+006;
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a1{
 	has_gravity = 1;
@@ -8526,7 +8526,7 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/showroomfloor{
 	heat_capacity = 1e+006;
-	initial_temperature = 273.15
+	temperature = 273.15
 	},
 /area/awaycontent/a1{
 	has_gravity = 1;
@@ -8545,7 +8545,7 @@
 /obj/item/reagent_containers/food/snacks/meat/slab/monkey,
 /turf/open/floor/plasteel/showroomfloor{
 	heat_capacity = 1e+006;
-	initial_temperature = 273.15
+	temperature = 273.15
 	},
 /area/awaycontent/a1{
 	has_gravity = 1;
@@ -8564,7 +8564,7 @@
 /obj/item/storage/fancy/egg_box,
 /turf/open/floor/plasteel/showroomfloor{
 	heat_capacity = 1e+006;
-	initial_temperature = 273.15
+	temperature = 273.15
 	},
 /area/awaycontent/a1{
 	has_gravity = 1;
@@ -8655,7 +8655,7 @@
 /turf/open/floor/plasteel/neutral/corner{
 		dir = 2;
 	heat_capacity = 1e+006;
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a1{
 	has_gravity = 1;
@@ -8866,7 +8866,7 @@
 /turf/open/floor/plasteel/neutral/corner{
 		dir = 8;
 	heat_capacity = 1e+006;
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a1{
 	has_gravity = 1;
@@ -8883,7 +8883,7 @@
 		dir = 8;
 	heat_capacity = 1e+006;
 	icon_state = "floorscorched2";
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a1{
 	has_gravity = 1;
@@ -8992,7 +8992,7 @@
 /turf/open/floor/plasteel/neutral/corner{
 		dir = 8;
 	heat_capacity = 1e+006;
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a1{
 	has_gravity = 1;
@@ -9091,7 +9091,7 @@
 		dir = 8;
 	heat_capacity = 1e+006;
 	icon_state = "floorscorched2";
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a1{
 	has_gravity = 1;
@@ -9107,7 +9107,7 @@
 		dir = 8;
 	heat_capacity = 1e+006;
 	icon_state = "damaged2";
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a1{
 	has_gravity = 1;
@@ -9192,7 +9192,7 @@
 		dir = 8;
 	heat_capacity = 1e+006;
 	icon_state = "damaged1";
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a1{
 	has_gravity = 1;
@@ -9239,7 +9239,7 @@
 		heat_capacity = 1e+006;
 	icon_plating = "asteroidplating";
 	icon_state = "asteroidplating";
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a1{
 	has_gravity = 1;
@@ -9261,7 +9261,7 @@
 /obj/machinery/washing_machine,
 /turf/open/floor/plasteel/barber{
 		heat_capacity = 1e+006;
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a1{
 	has_gravity = 1;
@@ -9281,7 +9281,7 @@
 /obj/item/clothing/under/iaa/blacksuit,
 /turf/open/floor/plasteel/barber{
 		heat_capacity = 1e+006;
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a1{
 	has_gravity = 1;
@@ -9298,7 +9298,7 @@
 /turf/open/floor/plasteel/neutral/corner{
 		dir = 2;
 	heat_capacity = 1e+006;
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a1{
 	has_gravity = 1;
@@ -9376,7 +9376,7 @@
 	broken = 1;
 		heat_capacity = 1e+006;
 	icon_state = "platingdmg1";
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a1{
 	has_gravity = 1;
@@ -9392,7 +9392,7 @@
 	broken = 1;
 		heat_capacity = 1e+006;
 	icon_state = "platingdmg3";
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a1{
 	has_gravity = 1;
@@ -9407,7 +9407,7 @@
 /turf/open/floor/plasteel/floorgrime{
 		dir = 8;
 	heat_capacity = 1e+006;
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a1{
 	has_gravity = 1;
@@ -9422,7 +9422,7 @@
 /turf/open/floor/plasteel/floorgrime{
 		dir = 8;
 	heat_capacity = 1e+006;
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a1{
 	has_gravity = 1;
@@ -9501,7 +9501,7 @@
 /turf/open/floor/plasteel/neutral/corner{
 		dir = 8;
 	heat_capacity = 1e+006;
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a1{
 	has_gravity = 1;
@@ -9511,7 +9511,7 @@
 /turf/open/floor/plasteel/neutral/side{
 		dir = 4;
 	heat_capacity = 1e+006;
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a1{
 	has_gravity = 1;
@@ -9571,7 +9571,7 @@
 		dir = 8;
 	heat_capacity = 1e+006;
 	icon_state = "damaged1";
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a1{
 	has_gravity = 1;
@@ -9622,7 +9622,7 @@
 		heat_capacity = 1e+006;
 	icon_plating = "asteroidplating";
 	icon_state = "asteroidplating";
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a1{
 	has_gravity = 1;
@@ -9637,7 +9637,7 @@
 		dir = 8;
 	heat_capacity = 1e+006;
 	icon_state = "floorscorched2";
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a1{
 	has_gravity = 1;
@@ -9651,7 +9651,7 @@
 /turf/open/floor/plasteel/neutral/corner{
 		dir = 2;
 	heat_capacity = 1e+006;
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a1{
 	has_gravity = 1;
@@ -9663,7 +9663,7 @@
 		heat_capacity = 1e+006;
 	icon_plating = "asteroidplating";
 	icon_state = "asteroidplating";
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a3{
 	always_unpowered = 1;
@@ -9692,7 +9692,7 @@
 	},
 /turf/open/floor/plasteel/neutral/side{
 		heat_capacity = 1e+006;
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a1{
 	has_gravity = 1;
@@ -9707,7 +9707,7 @@
 		heat_capacity = 1e+006;
 	icon_plating = "asteroidplating";
 	icon_state = "asteroidplating";
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a3{
 	always_unpowered = 1;
@@ -10154,7 +10154,7 @@
 /turf/open/floor/plasteel/floorgrime{
 		dir = 8;
 	heat_capacity = 1e+006;
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a3{
 	always_unpowered = 1;
@@ -10172,7 +10172,7 @@
 		dir = 8;
 	heat_capacity = 1e+006;
 	icon_state = "damaged1";
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a3{
 	always_unpowered = 1;
@@ -10190,7 +10190,7 @@
 		dir = 8;
 	heat_capacity = 1e+006;
 	icon_state = "damaged2";
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a3{
 	always_unpowered = 1;
@@ -10208,7 +10208,7 @@
 		dir = 8;
 	heat_capacity = 1e+006;
 	icon_state = "damaged3";
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a3{
 	always_unpowered = 1;
@@ -10226,7 +10226,7 @@
 		dir = 8;
 	heat_capacity = 1e+006;
 	icon_state = "damaged4";
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a3{
 	always_unpowered = 1;
@@ -10244,7 +10244,7 @@
 		dir = 8;
 	heat_capacity = 1e+006;
 	icon_state = "damaged5";
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a3{
 	always_unpowered = 1;
@@ -10262,7 +10262,7 @@
 		dir = 8;
 	heat_capacity = 1e+006;
 	icon_state = "floorscorched1";
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a3{
 	always_unpowered = 1;
@@ -10280,7 +10280,7 @@
 		dir = 8;
 	heat_capacity = 1e+006;
 	icon_state = "floorscorched2";
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a3{
 	always_unpowered = 1;
@@ -10323,7 +10323,7 @@
 	broken = 1;
 		heat_capacity = 1e+006;
 	icon_state = "platingdmg1";
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a3{
 	always_unpowered = 1;
@@ -10340,7 +10340,7 @@
 	broken = 1;
 		heat_capacity = 1e+006;
 	icon_state = "platingdmg2";
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a3{
 	always_unpowered = 1;
@@ -10357,7 +10357,7 @@
 	broken = 1;
 		heat_capacity = 1e+006;
 	icon_state = "platingdmg3";
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a3{
 	always_unpowered = 1;
@@ -10374,7 +10374,7 @@
 	burnt = 1;
 		heat_capacity = 1e+006;
 	icon_state = "panelscorched";
-	initial_temperature = 251
+	temperature = 251
 	},
 /area/awaycontent/a3{
 	always_unpowered = 1;
