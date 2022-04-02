@@ -869,7 +869,7 @@ GLOBAL_LIST_INIT(WALLITEMS_INVERSE, typecacheof(list(
 			if((id in GLOB.hardcoded_gases) || gas_concentration > 0.001) //ensures the four primary gases are always shown.
 				to_chat(user, "<span class='notice'>[cached_gases[id][GAS_META][META_GAS_NAME]]: [round(gas_concentration*100, 0.01)] %</span>")
 
-		to_chat(user, "<span class='notice'>Temperature: [round(air_contents.temperature-T0C)] &deg;C</span>")
+		to_chat(user, "<span class='notice'>Temperature: [round(air_contents.return_temperature()-T0C)] &deg;C</span>")
 	else
 		to_chat(user, "<span class='notice'>[target] is empty!</span>")
 	return
@@ -1039,6 +1039,9 @@ B --><-- A
 		. += T.contents
 		if(areas)
 			. |= T.loc
+
+//Better performant than an artisanal proc and more reliable than Turn(). From TGMC.
+#define REVERSE_DIR(dir) ( ((dir & 85) << 1) | ((dir & 170) >> 1) )
 
 //similar function to range(), but with no limitations on the distance; will search spiralling outwards from the center
 /proc/spiral_range(dist=0, center=usr, orange=0)
