@@ -94,10 +94,10 @@
 
 	var/gas_breathed = 0
 	//Partial pressures in our breath
-	var/O2_pp = breath.get_breath_partial_pressure(breath_gases["o2"][MOLES])
-	var/N2_pp = breath.get_breath_partial_pressure(breath_gases["n2"][MOLES])
-	var/Toxins_pp = breath.get_breath_partial_pressure(breath_gases["plasma"][MOLES])
-	var/CO2_pp = breath.get_breath_partial_pressure(breath_gases["co2"][MOLES])
+	var/O2_pp = breath.get_breath_partial_pressure(breath.get_moles(GAS_O2))
+	var/N2_pp = breath.get_breath_partial_pressure(breath.get_moles(GAS_N2))
+	var/Toxins_pp = breath.get_breath_partial_pressure(breath.get_moles(GAS_PLASMA))
+	var/CO2_pp = breath.get_breath_partial_pressure(breath.get_moles(GAS_CO2))
 
 
 	//-- OXY --//
@@ -105,7 +105,7 @@
 	//Too much oxygen! //Yes, some species may not like it.
 	if(safe_oxygen_max)
 		if(O2_pp > safe_oxygen_max)
-			var/ratio = (breath_gases["o2"][MOLES]/safe_oxygen_max) * 10
+			var/ratio = (breath.get_gases(GAS_O2)/safe_oxygen_max) * 10
 			H.apply_damage_type((clamp(ratio, oxy_breath_dam_min, oxy_breath_dam_max)*oxy_damage_multiplier), oxy_damage_type)
 			H.throw_alert("too_much_oxy", /obj/screen/alert/too_much_oxy)
 		else
@@ -114,17 +114,17 @@
 	//Too little oxygen!
 	if(safe_oxygen_min)
 		if(O2_pp < safe_oxygen_min)
-			gas_breathed = handle_too_little_breath(H, O2_pp, safe_oxygen_min, breath_gases["o2"][MOLES])
+			gas_breathed = handle_too_little_breath(H, O2_pp, safe_oxygen_min, breath.get_moles(GAS_O2))
 			H.throw_alert("not_enough_oxy", /obj/screen/alert/not_enough_oxy)
 		else
 			H.failed_last_breath = FALSE
 			H.adjustOxyLoss(-5)
-			gas_breathed = breath_gases["o2"][MOLES]
+			gas_breathed = breath.get_moles(GAS_O2)
 			H.clear_alert("not_enough_oxy")
 
 	//Exhale
-	breath_gases["o2"][MOLES] -= gas_breathed
-	breath_gases["co2"][MOLES] += gas_breathed
+	breath.adjust_moles(GAS_O2, -gas_breathed)
+	breath.adjust_moles(GAS_CO2, gas_breathed)
 	gas_breathed = 0
 
 	//-- Nitrogen --//
@@ -132,7 +132,7 @@
 	//Too much nitrogen!
 	if(safe_nitro_max)
 		if(N2_pp > safe_nitro_max)
-			var/ratio = (breath_gases["n2"][MOLES]/safe_nitro_max) * 10
+			var/ratio = (breath.get_moles(GAS_N2)/safe_nitro_max) * 10
 			H.apply_damage_type(clamp(ratio, nitro_breath_dam_min, nitro_breath_dam_max), nitro_damage_type)
 			H.throw_alert("too_much_nitro", /obj/screen/alert/too_much_nitro)
 		else
@@ -141,17 +141,17 @@
 	//Too little nitrogen!
 	if(safe_nitro_min)
 		if(N2_pp < safe_nitro_min)
-			gas_breathed = handle_too_little_breath(H, N2_pp, safe_nitro_min, breath_gases["n2"][MOLES])
+			gas_breathed = handle_too_little_breath(H, N2_pp, safe_nitro_min, breath.get_moles(GAS_N2))
 			H.throw_alert("nitro", /obj/screen/alert/not_enough_nitro)
 		else
 			H.failed_last_breath = FALSE
 			H.adjustOxyLoss(-5)
-			gas_breathed = breath_gases["n2"][MOLES]
+			gas_breathed = breath.get_moles(breath.get_moles(GAS_N2))
 			H.clear_alert("nitro")
 
 	//Exhale
-	breath_gases["n2"][MOLES] -= gas_breathed
-	breath_gases["co2"][MOLES] += gas_breathed
+	breath.adjust_moles(GAS_N2, -gas_breathed)
+	breath.adjust_moles(GAS_CO2, gas_breathed)
 	gas_breathed = 0
 
 	//-- CO2 --//
@@ -177,17 +177,17 @@
 	//Too little CO2!
 	if(safe_co2_min)
 		if(CO2_pp < safe_co2_min)
-			gas_breathed = handle_too_little_breath(H, CO2_pp, safe_co2_min, breath_gases["co2"][MOLES])
+			gas_breathed = handle_too_little_breath(H, CO2_pp, safe_co2_min, breath.get_moles(GAS_CO2))
 			H.throw_alert("not_enough_co2", /obj/screen/alert/not_enough_co2)
 		else
 			H.failed_last_breath = FALSE
 			H.adjustOxyLoss(-5)
-			gas_breathed = breath_gases["co2"][MOLES]
+			gas_breathed = breath.get_moles(GAS_CO2)
 			H.clear_alert("not_enough_co2")
 
 	//Exhale
-	breath_gases["co2"][MOLES] -= gas_breathed
-	breath_gases["o2"][MOLES] += gas_breathed
+	breath.adjust_moles(GAS_CO2, -gas_breathed)
+	breath.adjust_moles(GAS_O2, gas_breathed)
 	gas_breathed = 0
 
 
@@ -196,7 +196,7 @@
 	//Too much toxins!
 	if(safe_toxins_max)
 		if(Toxins_pp > safe_toxins_max)
-			var/ratio = (breath_gases["plasma"][MOLES]/safe_toxins_max) * 10
+			var/ratio = (breath.get_moles(GAS_PLASMA)/safe_toxins_max) * 10
 			H.apply_damage_type(clamp(ratio, tox_breath_dam_min, tox_breath_dam_max), tox_damage_type)
 			H.throw_alert("too_much_tox", /obj/screen/alert/too_much_tox)
 		else
@@ -206,17 +206,17 @@
 	//Too little toxins!
 	if(safe_toxins_min)
 		if(Toxins_pp < safe_toxins_min)
-			gas_breathed = handle_too_little_breath(H, Toxins_pp, safe_toxins_min, breath_gases["plasma"][MOLES])
+			gas_breathed = handle_too_little_breath(H, Toxins_pp, safe_toxins_min, breath.get_moles(GAS_PLASMA))
 			H.throw_alert("not_enough_tox", /obj/screen/alert/not_enough_tox)
 		else
 			H.failed_last_breath = FALSE
 			H.adjustOxyLoss(-5)
-			gas_breathed = breath_gases["plasma"][MOLES]
+			gas_breathed = breath.get_moles(GAS_PLASMA)
 			H.clear_alert("not_enough_tox")
 
 	//Exhale
-	breath_gases["plasma"][MOLES] -= gas_breathed
-	breath_gases["co2"][MOLES] += gas_breathed
+	breath.adjust_moles(GAS_PLASMA, -gas_breathed)
+	breath.adjust_moles(GAS_CO2, gas_breathed)
 	gas_breathed = 0
 
 
@@ -226,7 +226,7 @@
 
 	// N2O
 
-		var/SA_pp = breath.get_breath_partial_pressure(breath_gases["n2o"][MOLES])
+		var/SA_pp = breath.get_breath_partial_pressure(breath.get_moles(GAS_NITROUS))
 		if(SA_pp > SA_para_min) // Enough to make us stunned for a bit
 			H.Unconscious(60) // 60 gives them one second to wake up and run away a bit!
 			if(SA_pp > SA_sleep_min) // Enough to make us sleep as well
@@ -237,7 +237,7 @@
 
 	// BZ
 
-		var/bz_pp = breath.get_breath_partial_pressure(breath_gases["bz"][MOLES])
+		var/bz_pp = breath.get_breath_partial_pressure(breath.get_moles(GAS_BZ))
 		if(bz_pp > BZ_trip_balls_min)
 			H.hallucination += 20
 			if(prob(33))
@@ -245,7 +245,6 @@
 		else if(bz_pp > 0.01)
 			H.hallucination += 5//Removed at 2 per tick so this will slowly build up
 		handle_breath_temperature(breath, H)
-		breath.garbage_collect()
 
 	return TRUE
 
@@ -268,7 +267,7 @@
 
 
 /obj/item/organ/lungs/proc/handle_breath_temperature(datum/gas_mixture/breath, mob/living/carbon/human/H) // called by human/life, handles temperatures
-	var/breath_temperature = breath.temperature
+	var/breath_temperature = breath.return_temperature()
 
 	var/species_traits = list()
 	if(H && H.dna && H.dna.species && H.dna.species.species_traits)

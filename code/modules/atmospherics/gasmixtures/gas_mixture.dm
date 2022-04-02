@@ -303,3 +303,15 @@ get_true_breath_pressure(pp) --> gas_pp = pp/breath_pp*total_moles()
 /datum/gas_mixture/proc/vv_react(datum/holder)
 	return react(holder)
 
+//Takes the amount of the gas you want to PP as an argument
+//So I don't have to do some hacky switches/defines/magic strings
+//eg:
+//Tox_PP = get_partial_pressure(gas_mixture.toxins)
+//O2_PP = get_partial_pressure(gas_mixture.oxygen)
+
+/datum/gas_mixture/proc/get_breath_partial_pressure(gas_pressure)
+	return (gas_pressure * R_IDEAL_GAS_EQUATION * return_temperature()) / BREATH_VOLUME
+//inverse
+/datum/gas_mixture/proc/get_true_breath_pressure(partial_pressure)
+	return (partial_pressure * BREATH_VOLUME) / (R_IDEAL_GAS_EQUATION * returntemperature())
+
