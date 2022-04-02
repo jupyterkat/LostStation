@@ -127,17 +127,17 @@
 	desc = "A sheet of solid ice. Looks slippery."
 	icon = 'icons/turf/snow.dmi'
 	icon_state = "ice"
-	initial_temperature = 180
+	temperature = 180
 	baseturf = /turf/open/floor/plating/ice
 	slowdown = 1
 	wet = TURF_WET_PERMAFROST
 	attachment_holes = FALSE
 
 /turf/open/floor/plating/ice/colder
-	initial_temperature = 140
+	temperature = 140
 
 /turf/open/floor/plating/ice/temperate
-	initial_temperature = 255.37
+	temperature = 255.37
 
 /turf/open/floor/plating/ice/break_tile()
 	return
@@ -151,11 +151,11 @@
 	desc = "A section of plating covered in a light layer of snow."
 	icon = 'icons/turf/snow.dmi'
 	icon_state = "snowplating"
-	initial_temperature = 180
+	temperature = 180
 	attachment_holes = FALSE
 
 /turf/open/floor/plating/snowed/colder
-	initial_temperature = 140
+	temperature = 140
 
 /turf/open/floor/plating/snowed/temperatre
-	initial_temperature = 255.37
+	temperature = 255.37

@@ -1126,7 +1126,7 @@
 /area/awaymission/snowdin)
 "cR" = (
 /turf/open/floor/plating{
-	initial_temperature = 220
+	temperature = 220
 	},
 /area/awaymission/snowdin/igloo)
 "cS" = (
@@ -1134,19 +1134,19 @@
 	amount = 25
 	},
 /turf/open/floor/plating{
-	initial_temperature = 220
+	temperature = 220
 	},
 /area/awaymission/snowdin/igloo)
 "cT" = (
 /obj/item/shovel,
 /turf/open/floor/plating{
-	initial_temperature = 220
+	temperature = 220
 	},
 /area/awaymission/snowdin/igloo)
 "cU" = (
 /obj/effect/landmark/awaystart,
 /turf/open/floor/plating{
-	initial_temperature = 220
+	temperature = 220
 	},
 /area/awaymission/snowdin/igloo)
 "cV" = (
@@ -1156,14 +1156,14 @@
 "cW" = (
 /obj/structure/mineral_door/wood,
 /turf/open/floor/plating{
-	initial_temperature = 220
+	temperature = 220
 	},
 /area/awaymission/snowdin/igloo)
 "cX" = (
 /obj/structure/table/wood,
 /obj/item/device/flashlight/flare/torch,
 /turf/open/floor/plating{
-	initial_temperature = 220
+	temperature = 220
 	},
 /area/awaymission/snowdin/igloo)
 "cY" = (
@@ -1181,13 +1181,13 @@
 "db" = (
 /obj/item/clothing/shoes/winterboots,
 /turf/open/floor/plating{
-	initial_temperature = 220
+	temperature = 220
 	},
 /area/awaymission/snowdin/igloo)
 "dc" = (
 /obj/effect/decal/remains/human,
 /turf/open/floor/plating{
-	initial_temperature = 220
+	temperature = 220
 	},
 /area/awaymission/snowdin/igloo)
 "dd" = (
@@ -1195,25 +1195,25 @@
 	dir = 8
 	},
 /turf/open/floor/plating{
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/post)
 "de" = (
 /turf/open/floor/plating{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/post)
 "df" = (
 /turf/open/floor/plating{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
 	icon = 'icons/turf/snow.dmi';
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/post)
 "dg" = (
 /turf/open/floor/plating{
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/post)
 "dh" = (
@@ -1221,13 +1221,13 @@
 /obj/item/storage/toolbox/emergency,
 /turf/open/floor/plating{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/post)
 "di" = (
 /obj/item/clothing/suit/hooded/wintercoat,
 /turf/open/floor/plating{
-	initial_temperature = 220
+	temperature = 220
 	},
 /area/awaymission/snowdin/igloo)
 "dj" = (
@@ -1236,7 +1236,7 @@
 	id = "snow"
 	},
 /turf/open/floor/plating{
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/post)
 "dk" = (
@@ -1244,18 +1244,18 @@
 /obj/item/storage/toolbox/mechanical,
 /turf/open/floor/plating{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/post)
 "dl" = (
 /turf/open/floor/plating/asteroid/snow{
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/dungeon1)
 "dm" = (
 /obj/structure/flora/rock/icy,
 /turf/open/floor/plating/asteroid/snow{
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/dungeon1)
 "dn" = (
@@ -1265,26 +1265,26 @@
 /turf/open/floor/plating{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
 	icon = 'icons/turf/snow.dmi';
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/post)
 "do" = (
 /mob/living/simple_animal/hostile/skeleton/ice,
 /turf/open/floor/plating/asteroid/snow{
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/dungeon1)
 "dp" = (
 /turf/open/floor/plating{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
 	icon = 'icons/turf/snow.dmi';
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin)
 "dq" = (
 /obj/structure/flora/rock/pile/icy,
 /turf/open/floor/plating/asteroid/snow{
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/dungeon1)
 "dr" = (
@@ -1293,7 +1293,7 @@
 /obj/item/clothing/mask/breath,
 /turf/open/floor/plating{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/post)
 "ds" = (
@@ -1306,7 +1306,7 @@
 /turf/open/floor/plating{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
 	icon = 'icons/turf/snow.dmi';
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/post)
 "dt" = (
@@ -1314,7 +1314,7 @@
 /turf/open/floor/plating{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
 	icon = 'icons/turf/snow.dmi';
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/post)
 "du" = (
@@ -1322,28 +1322,28 @@
 	dir = 4
 	},
 /turf/open/floor/plating/asteroid/snow{
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/post)
 "dv" = (
 /turf/open/floor/plating/asteroid/snow{
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/post)
 "dw" = (
 /obj/structure/barricade/wooden,
 /turf/open/floor/plating/asteroid/snow{
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/post)
 "dx" = (
 /turf/open/lava{
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/dungeon1)
 "dy" = (
 /turf/open/floor/plating/asteroid/basalt{
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/dungeon1)
 "dz" = (
@@ -1354,14 +1354,14 @@
 /turf/open/floor/plating{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
 	icon = 'icons/turf/snow.dmi';
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/post)
 "dB" = (
 /obj/item/clothing/shoes/winterboots,
 /turf/open/floor/plating{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/post)
 "dC" = (
@@ -1370,7 +1370,7 @@
 /turf/open/floor/plating{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
 	icon = 'icons/turf/snow.dmi';
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/post)
 "dD" = (
@@ -1382,13 +1382,13 @@
 /obj/effect/spawner/lootdrop/snowdin/dungeonmisc,
 /turf/open/floor/plating{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/post)
 "dF" = (
 /mob/living/simple_animal/hostile/skeleton/eskimo,
 /turf/open/floor/plating/asteroid/snow{
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/dungeon1)
 "dG" = (
@@ -1397,7 +1397,7 @@
 /obj/effect/spawner/lootdrop/snowdin/dungeonlite,
 /turf/open/floor/plating{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/post)
 "dH" = (
@@ -1410,7 +1410,7 @@
 /turf/open/floor/plating{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
 	icon = 'icons/turf/snow.dmi';
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/post)
 "dI" = (
@@ -1419,7 +1419,7 @@
 	},
 /turf/open/floor/plating{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/post)
 "dJ" = (
@@ -1445,7 +1445,7 @@
 /obj/effect/spawner/lootdrop/snowdin/dungeonmid,
 /turf/open/floor/plasteel{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
-	initial_temperature = 140;
+	temperature = 140;
 	wet = 0
 	},
 /area/awaymission/snowdin/post)
@@ -1455,7 +1455,7 @@
 	},
 /turf/open/floor/plasteel{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
-	initial_temperature = 140;
+	temperature = 140;
 	wet = 0
 	},
 /area/awaymission/snowdin/post)
@@ -1479,13 +1479,13 @@
 /area/awaymission/snowdin/post)
 "dP" = (
 /turf/open/floor/plating/asteroid/basalt{
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/post)
 "dQ" = (
 /turf/open/floor/plasteel{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
-	initial_temperature = 140;
+	temperature = 140;
 	wet = 0
 	},
 /area/awaymission/snowdin/post)
@@ -1498,7 +1498,7 @@
 /obj/effect/spawner/lootdrop/snowdin/dungeonmisc,
 /turf/open/floor/plating{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/post)
 "dS" = (
@@ -1511,7 +1511,7 @@
 /area/awaymission/snowdin/post)
 "dT" = (
 /turf/open/lava{
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/post)
 "dU" = (
@@ -1549,7 +1549,7 @@
 	},
 /turf/open/floor/plating{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/post)
 "dZ" = (
@@ -1573,7 +1573,7 @@
 	},
 /turf/open/floor/plasteel/stairs/right{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/post)
 "eb" = (
@@ -1583,7 +1583,7 @@
 	},
 /turf/open/floor/plasteel/stairs/left{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/post)
 "ec" = (
@@ -1591,19 +1591,19 @@
 /turf/open/floor/plating{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
 	icon = 'icons/turf/snow.dmi';
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/post)
 "ed" = (
 /turf/open/floor/plasteel/stairs/right{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/post)
 "ee" = (
 /turf/open/floor/plasteel/stairs/left{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/post)
 "ef" = (
@@ -1612,7 +1612,7 @@
 /turf/open/floor/plating{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
 	icon = 'icons/turf/snow.dmi';
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/post)
 "eg" = (
@@ -1620,7 +1620,7 @@
 /turf/open/floor/plating{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
 	icon = 'icons/turf/snow.dmi';
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/post)
 "eh" = (
@@ -1629,27 +1629,27 @@
 "ei" = (
 /mob/living/simple_animal/hostile/poison/giant_spider/hunter/ice,
 /turf/open/floor/plating/asteroid/snow{
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/dungeon1)
 "ej" = (
 /mob/living/simple_animal/hostile/poison/giant_spider/nurse/ice,
 /turf/open/floor/plating/asteroid/snow{
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/dungeon1)
 "ek" = (
 /obj/structure/spider/stickyweb,
 /obj/structure/spider/stickyweb,
 /turf/open/floor/plating/asteroid/snow{
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/dungeon1)
 "el" = (
 /obj/structure/spider/stickyweb,
 /obj/effect/spawner/lootdrop/snowdin/dungeonheavy,
 /turf/open/floor/plating/asteroid/snow{
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/dungeon1)
 "em" = (
@@ -1661,7 +1661,7 @@
 /obj/structure/spider/stickyweb,
 /mob/living/simple_animal/hostile/poison/giant_spider/nurse/ice,
 /turf/open/floor/plating/asteroid/snow{
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/dungeon1)
 "eo" = (
@@ -1671,7 +1671,7 @@
 "ep" = (
 /obj/structure/spider/stickyweb,
 /turf/open/floor/plating/asteroid/snow{
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/dungeon1)
 "eq" = (
@@ -1685,7 +1685,7 @@
 /obj/structure/spider/stickyweb,
 /obj/structure/barricade/wooden,
 /turf/open/floor/plating/asteroid/snow{
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/dungeon1)
 "et" = (
@@ -1700,20 +1700,20 @@
 "ev" = (
 /obj/structure/barricade/wooden,
 /turf/open/floor/plating/asteroid/snow{
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/dungeon1)
 "ew" = (
 /obj/structure/spider/stickyweb,
 /mob/living/simple_animal/hostile/poison/giant_spider/hunter/ice,
 /turf/open/floor/plating/asteroid/snow{
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/dungeon1)
 "ex" = (
 /mob/living/simple_animal/hostile/skeleton,
 /turf/open/floor/plating/asteroid/snow{
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/dungeon1)
 "ey" = (
@@ -1791,7 +1791,7 @@
 /mob/living/simple_animal/hostile/skeleton/eskimo,
 /turf/open/floor/plasteel/darkbrown{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
-	initial_temperature = 180
+	temperature = 180
 	},
 /area/awaymission/snowdin/post)
 "eN" = (
@@ -1848,7 +1848,7 @@
 /obj/structure/closet/crate,
 /obj/effect/spawner/lootdrop/snowdin/dungeonmid,
 /turf/open/floor/plating/asteroid/snow{
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/dungeon1)
 "eW" = (
@@ -1873,7 +1873,7 @@
 "eZ" = (
 /obj/vehicle/atv,
 /turf/open/floor/plating/asteroid/snow{
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/dungeon1)
 "fa" = (
@@ -1967,7 +1967,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating/asteroid/snow{
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/post)
 "fp" = (
@@ -2022,7 +2022,7 @@
 "fx" = (
 /mob/living/simple_animal/hostile/bear/snow,
 /turf/open/floor/plating/asteroid/snow{
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/dungeon1)
 "fy" = (
@@ -2092,7 +2092,7 @@
 /obj/structure/door_assembly/door_assembly_centcom,
 /turf/open/floor/plasteel{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
-	initial_temperature = 140;
+	temperature = 140;
 	wet = 0
 	},
 /area/awaymission/snowdin/post)
@@ -2118,7 +2118,7 @@
 /turf/open/floor/plating{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
 	icon = 'icons/turf/snow.dmi';
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/post)
 "fN" = (
@@ -2146,7 +2146,7 @@
 /turf/open/floor/plating{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
 	icon = 'icons/turf/snow.dmi';
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/post)
 "fR" = (
@@ -2160,7 +2160,7 @@
 /obj/item/storage/toolbox/mechanical,
 /turf/open/floor/plasteel{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
-	initial_temperature = 140;
+	temperature = 140;
 	wet = 0
 	},
 /area/awaymission/snowdin/post)
@@ -2174,7 +2174,7 @@
 "fU" = (
 /turf/open/floor/plasteel/cafeteria{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/post)
 "fV" = (
@@ -2183,14 +2183,14 @@
 /obj/item/key,
 /turf/open/floor/plasteel/cafeteria{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/post)
 "fW" = (
 /obj/structure/chair/stool,
 /turf/open/floor/plasteel/cafeteria{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/post)
 "fX" = (
@@ -2207,7 +2207,7 @@
 /obj/effect/spawner/lootdrop/snowdin/dungeonlite,
 /turf/open/floor/plasteel{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
-	initial_temperature = 140;
+	temperature = 140;
 	wet = 0
 	},
 /area/awaymission/snowdin/post)
@@ -2222,7 +2222,7 @@
 /obj/item/storage/box/donkpockets,
 /turf/open/floor/plasteel/cafeteria{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/post)
 "gb" = (
@@ -2288,7 +2288,7 @@
 "gk" = (
 /obj/structure/barricade/wooden,
 /turf/open/floor/plating/asteroid/basalt{
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/dungeon1)
 "gl" = (
@@ -2314,7 +2314,7 @@
 	},
 /turf/open/floor/plasteel/stairs/left{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/cave)
 "go" = (
@@ -2324,19 +2324,19 @@
 	},
 /turf/open/floor/plasteel/stairs/right{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/cave)
 "gp" = (
 /turf/open/floor/plasteel/stairs/left{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/cave)
 "gq" = (
 /turf/open/floor/plasteel/stairs/right{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/cave)
 "gr" = (
@@ -2348,7 +2348,7 @@
 /turf/open/floor/plating{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
 	icon = 'icons/turf/snow.dmi';
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/post)
 "gt" = (
@@ -2395,13 +2395,13 @@
 /obj/structure/table,
 /turf/open/floor/plasteel/darkbrown{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
-	initial_temperature = 180
+	temperature = 180
 	},
 /area/awaymission/snowdin/post)
 "gz" = (
 /turf/open/floor/plasteel/darkbrown{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
-	initial_temperature = 180
+	temperature = 180
 	},
 /area/awaymission/snowdin/post)
 "gA" = (
@@ -2421,7 +2421,7 @@
 	},
 /turf/open/floor/plasteel/darkbrown{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
-	initial_temperature = 180
+	temperature = 180
 	},
 /area/awaymission/snowdin/post)
 "gC" = (
@@ -2430,7 +2430,7 @@
 	},
 /turf/open/floor/plasteel/darkbrown{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
-	initial_temperature = 180
+	temperature = 180
 	},
 /area/awaymission/snowdin/post)
 "gD" = (
@@ -2444,7 +2444,7 @@
 /obj/item/pen,
 /turf/open/floor/plasteel/darkbrown{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
-	initial_temperature = 180
+	temperature = 180
 	},
 /area/awaymission/snowdin/post)
 "gF" = (
@@ -2452,7 +2452,7 @@
 /obj/item/paper_bin,
 /turf/open/floor/plasteel/darkbrown{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
-	initial_temperature = 180
+	temperature = 180
 	},
 /area/awaymission/snowdin/post)
 "gG" = (
@@ -2470,7 +2470,7 @@
 /obj/structure/filingcabinet,
 /turf/open/floor/plasteel/darkbrown{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
-	initial_temperature = 180
+	temperature = 180
 	},
 /area/awaymission/snowdin/post)
 "gI" = (
@@ -2479,7 +2479,7 @@
 	},
 /turf/open/floor/plasteel/darkbrown{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
-	initial_temperature = 180
+	temperature = 180
 	},
 /area/awaymission/snowdin/post)
 "gJ" = (
@@ -2528,7 +2528,7 @@
 /obj/machinery/door/airlock/glass,
 /turf/open/floor/plasteel/cafeteria{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
-	initial_temperature = 180
+	temperature = 180
 	},
 /area/awaymission/snowdin/post)
 "gQ" = (
@@ -2564,14 +2564,14 @@
 "gU" = (
 /turf/open/floor/plasteel/cafeteria{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
-	initial_temperature = 180
+	temperature = 180
 	},
 /area/awaymission/snowdin/post)
 "gV" = (
 /obj/structure/table,
 /turf/open/floor/plasteel/cafeteria{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
-	initial_temperature = 180
+	temperature = 180
 	},
 /area/awaymission/snowdin/post)
 "gW" = (
@@ -2642,7 +2642,7 @@
 /turf/open/floor/plating{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
 	icon = 'icons/turf/snow.dmi';
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/post)
 "hf" = (
@@ -2659,7 +2659,7 @@
 	},
 /turf/open/floor/plasteel/cafeteria{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
-	initial_temperature = 180
+	temperature = 180
 	},
 /area/awaymission/snowdin/post)
 "hh" = (
@@ -2726,7 +2726,7 @@
 	},
 /turf/open/floor/carpet{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
-	initial_temperature = 180
+	temperature = 180
 	},
 /area/awaymission/snowdin/post)
 "hp" = (
@@ -2740,13 +2740,13 @@
 	},
 /turf/open/floor/carpet{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
-	initial_temperature = 180
+	temperature = 180
 	},
 /area/awaymission/snowdin/post)
 "hr" = (
 /turf/open/floor/carpet{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
-	initial_temperature = 180
+	temperature = 180
 	},
 /area/awaymission/snowdin/post)
 "hs" = (
@@ -2758,7 +2758,7 @@
 "ht" = (
 /mob/living/simple_animal/hostile/skeleton/eskimo,
 /turf/open/floor/plating{
-	initial_temperature = 220
+	temperature = 220
 	},
 /area/awaymission/snowdin/igloo)
 "hu" = (
@@ -2838,7 +2838,7 @@
 /turf/open/floor/plating{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
 	icon = 'icons/turf/snow.dmi';
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/post)
 "hK" = (
@@ -2937,7 +2937,7 @@
 /turf/open/floor/plating{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
 	icon = 'icons/turf/snow.dmi';
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/post)
 "ia" = (
@@ -2962,7 +2962,7 @@
 "id" = (
 /mob/living/simple_animal/hostile/skeleton/templar,
 /turf/open/floor/plating/asteroid/snow{
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/dungeon1)
 "ie" = (
@@ -3008,7 +3008,7 @@
 /turf/open/floor/plating{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
 	icon = 'icons/turf/snow.dmi';
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/dungeon1)
 "ik" = (
@@ -3188,7 +3188,7 @@
 "iH" = (
 /obj/structure/statue/snow/snowman,
 /turf/open/floor/plating/asteroid/snow{
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/dungeon1)
 "iI" = (
@@ -3209,7 +3209,7 @@
 /turf/open/floor/plating{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
 	icon = 'icons/turf/snow.dmi';
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin)
 "iL" = (
@@ -3217,7 +3217,7 @@
 /turf/open/floor/plating{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
 	icon = 'icons/turf/snow.dmi';
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin)
 "iM" = (
@@ -3232,7 +3232,7 @@
 "iO" = (
 /obj/effect/spawner/lootdrop/snowdin/dungeonheavy,
 /turf/open/floor/plating/asteroid/snow{
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/dungeon1)
 "iP" = (
@@ -3247,7 +3247,7 @@
 /turf/open/floor/plating{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
 	icon = 'icons/turf/snow.dmi';
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/sekret)
 "iR" = (
@@ -3317,7 +3317,7 @@
 /turf/open/floor/plating{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
 	icon = 'icons/turf/snow.dmi';
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin)
 "jb" = (
@@ -3341,14 +3341,14 @@
 /turf/open/floor/plating{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
 	icon = 'icons/turf/snow.dmi';
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/sekret)
 "je" = (
 /turf/open/floor/plating{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
 	icon = 'icons/turf/snow.dmi';
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/sekret)
 "jf" = (
@@ -3398,7 +3398,7 @@
 /turf/open/floor/plating{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
 	icon = 'icons/turf/snow.dmi';
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin)
 "jm" = (
@@ -3654,7 +3654,7 @@
 /turf/open/floor/plating{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
 	icon = 'icons/turf/snow.dmi';
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin)
 "jU" = (
@@ -3744,7 +3744,7 @@
 /turf/open/floor/plating{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
 	icon = 'icons/turf/snow.dmi';
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin)
 "ke" = (
@@ -3756,7 +3756,7 @@
 /turf/open/floor/plating{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
 	icon = 'icons/turf/snow.dmi';
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin)
 "kg" = (
@@ -3916,7 +3916,7 @@
 /turf/open/floor/plating{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
 	icon = 'icons/turf/snow.dmi';
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin)
 "kB" = (
@@ -4178,7 +4178,7 @@
 /turf/open/floor/plating{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
 	icon = 'icons/turf/snow.dmi';
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin)
 "lj" = (
@@ -4375,7 +4375,7 @@
 /turf/open/floor/plating{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
 	icon = 'icons/turf/snow.dmi';
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin)
 "lJ" = (
@@ -4440,7 +4440,7 @@
 /turf/open/floor/plating{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
 	icon = 'icons/turf/snow.dmi';
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin)
 "lR" = (
@@ -4716,7 +4716,7 @@
 /turf/open/floor/plating{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
 	icon = 'icons/turf/snow.dmi';
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin)
 "mz" = (
@@ -4726,7 +4726,7 @@
 /turf/open/floor/plating{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
 	icon = 'icons/turf/snow.dmi';
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin)
 "mA" = (
@@ -4771,13 +4771,13 @@
 /turf/open/floor/plating{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
 	icon = 'icons/turf/snow.dmi';
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin)
 "mF" = (
 /obj/machinery/porta_turret/syndicate,
 /turf/open/floor/plating/asteroid/snow{
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin/dungeon1)
 "mG" = (
@@ -4817,7 +4817,7 @@
 /turf/open/floor/plating{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
 	icon = 'icons/turf/snow.dmi';
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin)
 "mL" = (
@@ -4834,7 +4834,7 @@
 /turf/open/floor/plating{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
 	icon = 'icons/turf/snow.dmi';
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin)
 "mN" = (
@@ -4863,7 +4863,7 @@
 /turf/open/floor/plating{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
 	icon = 'icons/turf/snow.dmi';
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin)
 "mQ" = (
@@ -4897,7 +4897,7 @@
 /turf/open/floor/plating{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
 	icon = 'icons/turf/snow.dmi';
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin)
 "mU" = (
@@ -4985,7 +4985,7 @@
 /turf/open/floor/plating{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
 	icon = 'icons/turf/snow.dmi';
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin)
 "ng" = (
@@ -4995,7 +4995,7 @@
 /turf/open/floor/plating{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
 	icon = 'icons/turf/snow.dmi';
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin)
 "nh" = (
@@ -5052,7 +5052,7 @@
 /turf/open/floor/plating{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
 	icon = 'icons/turf/snow.dmi';
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin)
 "no" = (
@@ -5062,7 +5062,7 @@
 /turf/open/floor/plating{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
 	icon = 'icons/turf/snow.dmi';
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin)
 "np" = (
@@ -5196,7 +5196,7 @@
 /turf/open/floor/plating{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
 	icon = 'icons/turf/snow.dmi';
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin)
 "nG" = (
@@ -5206,7 +5206,7 @@
 /turf/open/floor/plating{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
 	icon = 'icons/turf/snow.dmi';
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin)
 "nH" = (
@@ -5226,7 +5226,7 @@
 /turf/open/floor/plating{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
 	icon = 'icons/turf/snow.dmi';
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin)
 "nK" = (
@@ -5252,7 +5252,7 @@
 /turf/open/floor/plating{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
 	icon = 'icons/turf/snow.dmi';
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin)
 "nO" = (
@@ -5261,7 +5261,7 @@
 /turf/open/floor/plating{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
 	icon = 'icons/turf/snow.dmi';
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin)
 "nP" = (
@@ -5269,7 +5269,7 @@
 /turf/open/floor/plating{
 	baseturf = /turf/open/floor/plating/asteroid/snow;
 	icon = 'icons/turf/snow.dmi';
-	initial_temperature = 140
+	temperature = 140
 	},
 /area/awaymission/snowdin)
 "nQ" = (

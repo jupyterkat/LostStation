@@ -1115,7 +1115,7 @@
 /turf/open/floor/plating/asteroid{
 		heat_capacity = 1e+006;
 	name = "Cave Floor";
-	initial_temperature = 351.9
+	temperature = 351.9
 	},
 /area/awaycontent/a7{
 	always_unpowered = 1;
@@ -1130,7 +1130,7 @@
 /turf/open/floor/plating/asteroid{
 		heat_capacity = 1e+006;
 	name = "Cave Floor";
-	initial_temperature = 351.9
+	temperature = 351.9
 	},
 /area/awaycontent/a7{
 	always_unpowered = 1;
@@ -2695,7 +2695,7 @@
 		heat_capacity = 1e+006;
 	icon_plating = "asteroidplating";
 	icon_state = "asteroidplating";
-	initial_temperature = 363.9
+	temperature = 363.9
 	},
 /area/awaycontent/a7{
 	always_unpowered = 1;
@@ -2876,7 +2876,7 @@
 /turf/open/floor/plating/asteroid{
 		heat_capacity = 1e+006;
 	name = "Cave Floor";
-	initial_temperature = 363.9
+	temperature = 363.9
 	},
 /area/awaycontent/a7{
 	always_unpowered = 1;
@@ -3281,7 +3281,7 @@
 /turf/open/floor/plating/asteroid{
 		heat_capacity = 1e+006;
 	name = "Cave Floor";
-	initial_temperature = 363.9
+	temperature = 363.9
 	},
 /area/awaycontent/a1{
 	has_gravity = 1;
@@ -3576,7 +3576,7 @@
 /turf/open/floor/plating/asteroid{
 		heat_capacity = 1e+006;
 	name = "Cave Floor";
-	initial_temperature = 363.9
+	temperature = 363.9
 	},
 /area/awaycontent/a1{
 	has_gravity = 1;
@@ -3830,7 +3830,7 @@
 /turf/open/floor/plating/asteroid{
 		heat_capacity = 1e+006;
 	name = "Cave Floor";
-	initial_temperature = 363.9
+	temperature = 363.9
 	},
 /area/awaycontent/a7{
 	always_unpowered = 1;
@@ -4063,7 +4063,7 @@
 /turf/open/floor/plating/asteroid{
 		heat_capacity = 1e+006;
 	name = "Cave Floor";
-	initial_temperature = 363.9
+	temperature = 363.9
 	},
 /area/awaycontent/a2{
 	has_gravity = 1;
@@ -4399,7 +4399,7 @@
 /turf/open/floor/plating/asteroid{
 		heat_capacity = 1e+006;
 	name = "Cave Floor";
-	initial_temperature = 363.9
+	temperature = 363.9
 	},
 /area/awaycontent/a5{
 	has_gravity = 1;
@@ -4412,7 +4412,7 @@
 /turf/open/floor/plating/asteroid{
 		heat_capacity = 1e+006;
 	name = "Cave Floor";
-	initial_temperature = 363.9
+	temperature = 363.9
 	},
 /area/awaycontent/a2{
 	has_gravity = 1;
@@ -4455,7 +4455,7 @@
 /turf/open/floor/plating/asteroid{
 		heat_capacity = 1e+006;
 	name = "Cave Floor";
-	initial_temperature = 363.9
+	temperature = 363.9
 	},
 /area/awaycontent/a2{
 	has_gravity = 1;
@@ -6130,7 +6130,7 @@
 /turf/open/floor/plating/asteroid{
 		heat_capacity = 1e+006;
 	name = "Cave Floor";
-	initial_temperature = 363.9
+	temperature = 363.9
 	},
 /area/awaycontent/a6{
 	has_gravity = 1;
@@ -6176,7 +6176,7 @@
 /turf/open/floor/plating/asteroid{
 		heat_capacity = 1e+006;
 	name = "Cave Floor";
-	initial_temperature = 363.9
+	temperature = 363.9
 	},
 /area/awaycontent/a5{
 	has_gravity = 1;
@@ -8389,7 +8389,7 @@
 /turf/open/floor/plating/asteroid{
 		heat_capacity = 1e+006;
 	name = "Cave Floor";
-	initial_temperature = 363.9
+	temperature = 363.9
 	},
 /area/awaycontent/a6{
 	has_gravity = 1;
@@ -10521,7 +10521,7 @@
 /turf/open/floor/plating/asteroid{
 		heat_capacity = 1e+006;
 	name = "Cave Floor";
-	initial_temperature = 363.9
+	temperature = 363.9
 	},
 /area/awaycontent/a7{
 	always_unpowered = 1;
@@ -10539,7 +10539,7 @@
 /turf/open/floor/plating/asteroid{
 		heat_capacity = 1e+006;
 	name = "Cave Floor";
-	initial_temperature = 363.9
+	temperature = 363.9
 	},
 /area/awaycontent/a7{
 	always_unpowered = 1;
@@ -10558,7 +10558,7 @@
 /turf/open/floor/plating/asteroid{
 		heat_capacity = 1e+006;
 	name = "Cave Floor";
-	initial_temperature = 363.9
+	temperature = 363.9
 	},
 /area/awaycontent/a3{
 	has_gravity = 1;
@@ -10944,7 +10944,7 @@
 /turf/open/floor/plating/asteroid{
 		heat_capacity = 1e+006;
 	name = "Cave Floor";
-	initial_temperature = 363.9
+	temperature = 363.9
 	},
 /area/awaycontent/a7{
 	always_unpowered = 1;
@@ -11280,7 +11280,7 @@
 /turf/open/floor/plating/asteroid{
 		heat_capacity = 1e+006;
 	name = "Cave Floor";
-	initial_temperature = 363.9
+	temperature = 363.9
 	},
 /area/awaycontent/a7{
 	always_unpowered = 1;
@@ -11298,7 +11298,7 @@
 /turf/open/floor/plating/asteroid{
 		heat_capacity = 1e+006;
 	name = "Cave Floor";
-	initial_temperature = 363.9
+	temperature = 363.9
 	},
 /area/awaycontent/a7{
 	always_unpowered = 1;
@@ -11316,7 +11316,7 @@
 /turf/open/floor/plating/asteroid{
 		heat_capacity = 1e+006;
 	name = "Cave Floor";
-	initial_temperature = 363.9
+	temperature = 363.9
 	},
 /area/awaycontent/a7{
 	always_unpowered = 1;
@@ -14043,7 +14043,7 @@
 /turf/open/floor/plating/asteroid{
 		heat_capacity = 1e+006;
 	name = "Cave Floor";
-	initial_temperature = 363.9
+	temperature = 363.9
 	},
 /area/awaycontent/a2{
 	has_gravity = 1;
@@ -14872,7 +14872,7 @@
 /turf/open/floor/plating/asteroid{
 		heat_capacity = 1e+006;
 	name = "Cave Floor";
-	initial_temperature = 363.9
+	temperature = 363.9
 	},
 /area/awaycontent/a7{
 	always_unpowered = 1;
@@ -15176,7 +15176,7 @@
 /turf/open/floor/plating/asteroid{
 		heat_capacity = 1e+006;
 	name = "Cave Floor";
-	initial_temperature = 363.9
+	temperature = 363.9
 	},
 /area/awaycontent/a5{
 	has_gravity = 1;
@@ -15557,7 +15557,7 @@
 /turf/open/floor/plating/asteroid{
 		heat_capacity = 1e+006;
 	name = "Cave Floor";
-	initial_temperature = 363.9
+	temperature = 363.9
 	},
 /area/awaycontent/a4{
 	has_gravity = 1;
@@ -16933,7 +16933,7 @@
 	},
 /turf/open/floor/plasteel/asteroid{
 	heat_capacity = 1e+006;
-	initial_temperature = 273.15
+	temperature = 273.15
 	},
 /area/awaycontent/a4{
 	has_gravity = 1;
@@ -16946,7 +16946,7 @@
 /turf/open/floor/plating/asteroid{
 		heat_capacity = 1e+006;
 	name = "Cave Floor";
-	initial_temperature = 363.9
+	temperature = 363.9
 	},
 /area/awaycontent/a4{
 	has_gravity = 1;
@@ -16957,7 +16957,7 @@
 /turf/open/floor/plating/asteroid{
 		heat_capacity = 1e+006;
 	name = "Cave Floor";
-	initial_temperature = 363.9
+	temperature = 363.9
 	},
 /area/awaycontent/a7{
 	always_unpowered = 1;
@@ -16973,7 +16973,7 @@
 /turf/open/floor/plating/asteroid{
 		heat_capacity = 1e+006;
 	name = "Cave Floor";
-	initial_temperature = 363.9
+	temperature = 363.9
 	},
 /area/awaycontent/a7{
 	always_unpowered = 1;
@@ -16991,7 +16991,7 @@
 /turf/open/floor/plating/asteroid{
 		heat_capacity = 1e+006;
 	name = "Cave Floor";
-	initial_temperature = 363.9
+	temperature = 363.9
 	},
 /area/awaycontent/a7{
 	always_unpowered = 1;
@@ -17008,7 +17008,7 @@
 /turf/open/floor/plating/asteroid{
 		heat_capacity = 1e+006;
 	name = "Cave Floor";
-	initial_temperature = 363.9
+	temperature = 363.9
 	},
 /area/awaycontent/a7{
 	always_unpowered = 1;
@@ -17026,7 +17026,7 @@
 /turf/open/floor/plating/asteroid{
 		heat_capacity = 1e+006;
 	name = "Cave Floor";
-	initial_temperature = 363.9
+	temperature = 363.9
 	},
 /area/awaycontent/a7{
 	always_unpowered = 1;
@@ -17043,7 +17043,7 @@
 /turf/open/floor/plating/asteroid{
 		heat_capacity = 1e+006;
 	name = "Cave Floor";
-	initial_temperature = 363.9
+	temperature = 363.9
 	},
 /area/awaycontent/a7{
 	always_unpowered = 1;
@@ -17059,7 +17059,7 @@
 /turf/open/floor/plating/asteroid{
 		heat_capacity = 1e+006;
 	name = "Cave Floor";
-	initial_temperature = 363.9
+	temperature = 363.9
 	},
 /area/awaycontent/a7{
 	always_unpowered = 1;
@@ -17076,7 +17076,7 @@
 /turf/open/floor/plating/asteroid{
 		heat_capacity = 1e+006;
 	name = "Cave Floor";
-	initial_temperature = 363.9
+	temperature = 363.9
 	},
 /area/awaycontent/a7{
 	always_unpowered = 1;
@@ -17093,7 +17093,7 @@
 /turf/open/floor/plating/asteroid{
 		heat_capacity = 1e+006;
 	name = "Cave Floor";
-	initial_temperature = 363.9
+	temperature = 363.9
 	},
 /area/awaycontent/a7{
 	always_unpowered = 1;
@@ -17109,7 +17109,7 @@
 /turf/open/floor/plating/asteroid{
 		heat_capacity = 1e+006;
 	name = "Cave Floor";
-	initial_temperature = 363.9
+	temperature = 363.9
 	},
 /area/awaycontent/a7{
 	always_unpowered = 1;
@@ -17125,7 +17125,7 @@
 /turf/open/floor/plating/asteroid{
 		heat_capacity = 1e+006;
 	name = "Cave Floor";
-	initial_temperature = 363.9
+	temperature = 363.9
 	},
 /area/awaycontent/a7{
 	always_unpowered = 1;
@@ -17142,7 +17142,7 @@
 /turf/open/floor/plating/asteroid{
 		heat_capacity = 1e+006;
 	name = "Cave Floor";
-	initial_temperature = 363.9
+	temperature = 363.9
 	},
 /area/awaycontent/a7{
 	always_unpowered = 1;
@@ -17159,7 +17159,7 @@
 /turf/open/floor/plating/asteroid{
 		heat_capacity = 1e+006;
 	name = "Cave Floor";
-	initial_temperature = 363.9
+	temperature = 363.9
 	},
 /area/awaycontent/a7{
 	always_unpowered = 1;
@@ -17176,7 +17176,7 @@
 /turf/open/floor/plating/asteroid{
 		heat_capacity = 1e+006;
 	name = "Cave Floor";
-	initial_temperature = 363.9
+	temperature = 363.9
 	},
 /area/awaycontent/a7{
 	always_unpowered = 1;
@@ -17193,7 +17193,7 @@
 /turf/open/floor/plating/asteroid{
 		heat_capacity = 1e+006;
 	name = "Cave Floor";
-	initial_temperature = 363.9
+	temperature = 363.9
 	},
 /area/awaycontent/a7{
 	always_unpowered = 1;
@@ -17210,7 +17210,7 @@
 /turf/open/floor/plating/asteroid{
 		heat_capacity = 1e+006;
 	name = "Cave Floor";
-	initial_temperature = 363.9
+	temperature = 363.9
 	},
 /area/awaycontent/a7{
 	always_unpowered = 1;
@@ -17226,7 +17226,7 @@
 /turf/open/floor/plating/asteroid{
 		heat_capacity = 1e+006;
 	name = "Cave Floor";
-	initial_temperature = 363.9
+	temperature = 363.9
 	},
 /area/awaycontent/a7{
 	always_unpowered = 1;
@@ -17242,7 +17242,7 @@
 /turf/open/floor/plating/asteroid{
 		heat_capacity = 1e+006;
 	name = "Cave Floor";
-	initial_temperature = 363.9
+	temperature = 363.9
 	},
 /area/awaycontent/a7{
 	always_unpowered = 1;
@@ -17258,7 +17258,7 @@
 /turf/open/floor/plating/asteroid{
 		heat_capacity = 1e+006;
 	name = "Cave Floor";
-	initial_temperature = 363.9
+	temperature = 363.9
 	},
 /area/awaycontent/a7{
 	always_unpowered = 1;
@@ -17275,7 +17275,7 @@
 /turf/open/floor/plating/asteroid{
 		heat_capacity = 1e+006;
 	name = "Cave Floor";
-	initial_temperature = 363.9
+	temperature = 363.9
 	},
 /area/awaycontent/a7{
 	always_unpowered = 1;
@@ -17291,7 +17291,7 @@
 /turf/open/floor/plating/asteroid{
 		heat_capacity = 1e+006;
 	name = "Cave Floor";
-	initial_temperature = 363.9
+	temperature = 363.9
 	},
 /area/awaycontent/a7{
 	always_unpowered = 1;
@@ -17308,7 +17308,7 @@
 /turf/open/floor/plating/asteroid{
 		heat_capacity = 1e+006;
 	name = "Cave Floor";
-	initial_temperature = 363.9
+	temperature = 363.9
 	},
 /area/awaycontent/a7{
 	always_unpowered = 1;
@@ -17326,7 +17326,7 @@
 /turf/open/floor/plating/asteroid{
 		heat_capacity = 1e+006;
 	name = "Cave Floor";
-	initial_temperature = 363.9
+	temperature = 363.9
 	},
 /area/awaycontent/a7{
 	always_unpowered = 1;
@@ -17343,7 +17343,7 @@
 /turf/open/floor/plating/asteroid{
 		heat_capacity = 1e+006;
 	name = "Cave Floor";
-	initial_temperature = 363.9
+	temperature = 363.9
 	},
 /area/awaycontent/a7{
 	always_unpowered = 1;
@@ -17360,7 +17360,7 @@
 /turf/open/floor/plating/asteroid{
 		heat_capacity = 1e+006;
 	name = "Cave Floor";
-	initial_temperature = 363.9
+	temperature = 363.9
 	},
 /area/awaycontent/a7{
 	always_unpowered = 1;
@@ -17378,7 +17378,7 @@
 /turf/open/floor/plating/asteroid{
 		heat_capacity = 1e+006;
 	name = "Cave Floor";
-	initial_temperature = 363.9
+	temperature = 363.9
 	},
 /area/awaycontent/a7{
 	always_unpowered = 1;
@@ -17396,7 +17396,7 @@
 /turf/open/floor/plating/asteroid{
 		heat_capacity = 1e+006;
 	name = "Cave Floor";
-	initial_temperature = 363.9
+	temperature = 363.9
 	},
 /area/awaycontent/a7{
 	always_unpowered = 1;
@@ -17413,7 +17413,7 @@
 /turf/open/floor/plating/asteroid{
 		heat_capacity = 1e+006;
 	name = "Cave Floor";
-	initial_temperature = 363.9
+	temperature = 363.9
 	},
 /area/awaycontent/a7{
 	always_unpowered = 1;

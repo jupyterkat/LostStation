@@ -93,15 +93,47 @@
 			flash_color(L, flash_color = "#C80000", flash_time = 10)
 
 /turf/open/Initalize_Atmos(times_fired)
-	if(!blocks_air)
-		if(!istype(air,/datum/gas_mixture/turf))
-			air = new(2500,src)
-		air.copy_from_turf(src)
-		update_air_ref(planetary_atmos ? 1 : 2)
-
+	excited = 0
 	update_visuals()
 
-	CalculateAdjacentTurfs()
+	current_cycle = times_fired
+
+	//cache some vars
+	var/list/atmos_adjacent_turfs = src.atmos_adjacent_turfs
+
+	for(var/direction in GLOB.cardinals)
+		var/turf/open/enemy_tile = get_step(src, direction)
+		if(!istype(enemy_tile))
+			if (atmos_adjacent_turfs)
+				atmos_adjacent_turfs -= enemy_tile
+			continue
+		var/datum/gas_mixture/enemy_air = enemy_tile.return_air()
+
+		//only check this turf, if it didn't check us when it was initalized
+		if(enemy_tile.current_cycle < times_fired)
+			if(CANATMOSPASS(src, enemy_tile))
+				LAZYINITLIST(atmos_adjacent_turfs)
+				LAZYINITLIST(enemy_tile.atmos_adjacent_turfs)
+				atmos_adjacent_turfs[enemy_tile] = TRUE
+				enemy_tile.atmos_adjacent_turfs[src] = TRUE
+			else
+				if (atmos_adjacent_turfs)
+					atmos_adjacent_turfs -= enemy_tile
+				if (enemy_tile.atmos_adjacent_turfs)
+					enemy_tile.atmos_adjacent_turfs -= src
+				UNSETEMPTY(enemy_tile.atmos_adjacent_turfs)
+				continue
+		else
+			if (!atmos_adjacent_turfs || !atmos_adjacent_turfs[enemy_tile])
+				continue
+
+		if(!excited && air.compare(enemy_air))
+			//testing("Active turf found. Return value of compare(): [is_active]")
+			excited = TRUE
+			SSair.active_turfs |= src
+	UNSETEMPTY(atmos_adjacent_turfs)
+	if (atmos_adjacent_turfs)
+		src.atmos_adjacent_turfs = atmos_adjacent_turfs
 
 /turf/open/proc/GetHeatCapacity()
 	. = air.heat_capacity()
