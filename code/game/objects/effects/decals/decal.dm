@@ -5,16 +5,16 @@
 	layer = TURF_LAYER
 
 /obj/effect/decal/ex_act(severity, target)
-	destroy_effect()
+	qdel(src)
 
 /obj/effect/decal/fire_act(exposed_temperature, exposed_volume)
 	if(!(resistance_flags & FIRE_PROOF)) //non fire proof decal or being burned by lava
-		destroy_effect()
+		qdel(src)
 
 /obj/effect/decal/HandleTurfChange(turf/T)
 	..()
 	if(T == loc && (isspaceturf(T) || isclosedturf(T) || islava(T) || istype(T, /turf/open/water) || istype(T, /turf/open/chasm)))
-		destroy_effect()
+		qdel(src)
 
 /obj/effect/turf_decal
 	var/group = TURF_DECAL_PAINT

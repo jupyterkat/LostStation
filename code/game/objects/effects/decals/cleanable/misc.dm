@@ -104,7 +104,7 @@
 							H.nutrition += nutri_check.nutriment_factor * nutri_check.volume
 							reagents.remove_reagent(nutri_check.id,nutri_check.volume)
 			reagents.trans_to(H, reagents.total_volume)
-			destroy_effect()
+			qdel(src)
 
 /obj/effect/decal/cleanable/vomit/old
 	name = "crusty dried vomit"
@@ -157,7 +157,7 @@
 
 /obj/effect/decal/cleanable/shreds/ex_act(severity, target)
 	if(severity == 1) //so shreds created during an explosion aren't deleted by the explosion.
-		destroy_effect()
+		qdel(src)
 
 /obj/effect/decal/cleanable/shreds/Initialize()
 	pixel_x = rand(-10, 10)
