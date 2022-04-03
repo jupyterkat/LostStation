@@ -1104,10 +1104,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if("mutant_color")
 					var/new_mutantcolor = input(user, "Choose your character's alien/mutant color:", "Character Preference") as color|null
 					if(new_mutantcolor)
-						var/temp_hsv = RGBtoHSV(new_mutantcolor)
-						if(new_mutantcolor == "#000000")
-							features["mcolor"] = pref_species.default_color
-							features["mcolor"] = sanitize_hexcolor(new_mutantcolor)
+						features["mcolor"] = pref_species.default_color
+						features["mcolor"] = sanitize_hexcolor(new_mutantcolor)
 	
 
 				if("tail_unathi")

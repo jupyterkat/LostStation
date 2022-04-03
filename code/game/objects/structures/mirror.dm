@@ -158,8 +158,6 @@
 			if(MUTCOLORS in H.dna.species.species_traits)
 				var/new_mutantcolor = input(user, "Choose your skin color:", "Race change") as color|null
 				if(new_mutantcolor)
-					var/temp_hsv = RGBtoHSV(new_mutantcolor)
-
 					H.dna.features["mcolor"] = sanitize_hexcolor(new_mutantcolor)
 
 

@@ -233,7 +233,6 @@ GLOBAL_LIST(external_rsc_urls)
 	prefs.last_ip = address				//these are gonna be used for banning
 	prefs.last_id = computer_id			//these are gonna be used for banning
 	fps = prefs.clientfps
-	sethotkeys(1)						//set hoykeys from preferences (from_pref = 1)
 
 	log_access("Login: [key_name(src)] from [address ? address : "localhost"]-[computer_id] || BYOND v[byond_version]")
 	var/alert_mob_dupe_login = FALSE
@@ -261,18 +260,7 @@ GLOBAL_LIST(external_rsc_urls)
 
 	. = ..()	//calls mob.Login()
 
-	#if DM_VERSION >= 512
-	if (num2text(byond_build) in GLOB.blacklisted_builds)
-		log_access("Failed login: blacklisted byond version")
-		to_chat(src, "<span class='userdanger'>Your version of byond is blacklisted.</span>")
-		to_chat(src, "<span class='danger'>Byond build [byond_build] ([byond_version].[byond_build]) has been blacklisted for the following reason: [GLOB.blacklisted_builds[num2text(byond_build)]].</span>")
-		to_chat(src, "<span class='danger'>Please download a new version of byond. if [byond_build] is the latest, you can go to http://www.byond.com/download/build/ to download other versions.</span>")
-		if(connecting_admin)
-			to_chat(src, "<span class='danger'>As an admin, you are being allowed to continue using this version, but please consider changing byond versions.</span>")
-		else
-			qdel(src)
-			return
-	#endif
+	set_macros()
 
 	chatOutput.start() // Starts the chat
 

@@ -34,7 +34,7 @@
 
 /obj/structure/mineral_door/Move()
 	var/turf/T = loc
-	..()
+	. = ..()
 	move_update_air(T)
 
 /obj/structure/mineral_door/CollidedWith(atom/movable/AM)
