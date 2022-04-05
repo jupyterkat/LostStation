@@ -35,4 +35,11 @@
 			C._RemoveFromParent()
 			qdel(C)
 		dc.Cut()
+
+	var/list/focusers = src.focusers
+	if(focusers)
+		for(var/i in 1 to focusers.len)
+			var/mob/M = focusers[i]
+			M.set_focus(M)
+	
 	return QDEL_HINT_QUEUE

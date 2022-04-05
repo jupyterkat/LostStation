@@ -77,6 +77,7 @@
 
 /obj/machinery/field/containment/Move()
 	qdel(src)
+	return FALSE
 
 
 

@@ -201,6 +201,14 @@
 	name = "Bedhead 3"
 	icon_state = "hair_bedheadv3"
 
+/datum/sprite_accessory/hair/bedheadlong
+	name = "Bedhead Long"
+	icon_state = "hair_long_bedhead"
+
+/datum/sprite_accessory/hair/bedheadlongfloor
+	name = "Bedhead floor Legnth"
+	icon_state = "hair_floorlength_bedhead"
+
 /datum/sprite_accessory/hair/messy
 	name = "Messy"
 	icon_state = "hair_messy"

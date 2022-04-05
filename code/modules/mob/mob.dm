@@ -28,6 +28,7 @@
 		GLOB.dead_mob_list += src
 	else
 		GLOB.living_mob_list += src
+	set_focus(src)
 	prepare_huds()
 	can_ride_typecache = typecacheof(can_ride_typecache)
 	for(var/v in GLOB.active_alternate_appearances)
