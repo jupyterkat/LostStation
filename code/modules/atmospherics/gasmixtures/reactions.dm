@@ -748,8 +748,10 @@
 /datum/gas_reaction/freon/init_reqs()
 	min_requirements = list(GAS_FREON = MOLES_GAS_VISIBLE)
 
-/datum/gas_reaction/freon/react(datum/gas_mixture/air, turf/open/location)
-	. = NO_REACTION
+/datum/gas_reaction/freon/react(datum/gas_mixture/air, datum/holder)
+	var/turf/open/location = holder
+	if(!istype(location))
+		return NO_REACTION
 	if(location && location.freon_gas_act())
 		. = REACTING
 
