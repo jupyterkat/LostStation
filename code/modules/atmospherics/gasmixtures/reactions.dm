@@ -746,7 +746,7 @@
 	id = "freon"
 
 /datum/gas_reaction/freon/init_reqs()
-	min_requirements = list(GAS_FREON = MOLES_PLASMA_VISIBLE)
+	min_requirements = list(GAS_FREON = MOLES_GAS_VISIBLE)
 
 /datum/gas_reaction/freon/react(datum/gas_mixture/air, turf/open/location)
 	. = NO_REACTION
