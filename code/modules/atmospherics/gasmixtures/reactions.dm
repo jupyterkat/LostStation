@@ -737,3 +737,41 @@
 		return list("success" = FALSE, "message" = "Miasma sterilization not stopping due to water vapor correctly!")
 	return ..()
 
+//Oracle-specific Reactions
+
+//freon: does a freezy thing?
+/datum/gas_reaction/freon
+	priority = 1
+	name = "Freon"
+	id = "freon"
+
+/datum/gas_reaction/freon/init_reqs()
+	min_requirements = list(GAS_FREON = MOLES_PLASMA_VISIBLE)
+
+/datum/gas_reaction/freon/react(datum/gas_mixture/air, turf/open/location)
+	. = NO_REACTION
+	if(location && location.freon_gas_act())
+		. = REACTING
+
+//agent b: converts hot co2 and agent b to oxygen. requires plasma as a catalyst. endothermic
+/datum/gas_reaction/agent_b
+	priority = 2
+	name = "Agent B"
+	id = "agent_b"
+
+/datum/gas_reaction/agent_b/init_reqs()
+	min_requirements = list(
+		"TEMP" = 900,
+		GAS_O2B = MINIMUM_HEAT_CAPACITY,
+		GAS_PLASMA = MINIMUM_HEAT_CAPACITY,
+		GAS_CO2 = MINIMUM_HEAT_CAPACITY
+	)
+
+
+/datum/gas_reaction/agent_b/react(datum/gas_mixture/air)
+	var/reaction_rate = min(air.get_moles(GAS_CO2)*0.75, air.get_moles(GAS_PLASMA)*0.25, air.get_moles(GAS_O2B)*0.05)
+	if(reaction_rate == 0)
+		return NO_REACTION
+	air.adjust_moles(GAS_CO2, -reaction_rate)
+	air.adjust_moles(GAS_O2B, -reaction_rate*0.05)
+	return REACTING
