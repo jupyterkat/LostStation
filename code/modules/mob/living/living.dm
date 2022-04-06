@@ -453,15 +453,15 @@
 		if(pulling.anchored)
 			stop_pulling()
 			return
-
-		var/pull_dir = get_dir(src, pulling)
-		if(get_dist(src, pulling) > 1 || ((pull_dir - 1) & pull_dir)) //puller and pullee more than one tile away or in diagonal position
-			pulling.Move(T, get_dir(pulling, T)) //the pullee tries to reach our previous position
-			if(pulling && get_dist(src, pulling) > 1) //the pullee couldn't keep up
-				stop_pulling()
-
-	if(pulledby && moving_diagonally != FIRST_DIAG_STEP && get_dist(src, pulledby) > 1)//separated from our puller and not in the middle of a diagonal move.
-		pulledby.stop_pulling()
+		else
+			var/pull_dir = get_dir(src, pulling)
+			//puller and pullee more than one tile away or in diagonal position
+			if(get_dist(src, pulling) > 1 || (moving_diagonally != SECOND_DIAG_STEP && ((pull_dir - 1) & pull_dir)))
+				pulling.Move(T, get_dir(pulling, T)) //the pullee tries to reach our previous position
+				if(pulling && get_dist(src, pulling) > 1) //the pullee couldn't keep up
+					stop_pulling()
+			if(pulledby && moving_diagonally != FIRST_DIAG_STEP && get_dist(src, pulledby) > 1)//separated from our puller and not in the middle of a diagonal move.
+				pulledby.stop_pulling()
 
 	if (s_active && !(CanReach(s_active,view_only = TRUE)))
 		s_active.close(src)

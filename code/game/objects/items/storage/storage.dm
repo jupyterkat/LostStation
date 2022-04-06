@@ -60,6 +60,20 @@
 
 			add_fingerprint(usr)
 
+/obj/item/storage/AltClick(datum/source, mob/user)
+	if(ismob(usr)) //all the check for item manipulation are in other places, you can safely open any storages as anything and its not buggy, i checked
+		var/mob/M = usr
+
+		if (istype(usr.loc, /obj/mecha)) // stops inventory actions in a mech
+			return
+
+		// this must come before the screen objects only block, dunno why it wasn't before
+		if(M.CanReach(src,view_only = TRUE))
+			orient2hud(M)
+			if(M.s_active)
+				M.s_active.close(M)
+			show_to(M)
+			return
 
 /obj/item/storage/MouseDrop_T(atom/movable/O, mob/user)
 	if(isitem(O))

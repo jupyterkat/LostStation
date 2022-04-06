@@ -34,9 +34,9 @@
 /client/Move(n, direct)
 	if(world.time < move_delay) //do not move anything ahead of this check please
 		return FALSE
-	else
-		next_move_dir_add = 0
-		next_move_dir_sub = 0
+	
+	next_move_dir_add = 0
+	next_move_dir_sub = 0
 	var/old_move_delay = move_delay
 	move_delay = world.time+world.tick_lag //this is here because Move() can now be called mutiple times per tick
 	if(!mob || !mob.loc)
@@ -83,7 +83,7 @@
 		return FALSE
 	//We are now going to move
 	var/add_delay = mob.movement_delay()
-	if(old_move_delay + (add_delay*MOVEMENT_DELAY_BUFFER_DELTA) + MOVEMENT_DELAY_BUFFER > world.time)
+	if(old_move_delay + world.tick_lag > world.time)
 		move_delay = old_move_delay
 	else
 		move_delay = world.time
@@ -103,8 +103,6 @@
 
 	. = ..()
 
-	if((direct & (direct - 1)) && mob.loc == n) //moved diagonally successfully
-		add_delay *= 2
 	if(mob.loc != oldloc)
 		move_delay += add_delay
 	if(.) // If mob is null here, we deserve the runtime
