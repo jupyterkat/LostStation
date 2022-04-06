@@ -48,12 +48,12 @@
 	if((istype(WT) && WT.welding))
 		if(!status)
 			status = TRUE
-			GLOB.bombers += "[key_name(user)] welded a single tank bomb. Temp: [bombtank.air_contents.temperature-T0C]"
-			message_admins("[key_name_admin(user)] welded a single tank bomb. Temp: [bombtank.air_contents.temperature-T0C]")
+			GLOB.bombers += "[key_name(user)] welded a single tank bomb. Temp: [bombtank.air_contents.return_temperature()-T0C]"
+			message_admins("[key_name_admin(user)] welded a single tank bomb. Temp: [bombtank.air_contents.return_temperature()-T0C]")
 			to_chat(user, "<span class='notice'>A pressure hole has been bored to [bombtank] valve. \The [bombtank] can now be ignited.</span>")
 		else
 			status = FALSE
-			GLOB.bombers += "[key_name(user)] unwelded a single tank bomb. Temp: [bombtank.air_contents.temperature-T0C]"
+			GLOB.bombers += "[key_name(user)] unwelded a single tank bomb. Temp: [bombtank.air_contents.return_temperature()-T0C]"
 			to_chat(user, "<span class='notice'>The hole has been closed.</span>")
 	add_fingerprint(user)
 	..()
@@ -109,16 +109,14 @@
 	return
 
 /obj/item/tank/proc/ignite()	//This happens when a bomb is told to explode
-	air_contents.assert_gases("plasma", "o2")
-	var/fuel_moles = air_contents.gases["plasma"][MOLES] + air_contents.gases["o2"][MOLES]/6
-	air_contents.garbage_collect()
+	var/fuel_moles = air_contents.get_moles(GAS_PLASMA) + air_contents.get_moles(GAS_O2)/6
 
 	var/strength = 1
 
 	var/turf/ground_zero = get_turf(loc)
 	loc = null
 
-	if(air_contents.temperature > (T0C + 400))
+	if(air_contents.return_temperature() > (T0C + 400))
 		strength = (fuel_moles/15)
 
 		if(strength >=1)
@@ -131,7 +129,7 @@
 			ground_zero.assume_air(air_contents)
 			ground_zero.hotspot_expose(1000, 125)
 
-	else if(air_contents.temperature > (T0C + 250))
+	else if(air_contents.return_temperature() > (T0C + 250))
 		strength = (fuel_moles/20)
 
 		if(strength >=1)
@@ -142,7 +140,7 @@
 			ground_zero.assume_air(air_contents)
 			ground_zero.hotspot_expose(1000, 125)
 
-	else if(air_contents.temperature > (T0C + 100))
+	else if(air_contents.return_temperature() > (T0C + 100))
 		strength = (fuel_moles/25)
 
 		if (strength >=1)

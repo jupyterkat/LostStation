@@ -201,10 +201,10 @@ GLOBAL_LIST_EMPTY(supermatters)
 	if(get_integrity() < SUPERMATTER_DANGER_PERCENT)
 		return SUPERMATTER_DANGER
 
-	if((get_integrity() < SUPERMATTER_WARNING_PERCENT) || (air.temperature > CRITICAL_TEMPERATURE))
+	if((get_integrity() < SUPERMATTER_WARNING_PERCENT) || (air.return_temperature() > CRITICAL_TEMPERATURE))
 		return SUPERMATTER_WARNING
 
-	if(air.temperature > (CRITICAL_TEMPERATURE * 0.8))
+	if(air.return_temperature() > (CRITICAL_TEMPERATURE * 0.8))
 		return SUPERMATTER_NOTIFY
 
 	if(power > 5)
@@ -278,30 +278,29 @@ GLOBAL_LIST_EMPTY(supermatters)
 	damage_archived = damage
 	if(takes_damage)
 		//causing damage
-		damage = max(damage + (max(removed.temperature - ((T0C + HEAT_PENALTY_THRESHOLD)*dynamic_heat_resistance), 0) * mole_heat_penalty / 150 ) * DAMAGE_INCREASE_MULTIPLIER, 0)
+		damage = max(damage + (max(removed.return_temperature() - ((T0C + HEAT_PENALTY_THRESHOLD)*dynamic_heat_resistance), 0) * mole_heat_penalty / 150 ) * DAMAGE_INCREASE_MULTIPLIER, 0)
 		damage = max(damage + (max(power - POWER_PENALTY_THRESHOLD, 0)/500) * DAMAGE_INCREASE_MULTIPLIER, 0)
 		damage = max(damage + (max(combined_gas - MOLE_PENALTY_THRESHOLD, 0)/80) * DAMAGE_INCREASE_MULTIPLIER, 0)
 
 		//healing damage
 		if(combined_gas < MOLE_PENALTY_THRESHOLD)
-			damage = max(damage + (min(removed.temperature - (T0C + HEAT_PENALTY_THRESHOLD), 0) / 150 ), 0)
+			damage = max(damage + (min(removed.return_temperature() - (T0C + HEAT_PENALTY_THRESHOLD), 0) / 150 ), 0)
 
 		//capping damage
 		damage = min(damage_archived + (DAMAGE_HARDCAP * explosion_point),damage)
 		if(damage > damage_archived && prob(10))
 			playsound(get_turf(src), 'sound/effects/empulse.ogg', 50, 1)
 
-	removed.assert_gases("o2", "plasma", "co2", "n2o", "n2", "freon")
 	//calculating gas related values
 	combined_gas = max(removed.total_moles(), 0)
 
-	plasmacomp = max(removed.gases["plasma"][MOLES]/combined_gas, 0)
-	o2comp = max(removed.gases["o2"][MOLES]/combined_gas, 0)
-	co2comp = max(removed.gases["co2"][MOLES]/combined_gas, 0)
+	plasmacomp = max(removed.get_moles(GAS_PLASMA)/combined_gas, 0)
+	o2comp = max(removed.get_moles(GAS_O2)/combined_gas, 0)
+	co2comp = max(removed.get_moles(GAS_CO2)/combined_gas, 0)
 
-	n2ocomp = max(removed.gases["n2o"][MOLES]/combined_gas, 0)
-	n2comp = max(removed.gases["n2"][MOLES]/combined_gas, 0)
-	freoncomp = max(removed.gases["freon"][MOLES]/combined_gas, 0)
+	n2ocomp = max(removed.get_moles(GAS_NITROUS)/combined_gas, 0)
+	n2comp = max(removed.get_moles(GAS_N2)/combined_gas, 0)
+	freoncomp = max(removed.get_moles(GAS_FREON)/combined_gas, 0)
 
 	gasmix_power_ratio = min(max(plasmacomp + o2comp + co2comp - n2comp - freoncomp, 0), 1)
 
@@ -336,7 +335,7 @@ GLOBAL_LIST_EMPTY(supermatters)
 		temp_factor = 30
 		icon_state = base_icon_state
 
-	power = max( (removed.temperature * temp_factor / T0C) * gasmix_power_ratio + power, 0) //Total laser power plus an overload
+	power = max( (removed.return_temperature() * temp_factor / T0C) * gasmix_power_ratio + power, 0) //Total laser power plus an overload
 
 	//We've generated power, now let's transfer it to the collectors for storing/usage
 	transfer_energy()
@@ -350,17 +349,17 @@ GLOBAL_LIST_EMPTY(supermatters)
 
 	//Also keep in mind we are only adding this temperature to (efficiency)% of the one tile the rock
 	//is on. An increase of 4*C @ 25% efficiency here results in an increase of 1*C / (#tilesincore) overall.
-	removed.temperature += ((device_energy * dynamic_heat_modifier) / THERMAL_RELEASE_MODIFIER)
+	removed.set_temperature(removed.return_temperature() + ((device_energy * dynamic_heat_modifier) / THERMAL_RELEASE_MODIFIER))
 
-	removed.temperature = max(0, min(removed.temperature, 2500 * dynamic_heat_modifier))
+	removed.set_temperature(max(0, min(removed.return_temperature(), 2500 * dynamic_heat_modifier)))
 
 	//Calculate how much gas to release
-	removed.gases["plasma"][MOLES] += max((device_energy * dynamic_heat_modifier) / PLASMA_RELEASE_MODIFIER, 0)
+	removed.adjust_moles(GAS_PLASMA, max((device_energy * dynamic_heat_modifier) / PLASMA_RELEASE_MODIFIER, 0))
 
-	removed.gases["o2"][MOLES] += max(((device_energy + removed.temperature * dynamic_heat_modifier) - T0C) / OXYGEN_RELEASE_MODIFIER, 0)
+	removed.adjust_moles(GAS_O2, max(((device_energy + removed.return_temperature() * dynamic_heat_modifier) - T0C) / OXYGEN_RELEASE_MODIFIER, 0))
 
 	if(combined_gas < 50)
-		removed.gases["freon"][MOLES] = max((removed.gases["freon"][MOLES] + device_energy) * freoncomp / FREON_BREEDING_MODIFIER, 0)
+		removed.set_moles(GAS_FREON, max((removed.get_moles(GAS_FREON) + device_energy) * freoncomp / FREON_BREEDING_MODIFIER, 0))
 
 	if(produces_gas)
 		env.merge(removed)

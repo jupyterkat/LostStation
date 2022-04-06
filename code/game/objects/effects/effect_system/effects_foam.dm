@@ -276,14 +276,12 @@
 		O.ClearWet()
 		if(O.air)
 			var/datum/gas_mixture/G = O.air
-			G.temperature = 293.15
+			G.set_temperature(T20C)
 			for(var/obj/effect/hotspot/H in O)
 				qdel(H)
-			var/list/G_gases = G.gases
-			for(var/I in G_gases)
-				if(I != "o2" && I != "n2")
-					G.gases[I][MOLES] = 0
-			G.garbage_collect()
+			for(var/I in G.get_gases())
+				if(I != GAS_O2 && I != GAS_N2)
+					G.set_moles(I, 0)
 			O.air_update_turf()
 		for(var/obj/machinery/atmospherics/components/unary/U in O)
 			if(!U.welded)

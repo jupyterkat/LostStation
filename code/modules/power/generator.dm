@@ -97,7 +97,7 @@
 			var/cold_air_heat_capacity = cold_air.heat_capacity()
 			var/hot_air_heat_capacity = hot_air.heat_capacity()
 
-			var/delta_temperature = hot_air.temperature - cold_air.temperature
+			var/delta_temperature = hot_air.return_temperature() - cold_air.return_temperature()
 
 			//to_chat(world, "delta_temperature = [delta_temperature]; cold_air_heat_capacity = [cold_air_heat_capacity]; hot_air_heat_capacity = [hot_air_heat_capacity]")
 
@@ -111,8 +111,8 @@
 
 				//to_chat(world, "lastgen = [lastgen]; heat = [heat]; delta_temperature = [delta_temperature]; hot_air_heat_capacity = [hot_air_heat_capacity]; cold_air_heat_capacity = [cold_air_heat_capacity];")
 
-				hot_air.temperature = hot_air.temperature - energy_transfer/hot_air_heat_capacity
-				cold_air.temperature = cold_air.temperature + heat/cold_air_heat_capacity
+				hot_air.set_temperature(hot_air.return_temperature() - energy_transfer/hot_air_heat_capacity)
+				cold_air.set_temperature(cold_air.return_temperature() + heat/cold_air_heat_capacity)
 
 				//to_chat(world, "POWER: [lastgen] W generated at [efficiency*100]% efficiency and sinks sizes [cold_air_heat_capacity], [hot_air_heat_capacity]")
 
@@ -167,11 +167,11 @@
 		t += "<BR>"
 
 		t += "<B><font color='blue'>Cold loop</font></B><BR>"
-		t += "Temperature Inlet: [round(cold_circ_air2.temperature, 0.1)] K / Outlet: [round(cold_circ_air1.temperature, 0.1)] K<BR>"
+		t += "Temperature Inlet: [round(cold_circ_air2.return_temperature(), 0.1)] K / Outlet: [round(cold_circ_air1.return_temperature(), 0.1)] K<BR>"
 		t += "Pressure Inlet: [round(cold_circ_air2.return_pressure(), 0.1)] kPa /  Outlet: [round(cold_circ_air1.return_pressure(), 0.1)] kPa<BR>"
 
 		t += "<B><font color='red'>Hot loop</font></B><BR>"
-		t += "Temperature Inlet: [round(hot_circ_air2.temperature, 0.1)] K / Outlet: [round(hot_circ_air1.temperature, 0.1)] K<BR>"
+		t += "Temperature Inlet: [round(hot_circ_air2.return_temperature(), 0.1)] K / Outlet: [round(hot_circ_air1.return_temperature(), 0.1)] K<BR>"
 		t += "Pressure Inlet: [round(hot_circ_air2.return_pressure(), 0.1)] kPa / Outlet: [round(hot_circ_air1.return_pressure(), 0.1)] kPa<BR>"
 
 		t += "</div>"

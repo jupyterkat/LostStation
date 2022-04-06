@@ -121,7 +121,6 @@ GLOBAL_LIST_INIT(duplicate_forbidden_vars,list("tag","area","type","loc","locs",
 	if(toupdate.len)
 		for(var/turf/T1 in toupdate)
 			T1.CalculateAdjacentTurfs()
-			SSair.add_to_active(T1,1)
 
 
 	return copiedobjs

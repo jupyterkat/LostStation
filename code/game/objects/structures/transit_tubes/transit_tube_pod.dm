@@ -11,10 +11,9 @@
 
 /obj/structure/transit_tube_pod/New(loc)
 	..()
-	air_contents.assert_gases("o2")
-	air_contents.gases["o2"][MOLES] = MOLES_O2STANDARD
-	air_contents.temperature = T20C
-
+	air_contents.set_moles(GAS_O2, MOLES_O2STANDARD)
+	air_contents.set_moles(GAS_N2, MOLES_N2STANDARD)
+	air_contents.set_temperature(T20C)
 
 /obj/structure/transit_tube_pod/Destroy()
 	empty_pod()

@@ -65,7 +65,7 @@
 	air1 = bomb.tank_one.air_contents
 	air2 = bomb.tank_two.air_contents
 	var/datum/gas_mixture/temp
-	temp.volume = air1.volume + air2.volume
+	temp.set_volume(air1.return_volume() + air2.return_volume())
 	temp.merge(air1)
 	temp.merge(air2)
 	for(var/i in 1 to 6)

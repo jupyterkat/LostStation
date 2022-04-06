@@ -141,7 +141,7 @@
 	if(hotspot && !isspaceturf(T))
 		if(T.air)
 			var/datum/gas_mixture/G = T.air
-			G.temperature = max(min(G.temperature-(CT*1000),G.temperature/CT),0)
+			G.set_temperature(max(min(G.return_temperature()-(CT*1000),G.return_temperature()/CT),0))
 			G.react()
 			qdel(hotspot)
 	var/obj/effect/acid/A = (locate(/obj/effect/acid) in T)

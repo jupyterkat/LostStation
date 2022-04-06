@@ -278,14 +278,15 @@ MASS SPECTROMETER
 	materials = list(MAT_METAL=30, MAT_GLASS=20)
 	origin_tech = "magnets=1;engineering=1"
 
-/obj/item/device/analyzer/attack_self(mob/user)
-
+/obj/item/analyzer/attack_self(mob/user)
 	add_fingerprint(user)
 
-	if (user.stat || user.eye_blind)
+	if(user.stat || user.eye_blind)
 		return
 
-	var/turf/location = user.loc
+	//Functionality moved down to proc/scan_turf()
+	var/turf/location = get_turf(user)
+
 	if(!istype(location))
 		return
 
@@ -296,47 +297,41 @@ MASS SPECTROMETER
 
 	to_chat(user, "<span class='info'><B>Results:</B></span>")
 	if(abs(pressure - ONE_ATMOSPHERE) < 10)
-		to_chat(user, "<span class='info'>Pressure: [round(pressure,0.1)] kPa</span>")
+		to_chat(user, "<span class='info'>Pressure: [round(pressure, 0.01)] kPa</span>")
 	else
-		to_chat(user, "<span class='alert'>Pressure: [round(pressure,0.1)] kPa</span>")
+		to_chat(user, "<span class='alert'>Pressure: [round(pressure, 0.01)] kPa</span>")
 	if(total_moles)
-		var/list/env_gases = environment.gases
-
-		environment.assert_gases(arglist(GLOB.hardcoded_gases))
-		var/o2_concentration = env_gases["o2"][MOLES]/total_moles
-		var/n2_concentration = env_gases["n2"][MOLES]/total_moles
-		var/co2_concentration = env_gases["co2"][MOLES]/total_moles
-		var/plasma_concentration = env_gases["plasma"][MOLES]/total_moles
-		environment.garbage_collect()
+		var/o2_concentration = environment.get_moles(GAS_O2)/total_moles
+		var/n2_concentration = environment.get_moles(GAS_N2)/total_moles
+		var/co2_concentration = environment.get_moles(GAS_CO2)/total_moles
+		var/plasma_concentration = environment.get_moles(GAS_PLASMA)/total_moles
 
 		if(abs(n2_concentration - N2STANDARD) < 20)
-			to_chat(user, "<span class='info'>Nitrogen: [round(n2_concentration*100, 0.01)] %</span>")
+			to_chat(user, "<span class='info'>Nitrogen: [round(n2_concentration*100, 0.01)] % ([round(environment.get_moles(GAS_N2), 0.01)] mol)</span>")
 		else
-			to_chat(user, "<span class='alert'>Nitrogen: [round(n2_concentration*100, 0.01)] %</span>")
+			to_chat(user, "<span class='alert'>Nitrogen: [round(n2_concentration*100, 0.01)] % ([round(environment.get_moles(GAS_N2), 0.01)] mol)</span>")
 
 		if(abs(o2_concentration - O2STANDARD) < 2)
-			to_chat(user, "<span class='info'>Oxygen: [round(o2_concentration*100, 0.01)] %</span>")
+			to_chat(user, "<span class='info'>Oxygen: [round(o2_concentration*100, 0.01)] % ([round(environment.get_moles(GAS_O2), 0.01)] mol)</span>")
 		else
-			to_chat(user, "<span class='alert'>Oxygen: [round(o2_concentration*100, 0.01)] %</span>")
+			to_chat(user, "<span class='alert'>Oxygen: [round(o2_concentration*100, 0.01)] % ([round(environment.get_moles(GAS_O2), 0.01)] mol)</span>")
 
 		if(co2_concentration > 0.01)
-			to_chat(user, "<span class='alert'>CO2: [round(co2_concentration*100, 0.01)] %</span>")
+			to_chat(user, "<span class='alert'>CO2: [round(co2_concentration*100, 0.01)] % ([round(environment.get_moles(GAS_CO2), 0.01)] mol)</span>")
 		else
-			to_chat(user, "<span class='info'>CO2: [round(co2_concentration*100, 0.01)] %</span>")
+			to_chat(user, "<span class='info'>CO2: [round(co2_concentration*100, 0.01)] % ([round(environment.get_moles(GAS_CO2), 0.01)] mol)</span>")
 
 		if(plasma_concentration > 0.005)
-			to_chat(user, "<span class='alert'>Plasma: [round(plasma_concentration*100, 0.01)] %</span>")
+			to_chat(user, "<span class='alert'>Plasma: [round(plasma_concentration*100, 0.01)] % ([round(environment.get_moles(GAS_PLASMA), 0.01)] mol)</span>")
 		else
-			to_chat(user, "<span class='info'>Plasma: [round(plasma_concentration*100, 0.01)] %</span>")
+			to_chat(user, "<span class='info'>Plasma: [round(plasma_concentration*100, 0.01)] % ([round(environment.get_moles(GAS_PLASMA), 0.01)] mol)</span>")
 
-
-		for(var/id in env_gases)
+		for(var/id in environment.get_gases())
 			if(id in GLOB.hardcoded_gases)
 				continue
-			var/gas_concentration = env_gases[id][MOLES]/total_moles
-			to_chat(user, "<span class='alert'>[env_gases[id][GAS_META][META_GAS_NAME]]: [round(gas_concentration*100, 0.01)] %</span>")
-		to_chat(user, "<span class='info'>Temperature: [round(environment.temperature-T0C)] &deg;C</span>")
-
+			var/gas_concentration = environment.get_moles(id)/total_moles
+			to_chat(user, "<span class='alert'>[GLOB.gas_data.names[id]]: [round(gas_concentration*100, 0.01)] % ([round(environment.get_moles(id), 0.01)] mol)</span>")
+		to_chat(user, "<span class='info'>Temperature: [round(environment.return_temperature()-T0C, 0.01)] &deg;C ([round(environment.return_temperature(), 0.01)] K)</span>")
 
 /obj/item/device/mass_spectrometer
 	desc = "A hand-held mass spectrometer which identifies trace chemicals in a blood sample."

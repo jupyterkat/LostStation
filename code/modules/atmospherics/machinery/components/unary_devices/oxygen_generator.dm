@@ -29,7 +29,7 @@
 /obj/machinery/atmospherics/components/unary/oxygen_generator/New()
 	..()
 	var/datum/gas_mixture/air_contents = AIR1
-	air_contents.volume = 50
+	air_contents.set_volume(50)
 	AIR1 = air_contents
 
 /obj/machinery/atmospherics/components/unary/oxygen_generator/process_atmos()
@@ -46,9 +46,8 @@
 
 		var/added_oxygen = oxygen_content - total_moles
 
-		air_contents.temperature = (current_heat_capacity*air_contents.temperature + 20*added_oxygen*T0C)/(current_heat_capacity+20*added_oxygen)
-		air_contents.assert_gas("o2")
-		air_contents.gases["o2"][MOLES] += added_oxygen
+		air_contents.set_temperature((current_heat_capacity*air_contents.return_temperature() + 20*added_oxygen*T0C)/(current_heat_capacity+20*added_oxygen))
+		air_contents.adjust_moles(GAS_O2, added_oxygen)
 
 		update_parents()
 

@@ -50,7 +50,7 @@
 /obj/machinery/atmospherics/components/trinary/mixer/New()
 	..()
 	var/datum/gas_mixture/air3 = AIR3
-	air3.volume = 300
+	air3.set_volume(300)
 	AIR3 = air3
 
 /obj/machinery/atmospherics/components/trinary/mixer/process_atmos()
@@ -76,11 +76,11 @@
 	var/transfer_moles1 = 0
 	var/transfer_moles2 = 0
 
-	if(air1.temperature > 0)
-		transfer_moles1 = (node1_concentration * pressure_delta) * air3.volume / (air1.temperature * R_IDEAL_GAS_EQUATION)
+	if(air1.return_temperature() > 0)
+		transfer_moles1 = (node1_concentration * pressure_delta) * air3.return_volume() / (air1.return_temperature() * R_IDEAL_GAS_EQUATION)
 
-	if(air2.temperature > 0)
-		transfer_moles2 = (node2_concentration * pressure_delta) * air3.volume / (air2.temperature * R_IDEAL_GAS_EQUATION)
+	if(air2.return_temperature() > 0)
+		transfer_moles2 = (node2_concentration * pressure_delta) * air3.return_volume() / (air2.return_temperature() * R_IDEAL_GAS_EQUATION)
 
 	var/air1_moles = air1.total_moles()
 	var/air2_moles = air2.total_moles()

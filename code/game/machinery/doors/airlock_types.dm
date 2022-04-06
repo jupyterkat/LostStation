@@ -230,7 +230,7 @@
 	new/obj/structure/door_assembly/door_assembly_0( src.loc )
 	qdel(src)
 
-/obj/machinery/door/airlock/plasma/BlockSuperconductivity() //we don't stop the heat~
+/obj/machinery/door/airlock/plasma/BlockThermalConductivity() //we don't stop the heat~
 	return 0
 
 /obj/machinery/door/airlock/clown

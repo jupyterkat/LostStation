@@ -180,9 +180,8 @@
 			continue
 
 		var/datum/gas_mixture/A = F.air
-		var/list/A_gases = A.gases
 		var/trace_gases
-		for(var/id in A_gases)
+		for(var/id in A.get_gases())
 			if(id in GLOB.hardcoded_gases)
 				continue
 			trace_gases = TRUE
@@ -191,15 +190,15 @@
 		// Can most things breathe?
 		if(trace_gases)
 			continue
-		if(!(A_gases["o2"] && A_gases["o2"][MOLES] >= 16))
+		if(A.get_moles(GAS_O2) < 16)
 			continue
-		if(A_gases["plasma"])
+		if(A.get_moles(GAS_PLASMA))
 			continue
-		if(A_gases["co2"] && A_gases["co2"][MOLES] >= 10)
+		if(A.get_moles(GAS_CO2) >= 10)
 			continue
 
 		// Aim for goldilocks temperatures and pressure
-		if((A.temperature <= 270) || (A.temperature >= 360))
+		if((A.return_temperature() <= 270) || (A.return_temperature() >= 360))
 			continue
 		var/pressure = A.return_pressure()
 		if((pressure <= 20) || (pressure >= 550))

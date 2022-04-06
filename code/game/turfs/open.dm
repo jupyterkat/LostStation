@@ -16,6 +16,10 @@
 /turf/open/indestructible/TerraformTurf(path, defer_change = FALSE, ignore_air = FALSE)
 	return
 
+/turf/open/indestructible/Melt()
+	to_be_destroyed = FALSE
+	return src
+
 /turf/open/indestructible/sound
 	name = "squeeky floor"
 	var/sound
@@ -93,56 +97,24 @@
 			flash_color(L, flash_color = "#C80000", flash_time = 10)
 
 /turf/open/Initalize_Atmos(times_fired)
-	excited = 0
+	if(!blocks_air)
+		if(!istype(air,/datum/gas_mixture/turf))
+			air = new(2500,src)
+		air.copy_from_turf(src)
+		update_air_ref(planetary_atmos ? 1 : 2)
+
 	update_visuals()
 
-	current_cycle = times_fired
-
-	//cache some vars
-	var/list/atmos_adjacent_turfs = src.atmos_adjacent_turfs
-
-	for(var/direction in GLOB.cardinals)
-		var/turf/open/enemy_tile = get_step(src, direction)
-		if(!istype(enemy_tile))
-			if (atmos_adjacent_turfs)
-				atmos_adjacent_turfs -= enemy_tile
-			continue
-		var/datum/gas_mixture/enemy_air = enemy_tile.return_air()
-
-		//only check this turf, if it didn't check us when it was initalized
-		if(enemy_tile.current_cycle < times_fired)
-			if(CANATMOSPASS(src, enemy_tile))
-				LAZYINITLIST(atmos_adjacent_turfs)
-				LAZYINITLIST(enemy_tile.atmos_adjacent_turfs)
-				atmos_adjacent_turfs[enemy_tile] = TRUE
-				enemy_tile.atmos_adjacent_turfs[src] = TRUE
-			else
-				if (atmos_adjacent_turfs)
-					atmos_adjacent_turfs -= enemy_tile
-				if (enemy_tile.atmos_adjacent_turfs)
-					enemy_tile.atmos_adjacent_turfs -= src
-				UNSETEMPTY(enemy_tile.atmos_adjacent_turfs)
-				continue
-		else
-			if (!atmos_adjacent_turfs || !atmos_adjacent_turfs[enemy_tile])
-				continue
-
-		if(!excited && air.compare(enemy_air))
-			//testing("Active turf found. Return value of compare(): [is_active]")
-			excited = TRUE
-			SSair.active_turfs |= src
-	UNSETEMPTY(atmos_adjacent_turfs)
-	if (atmos_adjacent_turfs)
-		src.atmos_adjacent_turfs = atmos_adjacent_turfs
+	CalculateAdjacentTurfs()
 
 /turf/open/proc/GetHeatCapacity()
 	. = air.heat_capacity()
 
 /turf/open/proc/GetTemperature()
-	. = air.temperature
+	. = air.return_temperature()
 
 /turf/open/proc/TakeTemperature(temp)
-	air.temperature += temp
+	air.set_temperature(air.return_temperature() + temp)
 	air_update_turf()
 
 /turf/open/proc/freon_gas_act()
@@ -170,7 +142,7 @@
 
 	var/obj/effect/hotspot/hotspot = (locate(/obj/effect/hotspot) in src)
 	if(hotspot && !isspaceturf(src))
-		air.temperature = max(min(air.temperature-2000,air.temperature/2),0)
+		air.set_temperature(max(min(air.return_temperature()-2000,air.return_temperature()/2),0))
 		qdel(hotspot)
 	return 1
 
@@ -306,14 +278,14 @@
 		MakeDry(TURF_WET_ICE)
 	if(wet_time > MAXIMUM_WET_TIME)
 		wet_time = MAXIMUM_WET_TIME
-	if(wet == TURF_WET_ICE && air.temperature > T0C)
+	if(wet == TURF_WET_ICE && air.return_temperature() > T0C)
 		for(var/obj/O in contents)
 			if(O.flags_2 & FROZEN_2)
 				O.make_unfrozen()
 		MakeDry(TURF_WET_ICE)
 		MakeSlippery(TURF_WET_WATER)
 	if(wet != TURF_WET_PERMAFROST)
-		switch(air.temperature)
+		switch(air.return_temperature())
 			if(-INFINITY to T0C)
 				if(wet != TURF_WET_ICE && wet)
 					MakeDry(TURF_WET_ICE)

@@ -167,10 +167,7 @@
 	var/turf/open/floor/T = holder.loc
 	if(istype(T))
 		var/datum/gas_mixture/GM = T.air
-		if(!GM.gases["o2"])
-			return
-		GM.gases["o2"][MOLES] -= severity * holder.energy
-		GM.garbage_collect()
+		GM.set_moles(GAS_O2, max(GM.get_moles(GAS_O2) - severity * holder.energy, 0))
 
 /datum/spacevine_mutation/nitro_eater
 	name = "nitrogen consuming"
@@ -182,10 +179,7 @@
 	var/turf/open/floor/T = holder.loc
 	if(istype(T))
 		var/datum/gas_mixture/GM = T.air
-		if(!GM.gases["n2"])
-			return
-		GM.gases["n2"][MOLES] -= severity * holder.energy
-		GM.garbage_collect()
+		GM.set_moles(GAS_N2, max(GM.get_moles(GAS_N2) - severity * holder.energy, 0))
 
 /datum/spacevine_mutation/carbondioxide_eater
 	name = "CO2 consuming"
@@ -197,10 +191,7 @@
 	var/turf/open/floor/T = holder.loc
 	if(istype(T))
 		var/datum/gas_mixture/GM = T.air
-		if(!GM.gases["co2"])
-			return
-		GM.gases["co2"][MOLES] -= severity * holder.energy
-		GM.garbage_collect()
+		GM.set_moles(GAS_CO2, max(GM.get_moles(GAS_CO2) - severity * holder.energy, 0))
 
 /datum/spacevine_mutation/plasma_eater
 	name = "toxins consuming"
@@ -212,10 +203,7 @@
 	var/turf/open/floor/T = holder.loc
 	if(istype(T))
 		var/datum/gas_mixture/GM = T.air
-		if(!GM.gases["plasma"])
-			return
-		GM.gases["plasma"][MOLES] -= severity * holder.energy
-		GM.garbage_collect()
+		GM.set_moles(GAS_PLASMA, max(GM.get_moles(GAS_PLASMA) - severity * holder.energy, 0))
 
 /datum/spacevine_mutation/thorns
 	name = "thorny"

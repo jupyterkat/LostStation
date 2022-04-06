@@ -723,23 +723,23 @@
 		loc_temp =  M.return_temperature()
 
 	else if(istype(loc, /obj/structure/transit_tube_pod))
-		loc_temp = environment.temperature
+		loc_temp = environment.return_temperature()
 
 	else if(isspaceturf(get_turf(src)))
 		var/turf/heat_turf = get_turf(src)
-		loc_temp = heat_turf.temperature
+		loc_temp = heat_turf.return_temperature()
 
 	else if(istype(loc, /obj/machinery/atmospherics/components/unary/cryo_cell))
 		var/obj/machinery/atmospherics/components/unary/cryo_cell/C = loc
 		var/datum/gas_mixture/G = C.AIR1
 
 		if(G.total_moles() < 10)
-			loc_temp = environment.temperature
+			loc_temp = environment.return_temperature()
 		else
-			loc_temp = G.temperature
+			loc_temp = G.return_temperature()
 
 	else
-		loc_temp = environment.temperature
+		loc_temp = environment.return_temperature()
 
 	return loc_temp
 

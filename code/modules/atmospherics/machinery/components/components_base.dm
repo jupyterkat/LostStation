@@ -17,7 +17,7 @@ On top of that, now people can add component-speciic procs/vars if they want!
 
 	for(DEVICE_TYPE_LOOP)
 		var/datum/gas_mixture/A = new
-		A.volume = 200
+		A.set_volume(200)
 		AIR_I = A
 /*
 Iconnery
@@ -123,7 +123,7 @@ Pipenet stuff; housekeeping
 		var/times_lost = 0
 		for(DEVICE_TYPE_LOOP)
 			var/datum/gas_mixture/air = AIR_I
-			lost += pressures*environment.volume/(air.temperature * R_IDEAL_GAS_EQUATION)
+			lost += pressures*environment.return_volume()/(air.return_temperature() * R_IDEAL_GAS_EQUATION)
 			times_lost++
 		var/shared_loss = lost/times_lost
 

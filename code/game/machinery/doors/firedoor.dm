@@ -4,6 +4,8 @@
 #define CONSTRUCTION_GUTTED 3 //Wires are removed, circuit ready to remove
 #define CONSTRUCTION_NOCIRCUIT 4 //Circuit board removed, can safely weld apart
 
+#define RECLOSE_DELAY 1 SECONDS // How long until a firelock tries to shut itself if it's blocking a vacuum.
+
 /obj/machinery/door/firedoor
 	name = "firelock"
 	desc = "Apply crowbar."
@@ -24,6 +26,7 @@
 	armor = list(melee = 30, bullet = 30, laser = 20, energy = 20, bomb = 10, bio = 100, rad = 100, fire = 95, acid = 70)
 	var/boltslocked = TRUE
 	var/list/affecting_areas
+	var/emergency_close_timer = 0
 
 /obj/machinery/door/firedoor/Initialize()
 	. = ..()
@@ -66,14 +69,28 @@
 	remove_from_areas()
 	affecting_areas.Cut()
 	return ..()
-
+	
 /obj/machinery/door/firedoor/CollidedWith(atom/movable/AM)
-	if(panel_open || operating)
+	if(panel_open || operating || welded || (stat & NOPOWER))
 		return
-	if(!density)
-		return ..()
-	return 0
+	if(ismob(AM))
+		var/mob/user = AM
+		if(allow_hand_open(user))
+			add_fingerprint(user)
+			open()
+			return TRUE
+	if(istype(AM, /obj/mecha))
+		var/obj/mecha/M = AM
+		if(M.occupant && allow_hand_open(M.occupant))
+			open()
+			return TRUE
+	return FALSE
 
+/obj/machinery/door/firedoor/proc/allow_hand_open(mob/user)
+	var/area/A = get_area(src)
+	if(A && A.fire)
+		return FALSE
+	return !is_holding_pressure()
 
 /obj/machinery/door/firedoor/power_change()
 	if(powered(power_channel))
@@ -83,8 +100,27 @@
 		stat |= NOPOWER
 
 /obj/machinery/door/firedoor/attack_hand(mob/user)
+
+	if (!welded && !operating)
+		if (stat & NOPOWER)
+			user.visible_message("[user] tries to open \the [src] manually.",
+						 "You operate the manual lever on \the [src].")
+			if (!do_after(user, 30, TRUE, src))
+				return FALSE
+		else if (density && !allow_hand_open(user))
+			return FALSE
+
+		add_fingerprint(user)
+		if(density)
+			emergency_close_timer = world.time + RECLOSE_DELAY // prevent it from instaclosing again if in space
+			open()
+		else
+			close()
+		return TRUE
+
 	if(operating || !density)
 		return
+	
 	user.changeNext_move(CLICK_CD_MELEE)
 
 	user.visible_message("[user] bangs on \the [src].",
@@ -138,9 +174,44 @@
 		return
 
 	if(density)
+		if(is_holding_pressure())
+			// tell the user that this is a bad idea, and have a do_after as well
+			to_chat(user, "<span class='warning'>As you begin crowbarring \the [src] a gush of air blows in your face... maybe you should reconsider?</span>")
+			if(!do_after(user, 10, TRUE, src)) // give them a few seconds to reconsider their decision.
+				return
+			// since we have high-pressure-ness, close all other firedoors on the tile
+			whack_a_mole()
+		if(welded || operating || !density)
+			return // in case things changed during our do_after
+		emergency_close_timer = world.time + RECLOSE_DELAY // prevent it from instaclosing again if in space
 		open()
 	else
 		close()
+	
+/obj/machinery/door/proc/is_holding_pressure()
+	var/turf/open/T = loc
+	if(!T)
+		return FALSE
+	if(!density)
+		return FALSE
+	// alrighty now we check for how much pressure we're holding back
+	var/min_moles = T.air.total_moles()
+	var/max_moles = min_moles
+	// okay this is a bit hacky. First, we set density to 0 and recalculate our adjacent turfs
+	density = FALSE
+	T.CalculateAdjacentTurfs()
+	// then we use those adjacent turfs to figure out what the difference between the lowest and highest pressures we'd be holding is
+	for(var/turf/open/T2 in T.atmos_adjacent_turfs)
+		if((flags_1 & ON_BORDER_1) && get_dir(src, T2) != dir)
+			continue
+		var/moles = T2.air.total_moles()
+		if(moles < min_moles)
+			min_moles = moles
+		if(moles > max_moles)
+			max_moles = moles
+	density = TRUE
+	T.CalculateAdjacentTurfs() // alright lets put it back
+	return max_moles - min_moles > 20
 
 /obj/machinery/door/firedoor/attack_ai(mob/user)
 	add_fingerprint(user)
@@ -207,6 +278,78 @@
 			nextstate = null
 			close()
 
+/obj/machinery/door/firedoor/proc/whack_a_mole(reconsider_immediately = FALSE)
+	set waitfor = 0
+	for(var/cdir in GLOB.cardinals)
+		if((flags_1 & ON_BORDER_1) && cdir != dir)
+			continue
+		whack_a_mole_part(get_step(src, cdir), reconsider_immediately)
+	if(flags_1 & ON_BORDER_1)
+		whack_a_mole_part(get_turf(src), reconsider_immediately)
+
+/obj/machinery/door/firedoor/proc/whack_a_mole_part(turf/start_point, reconsider_immediately)
+	set waitfor = 0
+	var/list/doors_to_close = list()
+	var/list/turfs = list()
+	turfs[start_point] = 1
+	for(var/i = 1; (i <= turfs.len && i <= 11); i++) // check up to 11 turfs.
+		var/turf/open/T = turfs[i]
+		if(istype(T, /turf/open/space))
+			return -1
+		for(var/T2 in T.atmos_adjacent_turfs)
+			if(turfs[T2])
+				continue
+			var/is_cut_by_unopen_door = FALSE
+			for(var/obj/machinery/door/firedoor/FD in T2)
+				if((FD.flags_1 & ON_BORDER_1) && get_dir(T2, T) != FD.dir)
+					continue
+				if(FD.operating || FD == src || FD.welded || FD.density)
+					continue
+				doors_to_close += FD
+				is_cut_by_unopen_door = TRUE
+
+			for(var/obj/machinery/door/firedoor/FD in T)
+				if((FD.flags_1 & ON_BORDER_1) && get_dir(T, T2) != FD.dir)
+					continue
+				if(FD.operating || FD == src || FD.welded || FD.density)
+					continue
+				doors_to_close += FD
+				is_cut_by_unopen_door= TRUE
+			if(!is_cut_by_unopen_door)
+				turfs[T2] = 1
+	if(turfs.len > 10)
+		return // too big, don't bother
+	for(var/obj/machinery/door/firedoor/FD in doors_to_close)
+		FD.emergency_pressure_stop(FALSE)
+		if(reconsider_immediately)
+			var/turf/open/T = FD.loc
+			if(istype(T))
+				T.CalculateAdjacentTurfs()
+
+/obj/machinery/door/firedoor/proc/emergency_pressure_stop(consider_timer = TRUE)
+	if(density || operating || welded)
+		return
+	if(world.time >= emergency_close_timer || !consider_timer)
+		emergency_pressure_close()
+
+/obj/machinery/door/firedoor/proc/emergency_pressure_close()
+	if(density)
+		return
+	if(operating || welded)
+		return
+
+	density = TRUE
+	air_update_turf(1)
+	update_icon()
+	if(visible && !glass)
+		set_opacity(1)
+	update_freelook_sight()
+	if(safe)
+		CheckForMobs()
+	else if(!(flags_1 & ON_BORDER_1))
+		crush()
+	latetoggle()
+
 /obj/machinery/door/firedoor/border_only
 	icon = 'icons/obj/doors/edge_Doorfire.dmi'
 	flags_1 = ON_BORDER_1
@@ -233,6 +376,58 @@
 		return !density
 	else
 		return 1
+
+/obj/machinery/door/firedoor/border_only/emergency_pressure_close()
+	if(density)
+		return TRUE
+	if(operating || welded)
+		return
+	var/turf/T1 = get_turf(src)
+	var/turf/T2 = get_step(T1, dir)
+	for(var/mob/living/M in T1)
+		if(M.stat == STAT_CONSCIOUS && M.pulling && M.pulling.loc == T2 && !M.pulling.anchored)
+			var/mob/living/M2 = M.pulling
+			if(!istype(M2) || !M2.buckled || !M2.buckled.buckle_prevents_pull)
+				to_chat(M, "<span class='notice'>You pull [M.pulling] through [src] right as it closes.</span>")
+				M.pulling.forceMove(T1)
+				M.start_pulling(M2)
+	for(var/mob/living/M in T2)
+		if(M.stat == STAT_CONSCIOUS && M.pulling && M.pulling.loc == T1 && !M.pulling.anchored)
+			var/mob/living/M2 = M.pulling
+			if(!istype(M2) || !M2.buckled || !M2.buckled.buckle_prevents_pull)
+				to_chat(M, "<span class='notice'>You pull [M.pulling] through [src] right as it closes.</span>")
+				M.pulling.forceMove(T2)
+				M.start_pulling(M2)
+	return ..()
+
+/obj/machinery/door/firedoor/border_only/allow_hand_open(mob/user)
+	var/area/A = get_area(src)
+	if((!A || !A.fire) && !is_holding_pressure())
+		return TRUE
+	whack_a_mole(TRUE) // WOOP WOOP SIDE EFFECTS
+	var/turf/T = loc
+	var/turf/T2 = get_step(T, dir)
+	if(!T || !T2)
+		return
+	var/status1 = check_door_side(T)
+	var/status2 = check_door_side(T2)
+	if((status1 == 1 && status2 == -1) || (status1 == -1 && status2 == 1))
+		to_chat(user, "<span class='warning'>Access denied. Try closing another firedoor to minimize decompression, or using a crowbar.</span>")
+		return FALSE
+	return TRUE
+
+/obj/machinery/door/firedoor/border_only/proc/check_door_side(turf/open/start_point)
+	var/list/turfs = list()
+	turfs[start_point] = 1
+	for(var/i = 1; (i <= turfs.len && i <= 11); i++) // check up to 11 turfs.
+		var/turf/open/T = turfs[i]
+		if(istype(T, /turf/open/space))
+			return -1
+		for(var/T2 in T.atmos_adjacent_turfs)
+			turfs[T2] = 1
+	if(turfs.len <= 10)
+		return 0 // not big enough to matter
+	return start_point.air.return_pressure() < 20 ? -1 : 1
 
 /obj/machinery/door/firedoor/heavy
 	name = "heavy firelock"

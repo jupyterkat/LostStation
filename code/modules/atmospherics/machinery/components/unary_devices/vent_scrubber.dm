@@ -17,13 +17,8 @@
 	var/on = FALSE
 	var/scrubbing = SCRUBBING //0 = siphoning, 1 = scrubbing
 
-	var/scrub_CO2 = 1
-	var/scrub_Toxins = 0
-	var/scrub_N2O = 0
-	var/scrub_BZ = 0
-	var/scrub_Freon = 0
-	var/scrub_WaterVapor = 0
-
+	var/filter_types = list(GAS_CO2)
+	var/list/clean_filter_types = null
 
 	var/volume_rate = 200
 	var/widenet = 0 //is this scrubber acting on the 3x3 area around it.
@@ -41,6 +36,8 @@
 	if(!id_tag)
 		assign_uid()
 		id_tag = num2text(uid)
+	
+	generate_clean_filter_types()
 
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on
 	on = TRUE
@@ -70,18 +67,7 @@
 	var/amount = idle_power_usage
 
 	if(scrubbing & SCRUBBING)
-		if(scrub_CO2)
-			amount += idle_power_usage
-		if(scrub_Toxins)
-			amount += idle_power_usage
-		if(scrub_N2O)
-			amount += idle_power_usage
-		if(scrub_BZ)
-			amount += idle_power_usage
-		if(scrub_Freon)
-			amount += idle_power_usage
-		if(scrub_WaterVapor)
-			amount += idle_power_usage
+		amount += idle_power_usage * length(filter_types)
 	else //scrubbing == SIPHONING
 		amount = active_power_usage
 
@@ -116,6 +102,10 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/proc/broadcast_status()
 	if(!radio_connection)
 		return 0
+	
+	var/list/f_types = list()
+	for(var/id in GLOB.gas_data.ids)
+		f_types += list(list("gas_id" = id, "gas_name" = GLOB.gas_data.names[id], "enabled" = (id in filter_types)))
 
 	var/datum/signal/signal = new
 	signal.transmission_method = 1 //radio signal
@@ -128,12 +118,7 @@
 		"power" = on,
 		"scrubbing" = scrubbing,
 		"widenet" = widenet,
-		"filter_co2" = scrub_CO2,
-		"filter_toxins" = scrub_Toxins,
-		"filter_n2o" = scrub_N2O,
-		"filter_bz" = scrub_BZ,
-		"filter_freon" = scrub_Freon,
-		"filter_water_vapor" = scrub_WaterVapor,
+		"filter_types" = f_types,
 		"sigtype" = "status"
 	)
 
@@ -169,93 +154,30 @@
 		for (var/turf/tile in adjacent_turfs)
 			scrub(tile)
 
+/obj/machinery/atmospherics/components/unary/vent_scrubber/proc/generate_clean_filter_types()
+	clean_filter_types = list()
+	for(var/id in filter_types)
+		if(id in GLOB.gas_data.groups)
+			clean_filter_types += GLOB.gas_data.groups[id]
+		else
+			clean_filter_types += id
+
 /obj/machinery/atmospherics/components/unary/vent_scrubber/proc/scrub(var/turf/tile)
 	if (!istype(tile))
 		return 0
-
 	var/datum/gas_mixture/environment = tile.return_air()
 	var/datum/gas_mixture/air_contents = AIR1
-	var/list/env_gases = environment.gases
+
+	if(air_contents.return_pressure() >= 50 * ONE_ATMOSPHERE || !islist(clean_filter_types)) 
+		return FALSE
 
 	if(scrubbing & SCRUBBING)
-		var/should_we_scrub = FALSE
-		for(var/id in env_gases)
-			if(id == "n2" || id == "o2")
-				continue
-			if(env_gases[id][MOLES])
-				should_we_scrub = TRUE
-				break
-		if(should_we_scrub)
-			var/transfer_moles = min(1, volume_rate/environment.volume)*environment.total_moles()
-
-			//Take a gas sample
-			var/datum/gas_mixture/removed = tile.remove_air(transfer_moles)
-			//Nothing left to remove from the tile
-			if (isnull(removed))
-				return
-			var/list/removed_gases = removed.gases
-
-			//Filter it
-			var/datum/gas_mixture/filtered_out = new
-			var/list/filtered_gases = filtered_out.gases
-			filtered_out.temperature = removed.temperature
-
-			if(scrub_Toxins && removed_gases["plasma"])
-				filtered_out.assert_gas("plasma")
-				filtered_gases["plasma"][MOLES] = removed_gases["plasma"][MOLES]
-				removed.gases["plasma"][MOLES] = 0
-
-			if(scrub_CO2 && removed_gases["co2"])
-				filtered_out.assert_gas("co2")
-				filtered_out.gases["co2"][MOLES] = removed_gases["co2"][MOLES]
-				removed.gases["co2"][MOLES] = 0
-
-			if(removed_gases["agent_b"])
-				filtered_out.assert_gas("agent_b")
-				filtered_out.gases["agent_b"][MOLES] = removed_gases["agent_b"][MOLES]
-				removed.gases["agent_b"][MOLES] = 0
-
-			if(scrub_N2O && removed_gases["n2o"])
-				filtered_out.assert_gas("n2o")
-				filtered_out.gases["n2o"][MOLES] = removed_gases["n2o"][MOLES]
-				removed.gases["n2o"][MOLES] = 0
-
-			if(scrub_BZ && removed_gases["bz"])
-				filtered_out.assert_gas("bz")
-				filtered_out.gases["bz"][MOLES] = removed_gases["bz"][MOLES]
-				removed.gases["bz"][MOLES] = 0
-
-			if(scrub_Freon && removed_gases["freon"])
-				filtered_out.assert_gas("freon")
-				filtered_out.gases["freon"][MOLES] = removed_gases["freon"][MOLES]
-				removed.gases["freon"][MOLES] = 0
-
-			if(scrub_WaterVapor && removed_gases["water_vapor"])
-				filtered_out.assert_gas("water_vapor")
-				filtered_out.gases["water_vapor"][MOLES] = removed_gases["water_vapor"][MOLES]
-				removed.gases["water_vapor"][MOLES] = 0
-
-			removed.garbage_collect()
-
-			//Remix the resulting gases
-			air_contents.merge(filtered_out)
-
-			tile.assume_air(removed)
-			tile.air_update_turf()
+		environment.scrub_into(air_contents, volume_rate/environment.return_volume(), clean_filter_types) 
 
 	else //Just siphoning all air
-		if (air_contents.return_pressure()>=50*ONE_ATMOSPHERE)
-			return
-
-		var/transfer_moles = environment.total_moles()*(volume_rate/environment.volume)
-
-		var/datum/gas_mixture/removed = tile.remove_air(transfer_moles)
-
-		air_contents.merge(removed)
-		tile.air_update_turf()
+		environment.transfer_ratio_to(air_contents, volume_rate/environment.return_volume())
 
 	update_parents()
-
 	return 1
 
 
@@ -294,36 +216,16 @@
 		scrubbing = text2num(signal.data["scrubbing"])
 	if("toggle_scrubbing" in signal.data)
 		scrubbing = !scrubbing
+	
+	if("toggle_filter" in signal.data)
+		filter_types ^= signal.data["toggle_filter"]
+		generate_clean_filter_types()
 
-	if("co2_scrub" in signal.data)
-		scrub_CO2 = text2num(signal.data["co2_scrub"])
-	if("toggle_co2_scrub" in signal.data)
-		scrub_CO2 = !scrub_CO2
-
-	if("tox_scrub" in signal.data)
-		scrub_Toxins = text2num(signal.data["tox_scrub"])
-	if("toggle_tox_scrub" in signal.data)
-		scrub_Toxins = !scrub_Toxins
-
-	if("n2o_scrub" in signal.data)
-		scrub_N2O = text2num(signal.data["n2o_scrub"])
-	if("toggle_n2o_scrub" in signal.data)
-		scrub_N2O = !scrub_N2O
-
-	if("bz_scrub" in signal.data)
-		scrub_BZ = text2num(signal.data["bz_scrub"])
-	if("toggle_bz_scrub" in signal.data)
-		scrub_BZ = !scrub_BZ
-
-	if("freon_scrub" in signal.data)
-		scrub_Freon = text2num(signal.data["freon_scrub"])
-	if("toggle_freon_scrub" in signal.data)
-		scrub_Freon = !scrub_Freon
-
-	if("water_vapor_scrub" in signal.data)
-		scrub_WaterVapor = text2num(signal.data["water_vapor_scrub"])
-	if("toggle_water_vapor_scrub" in signal.data)
-		scrub_WaterVapor = !scrub_WaterVapor
+	if("set_filters" in signal.data)
+		filter_types = list()
+		for(var/gas in signal.data["set_filters"])
+			filter_types += gas
+		generate_clean_filter_types()
 
 	if("init" in signal.data)
 		name = signal.data["init"]

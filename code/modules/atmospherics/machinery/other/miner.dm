@@ -132,11 +132,9 @@
 	if(!isopenturf(O))
 		return FALSE
 	var/datum/gas_mixture/merger = new
-	merger.assert_gas(spawn_id)
-	merger.gases[spawn_id][MOLES] = (spawn_mol)
-	merger.temperature = spawn_temp
+	merger.set_moles(spawn_id, spawn_mol)
+	merger.set_temperature(spawn_temp)
 	O.assume_air(merger)
-	SSair.add_to_active(O)
 
 /obj/machinery/atmospherics/miner/attack_ai(mob/living/silicon/user)
 	if(broken)
@@ -146,49 +144,49 @@
 /obj/machinery/atmospherics/miner/n2o
 	name = "\improper N2O Gas Miner"
 	overlay_color = "#FFCCCC"
-	spawn_id = "n2o"
+	spawn_id = GAS_NITROUS
 
 /obj/machinery/atmospherics/miner/nitrogen
 	name = "\improper N2 Gas Miner"
 	overlay_color = "#CCFFCC"
-	spawn_id = "n2"
+	spawn_id = GAS_N2
 
 /obj/machinery/atmospherics/miner/oxygen
 	name = "\improper O2 Gas Miner"
 	overlay_color = "#007FFF"
-	spawn_id = "o2"
+	spawn_id = GAS_O2
 
 /obj/machinery/atmospherics/miner/toxins
 	name = "\improper Plasma Gas Miner"
 	overlay_color = "#FF0000"
-	spawn_id = "plasma"
+	spawn_id = GAS_PLASMA
 
 /obj/machinery/atmospherics/miner/carbon_dioxide
 	name = "\improper CO2 Gas Miner"
 	overlay_color = "#CDCDCD"
-	spawn_id = "co2"
+	spawn_id = GAS_CO2
 
 /obj/machinery/atmospherics/miner/bz
 	name = "\improper BZ Gas Miner"
 	overlay_color = "#FAFF00"
-	spawn_id = "bz"
+	spawn_id = GAS_BZ
 
 /obj/machinery/atmospherics/miner/freon
 	name = "\improper Freon Gas Miner"
 	overlay_color = "#00FFE5"
-	spawn_id = "freon"
+	spawn_id = GAS_FREON
 
 /obj/machinery/atmospherics/miner/volatile_fuel
 	name = "\improper Volatile Fuel Gas Miner"
 	overlay_color = "#564040"
-	spawn_id = "v_fuel"
+	spawn_id = GAS_FUEL
 
 /obj/machinery/atmospherics/miner/agent_b
 	name = "\improper Agent B Gas Miner"
 	overlay_color = "#E81E24"
-	spawn_id = "agent_b"
+	spawn_id = GAS_O2B
 
 /obj/machinery/atmospherics/miner/water_vapor
 	name = "\improper Water Vapor Gas Miner"
 	overlay_color = "#99928E"
-	spawn_id = "water_vapor"
+	spawn_id = GAS_H2O

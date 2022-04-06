@@ -1,4 +1,6 @@
 /atom/var/CanAtmosPass = ATMOS_PASS_YES
+/atom/var/CanAtmosPassVertical = ATMOS_PASS_YES
+
 /atom/proc/CanAtmosPass(turf/T)
 	switch (CanAtmosPass)
 		if (ATMOS_PASS_PROC)
@@ -8,54 +10,59 @@
 		else
 			return CanAtmosPass
 
-/turf/closed/CanAtmosPass = ATMOS_PASS_NO
+/turf/CanAtmosPass = ATMOS_PASS_NO
+/turf/CanAtmosPassVertical = ATMOS_PASS_NO
 
 /turf/open/CanAtmosPass = ATMOS_PASS_PROC
-/turf/open/CanAtmosPass(turf/T)
-	var/R
-	if(blocks_air || T.blocks_air)
-		R = 1
+/turf/open/CanAtmosPassVertical = ATMOS_PASS_PROC
 
+/turf/open/CanAtmosPass(turf/T)
+	var/dir = get_dir(src, T)
+	var/opp = REVERSE_DIR(dir)
+	. = TRUE
+	if(blocks_air || T.blocks_air)
+		. = FALSE
+	if (T == src)
+		return .
 	for(var/obj/O in contents+T.contents)
 		var/turf/other = (O.loc == src ? T : src)
-		if(!CANATMOSPASS(O, other))
-			R = 1
-			if(O.BlockSuperconductivity()) 	//the direction and open/closed are already checked on CanAtmosPass() so there are no arguments
-				var/D = get_dir(src, T)
-				atmos_supeconductivity |= D
-				D = get_dir(T, src)
-				T.atmos_supeconductivity |= D
-				return 0						//no need to keep going, we got all we asked
+		if(!(CANATMOSPASS(O, other)))
+			. = FALSE
+		if(O.BlockThermalConductivity()) 	//the direction and open/closed are already checked on CanAtmosPass() so there are no arguments
+			conductivity_blocked_directions |= dir
+			T.conductivity_blocked_directions |= opp
+			if(!.)
+				return .
 
-	atmos_supeconductivity &= ~get_dir(src, T)
-	T.atmos_supeconductivity &= ~get_dir(T, src)
-
-	return !R
-
-
-
-/atom/movable/proc/BlockSuperconductivity() // objects that block air and don't let superconductivity act. Only firelocks atm.
-	return 0
+/atom/movable/proc/BlockThermalConductivity() // Objects that don't let heat through.
+	return FALSE
 
 /turf/proc/CalculateAdjacentTurfs()
-	var/list/atmos_adjacent_turfs = src.atmos_adjacent_turfs
+	var/canpass = CANATMOSPASS(src, src)
 	for(var/direction in GLOB.cardinals)
 		var/turf/T = get_step(src, direction)
-		if(!T)
+		if(!istype(T))
 			continue
-		if(CANATMOSPASS(T, src))
+		var/opp_dir = REVERSE_DIR(direction)
+		if(isopenturf(T) && !(blocks_air || T.blocks_air) && (canpass && CANATMOSPASS(T, src)))
 			LAZYINITLIST(atmos_adjacent_turfs)
 			LAZYINITLIST(T.atmos_adjacent_turfs)
-			atmos_adjacent_turfs[T] = TRUE
-			T.atmos_adjacent_turfs[src] = TRUE
+			atmos_adjacent_turfs[T] = direction
+			T.atmos_adjacent_turfs[src] = opp_dir
 		else
 			if (atmos_adjacent_turfs)
 				atmos_adjacent_turfs -= T
 			if (T.atmos_adjacent_turfs)
 				T.atmos_adjacent_turfs -= src
 			UNSETEMPTY(T.atmos_adjacent_turfs)
+		T.__update_auxtools_turf_adjacency_info(isspaceturf(T.baseturf))
 	UNSETEMPTY(atmos_adjacent_turfs)
 	src.atmos_adjacent_turfs = atmos_adjacent_turfs
+	__update_auxtools_turf_adjacency_info(isspaceturf(baseturf))
+
+/turf/proc/set_sleeping(should_sleep)
+
+/turf/proc/__update_auxtools_turf_adjacency_info()
 
 //returns a list of adjacent turfs that can share air with this one.
 //alldir includes adjacent diagonal tiles that can share
@@ -75,6 +82,8 @@
 	for (var/direction in GLOB.diagonals)
 		var/matchingDirections = 0
 		var/turf/S = get_step(curloc, direction)
+		if(!S)
+			continue
 
 		for (var/checkDirection in GLOB.cardinals)
 			var/turf/checkTurf = get_step(S, checkDirection)
@@ -99,14 +108,13 @@
 /turf/air_update_turf(command = 0)
 	if(command)
 		CalculateAdjacentTurfs()
-	SSair.add_to_active(src,command)
 
 /atom/movable/proc/move_update_air(turf/T)
     if(isturf(T))
         T.air_update_turf(1)
     air_update_turf(1)
 
-/atom/proc/atmos_spawn_air(text) //because a lot of people loves to copy paste awful code lets just make a easy proc to spawn your plasma fires
+/atom/proc/atmos_spawn_air(text) //because a lot of people loves to copy paste awful code lets just make an easy proc to spawn your plasma fires
 	var/turf/open/T = get_turf(src)
 	if(!istype(T))
 		return
@@ -118,6 +126,5 @@
 
 	var/datum/gas_mixture/G = new
 	G.parse_gas_string(text)
+	assume_air(G)
 
-	air.merge(G)
-	SSair.add_to_active(src, 0)

@@ -137,7 +137,7 @@
 		add_overlay("device")
 
 /obj/item/device/transfer_valve/proc/merge_gases()
-	tank_two.air_contents.volume += tank_one.air_contents.volume
+	tank_two.air_contents.set_volume( tank_two.air_contents.return_volume() + tank_one.air_contents.return_volume())
 	var/datum/gas_mixture/temp
 	temp = tank_one.air_contents.remove_ratio(1)
 	tank_two.air_contents.merge(temp)
@@ -145,11 +145,11 @@
 /obj/item/device/transfer_valve/proc/split_gases()
 	if (!valve_open || !tank_one || !tank_two)
 		return
-	var/ratio1 = tank_one.air_contents.volume/tank_two.air_contents.volume
+	var/ratio1 = tank_one.air_contents.return_volume()/tank_two.air_contents.return_volume()
 	var/datum/gas_mixture/temp
 	temp = tank_two.air_contents.remove_ratio(ratio1)
 	tank_one.air_contents.merge(temp)
-	tank_two.air_contents.volume -=  tank_one.air_contents.volume
+	tank_two.air_contents.set_volume(tank_two.air_contents.return_volume() - tank_one.air_contents.return_volume())
 
 	/*
 	Exadv1: I know this isn't how it's going to work, but this was just to check
