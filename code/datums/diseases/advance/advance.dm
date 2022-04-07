@@ -174,7 +174,6 @@
 
 	if(!symptoms || !symptoms.len)
 		CRASH("We did not have any symptoms before generating properties.")
-		return
 
 	properties = list("resistance" = 0, "stealth" = 0, "stage_rate" = 0, "transmittable" = 0, "severity" = 0)
 

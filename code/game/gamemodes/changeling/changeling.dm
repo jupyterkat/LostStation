@@ -250,9 +250,10 @@ GLOBAL_LIST_INIT(slot2type, list("head" = /obj/item/clothing/head/changeling, "w
 				text += "<br><font color='green'><b>The changeling was successful!</b></font>"
 				SSblackbox.add_details("changeling_success","SUCCESS")
 
-				for(var/datum/mind/M in changeling)
-					var/client/c = M.current.client
-					c.inc_antag_tokens_count(ATOKEN_GREENTEXT_BONUS)
+				//"changeling" is not a list of consumed minds
+				//for(var/datum/mind/M in changeling)
+				//	var/client/c = M.current.client
+				//	c.inc_antag_tokens_count(ATOKEN_GREENTEXT_BONUS)
 			else
 				text += "<br><span class='boldannounce'>The changeling has failed.</span>"
 				SSblackbox.add_details("changeling_success","FAIL")

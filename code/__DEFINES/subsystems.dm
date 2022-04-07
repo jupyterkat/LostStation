@@ -3,24 +3,96 @@
 #define DB_MAJOR_VERSION 3
 #define DB_MINOR_VERSION 0
 
-//Timing subsystem
-//Don't run if there is an identical unique timer active
-#define TIMER_UNIQUE		0x1
-//For unique timers: Replace the old timer rather then not start this one
-#define TIMER_OVERRIDE		0x2
-//Timing should be based on how timing progresses on clients, not the sever.
-//	tracking this is more expensive,
-//	should only be used in conjuction with things that have to progress client side, such as animate() or sound()
-#define TIMER_CLIENT_TIME	0x4
-//Timer can be stopped using deltimer()
-#define TIMER_STOPPABLE		0x8
-//To be used with TIMER_UNIQUE
-//prevents distinguishing identical timers with the wait variable
-#define TIMER_NO_HASH_WAIT  0x10
+// Subsystem fire priority, from lowest to highest priority
+// If the subsystem isn't listed here it's either DEFAULT or PROCESS (if it's a processing subsystem child)
 
-#define TIMER_NO_INVOKE_WARNING 600 //number of byond ticks that are allowed to pass before the timer subsystem thinks it hung on something
+#define FIRE_PRIORITY_IDLE_NPC 10
+#define FIRE_PRIORITY_SERVER_MAINT 10
+#define FIRE_PRIORITY_RESEARCH 10
+#define FIRE_PRIORITY_VIS 10
+#define FIRE_PRIORITY_AMBIENCE 10
+#define FIRE_PRIORITY_GARBAGE 15
+#define FIRE_PRIORITY_DATABASE 16
+#define FIRE_PRIORITY_WET_FLOORS 20
+#define FIRE_PRIORITY_AIR 20
+#define FIRE_PRIORITY_NPC 20
+#define FIRE_PRIORITY_NPC_MOVEMENT 21
+#define FIRE_PRIORITY_NPC_ACTIONS 22
+#define FIRE_PRIORITY_PROCESS 25
+#define FIRE_PRIORITY_THROWING 25
+#define FIRE_PRIORITY_REAGENTS 26
+#define FIRE_PRIORITY_SPACEDRIFT 30
+#define FIRE_PRIORITY_SMOOTHING 35
+#define FIRE_PRIORITY_NETWORKS 40
+#define FIRE_PRIORITY_OBJ 40
+#define FIRE_PRIORITY_ACID 40
+#define FIRE_PRIORITY_BURNING 40
+#define FIRE_PRIORITY_DEFAULT 50
+#define FIRE_PRIORITY_PARALLAX 65
+#define FIRE_PRIORITY_INSTRUMENTS 80
+#define FIRE_PRIORITY_MOBS 100
+#define FIRE_PRIORITY_TGUI 110
+#define FIRE_PRIORITY_TICKER 200
+#define FIRE_PRIORITY_STATPANEL 390
+#define FIRE_PRIORITY_CHAT 400
+#define FIRE_PRIORITY_RUNECHAT 410
+#define FIRE_PRIORITY_MOUSE_ENTERED 450
+#define FIRE_PRIORITY_OVERLAYS 500
+#define FIRE_PRIORITY_CALLBACKS	600
+#define FIRE_PRIORITY_EXPLOSIONS 666
+#define FIRE_PRIORITY_TIMER 700
+#define FIRE_PRIORITY_SOUND_LOOPS 800
+#define FIRE_PRIORITY_SPEECH_CONTROLLER 900
+#define FIRE_PRIORITY_INPUT 1000 // This must always always be the max highest priority. Player input must never be lost.
 
+//! ## Timing subsystem
+/**
+ * Don't run if there is an identical unique timer active
+ *
+ * if the arguments to addtimer are the same as an existing timer, it doesn't create a new timer,
+ * and returns the id of the existing timer
+ */
+#define TIMER_UNIQUE (1<<0)
+
+///For unique timers: Replace the old timer rather then not start this one
+#define TIMER_OVERRIDE (1<<1)
+
+/**
+ * Timing should be based on how timing progresses on clients, not the server.
+ *
+ * Tracking this is more expensive,
+ * should only be used in conjuction with things that have to progress client side, such as
+ * animate() or sound()
+ */
+#define TIMER_CLIENT_TIME (1<<2)
+
+///Timer can be stopped using deltimer()
+#define TIMER_STOPPABLE (1<<3)
+
+///prevents distinguishing identical timers with the wait variable
+///
+///To be used with TIMER_UNIQUE
+#define TIMER_NO_HASH_WAIT (1<<4)
+
+///Loops the timer repeatedly until qdeleted
+///
+///In most cases you want a subsystem instead, so don't use this unless you have a good reason
+#define TIMER_LOOP (1<<5)
+
+///Delete the timer on parent datum Destroy() and when deltimer'd
+#define TIMER_DELETE_ME (1<<6)
+
+///Empty ID define
 #define TIMER_ID_NULL -1
+
+/**
+	Create a new timer and add it to the queue.
+	* Arguments:
+	* * callback the callback to call on timer finish
+	* * wait deciseconds to run the timer for
+	* * flags flags for this timer, see: code\__DEFINES\subsystems.dm
+*/
+#define addtimer(args...) _addtimer(args, file = __FILE__, line = __LINE__)
 
 //For servers that can't do with any additional lag, set this to none in flightpacks.dm in subsystem/processing.
 #define FLIGHTSUIT_PROCESSING_NONE 0

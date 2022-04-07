@@ -149,7 +149,7 @@
 		window_options += "focus=false;"
 	timeout = Timeout
 
-/datum/browser/alert/open()
+/datum/browser/alert/open(use_onclose)
 	set waitfor = 0
 	opentime = world.time
 

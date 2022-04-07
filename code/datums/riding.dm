@@ -407,7 +407,6 @@
 	for(var/obj/item/riding_offhand/O in user.contents)
 		if(O.ridden != ridden)
 			CRASH("RIDING OFFHAND ON WRONG MOB")
-			continue
 		if(O.selfdeleting)
 			continue
 		else

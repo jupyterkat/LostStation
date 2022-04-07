@@ -70,7 +70,6 @@
 	if(!target || !user || !is_servant_of_ratvar(user) || istype(target, /obj/item/storage))
 		return TRUE
 	return fabricate(target, user)
-	return TRUE
 
 //A note here; return values are for if we CAN BE PUT ON A TABLE, not IF WE ARE SUCCESSFUL, unless no_table_check is TRUE
 /obj/item/clockwork/replica_fabricator/proc/fabricate(atom/target, mob/living/user, silent, no_table_check)

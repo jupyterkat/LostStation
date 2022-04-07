@@ -25,7 +25,7 @@
 	* If you are diagonally adjacent, ensure you can pass through at least one of the mutually adjacent square.
 		* Passing through in this case ignores anything with the LETPASSTHROW pass flag, such as tables, racks, and morgue trays.
 */
-/turf/Adjacent(atom/neighbor, atom/target = null, atom/movable/mover = null)
+/turf/Adjacent(atom/neighbor, atom/target, atom/movable/mover)
 	var/turf/T0 = get_turf(neighbor)
 
 	if(T0 == src) //same turf
@@ -68,9 +68,10 @@
 /atom/movable/Adjacent(var/atom/neighbor)
 	if(neighbor == loc)
 		return TRUE
-	if(!isturf(loc))
+	var/turf/T = loc
+	if(!istype(T))
 		return FALSE
-	if(loc.Adjacent(neighbor,target = neighbor, mover = src))
+	if(T.Adjacent(neighbor,target = neighbor, mover = src))
 		return TRUE
 	return FALSE
 
