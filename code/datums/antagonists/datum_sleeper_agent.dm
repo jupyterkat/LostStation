@@ -282,10 +282,6 @@
 			this.syndicate = TRUE
 			forge_single_objective()
 
-	else
-		..() // Give them standard objectives.
-	return
-
 /datum/antagonist/traitor/human/sleeper_agent/forge_traitor_objectives()
 	forge_sleeper_agent_objectives()
 	var/datum/objective/escape/escape_objective = new

@@ -39,6 +39,15 @@
 			. *= -1
 	return .
 
+/proc/instability2text(instability) //used when displaying fusion power on analyzers
+	switch(instability)
+		if(0 to 2)
+			return "stable, meaning that its heat will always increase."
+		if(2 to 3)
+			return "metastable, meaning that its heat will trend upwards."
+		if (3 to INFINITY)
+			return "unstable, meaning that its heat will trend downwards."
+
 //Returns the hex value of a decimal number
 //len == length of returned string
 //if len < 0 then the returned string will be as long as it needs to be to contain the data

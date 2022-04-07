@@ -44,7 +44,7 @@
 			to_chat(ranged_ability_user, "<span class='neovgre'>\"They are already helpless, no?\"</span>")
 			return TRUE
 
-			playsound(loc, 'sound/weapons/handcuffs.ogg', 30, TRUE)
+		playsound(loc, 'sound/weapons/handcuffs.ogg', 30, TRUE)
 		ranged_ability_user.visible_message("<span class='danger'>[ranged_ability_user] begins forming manacles around [L]'s wrists!</span>", \
 		"<span class='neovgre_small'>You begin shaping replicant alloy into manacles around [L]'s wrists...</span>")
 		to_chat(L, "<span class='userdanger'>[ranged_ability_user] begins forming manacles around your wrists!</span>")

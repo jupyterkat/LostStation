@@ -133,7 +133,6 @@
 			return "health-90" //HURRY UP, DOC!
 		else
 			return "health-100" //doc u had 1 job
-	return "0"
 
 //HOOKS
 
@@ -273,7 +272,6 @@
 			return "crit"
 		else
 			return "dead"
-	return "dead"
 
 //Sillycone hooks
 /mob/living/silicon/proc/diag_hud_set_health()

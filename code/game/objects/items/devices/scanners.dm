@@ -290,11 +290,16 @@ MASS SPECTROMETER
 	if(!istype(location))
 		return
 
+	scan_turf(user, location)
+
+
+/obj/item/analyzer/proc/scan_turf(mob/user, turf/location)
+
 	var/datum/gas_mixture/environment = location.return_air()
 
 	var/pressure = environment.return_pressure()
 	var/total_moles = environment.total_moles()
-
+	var/cached_scan_results = environment.analyzer_results
 	to_chat(user, "<span class='info'><B>Results:</B></span>")
 	if(abs(pressure - ONE_ATMOSPHERE) < 10)
 		to_chat(user, "<span class='info'>Pressure: [round(pressure, 0.01)] kPa</span>")
@@ -332,6 +337,12 @@ MASS SPECTROMETER
 			var/gas_concentration = environment.get_moles(id)/total_moles
 			to_chat(user, "<span class='alert'>[GLOB.gas_data.names[id]]: [round(gas_concentration*100, 0.01)] % ([round(environment.get_moles(id), 0.01)] mol)</span>")
 		to_chat(user, "<span class='info'>Temperature: [round(environment.return_temperature()-T0C, 0.01)] &deg;C ([round(environment.return_temperature(), 0.01)] K)</span>")
+
+		if(cached_scan_results && cached_scan_results["fusion"]) //notify the user if a fusion reaction was detected
+			var/instability = round(cached_scan_results["fusion"], 0.01)
+			var/tier = instability2text(instability)
+			to_chat(user, "<span class='boldnotice'>Large amounts of free neutrons detected in the air indicate that a fusion reaction took place.</span>")
+			to_chat(user, "<span class='notice'>Instability of the last fusion reaction: [instability]\n This indicates it was [tier].</span>")
 
 /obj/item/device/mass_spectrometer
 	desc = "A hand-held mass spectrometer which identifies trace chemicals in a blood sample."
