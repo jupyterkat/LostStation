@@ -5,7 +5,7 @@
 	intact = 0
 
 	initial_temperature = TCMB
-	thermal_conductivity = OPEN_HEAT_TRANSFER_COEFFICIENT
+	thermal_conductivity = 0
 	heat_capacity = 700000
 
 	var/destination_z

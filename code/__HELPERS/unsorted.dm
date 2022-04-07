@@ -852,13 +852,9 @@ GLOBAL_LIST_INIT(WALLITEMS_INVERSE, typecacheof(list(
 /proc/format_text(text)
 	return replacetext(replacetext(text,"\proper ",""),"\improper ","")
 
-/proc/atmosanalyzer_scan(mob/user, atom/target, silent=FALSE)
-	var/mixture = target.return_analyzable_air()
-	if(!mixture)
-		return FALSE
-
+/proc/atmosanalyzer_scan(mixture, mob/living/user, atom/target = src, visible = TRUE)
 	var/icon = target
-	if(!silent && isliving(user))
+	if(visible)
 		user.visible_message("[user] has used the analyzer on [icon2html(icon, viewers(user))] [target].", "<span class='notice'>You use the analyzer on [icon2html(icon, user)] [target].</span>")
 	to_chat(user, "<span class='boldnotice'>Results of analysis of [icon2html(icon, user)] [target].</span>")
 
@@ -880,8 +876,9 @@ GLOBAL_LIST_INIT(WALLITEMS_INVERSE, typecacheof(list(
 			to_chat(user, "<span class='notice'>Pressure: [round(pressure,0.01)] kPa</span>")
 
 			for(var/id in air_contents.get_gases())
-				var/gas_concentration = air_contents.get_moles(id)/total_moles
-				to_chat(user, "<span class='notice'>[GLOB.gas_data.names[id]]: [round(gas_concentration*100, 0.01)] % ([round(air_contents.get_moles(id), 0.01)] mol)</span>")
+				if(air_contents.get_moles(id) >= 0.005)
+					var/gas_concentration = air_contents.get_moles(id)/total_moles
+					to_chat(user, "<span class='notice'>[GLOB.gas_data.names[id]]: [round(gas_concentration*100, 0.01)] % ([round(air_contents.get_moles(id), 0.01)] mol)</span>")
 			to_chat(user, "<span class='notice'>Temperature: [round(temperature - T0C,0.01)] &deg;C ([round(temperature, 0.01)] K)</span>")
 
 		else
@@ -892,9 +889,11 @@ GLOBAL_LIST_INIT(WALLITEMS_INVERSE, typecacheof(list(
 
 		if(cached_scan_results && cached_scan_results["fusion"]) //notify the user if a fusion reaction was detected
 			var/instability = round(cached_scan_results["fusion"], 0.01)
+			var/tier = instability2text(instability)
 			to_chat(user, "<span class='boldnotice'>Large amounts of free neutrons detected in the air indicate that a fusion reaction took place.</span>")
-			to_chat(user, "<span class='notice'>Instability of the last fusion reaction: [instability].</span>")
-	return TRUE
+			to_chat(user, "<span class='notice'>Instability of the last fusion reaction: [instability]\n This indicates it was [tier]</span>")
+	return
+
 
 /proc/check_target_facings(mob/living/initator, mob/living/target)
 	/*This can be used to add additional effects on interactions between mobs depending on how the mobs are facing each other, such as adding a crit damage to blows to the back of a guy's head.
