@@ -1,7 +1,7 @@
 
 /turf/open/floor/plating/airless
 	icon_state = "plating"
-	initial_gas_mix = "TEMP=2.7"
+	initial_gas_mix = AIRLESS_ATMOS
 
 /turf/open/floor/plating/abductor
 	name = "alien floor"
