@@ -27,8 +27,6 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	var/processing = TRUE
 	/// How many times have we ran
 	var/iteration = 0
-	/// Stack end detector to detect stack overflows that kill the mc's main loop
-	var/datum/stack_end_detector/stack_end_detector
 
 	/// world.time of last fire, for tracking lag outside of the mc
 	var/last_run
