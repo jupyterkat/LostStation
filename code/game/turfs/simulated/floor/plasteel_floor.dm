@@ -16,7 +16,7 @@
 
 
 /turf/open/floor/plasteel/airless
-	initial_gas_mix = "TEMP=2.7"
+	initial_gas_mix = AIRLESS_ATMOS
 
 
 /turf/open/floor/plasteel/black
@@ -373,7 +373,7 @@
 	return
 
 /turf/open/floor/plasteel/cult/airless
-	initial_gas_mix = "TEMP=2.7"
+	initial_gas_mix = AIRLESS_ATMOS
 
 
 

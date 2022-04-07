@@ -278,7 +278,7 @@ MASS SPECTROMETER
 	materials = list(MAT_METAL=30, MAT_GLASS=20)
 	origin_tech = "magnets=1;engineering=1"
 
-/obj/item/analyzer/attack_self(mob/user)
+/obj/item/device/analyzer/attack_self(mob/user)
 	add_fingerprint(user)
 
 	if(user.stat || user.eye_blind)
@@ -293,7 +293,7 @@ MASS SPECTROMETER
 	scan_turf(user, location)
 
 
-/obj/item/analyzer/proc/scan_turf(mob/user, turf/location)
+/obj/item/device/analyzer/proc/scan_turf(mob/user, turf/location)
 
 	var/datum/gas_mixture/environment = location.return_air()
 

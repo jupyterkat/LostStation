@@ -44,7 +44,7 @@
 	on = FALSE
 
 /turf/open/floor/circuit/airless
-	initial_gas_mix = "TEMP=2.7"
+	initial_gas_mix = AIRLESS_ATMOS
 
 /turf/open/floor/circuit/killroom
 	name = "Killroom Floor"

@@ -82,14 +82,14 @@
 	icons = list("shuttlefloor","shuttlefloor_dam")
 
 /turf/open/floor/mineral/titanium/blue/airless
-	initial_gas_mix = "TEMP=2.7"
+	initial_gas_mix = AIRLESS_ATMOS
 
 /turf/open/floor/mineral/titanium/yellow
 	icon_state = "shuttlefloor2"
 	icons = list("shuttlefloor2","shuttlefloor2_dam")
 
 /turf/open/floor/mineral/titanium/yellow/airless
-	initial_gas_mix = "TEMP=2.7"
+	initial_gas_mix = AIRLESS_ATMOS
 
 /turf/open/floor/mineral/titanium
 	name = "shuttle floor"
@@ -98,14 +98,14 @@
 	icons = list("shuttlefloor3","shuttlefloor3_dam")
 
 /turf/open/floor/mineral/titanium/airless
-	initial_gas_mix = "TEMP=2.7"
+	initial_gas_mix = AIRLESS_ATMOS
 
 /turf/open/floor/mineral/titanium/purple
 	icon_state = "shuttlefloor5"
 	icons = list("shuttlefloor5","shuttlefloor5_dam")
 
 /turf/open/floor/mineral/titanium/purple/airless
-	initial_gas_mix = "TEMP=2.7"
+	initial_gas_mix = AIRLESS_ATMOS
 
 //PLASTITANIUM (syndieshuttle)
 /turf/open/floor/mineral/plastitanium
@@ -115,7 +115,7 @@
 	icons = list("shuttlefloor4","shuttlefloor4_dam")
 
 /turf/open/floor/mineral/plastitanium/airless
-	initial_gas_mix = "TEMP=2.7"
+	initial_gas_mix = AIRLESS_ATMOS
 
 /turf/open/floor/mineral/plastitanium/brig
 	name = "Brig floor"
@@ -161,7 +161,7 @@
 		spam_flag = world.time + 10
 
 /turf/open/floor/mineral/bananium/airless
-	initial_gas_mix = "TEMP=2.7"
+	initial_gas_mix = AIRLESS_ATMOS
 
 //DIAMOND
 
