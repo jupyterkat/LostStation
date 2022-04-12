@@ -50,7 +50,7 @@
 	. = ..()
 	pixel_y = rand(-8, 8)
 	pixel_x = rand(-9, 9)
-	ui = new /datum/oracle_ui(src, 420, 600, get_asset_datum(/datum/asset/simple/paper))
+	ui = new /datum/oracle_ui(src, 420, 600, get_asset_datum(/datum/asset/spritesheet/simple/paper))
 	ui.can_resize = FALSE
 	update_icon()
 	updateinfolinks()

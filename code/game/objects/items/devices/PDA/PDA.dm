@@ -112,7 +112,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 	return
 
 /obj/item/device/pda/attack_self(mob/user)
-	var/datum/asset/assets = get_asset_datum(/datum/asset/simple/pda)
+	var/datum/asset/assets = get_asset_datum(/datum/asset/spritesheet/simple/pda)
 	assets.send(user)
 
 	user.set_machine(src)

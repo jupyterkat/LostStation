@@ -10,6 +10,12 @@
 #define NUKE_ON_TIMING		2
 #define NUKE_ON_EXPLODING	3
 
+#define NUKEUI_AWAIT_DISK 0
+#define NUKEUI_AWAIT_CODE 1
+#define NUKEUI_AWAIT_TIMER 2
+#define NUKEUI_AWAIT_ARM 3
+#define NUKEUI_TIMING 4
+#define NUKEUI_EXPLODED 5
 
 /obj/machinery/nuclearbomb
 	name = "nuclear fission explosive"
@@ -26,12 +32,14 @@
 	var/ui_style = "nanotrasen"
 
 	var/numeric_input = ""
+	var/ui_mode = NUKEUI_AWAIT_DISK
 	var/timing = FALSE
 	var/exploding = FALSE
 	var/detonation_timer = null
 	var/r_code = "ADMIN"
 	var/yes_code = FALSE
 	var/safety = TRUE
+	var/exploded = FALSE
 	var/obj/item/disk/nuclear/auth = null
 	use_power = NO_POWER_USE
 	var/previous_level = ""
@@ -241,115 +249,168 @@
 /obj/machinery/nuclearbomb/attack_paw(mob/user)
 	return attack_hand(user)
 
-/obj/machinery/nuclearbomb/ui_interact(mob/user, ui_key="main", datum/tgui/ui=null, force_open=0, datum/tgui/master_ui=null, datum/ui_state/state=GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/nuclearbomb/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "nuclear_bomb", name, 500, 600, master_ui, state)
-		ui.set_style(ui_style)
+		ui = new(user, src, "NuclearBomb", name)
 		ui.open()
 
 /obj/machinery/nuclearbomb/ui_data(mob/user)
 	var/list/data = list()
 	data["disk_present"] = auth
-	data["code_approved"] = yes_code
-	var/first_status
-	if(auth)
-		if(yes_code)
-			first_status = timing ? "Func/Set" : "Functional"
-		else
-			first_status = "Auth S2."
+
+	var/hidden_code = (ui_mode == NUKEUI_AWAIT_CODE && numeric_input != "ERROR")
+
+	var/current_code = ""
+	if(hidden_code)
+		while(length(current_code) < length(numeric_input))
+			current_code = "[current_code]*"
 	else
-		if(timing)
-			first_status = "Set"
-		else
-			first_status = "Auth S1."
-	var/second_status = safety ? "Safe" : "Engaged"
+		current_code = numeric_input
+	while(length(current_code) < 5)
+		current_code = "[current_code]-"
+
+	var/first_status
+	var/second_status
+	switch(ui_mode)
+		if(NUKEUI_AWAIT_DISK)
+			first_status = "DEVICE LOCKED"
+			if(timing)
+				second_status = "TIME: [get_time_left()]"
+			else
+				second_status = "AWAIT DISK"
+		if(NUKEUI_AWAIT_CODE)
+			first_status = "INPUT CODE"
+			second_status = "CODE: [current_code]"
+		if(NUKEUI_AWAIT_TIMER)
+			first_status = "INPUT TIME"
+			second_status = "TIME: [current_code]"
+		if(NUKEUI_AWAIT_ARM)
+			first_status = "DEVICE READY"
+			second_status = "TIME: [get_time_left()]"
+		if(NUKEUI_TIMING)
+			first_status = "DEVICE ARMED"
+			second_status = "TIME: [get_time_left()]"
+		if(NUKEUI_EXPLODED)
+			first_status = "DEVICE DEPLOYED"
+			second_status = "THANK YOU"
+
 	data["status1"] = first_status
 	data["status2"] = second_status
 	data["anchored"] = anchored
-	data["safety"] = safety
-	data["timing"] = timing
-	data["time_left"] = get_time_left()
-
-	data["timer_set"] = timer_set
-	data["timer_is_not_default"] = timer_set != default_timer_set
-	data["timer_is_not_min"] = timer_set != minimum_timer_set
-	data["timer_is_not_max"] = timer_set != maximum_timer_set
-
-	var/message = "AUTH"
-	if(auth)
-		message = "[numeric_input]"
-		if(yes_code)
-			message = "*****"
-	data["message"] = message
 
 	return data
 
+
 /obj/machinery/nuclearbomb/ui_act(action, params)
-	if(..())
+	. = ..()
+	if(.)
 		return
 	switch(action)
 		if("eject_disk")
 			if(auth && auth.loc == src)
+				playsound(src, 'sound/machines/terminal_insert_disc.ogg', 50, FALSE)
+				playsound(src, 'sound/machines/nuke/general_beep.ogg', 50, FALSE)
 				auth.forceMove(get_turf(src))
 				auth = null
 				. = TRUE
-		if("insert_disk")
-			if(!auth)
-				var/obj/item/I = usr.get_active_held_item()
-				if(istype(I, /obj/item/disk/nuclear))
-					usr.drop_item()
-					I.forceMove(src)
+			else
+				var/obj/item/I = usr.is_holding_item_of_type(/obj/item/disk/nuclear)
+				if(I && disk_check(I) && usr.transferItemToLoc(I, src))
+					playsound(src, 'sound/machines/terminal_insert_disc.ogg', 50, FALSE)
+					playsound(src, 'sound/machines/nuke/general_beep.ogg', 50, FALSE)
 					auth = I
 					. = TRUE
+			update_ui_mode()
 		if("keypad")
 			if(auth)
 				var/digit = params["digit"]
 				switch(digit)
-					if("R")
+					if("C")
+						if(auth && ui_mode == NUKEUI_AWAIT_ARM)
+							set_safety()
+							yes_code = FALSE
+							playsound(src, 'sound/machines/nuke/confirm_beep.ogg', 50, FALSE)
+							update_ui_mode()
+						else
+							playsound(src, 'sound/machines/nuke/general_beep.ogg', 50, FALSE)
 						numeric_input = ""
-						yes_code = FALSE
 						. = TRUE
 					if("E")
-						if(numeric_input == r_code)
-							numeric_input = ""
-							yes_code = TRUE
-							. = TRUE
-						else
-							numeric_input = "ERROR"
+						switch(ui_mode)
+							if(NUKEUI_AWAIT_CODE)
+								if(numeric_input == r_code)
+									numeric_input = ""
+									yes_code = TRUE
+									playsound(src, 'sound/machines/nuke/general_beep.ogg', 50, FALSE)
+									. = TRUE
+								else
+									playsound(src, 'sound/machines/nuke/angry_beep.ogg', 50, FALSE)
+									numeric_input = "ERROR"
+							if(NUKEUI_AWAIT_TIMER)
+								var/number_value = text2num(numeric_input)
+								if(number_value)
+									timer_set = clamp(number_value, minimum_timer_set, maximum_timer_set)
+									playsound(src, 'sound/machines/nuke/general_beep.ogg', 50, FALSE)
+									set_safety()
+									. = TRUE
+							else
+								playsound(src, 'sound/machines/nuke/angry_beep.ogg', 50, FALSE)
+						update_ui_mode()
 					if("0","1","2","3","4","5","6","7","8","9")
 						if(numeric_input != "ERROR")
 							numeric_input += digit
 							if(length(numeric_input) > 5)
 								numeric_input = "ERROR"
+							else
+								playsound(src, 'sound/machines/nuke/general_beep.ogg', 50, FALSE)
 							. = TRUE
-		if("timer")
-			if(auth && yes_code)
-				var/change = params["change"]
-				if(change == "reset")
-					timer_set = default_timer_set
-				else if(change == "decrease")
-					timer_set = max(minimum_timer_set, timer_set - 10)
-				else if(change == "increase")
-					timer_set = min(maximum_timer_set, timer_set + 10)
-				else if(change == "input")
-					var/user_input = input(usr, "Set time to detonation.", name) as null|num
-					if(!user_input)
-						return
-					var/N = text2num(user_input)
-					if(!N)
-						return
-					timer_set = clamp(N,minimum_timer_set,maximum_timer_set)
+			else
+				playsound(src, 'sound/machines/nuke/angry_beep.ogg', 50, FALSE)
+		if("arm")
+			if(auth && yes_code && !safety && !exploded)
+				playsound(src, 'sound/machines/nuke/confirm_beep.ogg', 50, FALSE)
+				set_active()
+				update_ui_mode()
 				. = TRUE
-		if("safety")
-			if(auth && yes_code)
-				set_safety()
+			else
+				playsound(src, 'sound/machines/nuke/angry_beep.ogg', 50, FALSE)
 		if("anchor")
 			if(auth && yes_code)
+				playsound(src, 'sound/machines/nuke/general_beep.ogg', 50, FALSE)
 				set_anchor()
-		if("toggle_timer")
-			if(auth && yes_code && !safety)
-				set_active()
+			else
+				playsound(src, 'sound/machines/nuke/angry_beep.ogg', 50, FALSE)
+
+/obj/machinery/nuclearbomb/proc/disk_check(obj/item/disk/nuclear/D)
+	//if(D.fake)
+	//	say("Authentication failure; disk not recognised.")
+	//	return FALSE
+	//else
+	return TRUE
+
+/obj/machinery/nuclearbomb/proc/update_ui_mode()
+	if(exploded)
+		ui_mode = NUKEUI_EXPLODED
+		return
+
+	if(!auth)
+		ui_mode = NUKEUI_AWAIT_DISK
+		return
+
+	if(timing)
+		ui_mode = NUKEUI_TIMING
+		return
+
+	if(!safety)
+		ui_mode = NUKEUI_AWAIT_ARM
+		return
+
+	if(!yes_code)
+		ui_mode = NUKEUI_AWAIT_CODE
+		return
+
+	ui_mode = NUKEUI_AWAIT_TIMER
 
 
 /obj/machinery/nuclearbomb/proc/set_anchor()

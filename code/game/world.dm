@@ -4,8 +4,6 @@
 
 	log_world("World loaded at [time_stamp()]")
 
-	SetupExternalRSC()
-
 	GLOB.config_error_log = GLOB.world_href_log = GLOB.world_runtime_log = GLOB.world_attack_log = GLOB.world_game_log = file("data/logs/config_error.log") //temporary file used to record errors with loading config, moved to log directory once logging is set bl
 
 	//initialises global lists for referencing frequently used datums (so that we only ever do it once)
@@ -41,17 +39,6 @@
 			IRCBroadcast("New round starting on [SSmapping.config.map_name]! <byond://[address]>")
 		else
 			IRCBroadcast("New round starting on [SSmapping.config.map_name]!")
-
-/world/proc/SetupExternalRSC()
-#if (PRELOAD_RSC == 0)
-	external_rsc_urls = world.file2list("config/external_rsc_urls.txt","\n")
-	var/i=1
-	while(i<=external_rsc_urls.len)
-		if(external_rsc_urls[i])
-			i++
-		else
-			external_rsc_urls.Cut(i,i+1)
-#endif
 
 /world/proc/CheckSchemaVersion()
 	if(CONFIG_GET(flag/sql_enabled))

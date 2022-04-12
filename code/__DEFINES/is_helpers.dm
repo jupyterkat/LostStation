@@ -1,5 +1,7 @@
 // simple is_type and similar inline helpers
 
+#define isatom(A) (isloc(A))
+
 #define isdatum(D) (istype(D, /datum))
 
 #define islist(L) (istype(L, /list))
