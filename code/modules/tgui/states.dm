@@ -61,7 +61,7 @@
  */
 /mob/proc/shared_ui_interaction(src_object)
 	// Close UIs if mindless.
-	if(!client && !HAS_TRAIT(src, TRAIT_PRESERVE_UI_WITHOUT_CLIENT))
+	if(!client)
 		return UI_CLOSE
 	// Disable UIs if unconcious.
 	else if(stat)
@@ -70,11 +70,6 @@
 	else if(incapacitated())
 		return UI_UPDATE
 	return UI_INTERACTIVE
-
-/mob/living/shared_ui_interaction(src_object)
-	. = ..()
-	if(!(mobility_flags & MOBILITY_UI) && . == UI_INTERACTIVE)
-		return UI_UPDATE
 
 /mob/living/silicon/ai/shared_ui_interaction(src_object)
 	// Disable UIs if the AI is unpowered.
