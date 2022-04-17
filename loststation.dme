@@ -1141,6 +1141,7 @@
 #include "code\modules\asset_cache\assets\fontawesome.dm"
 #include "code\modules\asset_cache\assets\goonchat.dm"
 #include "code\modules\asset_cache\assets\headers.dm"
+#include "code\modules\asset_cache\assets\html_interface.dm"
 #include "code\modules\asset_cache\assets\irv.dm"
 #include "code\modules\asset_cache\assets\jquery.dm"
 #include "code\modules\asset_cache\assets\language.dm"

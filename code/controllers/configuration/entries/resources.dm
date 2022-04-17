@@ -1,14 +1,16 @@
-/datum/config_entry/keyed_list/external_rsc_urls
+#define CURRENT_RESIDENT_FILE "resources.txt"
+
+CONFIG_DEF(keyed_list/external_rsc_urls)
 	key_mode = KEY_MODE_TEXT
 	value_mode = VALUE_MODE_FLAG
 
-/datum/config_entry/flag/asset_simple_preload
+CONFIG_DEF(flag/asset_simple_preload)
 
-/datum/config_entry/string/asset_transport
+CONFIG_DEF(string/asset_transport)
 /datum/config_entry/string/asset_transport/ValidateAndSet(str_val)
 	return (lowertext(str_val) in list("simple", "webroot")) && ..(lowertext(str_val))
 
-/datum/config_entry/string/asset_cdn_webroot
+CONFIG_DEF(string/asset_cdn_webroot)
 	protection = CONFIG_ENTRY_LOCKED
 
 /datum/config_entry/string/asset_cdn_webroot/ValidateAndSet(str_var)
@@ -18,7 +20,7 @@
 		str_var += "/"
 	return ..(str_var)
 
-/datum/config_entry/string/asset_cdn_url
+CONFIG_DEF(string/asset_cdn_url)
 	protection = CONFIG_ENTRY_LOCKED
 	default = null
 
