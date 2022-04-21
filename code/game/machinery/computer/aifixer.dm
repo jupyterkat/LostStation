@@ -67,7 +67,6 @@
 	dat += {"<br><A href='?src=[REF(user)];mach_close=computer'>Close</A>"}
 	var/datum/browser/popup = new(user, "computer", "AI System Integrity Restorer", 400, 500)
 	popup.set_content(dat)
-	popup.set_title_image(user.browse_rsc_icon(src.icon, src.icon_state))
 	popup.open()
 	return
 

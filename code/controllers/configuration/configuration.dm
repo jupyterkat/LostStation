@@ -26,6 +26,9 @@ GLOBAL_PROTECT(config_dir)
 		LoadEntries(I)
 	loadmaplist(CONFIG_MAPS_FILE)
 
+	if (Master)
+		Master.OnConfigLoad()
+
 /datum/controller/configuration/Destroy()
 	entries_by_type.Cut()
 	QDEL_LIST_ASSOC_VAL(entries)

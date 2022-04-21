@@ -258,7 +258,6 @@ GLOBAL_LIST_EMPTY(allConsoles)
 					dat += "Speaker <A href='?src=[REF(src)];setSilent=1'>ON</A>"
 		var/datum/browser/popup = new(user, "req_console", "[department] Requests Console", 450, 440)
 		popup.set_content(dat)
-		popup.set_title_image(user.browse_rsc_icon(src.icon, src.icon_state))
 		popup.open()
 	return
 

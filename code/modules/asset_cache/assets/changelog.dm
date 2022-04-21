@@ -1,4 +1,4 @@
-/datum/asset/simple/changelog
+/datum/asset/simple/namespaced/changelog
 	assets = list(
 		"88x31.png" = 'html/88x31.png',
 		"add.png" = 'html/add.png',
@@ -20,3 +20,4 @@
 		"scales.png" = 'html/scales.png',
 		"changelog.css" = 'html/changelog.css'
 	)
+	parents = list("changelog.html" = 'html/changelog.html')

@@ -1138,6 +1138,7 @@
 #include "code\modules\asset_cache\asset_list.dm"
 #include "code\modules\asset_cache\assets\bibles.dm"
 #include "code\modules\asset_cache\assets\changelog.dm"
+#include "code\modules\asset_cache\assets\common.dm"
 #include "code\modules\asset_cache\assets\fontawesome.dm"
 #include "code\modules\asset_cache\assets\goonchat.dm"
 #include "code\modules\asset_cache\assets\headers.dm"
