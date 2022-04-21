@@ -20,6 +20,7 @@ GLOBAL_LIST_EMPTY(uplinks)
 	var/purchase_log = ""
 	var/list/uplink_items
 	var/hidden_crystals = 0
+	var/compact_mode = FALSE
 
 /obj/item/device/uplink/Initialize()
 	. = ..()
@@ -61,13 +62,17 @@ GLOBAL_LIST_EMPTY(uplinks)
 	if(user)
 		ui_interact(user)
 
-/obj/item/device/uplink/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-									datum/tgui/master_ui = null, datum/ui_state/state = GLOB.inventory_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/item/device/uplink/ui_state(mob/user)
+	return GLOB.inventory_state
+
+/obj/item/device/uplink/ui_interact(mob/user, datum/tgui/ui)
+	active = TRUE
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "uplink", name, 450, 750, master_ui, state)
-		ui.set_autoupdate(FALSE) // This UI is only ever opened by one person, and never is updated outside of user input.
-		ui.set_style("syndicate")
+		ui = new(user, src, "OldUplink", name)
+		// This UI is only ever opened by one person,
+		// and never is updated outside of user input.
+		ui.set_autoupdate(FALSE)
 		ui.open()
 
 /obj/item/device/uplink/ui_data(mob/user)
@@ -76,34 +81,39 @@ GLOBAL_LIST_EMPTY(uplinks)
 	var/list/data = list()
 	data["telecrystals"] = telecrystals
 	data["lockable"] = lockable
+	data["compactMode"] = compact_mode
+	return data
 
+/obj/item/device/uplink/ui_static_data(mob/user)
+	var/list/data = list()
 	data["categories"] = list()
 	for(var/category in uplink_items)
 		var/list/cat = list(
 			"name" = category,
 			"items" = (category == selected_cat ? list() : null))
-		if(category == selected_cat)
-			for(var/item in uplink_items[category])
-				var/datum/uplink_item/I = uplink_items[category][item]
-				if(I.limited_stock == 0)
+		for(var/item in uplink_items[category])
+			var/datum/uplink_item/I = uplink_items[category][item]
+			if(I.limited_stock == 0)
+				continue
+			if(I.restricted_roles.len)
+				var/is_inaccessible = 1
+				for(var/R in I.restricted_roles)
+					if(R == user.mind.assigned_role)
+						is_inaccessible = 0
+				if(is_inaccessible)
 					continue
-				if(I.restricted_roles.len)
-					var/is_inaccessible = 1
-					for(var/R in I.restricted_roles)
-						if(R == user.mind.assigned_role)
-							is_inaccessible = 0
-					if(is_inaccessible)
-						continue
-				cat["items"] += list(list(
-					"name" = I.name,
-					"cost" = I.cost,
-					"desc" = I.desc,
-				))
+			cat["items"] += list(list(
+				"name" = I.name,
+				"cost" = I.cost,
+				"desc" = I.desc,
+			))
 		data["categories"] += list(cat)
 	return data
 
-
-/obj/item/device/uplink/ui_act(action, params)
+/obj/item/device/uplink/ui_act(action, params, datum/tgui/ui, datum/ui_state/state)
+	. = ..()
+	if(.)
+		return
 	if(!active)
 		return
 
@@ -118,7 +128,7 @@ GLOBAL_LIST_EMPTY(uplinks)
 			if(item in buyable_items)
 				var/datum/uplink_item/I = buyable_items[item]
 				I.buy(usr, src)
-				. = TRUE
+				return TRUE
 		if("lock")
 			active = FALSE
 			telecrystals += hidden_crystals
@@ -126,8 +136,10 @@ GLOBAL_LIST_EMPTY(uplinks)
 			SStgui.close_uis(src)
 		if("select")
 			selected_cat = params["category"]
-	return 1
-
+			return TRUE
+		if("compact_toggle")
+			compact_mode = !compact_mode
+			return TRUE
 
 /obj/item/device/uplink/ui_host()
 	return loc

@@ -20,6 +20,7 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 #define NODECONSTRUCT_1  	128		// For machines and structures that should not break into parts, eg, holodeck stuff
 #define OVERLAY_QUEUED_1	256		// atom queued to SSoverlay
 #define ON_BORDER_1			512		// item has priority to check when entering or leaving
+#define HTML_USE_INITAL_ICON_1 1024 /// Should we use the initial icon for display? Mostly used by overlay only objects
 
 #define NOSLIP_1			1024 		//prevents from slipping on wet floors, in space etc
 #define CLEAN_ON_MOVE_1		2048

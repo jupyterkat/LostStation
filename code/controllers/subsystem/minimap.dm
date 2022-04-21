@@ -12,11 +12,11 @@ SUBSYSTEM_DEF(minimap)
 	if(CONFIG_GET(flag/generate_minimaps))
 		if(hash == trim(file2text(hash_path())))
 			for(var/z in z_levels)	//We have these files cached, let's register them
-				register_asset("minimap_[z].png", fcopy_rsc(map_path(z)))
+				SSassets.transport.register_asset("minimap_[z].png", fcopy_rsc(map_path(z)))
 			return ..()
 		for(var/z in z_levels)
 			generate(z)
-			register_asset("minimap_[z].png", fcopy_rsc(map_path(z)))
+			SSassets.transport.register_asset("minimap_[z].png", fcopy_rsc(map_path(z)))
 		fdel(hash_path())
 		text2file(hash, hash_path())
 	else
@@ -33,7 +33,7 @@ SUBSYSTEM_DEF(minimap)
 			fileloc = 1	//No map image cached with the current map, and we have a backup. Let's fall back to it.
 			to_chat(world, "<span class='boldannounce'>No cached minimaps detected. Backup files loaded.</span>")
 		for(var/z in z_levels)
-			register_asset("minimap_[z].png", fcopy_rsc(map_path(z,fileloc)))
+			SSassets.transport.register_asset("minimap_[z].png", fcopy_rsc(map_path(z,fileloc)))
 	..()
 
 /datum/controller/subsystem/minimap/proc/check_files(backup)	// If the backup argument is true, looks in the icons folder. If false looks in the data folder.
@@ -58,8 +58,11 @@ SUBSYSTEM_DEF(minimap)
 		return "data/minimaps/[SSmapping.config.map_name]_[z].png"
 
 /datum/controller/subsystem/minimap/proc/send(client/client)
+	var/list/maps = list()
 	for(var/z in z_levels)
-		send_asset(client, "minimap_[z].png")
+		maps += "minimap_[z].png"
+
+	SSassets.transport.send_assets(client, maps)
 
 /datum/controller/subsystem/minimap/proc/generate(z = 1, x1 = 1, y1 = 1, x2 = world.maxx, y2 = world.maxy)
 	// Load the background.

@@ -6,4 +6,6 @@
 #define CONFIG_MAPS_FILE "maps.txt"
 
 //flags
+/// can't edit
+#define CONFIG_ENTRY_LOCKED 1
 #define CONFIG_ENTRY_HIDDEN 2 //can't see value

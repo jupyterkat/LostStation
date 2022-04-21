@@ -66,7 +66,6 @@
 	add_fingerprint(usr)
 	var/datum/browser/popup = new(user, "computer", title, 400, 500)
 	popup.set_content(dat)
-	popup.set_title_image(user.browse_rsc_icon(icon, icon_state))
 	popup.open()
 
 

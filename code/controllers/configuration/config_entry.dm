@@ -2,6 +2,13 @@
 #define LIST_MODE_TEXT 1
 #define LIST_MODE_FLAG 2
 
+#define VALUE_MODE_NUM 0
+#define VALUE_MODE_TEXT 1
+#define VALUE_MODE_FLAG 2
+
+#define KEY_MODE_TEXT 0
+#define KEY_MODE_TYPE 1
+
 /datum/config_entry
 	var/name	//read-only, this is determined by the last portion of the derived entry type
 	var/value
@@ -12,6 +19,9 @@
 
 	var/protection = NONE
 	var/abstract_type = /datum/config_entry	//do not instantiate if type matches this
+
+	/// Force validate and set on VV. VAS proccall guard will run regardless.
+	var/vv_VAS = TRUE
 
 	var/dupes_allowed = FALSE
 
@@ -37,18 +47,21 @@
 		. &= !(protection & CONFIG_ENTRY_HIDDEN)
 
 /datum/config_entry/vv_edit_var(var_name, var_value)
-	var/static/list/banned_edits = list("name", "default", "resident_file", "protection", "abstract_type", "modified", "dupes_allowed")
+	var/static/list/banned_edits = list("name", "default", "resident_file", "protection", "vv_VAS", "abstract_type", "modified", "dupes_allowed")
 	if(var_name == "value")
-		. = ValidateAndSet("[var_value]")
-		if(.)
-			var_edited = TRUE
-		return
+		if(protection & CONFIG_ENTRY_LOCKED)
+			return FALSE
+		if(vv_VAS)
+			. = ValidateAndSet("[var_value]")
+			if(.)
+				var_edited = TRUE
+			return
 	if(var_name in banned_edits)
 		return FALSE
 	return ..()
 
 /datum/config_entry/proc/VASProcCallGuard(str_val)
-	. = !(IsAdminAdvancedProcCall() && GLOB.LastAdminCalledProc == "ValidateAndSet" && GLOB.LastAdminCalledTargetRef == "[REF(src)]")
+	. = !((protection & CONFIG_ENTRY_LOCKED) && IsAdminAdvancedProcCall() && GLOB.LastAdminCalledProc == "ValidateAndSet" && GLOB.LastAdminCalledTargetRef == "[REF(src)]")
 	if(!.)
 		log_admin_private("Config set of [type] to [str_val] attempted by [key_name(usr)]")
 
@@ -83,6 +96,9 @@
 	return FALSE
 
 /datum/config_entry/proc/ValidateKeyName(key_name)
+	return TRUE
+
+/datum/config_entry/proc/ValidateListEntry(key_name, key_value)
 	return TRUE
 
 /datum/config_entry/string
@@ -188,6 +204,134 @@
 	if(!VASProcCallGuard(str_val))
 		return FALSE
 	return ValidateKeyedList(str_val, LIST_MODE_TEXT, splitter)
+
+
+/datum/config_entry/keyed_list
+	abstract_type = /datum/config_entry/keyed_list
+	default = list()
+	dupes_allowed = TRUE
+	vv_VAS = FALSE //VAS will not allow things like deleting from lists, it'll just bug horribly.
+	var/key_mode
+	var/value_mode
+	var/splitter = " "
+	/// whether the key names will be lowercased on ValidateAndSet or not.
+	var/lowercase_key = TRUE
+
+/datum/config_entry/keyed_list/New()
+	. = ..()
+	if(isnull(key_mode) || isnull(value_mode))
+		CRASH("Keyed list of type [type] created with null key or value mode!")
+
+/datum/config_entry/keyed_list/ValidateAndSet(str_val)
+	if(!VASProcCallGuard(str_val))
+		return FALSE
+
+	str_val = trim(str_val)
+
+	var/list/new_entry = parse_key_and_value(str_val)
+
+	var/new_key = new_entry["config_key"]
+	var/new_value = new_entry["config_value"]
+
+	if(!isnull(new_value) && !isnull(new_key) && ValidateListEntry(new_key, new_value))
+		value[new_key] = new_value
+		return TRUE
+	return FALSE
+
+/datum/config_entry/keyed_list/proc/parse_key_and_value(option_string)
+	// Blank or null option string? Bad mojo!
+	if(!option_string)
+		log_config("ERROR: Keyed list config tried to parse with no key or value data.")
+		return null
+
+	var/list/config_entry_words = splittext(option_string, splitter)
+	var/config_value
+	var/config_key
+	var/is_ambiguous = FALSE
+
+	// If this config entry's value mode is flag, the value can either be TRUE or FALSE.
+	// However, the config supports implicitly setting a config entry to TRUE by omitting the value.
+	// This value mode should also support config overrides disabling it too.
+	// The following code supports config entries as such:
+	// Implicitly enable the config entry: CONFIG_ENTRY config key goes here
+	// Explicitly enable the config entry: CONFIG_ENTRY config key goes here 1
+	// Explicitly disable the config entry: CONFIG_ENTRY config key goes here 0
+	if(value_mode == VALUE_MODE_FLAG)
+		var/value = peek(config_entry_words)
+		config_value = TRUE
+
+		if(value == "0")
+			config_key = jointext(config_entry_words, splitter, length(config_entry_words) - 1)
+			config_value = FALSE
+			is_ambiguous = (length(config_entry_words) > 2)
+		else if(value == "1")
+			config_key = jointext(config_entry_words, splitter, length(config_entry_words) - 1)
+			is_ambiguous = (length(config_entry_words) > 2)
+		else
+			config_key = option_string
+			is_ambiguous = (length(config_entry_words) > 1)
+	// Else it has to be a key value pair and we parse it under that assumption.
+	else
+		// If config_entry_words only has 1 or 0 words in it and isn't value_mode == VALUE_MODE_FLAG then it's an invalid config entry.
+		if(length(config_entry_words) <= 1)
+			log_config("ERROR: Could not parse value from config entry string: [option_string]")
+			return null
+
+		config_value = pop(config_entry_words)
+		config_key = jointext(config_entry_words, splitter)
+
+		if(lowercase_key)
+			config_key = lowertext(config_key)
+
+		is_ambiguous = (length(config_entry_words) > 2)
+
+	config_key = validate_config_key(config_key)
+	config_value = validate_config_value(config_value)
+
+	// If there are multiple splitters, it's definitely ambiguous and we'll warn about how we parsed it. Helps with debugging config issues.
+	if(is_ambiguous)
+		log_config("WARNING: Multiple splitter characters (\"[splitter]\") found. Using \"[config_key]\" as config key and \"[config_value]\" as config value.")
+
+	return list("config_key" = config_key, "config_value" = config_value)
+
+/// Takes a given config key and validates it. If successful, returns the formatted key. If unsuccessful, returns null.
+/datum/config_entry/keyed_list/proc/validate_config_key(key)
+	switch(key_mode)
+		if(KEY_MODE_TEXT)
+			return key
+		if(KEY_MODE_TYPE)
+			if(ispath(key))
+				return key
+
+			var/key_path = text2path(key)
+			if(isnull(key_path))
+				log_config("ERROR: Invalid KEY_MODE_TYPE typepath. Is not a valid typepath: [key]")
+				return
+
+			return key_path
+
+
+/// Takes a given config value and validates it. If successful, returns the formatted key. If unsuccessful, returns null.
+/datum/config_entry/keyed_list/proc/validate_config_value(value)
+	switch(value_mode)
+		if(VALUE_MODE_FLAG)
+			return value
+		if(VALUE_MODE_NUM)
+			if(isnum(value))
+				return value
+
+			var/value_num = text2num(value)
+			if(isnull(value_num))
+				log_config("ERROR: Invalid VALUE_MODE_NUM number. Could not parse a valid number: [value]")
+				return
+
+			return value_num
+		if(VALUE_MODE_TEXT)
+			return value
+
+/datum/config_entry/keyed_list/vv_edit_var(var_name, var_value)
+	return var_name != NAMEOF(src, splitter) && ..()
+
 
 #undef LIST_MODE_NUM
 #undef LIST_MODE_TEXT

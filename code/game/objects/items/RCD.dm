@@ -193,7 +193,6 @@ obj/item/construction
 
 	var/datum/browser/popup = new(usr, "airlock_electronics", "Access Control", 900, 500)
 	popup.set_content(t1)
-	popup.set_title_image(usr.browse_rsc_icon(src.icon, src.icon_state))
 	popup.open()
 	onclose(usr, "airlock")
 

@@ -26,6 +26,9 @@ GLOBAL_PROTECT(config_dir)
 		LoadEntries(I)
 	loadmaplist(CONFIG_MAPS_FILE)
 
+	if (Master)
+		Master.OnConfigLoad()
+
 /datum/controller/configuration/Destroy()
 	entries_by_type.Cut()
 	QDEL_LIST_ASSOC_VAL(entries)
@@ -74,6 +77,12 @@ GLOBAL_PROTECT(config_dir)
 		if(copytext(L, 1, 2) == "#")
 			continue
 
+		var/firstchar = L[1]
+
+		var/lockthis = firstchar == "@"
+		if(lockthis)
+			L = copytext(L, length(firstchar) + 1)
+
 		var/pos = findtext(L, " ")
 		var/entry = null
 		var/value = null
@@ -91,6 +100,9 @@ GLOBAL_PROTECT(config_dir)
 		if(!E)
 			log_config("Unknown setting in configuration: '[entry]'")
 			continue
+
+		if(lockthis)
+			E.protection |= CONFIG_ENTRY_LOCKED
 
 		if(filename != E.resident_file)
 			log_config("Found [entry] in [filename] when it should have been in [E.resident_file]! Ignoring.")
@@ -130,9 +142,6 @@ GLOBAL_PROTECT(config_dir)
 	return E.value
 
 /datum/controller/configuration/proc/Set(entry_type, new_val)
-	if(IsAdminAdvancedProcCall() && GLOB.LastAdminCalledProc == "Set" && GLOB.LastAdminCalledTargetRef == "[REF(src)]")
-		log_admin_private("Config rewrite of [entry_type] to [new_val] attempted by [key_name(usr)]")
-		return
 	var/datum/config_entry/E = entry_type
 	var/entry_is_abstract = initial(E.abstract_type) == entry_type
 	if(entry_is_abstract)
@@ -140,6 +149,9 @@ GLOBAL_PROTECT(config_dir)
 	E = entries_by_type[entry_type]
 	if(!E)
 		CRASH("Missing config entry for [entry_type]!")
+	if((E.protection & CONFIG_ENTRY_LOCKED) && IsAdminAdvancedProcCall() && GLOB.LastAdminCalledProc == "Get" && GLOB.LastAdminCalledTargetRef == "[REF(src)]")
+		log_admin_private("Config access of [entry_type] attempted by [key_name(usr)]")
+		return
 	return E.ValidateAndSet(new_val)
 
 /datum/controller/configuration/proc/LoadModes()

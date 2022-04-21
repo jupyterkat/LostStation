@@ -142,7 +142,7 @@ GLOBAL_LIST_EMPTY(html_interfaces)
 	resources["html_interface.js"] = 'js/html_interface.js'
 	var/assetlist = list()
 	for (var/R in resources)
-		register_asset(R,resources[R])
+		SSassets.transport.register_asset(R,resources[R])
 		assetlist += R
 	if (!asset_list)
 		asset_list = list()
@@ -233,7 +233,7 @@ GLOBAL_LIST_EMPTY(html_interfaces)
 
 	if (istype(hclient))
 		if ((type in asset_list) && islist(asset_list[type]))
-			send_asset_list(hclient.client, asset_list[type], TRUE)
+			SSassets.transport.send_assets(hclient.client, asset_list[type])
 
 		if (!winexists(hclient.client, "browser_[REF(src)]"))
 			src.createWindow(hclient)

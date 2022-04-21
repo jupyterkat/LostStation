@@ -57,18 +57,15 @@ GLOBAL_LIST_EMPTY(GPS_list)
 		tracking = TRUE
 
 
-/obj/item/device/gps/ui_interact(mob/user, ui_key = "gps", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state) // Remember to use the appropriate state.
+/obj/item/device/gps/ui_interact(mob/user, datum/tgui/ui)
 	if(emped)
 		to_chat(user, "[src] fizzles weakly.")
 		return
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		var/gps_window_height = 300 + GLOB.GPS_list.len * 20 // Variable window height, depending on how many GPS units there are to show
-		ui = new(user, src, ui_key, "gps", "Global Positioning System", 600, gps_window_height, master_ui, state) //width, height
+		ui = new(user, src, "Gps")
 		ui.open()
-
-	ui.set_autoupdate(state = updating)
-
+	ui.set_autoupdate(updating)
 
 /obj/item/device/gps/ui_data(mob/user)
 	var/list/data = list()

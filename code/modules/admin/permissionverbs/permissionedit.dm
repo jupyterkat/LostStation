@@ -154,7 +154,7 @@
 <html>
 <head>
 <title>Permissions Panel</title>
-<script type='text/javascript' src='search.js'></script>
+<script type='text/javascript' src='[SSassets.transport.get_asset_url("search.js")]'></script>
 <link rel='stylesheet' type='text/css' href='panels.css'>
 </head>
 <body onload='selectTextField();updateSearch();'>

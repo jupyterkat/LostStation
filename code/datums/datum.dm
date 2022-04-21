@@ -5,6 +5,9 @@
 	var/ui_screen = "home"  //for tgui
 	var/use_tag = FALSE
 
+	/// Status traits attached to this datum. associative list of the form: list(trait name (string) = list(source1, source2, source3,...))
+	var/list/status_traits
+
 #ifdef TESTING
 	var/running_find_references
 	var/last_find_references = 0
@@ -41,5 +44,5 @@
 		for(var/i in 1 to focusers.len)
 			var/mob/M = focusers[i]
 			M.set_focus(M)
-	
+
 	return QDEL_HINT_QUEUE

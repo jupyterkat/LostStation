@@ -73,7 +73,7 @@
 	"white",
 	"yellow"
 	)
-	
+
 	var/list/my_possible_colors = possible_colors.Copy()
 
 	for(var/wire in shuffle(wires))
@@ -197,11 +197,10 @@
 		return ..()
 	return UI_CLOSE
 
-/datum/wires/ui_interact(mob/user, ui_key = "wires", datum/tgui/ui = null, force_open = FALSE, \
-							datum/tgui/master_ui = null, datum/ui_state/state = GLOB.physical_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/datum/wires/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if (!ui)
-		ui = new(user, src, ui_key, "wires", "[holder.name] wires", 350, 150 + wires.len * 30, master_ui, state)
+		ui = new(user, src, "Wires", "[holder.name] Wires")
 		ui.open()
 
 /datum/wires/ui_data(mob/user)

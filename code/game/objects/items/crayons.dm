@@ -133,13 +133,12 @@
 			qdel(src)
 		. = TRUE
 
-/obj/item/toy/crayon/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.hands_state)
+/obj/item/toy/crayon/ui_interact(mob/user, datum/tgui/ui)
 	// tgui is a plague upon this codebase
-
-	SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+	// no u
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "crayon", name, 600, 600,
-			master_ui, state)
+		ui = new(user, src, "Crayon", name)
 		ui.open()
 
 /obj/item/toy/crayon/spraycan/AltClick(mob/user)

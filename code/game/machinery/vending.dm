@@ -402,7 +402,6 @@
 
 	var/datum/browser/popup = new(user, "vending", (name))
 	popup.set_content(dat)
-	popup.set_title_image(user.browse_rsc_icon(src.icon, src.icon_state))
 	popup.open()
 
 GLOBAL_LIST_EMPTY(vending_machine_icon)
