@@ -226,20 +226,20 @@
 		M = thing
 		if (!M.anchored && !M.pulledby && M.last_high_pressure_movement_air_cycle < SSair.times_fired)
 			M.experience_pressure_difference(pressure_difference * multiplier, pressure_direction, 0, pressure_specific_target)
-	if(pressure_difference > 100)
-		new /obj/effect/temp_visual/dir_setting/space_wind(src, pressure_direction, CLAMP(round(sqrt(pressure_difference) * 2), 10, 255))
+	if(pressure_difference)
+		new /obj/effect/temp_visual/dir_setting/space_wind(src, pressure_direction, CLAMP(round(sqrt(pressure_difference) * 2 + 50), 10, 255))
 
-/atom/movable/var/pressure_resistance = 10
+/atom/movable/var/pressure_resistance = 0
 /atom/movable/var/last_high_pressure_movement_air_cycle = 0
 /atom/movable/var/spacewind_immune = FALSE
 
 /atom/movable/proc/experience_pressure_difference(pressure_difference, direction, pressure_resistance_prob_delta = 0, throw_target)
-	if(spacewind_immune || pressure_difference < 2)
+	if(spacewind_immune || pressure_difference < 20)
 		return
 
 	var/atom/target = get_ranged_target_turf(src, direction,2)
 	var/mob/living/carbon/c
-	
+
 	if(iscarbon(src))
 		c = src
 
@@ -253,6 +253,6 @@
 				step(src, direction)
 		else if(prob(80))
 			step(src, direction)
-			
+
 	last_high_pressure_movement_air_cycle = SSair.times_fired
 

@@ -108,11 +108,14 @@
 /obj/machinery/atmospherics/components/trinary/filter/ui_data()
 	var/data = list()
 	data["on"] = on
+	data["rate"] = round(transfer_rate)
 	data["max_rate"] = round(MAX_TRANSFER_RATE)
+
 	data["filter_types"] = list()
-	data["filter_types"] += list(list("name" = "Nothing", "path" = "", "selected" = !filter_type))
+	data["filter_types"] += list(list("name" = "Nothing", "id" = "", "selected" = !filter_type))
 	for(var/id in GLOB.gas_data.ids)
 		data["filter_types"] += list(list("name" = GLOB.gas_data.names[id], "id" = id, "selected" = (id == filter_type)))
+
 	return data
 
 /obj/machinery/atmospherics/components/trinary/filter/ui_act(action, params)

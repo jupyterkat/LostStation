@@ -83,8 +83,11 @@ GLOBAL_LIST_EMPTY(uplink_items) // Global list so we only initialize this once.
 	var/list/include_modes = list() // Game modes to allow this item in.
 	var/list/exclude_modes = list() // Game modes to disallow this item from.
 	var/list/restricted_roles = list() //If this uplink item is only available to certain roles. Roles are dependent on the frequency chip or stored ID.
+	var/list/restricted_species
 	var/player_minimum //The minimum crew size needed for this item to be added to uplinks.
 	var/purchase_log_vis = TRUE // Visible in the purchase log?
+	var/discounted = FALSE
+	var/restricted = FALSE
 
 /datum/uplink_item/proc/get_discount()
 	return pick(4;0.75,2;0.5,1;0.25)

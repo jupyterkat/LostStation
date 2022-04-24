@@ -21,6 +21,8 @@ GLOBAL_LIST_EMPTY(uplinks)
 	var/list/uplink_items
 	var/hidden_crystals = 0
 	var/compact_mode = FALSE
+	var/debug = FALSE
+	var/non_traitor_allowed = TRUE
 
 /obj/item/device/uplink/Initialize()
 	. = ..()
@@ -69,7 +71,7 @@ GLOBAL_LIST_EMPTY(uplinks)
 	active = TRUE
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "OldUplink", name)
+		ui = new(user, src, "Uplink", name)
 		// This UI is only ever opened by one person,
 		// and never is updated outside of user input.
 		ui.set_autoupdate(FALSE)
@@ -95,13 +97,23 @@ GLOBAL_LIST_EMPTY(uplinks)
 			var/datum/uplink_item/I = uplink_items[category][item]
 			if(I.limited_stock == 0)
 				continue
-			if(I.restricted_roles.len)
-				var/is_inaccessible = 1
+			if(I.restricted_roles.len && I.discounted == FALSE)
+				var/is_inaccessible = TRUE
 				for(var/R in I.restricted_roles)
-					if(R == user.mind.assigned_role)
-						is_inaccessible = 0
+					if(R == user.mind.assigned_role || debug)
+						is_inaccessible = FALSE
 				if(is_inaccessible)
 					continue
+			if(I.restricted_species && I.discounted == FALSE)
+				if(ishuman(user))
+					var/is_inaccessible = TRUE
+					var/mob/living/carbon/human/H = user
+					for(var/F in I.restricted_species)
+						if(F == H.dna.species.id || debug)
+							is_inaccessible = FALSE
+							break
+					if(is_inaccessible)
+						continue
 			cat["items"] += list(list(
 				"name" = I.name,
 				"cost" = I.cost,
@@ -110,7 +122,7 @@ GLOBAL_LIST_EMPTY(uplinks)
 		data["categories"] += list(cat)
 	return data
 
-/obj/item/device/uplink/ui_act(action, params, datum/tgui/ui, datum/ui_state/state)
+/obj/item/device/uplink/ui_act(action, params)
 	. = ..()
 	if(.)
 		return

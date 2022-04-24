@@ -135,13 +135,13 @@
 	if(beaker)
 		for(var/datum/reagent/R in beaker.reagents.reagent_list)
 			beakerContents.Add(list(list("name" = R.name, "id" = R.id, "volume" = R.volume))) // list in a list because Byond merges the first list...
-		data["beakerContents"] = beakerContents
+	data["beakerContents"] = beakerContents
 
 	var bufferContents[0]
 	if(reagents.total_volume)
 		for(var/datum/reagent/N in reagents.reagent_list)
 			bufferContents.Add(list(list("name" = N.name, "id" = N.id, "volume" = N.volume))) // ^
-		data["bufferContents"] = bufferContents
+	data["bufferContents"] = bufferContents
 
 
 	return data
@@ -158,138 +158,119 @@
 				icon_state = "mixer0"
 				. = TRUE
 
-		if("ejectp")
+		if("ejectPillBottle")
 			if(bottle)
 				bottle.loc = src.loc
 				bottle = null
 				. = TRUE
 
-		if("transferToBuffer")
-			if(beaker)
+		if("transfer")
+			if(!beaker)
+				return
+			var/to_container = params["to"]
+			if(to_container == "buffer")
 				var/id = params["id"]
 				var/amount = text2num(params["amount"])
 				if (amount > 0)
 					beaker.reagents.trans_id_to(src, id, amount)
-					. = TRUE
 				else if (amount == -1) // -1 means custom amount
 					useramount = input("Enter the Amount you want to transfer:", name, useramount) as num|null
 					if (useramount > 0)
 						beaker.reagents.trans_id_to(src, id, useramount)
-						. = TRUE
-
-		if("transferFromBuffer")
-			var/id = params["id"]
-			var/amount = text2num(params["amount"])
-			if (amount > 0)
-				if(mode)
-					reagents.trans_id_to(beaker, id, amount)
-					. = TRUE
-				else
-					reagents.remove_reagent(id, amount)
-					. = TRUE
+				. = TRUE
+			else
+				var/id = params["id"]
+				var/amount = text2num(params["amount"])
+				if (amount > 0)
+					if(mode)
+						reagents.trans_id_to(beaker, id, amount)
+					else
+						reagents.remove_reagent(id, amount)
+				. = TRUE
 
 		if("toggleMode")
 			mode = !mode
 			. = TRUE
 
-		if("createPill")
-			var/many = params["many"]
-			if(reagents.total_volume == 0)
-				return
-			if(!condi)
-				var/amount = 1
-				var/vol_each = min(reagents.total_volume, 50)
-				if(text2num(many))
-					amount = clamp(round(input(usr, "Max 10. Buffer content will be split evenly.", "How many pills?", amount) as num|null), 0, 10)
-					if(!amount)
+		if("create")
+			var/item_type = params["type"]
+			var/amount = text2num(params["amount"])
+			switch(item_type)
+				if("pill")
+					if(reagents.total_volume == 0)
 						return
-					vol_each = min(reagents.total_volume / amount, 50)
-				var/name = stripped_input(usr,"Name:","Name your pill!", "[reagents.get_master_reagent_name()] ([vol_each]u)", MAX_NAME_LEN)
-				if(!name || !reagents.total_volume || !src || QDELETED(src) || !usr.canUseTopic(src, be_close=TRUE))
-					return
-				var/obj/item/reagent_containers/pill/P
 
-				for(var/i = 0; i < amount; i++)
-					if(bottle && bottle.contents.len < bottle.storage_slots)
-						P = new/obj/item/reagent_containers/pill(bottle)
-					else
-						P = new/obj/item/reagent_containers/pill(src.loc)
-					P.name = trim("[name] pill")
-					P.pixel_x = rand(-7, 7) //random position
-					P.pixel_y = rand(-7, 7)
-					reagents.trans_to(P,vol_each)
-			else
-				var/name = stripped_input(usr, "Name:", "Name your pack!", reagents.get_master_reagent_name(), MAX_NAME_LEN)
-				if(!name || !reagents.total_volume || !src || QDELETED(src) || !usr.canUseTopic(src, be_close=TRUE))
-					return
-				var/obj/item/reagent_containers/food/condiment/pack/P = new/obj/item/reagent_containers/food/condiment/pack(src.loc)
+					var/vol_each = min(reagents.total_volume / amount, 50)
+					var/name = stripped_input(usr,"Name:","Name your pill!", "[reagents.get_master_reagent_name()] ([vol_each]u)", MAX_NAME_LEN)
 
-				P.originalname = name
-				P.name = trim("[name] pack")
-				P.desc = "A small condiment pack. The label says it contains [name]."
-				reagents.trans_to(P,10)
-			. = TRUE
+					if(!name)
+						return
 
-		if("createPatch")
-			var/many = params["many"]
-			if(reagents.total_volume == 0)
-				return
-			var/amount = 1
-			var/vol_each = min(reagents.total_volume, 40)
-			if(text2num(many))
-				amount = clamp(round(input(usr, "Max 10. Buffer content will be split evenly.", "How many patches?", amount) as num|null), 0, 10)
-				if(!amount)
-					return
-				vol_each = min(reagents.total_volume / amount, 40)
-			var/name = stripped_input(usr,"Name:","Name your patch!", "[reagents.get_master_reagent_name()] ([vol_each]u)", MAX_NAME_LEN)
-			if(!name || !reagents.total_volume || !src || QDELETED(src) || !usr.canUseTopic(src, be_close=TRUE))
-				return
-			var/obj/item/reagent_containers/pill/P
+					var/obj/item/reagent_containers/pill/P
 
-			for(var/i = 0; i < amount; i++)
-				P = new/obj/item/reagent_containers/pill/patch(src.loc)
-				P.name = trim("[name] patch")
-				P.pixel_x = rand(-7, 7) //random position
-				P.pixel_y = rand(-7, 7)
-				reagents.trans_to(P,vol_each)
-			. = TRUE
+					for(var/i = 0; i < amount; i++)
+						if(bottle && bottle.contents.len < bottle.storage_slots)
+							P = new/obj/item/reagent_containers/pill(bottle)
+						else
+							P = new/obj/item/reagent_containers/pill(src.loc)
+						P.name = trim("[name] pill")
+						P.pixel_x = rand(-7, 7) //random position
+						P.pixel_y = rand(-7, 7)
+						reagents.trans_to(P,vol_each)
+					. = TRUE
 
-		if("createBottle")
-			var/many = params["many"]
-			if(reagents.total_volume == 0)
-				return
+				if("condimentPack")
+					var/vol_each = min(reagents.total_volume / amount, 10)
+					var/name = stripped_input(usr, "Name:", "Name your pack!", reagents.get_master_reagent_name(), MAX_NAME_LEN)
+					if(!name)
+						return
+					var/obj/item/reagent_containers/food/condiment/pack/P = new/obj/item/reagent_containers/food/condiment/pack(src.loc)
 
-			if(condi)
-				var/name = stripped_input(usr, "Name:","Name your bottle!", (reagents.total_volume ? reagents.get_master_reagent_name() : " "), MAX_NAME_LEN)
-				if(!name || !reagents.total_volume || !src || QDELETED(src) || !usr.canUseTopic(src, be_close=TRUE))
-					return
-				var/obj/item/reagent_containers/food/condiment/P = new(src.loc)
-				P.originalname = name
-				P.name = trim("[name] bottle")
-				reagents.trans_to(P, P.volume)
-			else
-				var/amount_full = 0
-				var/vol_part = min(reagents.total_volume, 30)
-				if(text2num(many))
-					amount_full = round(reagents.total_volume / 30)
-					vol_part = reagents.total_volume % 30
-				var/name = stripped_input(usr, "Name:","Name your bottle!", (reagents.total_volume ? reagents.get_master_reagent_name() : " "), MAX_NAME_LEN)
-				if(!name || !reagents.total_volume || !src || QDELETED(src) || !usr.canUseTopic(src, be_close=TRUE))
-					return
+					for(var/i = 0; i < amount; i++)
+						P.originalname = name
+						P.name = trim("[name] pack")
+						P.desc = "A small condiment pack. The label says it contains [name]."
+						reagents.trans_to(P,vol_each)
+					. = TRUE
 
-				var/obj/item/reagent_containers/glass/bottle/P
-				for(var/i = 0; i < amount_full; i++)
-					P = new/obj/item/reagent_containers/glass/bottle(src.loc)
-					P.pixel_x = rand(-7, 7) //random position
-					P.pixel_y = rand(-7, 7)
-					P.name = trim("[name] bottle")
-					reagents.trans_to(P, 30)
+				if("patch")
+					if(reagents.total_volume == 0)
+						return
 
-				if(vol_part)
-					P = new/obj/item/reagent_containers/glass/bottle(src.loc)
-					P.name = trim("[name] bottle")
-					reagents.trans_to(P, vol_part)
-			. = TRUE
+					var/vol_each = min(reagents.total_volume / amount, 40)
+					var/name = stripped_input(usr,"Name:","Name your patch!", "[reagents.get_master_reagent_name()] ([vol_each]u)", MAX_NAME_LEN)
+
+					if(!name)
+						return
+
+					var/obj/item/reagent_containers/pill/P
+
+					for(var/i = 0; i < amount; i++)
+						P = new/obj/item/reagent_containers/pill/patch(src.loc)
+						P.name = trim("[name] patch")
+						P.pixel_x = rand(-7, 7) //random position
+						P.pixel_y = rand(-7, 7)
+						reagents.trans_to(P,vol_each)
+					. = TRUE
+
+				if("bottle")
+					if(reagents.total_volume == 0)
+						return
+
+					var/vol_each = min(reagents.total_volume / amount, 30)
+					var/name = stripped_input(usr, "Name:","Name your bottle!", (reagents.total_volume ? reagents.get_master_reagent_name() : " "), MAX_NAME_LEN)
+
+					if(!name)
+						return
+
+					var/obj/item/reagent_containers/glass/bottle/P
+					for(var/i = 0; i < amount; i++)
+						P = new/obj/item/reagent_containers/glass/bottle(src.loc)
+						P.pixel_x = rand(-7, 7) //random position
+						P.pixel_y = rand(-7, 7)
+						P.name = trim("[name] bottle")
+						reagents.trans_to(P, vol_each)
+					. = TRUE
 
 		if("analyze")
 			var/datum/reagent/R = GLOB.chemical_reagents_list[params["id"]]

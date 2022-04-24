@@ -237,14 +237,8 @@ const PackagingControls = (props, context) => {
   const {
     condi,
     chosenPillStyle,
-    chosenCondiStyle,
-    autoCondiStyle,
     pillStyles = [],
-    condiStyles = [],
-    patch_style,
-    patch_styles = [],
   } = data;
-  const autoCondiStyleChosen = autoCondiStyle === chosenCondiStyle;
   return (
     <LabeledList>
       {!condi && (
@@ -276,20 +270,6 @@ const PackagingControls = (props, context) => {
           })} />
       )}
       {!condi && (
-        <LabeledList.Item label="Patch type">
-          {patch_styles.map(patch => (
-            <Button
-              key={patch.style}
-              selected={patch.style === patch_style}
-              textAlign="center"
-              color="transparent"
-              onClick={() => act('change_patch_style', { patch_style: patch.style })}>
-              <Box mb={0} mt={1} className={patch.class_name} />
-            </Button>
-          ))}
-        </LabeledList.Item>
-      )}
-      {!condi && (
         <PackagingControlsItem
           label="Patches"
           amount={patchAmount}
@@ -316,30 +296,17 @@ const PackagingControls = (props, context) => {
           })} />
       )}
       {!!condi && (
-        <LabeledList.Item label="Bottle type">
-          <Button.Checkbox
-            onClick={() => act('condiStyle', { id: autoCondiStyleChosen ? condiStyles[0].id : autoCondiStyle })}
-            checked={autoCondiStyleChosen}
-            disabled={!condiStyles.length}>
-            Guess from contents
-          </Button.Checkbox>
-        </LabeledList.Item>
-      )}
-      {!!condi && !autoCondiStyleChosen && (
-        <LabeledList.Item label="">
-          {condiStyles.map(style => (
-            <Button
-              key={style.id}
-              width="30px"
-              selected={style.id === chosenCondiStyle}
-              textAlign="center"
-              color="transparent"
-              title={style.title}
-              onClick={() => act('condiStyle', { id: style.id })}>
-              <Box mx={-1} className={style.className} />
-            </Button>
-          ))}
-        </LabeledList.Item>
+        <PackagingControlsItem
+          label="Packs"
+          amount={packAmount}
+          amountUnit="packs"
+          sideNote="max 10u"
+          onChangeAmount={(e, value) => setPackAmount(value)}
+          onCreate={() => act('create', {
+            type: 'condimentPack',
+            amount: packAmount,
+            volume: 'auto',
+          })} />
       )}
       {!!condi && (
         <PackagingControlsItem
@@ -351,19 +318,6 @@ const PackagingControls = (props, context) => {
           onCreate={() => act('create', {
             type: 'condimentBottle',
             amount: bottleAmount,
-            volume: 'auto',
-          })} />
-      )}
-      {!!condi && (
-        <PackagingControlsItem
-          label="Packs"
-          amount={packAmount}
-          amountUnit="packs"
-          sideNote="max 10u"
-          onChangeAmount={(e, value) => setPackAmount(value)}
-          onCreate={() => act('create', {
-            type: 'condimentPack',
-            amount: packAmount,
             volume: 'auto',
           })} />
       )}
@@ -391,9 +345,6 @@ const AnalysisResults = (props, context) => {
         </LabeledList.Item>
         <LabeledList.Item label="State">
           {analyzeVars.state}
-        </LabeledList.Item>
-        <LabeledList.Item label="pH">
-          {analyzeVars.ph}
         </LabeledList.Item>
         <LabeledList.Item label="Color">
           <ColorBox color={analyzeVars.color} mr={1} />

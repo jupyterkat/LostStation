@@ -131,8 +131,8 @@
 	data["on"] = on
 	data["set_pressure"] = round(target_pressure)
 	data["max_pressure"] = round(MAX_OUTPUT_PRESSURE)
-	data["node1_concentration"] = round(node1_concentration*100)
-	data["node2_concentration"] = round(node2_concentration*100)
+	data["node1_concentration"] = round(node1_concentration*100, 1)
+	data["node2_concentration"] = round(node2_concentration*100, 1)
 	return data
 
 /obj/machinery/atmospherics/components/trinary/mixer/ui_act(action, params)
@@ -160,14 +160,16 @@
 				investigate_log("was set to [target_pressure] kPa by [key_name(usr)]", INVESTIGATE_ATMOS)
 		if("node1")
 			var/value = text2num(params["concentration"])
-			node1_concentration = max(0, min(1, node1_concentration + value))
-			node2_concentration = max(0, min(1, node2_concentration - value))
+			adjust_node_value(value)
 			investigate_log("was set to [node1_concentration] % on node 1 by [key_name(usr)]", INVESTIGATE_ATMOS)
 			. = TRUE
 		if("node2")
 			var/value = text2num(params["concentration"])
-			node2_concentration = max(0, min(1, node2_concentration + value))
-			node1_concentration = max(0, min(1, node1_concentration - value))
+			adjust_node_value(100 - value)
 			investigate_log("was set to [node2_concentration] % on node 2 by [key_name(usr)]", INVESTIGATE_ATMOS)
 			. = TRUE
 	update_icon()
+
+/obj/machinery/atmospherics/components/trinary/mixer/proc/adjust_node_value(newValue)
+	node1_concentration = newValue / 100
+	node2_concentration = 1 - node1_concentration
