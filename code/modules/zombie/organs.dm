@@ -68,7 +68,7 @@
 	if(!converts_living && owner.stat != STAT_DEAD)
 		return
 
-	var/stand_up = (owner.stat == STAT_DEAD) || (owner.stat == STATS_UNCONSCIOU)
+	var/stand_up = (owner.stat == STAT_DEAD) || (owner.stat == STATS_UNCONSCIOUS)
 
 	if(!owner.revive(full_heal = TRUE))
 		return

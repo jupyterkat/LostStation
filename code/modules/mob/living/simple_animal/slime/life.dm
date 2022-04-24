@@ -23,9 +23,9 @@
 				handle_mood()
 				handle_speech()
 
-// Unlike most of the simple animals, slimes support STATS_UNCONSCIOU
+// Unlike most of the simple animals, slimes support STATS_UNCONSCIOUS
 /mob/living/simple_animal/slime/update_stat()
-	if(stat == STATS_UNCONSCIOU && health > 0)
+	if(stat == STATS_UNCONSCIOUS && health > 0)
 		return
 	..()
 
@@ -138,12 +138,12 @@
 
 		if(stat == STAT_CONSCIOUS && stasis)
 			to_chat(src, "<span class='danger'>Nerve gas in the air has put you in stasis!</span>")
-			stat = STATS_UNCONSCIOU
+			stat = STATS_UNCONSCIOUS
 			powerlevel = 0
 			rabid = 0
 			update_canmove()
 			regenerate_icons()
-		else if(stat == STATS_UNCONSCIOU && !stasis)
+		else if(stat == STATS_UNCONSCIOUS && !stasis)
 			to_chat(src, "<span class='notice'>You wake up from the stasis.</span>")
 			stat = STAT_CONSCIOUS
 			update_canmove()

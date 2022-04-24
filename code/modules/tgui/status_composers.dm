@@ -3,7 +3,7 @@
 	return min(
 		ui_status_user_is_abled(user, source),
 		ui_status_user_has_free_hands(user, source),
-		//ui_status_user_is_advanced_tool_user(user),
+		ui_status_user_is_advanced_tool_user(user),
 		ui_status_only_living(user),
 		max(
 			ui_status_user_is_adjacent(user, source),
@@ -55,8 +55,8 @@
 
 /// Returns a UI status such that advanced tool users will be able to interact,
 /// but everyone else can only watch.
-// /proc/ui_status_user_is_advanced_tool_user(mob/user)
-// 		return ISADVANCEDTOOLUSER(user) ? UI_INTERACTIVE : UI_UPDATE
+/proc/ui_status_user_is_advanced_tool_user(mob/user)
+ 	return user.IsAdvancedToolUser() ? UI_INTERACTIVE : UI_UPDATE
 
 /// Returns a UI status such that silicons will be able to interact with whatever
 /// they would have access to if this was a machine. For example, AIs can
@@ -95,13 +95,11 @@
 /// Returns UI_INTERACTIVE if the user is conscious and lying down.
 /// Returns UI_UPDATE otherwise.
 /proc/ui_status_user_is_conscious_and_lying_down(mob/user)
-	if (!isliving(user))
+	if(!isliving(user))
 		return UI_UPDATE
 
 	var/mob/living/living_user = user
-	return (living_user.lying && living_user.stat == STAT_CONSCIOUS) \
-		? UI_INTERACTIVE \
-		: UI_UPDATE
+	return (living_user.lying && living_user.stat == STAT_CONSCIOUS) ? UI_INTERACTIVE : UI_UPDATE
 
 /// Return UI_INTERACTIVE if the user is strictly adjacent to the target atom, whether they can see it or not.
 /// Return UI_CLOSE otherwise.

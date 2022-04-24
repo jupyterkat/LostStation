@@ -225,7 +225,7 @@
 /obj/machinery/lapvend/attack_hand(mob/user)
 	ui_interact(user)
 
-/obj/machinery/lapvend/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
+/obj/machinery/lapvend/ui_interact(mob/user, datum/tgui/ui)
 	if(stat & (BROKEN | NOPOWER | MAINT))
 		if(ui)
 			ui.close()
@@ -233,9 +233,9 @@
 
 
 
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if (!ui)
-		ui = new(user, src, ui_key, "computer_fabricator", "Personal Computer Vendor", 500, 400, state = state)
+		ui = new(user, src, "ComputerFabricator", "Personal Computer Vendor")
 		ui.open()
 		ui.set_autoupdate(state = 1)
 

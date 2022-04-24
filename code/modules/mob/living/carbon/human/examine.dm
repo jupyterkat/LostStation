@@ -294,7 +294,7 @@
 	msg += "</span>"
 
 	if(!appears_dead)
-		if(stat == STATS_UNCONSCIOU)
+		if(stat == STATS_UNCONSCIOUS)
 			msg += "[t_He] [t_is]n't responding to anything around [t_him] and seems to be asleep.\n"
 		else if(disabilities & DUMB)
 			msg += "[t_He] [t_has] a stupid expression on [t_his] face.\n"

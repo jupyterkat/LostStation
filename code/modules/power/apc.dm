@@ -694,15 +694,13 @@
 		return
 	..()
 
-/obj/machinery/power/apc/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/power/apc/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 
 	if(!ui)
-		ui = new(user, src, ui_key, "apc", name, 535, 515, master_ui, state)
+		ui = new(user, src, "Apc", name)
 		ui.open()
-	if(ui)
-		ui.set_autoupdate(state = (failure_timer ? 1 : 0))
+		ui.set_autoupdate(TRUE)
 
 /obj/machinery/power/apc/ui_data(mob/user)
 	var/list/data = list(

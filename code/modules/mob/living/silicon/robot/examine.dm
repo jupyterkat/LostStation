@@ -43,7 +43,7 @@
 				msg += "It appears to be an [deployed ? "active" : "empty"] AI shell.\n"
 			else if(!client)
 				msg += "It appears to be in stand-by mode.\n" //afk
-		if(STATS_UNCONSCIOU)
+		if(STATS_UNCONSCIOUS)
 			msg += "<span class='warning'>It doesn't seem to be responding.</span>\n"
 		if(STAT_DEAD)
 			msg += "<span class='deadsay'>It looks like its system is corrupted and requires a reset.</span>\n"

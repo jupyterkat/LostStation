@@ -184,7 +184,7 @@
 		thrown_thing.throw_at(target, thrown_thing.throw_range, thrown_thing.throw_speed, src)
 
 /mob/living/carbon/restrained(ignore_grab)
-	. = (handcuffed || (!ignore_grab && pulledby && pulledby.grab_state >= GRAB_AGGRESSIVE))
+	return (handcuffed || (!ignore_grab && pulledby && pulledby.grab_state >= GRAB_AGGRESSIVE)) ? TRUE : FALSE
 
 /mob/living/carbon/proc/canBeHandcuffed()
 	return 0
@@ -621,7 +621,7 @@
 	if(!client)
 		return
 
-	if(stat == STATS_UNCONSCIOU && health <= HEALTH_THRESHOLD_CRIT)
+	if(stat == STATS_UNCONSCIOUS && health <= HEALTH_THRESHOLD_CRIT)
 		var/severity = 0
 		switch(health)
 			if(-20 to -10) severity = 1
@@ -704,11 +704,11 @@
 			return
 		if(IsUnconscious() || IsSleeping() || getOxyLoss() > 50 || (status_flags & FAKEDEATH) || health <= HEALTH_THRESHOLD_CRIT)
 			if(stat == STAT_CONSCIOUS)
-				stat = STATS_UNCONSCIOU
+				stat = STATS_UNCONSCIOUS
 				blind_eyes(1)
 				update_canmove()
 		else
-			if(stat == STATS_UNCONSCIOU)
+			if(stat == STATS_UNCONSCIOUS)
 				stat = STAT_CONSCIOUS
 				resting = 0
 				adjust_blindness(-1)

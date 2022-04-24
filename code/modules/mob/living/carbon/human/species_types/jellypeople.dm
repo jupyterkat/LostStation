@@ -228,11 +228,11 @@
 	else
 		ui_interact(owner)
 
-/datum/action/innate/swap_body/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.conscious_state)
+/datum/action/innate/swap_body/ui_interact(mob/user, datum/tgui/ui)
 
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "slime_swap_body", name, 400, 400, master_ui, state)
+		ui = new(user, src, "SlimeSwapBody", name)
 		ui.open()
 
 /datum/action/innate/swap_body/ui_data(mob/user)
@@ -259,7 +259,7 @@
 		switch(body.stat)
 			if(STAT_CONSCIOUS)
 				stat = "Conscious"
-			if(STATS_UNCONSCIOU)
+			if(STATS_UNCONSCIOUS)
 				stat = "Unconscious"
 			if(STAT_DEAD)
 				stat = "Dead"

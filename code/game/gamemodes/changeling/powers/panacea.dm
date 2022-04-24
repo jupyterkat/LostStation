@@ -4,7 +4,7 @@
 	helptext = "Can be used while unconscious."
 	chemical_cost = 20
 	dna_cost = 1
-	req_stat = STATS_UNCONSCIOU
+	req_stat = STATS_UNCONSCIOUS
 
 //Heals the things that the other regenerative abilities don't.
 /obj/effect/proc_holder/changeling/panacea/sting_action(mob/user)

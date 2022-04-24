@@ -4,7 +4,7 @@
 
 //mob/var/stat things
 #define STAT_CONSCIOUS		0
-#define STATS_UNCONSCIOU	1
+#define STATS_UNCONSCIOUS	1
 #define STAT_DEAD			2
 
 //mob disabilities stat

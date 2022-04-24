@@ -78,7 +78,7 @@
 	ranged_telegraph_time = 5
 	a_intent = INTENT_HARM
 	speak_emote = list("telepathically cries")
-	stat_attack = STATS_UNCONSCIOU
+	stat_attack = STATS_UNCONSCIOUS
 	movement_type = FLYING
 	robust_searching = 1
 	crusher_loot = /obj/item/crusher_trophy/watcher_wing

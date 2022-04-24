@@ -241,7 +241,7 @@
 		return 1
 
 /mob/living/proc/InCritical()
-	return (health < 0 && health > -100 && stat == STATS_UNCONSCIOU)
+	return (health < 0 && health > -100 && stat == STATS_UNCONSCIOUS)
 
 //This proc is used for mobs which are affected by pressure to calculate the amount of pressure that actually
 //affects them once clothing is factored in. ~Errorage
@@ -362,7 +362,7 @@
 	if(stat == STAT_DEAD && can_be_revived()) //in some cases you can't revive (e.g. no brain)
 		GLOB.dead_mob_list -= src
 		GLOB.living_mob_list += src
-		stat = STATS_UNCONSCIOU //the mob starts unconscious,
+		stat = STATS_UNCONSCIOUS //the mob starts unconscious,
 		blind_eyes(1)
 		updatehealth() //then we check if the mob should wake up.
 		update_canmove()

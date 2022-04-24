@@ -191,7 +191,7 @@
 			else
 				stat(null, "You can evolve!")
 
-		if(stat == STATS_UNCONSCIOU)
+		if(stat == STATS_UNCONSCIOUS)
 			stat(null,"You are knocked out by high levels of BZ!")
 		else
 			stat(null,"Power Level: [powerlevel]")
@@ -355,7 +355,7 @@
 	if (src.stat == STAT_DEAD)
 		msg += "<span class='deadsay'>It is limp and unresponsive.</span>\n"
 	else
-		if (stat == STATS_UNCONSCIOU) // Slime stasis
+		if (stat == STATS_UNCONSCIOUS) // Slime stasis
 			msg += "<span class='deadsay'>It appears to be alive but unresponsive.</span>\n"
 		if (src.getBruteLoss())
 			msg += "<span class='warning'>"

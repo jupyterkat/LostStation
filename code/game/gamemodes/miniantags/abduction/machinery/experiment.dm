@@ -120,7 +120,7 @@
 		switch(mob_occupant.stat)
 			if(STAT_CONSCIOUS)
 				dat += "<span class='good'>Conscious</span>"
-			if(STATS_UNCONSCIOU)
+			if(STATS_UNCONSCIOUS)
 				dat += "<span class='average'>Unconscious</span>"
 			else // STAT_DEAD
 				dat += "<span class='bad'>Deceased</span>"

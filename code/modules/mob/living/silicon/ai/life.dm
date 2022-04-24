@@ -74,7 +74,7 @@
 		if(health <= HEALTH_THRESHOLD_DEAD)
 			death()
 			return
-		else if(stat == STATS_UNCONSCIOU)
+		else if(stat == STATS_UNCONSCIOUS)
 			stat = STAT_CONSCIOUS
 			adjust_blindness(-1)
 	diag_hud_set_status()

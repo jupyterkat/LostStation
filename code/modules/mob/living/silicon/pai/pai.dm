@@ -143,7 +143,7 @@
 			stat(null, text("Systems nonfunctional"))
 
 /mob/living/silicon/pai/restrained(ignore_grab)
-	. = FALSE
+	return FALSE
 
 // See software.dm for Topic()
 

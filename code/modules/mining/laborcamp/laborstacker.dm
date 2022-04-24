@@ -34,11 +34,10 @@
 			to_chat(user, "<span class='notice'>There's an ID inserted already.</span>")
 	return ..()
 
-/obj/machinery/mineral/labor_claim_console/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-									datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/mineral/labor_claim_console/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "labor_claim_console", name, 450, 475, master_ui, state)
+		ui = new(user, src, "LaborClaimConsole", name)
 		ui.open()
 
 /obj/machinery/mineral/labor_claim_console/ui_data(mob/user)

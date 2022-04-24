@@ -85,7 +85,7 @@
 				if(type & 1 && eye_blind)
 					return
 	// voice muffling
-	if(stat == STATS_UNCONSCIOU)
+	if(stat == STATS_UNCONSCIOUS)
 		if(type & 2) //audio
 			to_chat(src, "<I>... You can almost hear something ...</I>")
 	else

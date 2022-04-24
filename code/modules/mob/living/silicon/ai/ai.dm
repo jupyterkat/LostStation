@@ -464,7 +464,7 @@ GLOBAL_LIST_EMPTY(empty_playable_ai_cores)
 	return
 
 /mob/living/silicon/ai/restrained(ignore_grab)
-	. = 0
+	return FALSE
 
 /mob/living/silicon/ai/Topic(href, href_list)
 	if(usr != src)

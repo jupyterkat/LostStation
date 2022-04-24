@@ -98,7 +98,7 @@
 	light_range = 2 //soft light
 	light_power = 0.9
 	light_color = "#FAE48C"
-	stat_affected = STATS_UNCONSCIOU
+	stat_affected = STATS_UNCONSCIOUS
 	resist_string = "glows faintly yellow"
 	var/convert_time = 80
 	var/delete_on_finish = TRUE

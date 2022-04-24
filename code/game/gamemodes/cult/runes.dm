@@ -673,7 +673,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 			affecting.remove_atom_colour(ADMIN_COLOUR_PRIORITY, RUNE_COLOR_DARKRED)
 			affecting.Knockdown(60)
 			break
-		if(affecting.stat == STATS_UNCONSCIOU)
+		if(affecting.stat == STATS_UNCONSCIOUS)
 			if(prob(1))
 				var/mob/dead/observer/G = affecting.get_ghost()
 				to_chat(G, "<span class='cultitalic'>You feel the link between you and your body weakening... you must hurry!</span>")

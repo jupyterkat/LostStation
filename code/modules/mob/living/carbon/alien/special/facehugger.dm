@@ -22,7 +22,7 @@
 	layer = MOB_LAYER
 	max_integrity = 100
 
-	var/stat = STAT_CONSCIOUS //STATS_UNCONSCIOU is the idle state in this case
+	var/stat = STAT_CONSCIOUS //STATS_UNCONSCIOUS is the idle state in this case
 
 	var/sterile = FALSE
 	var/real = TRUE //0 for the toy, 1 for real. Sure I could istype, but fuck that.
@@ -72,7 +72,7 @@
 	if(!real)//So that giant red text about probisci doesn't show up.
 		return
 	switch(stat)
-		if(STAT_DEAD,STATS_UNCONSCIOU)
+		if(STAT_DEAD,STATS_UNCONSCIOUS)
 			to_chat(user, "<span class='boldannounce'>[src] is not moving.</span>")
 		if(STAT_CONSCIOUS)
 			to_chat(user, "<span class='boldannounce'>[src] seems to be active!</span>")
@@ -237,10 +237,10 @@
 	icon_state = "[initial(icon_state)]"
 
 /obj/item/clothing/mask/facehugger/proc/GoIdle()
-	if(stat == STAT_DEAD || stat == STATS_UNCONSCIOU)
+	if(stat == STAT_DEAD || stat == STATS_UNCONSCIOUS)
 		return
 
-	stat = STATS_UNCONSCIOU
+	stat = STATS_UNCONSCIOUS
 	icon_state = "[initial(icon_state)]_inactive"
 
 	addtimer(CALLBACK(src, .proc/GoActive), rand(MIN_ACTIVE_TIME, MAX_ACTIVE_TIME))

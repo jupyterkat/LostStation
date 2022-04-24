@@ -111,7 +111,6 @@
 		return
 	current_overlay = pick(broken_states)
 	broken = 1
-	update_icon()
 
 /turf/open/floor/burn_tile()
 	if(broken || burnt)
@@ -121,7 +120,6 @@
 	else
 		current_overlay = pick(broken_states)
 	burnt = 1
-	update_icon()
 
 /turf/open/floor/proc/make_plating()
 	return ChangeTurf(/turf/open/floor/plating)

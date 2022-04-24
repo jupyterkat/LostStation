@@ -108,7 +108,7 @@
 	loot = list(/obj/item/organ/regenerative_core/legion)
 	brood_type = /mob/living/simple_animal/hostile/asteroid/hivelordbrood/legion
 	del_on_death = 1
-	stat_attack = STATS_UNCONSCIOU
+	stat_attack = STATS_UNCONSCIOUS
 	robust_searching = 1
 	var/mob/living/carbon/human/stored_mob
 
@@ -151,14 +151,14 @@
 	throw_message = "is shrugged off by"
 	pass_flags = PASSTABLE
 	del_on_death = TRUE
-	stat_attack = STATS_UNCONSCIOU
+	stat_attack = STATS_UNCONSCIOUS
 	robust_searching = 1
 	var/can_infest_dead = FALSE
 
 /mob/living/simple_animal/hostile/asteroid/hivelordbrood/legion/Life()
 	if(isturf(loc))
 		for(var/mob/living/carbon/human/H in view(src,1)) //Only for corpse right next to/on same tile
-			if(H.stat == STATS_UNCONSCIOU || (can_infest_dead && H.stat == STAT_DEAD))
+			if(H.stat == STATS_UNCONSCIOUS || (can_infest_dead && H.stat == STAT_DEAD))
 				infest(H)
 	..()
 

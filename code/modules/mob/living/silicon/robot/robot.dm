@@ -308,7 +308,7 @@
 			stat("Master AI:", connected_ai.name)
 
 /mob/living/silicon/robot/restrained(ignore_grab)
-	. = 0
+	return FALSE
 
 /mob/living/silicon/robot/triggerAlarm(class, area/A, O, obj/alarmsource)
 	if(alarmsource.z != z)
@@ -869,12 +869,12 @@
 			return
 		if(IsUnconscious() || IsStun() || IsKnockdown() || getOxyLoss() > maxHealth*0.5)
 			if(stat == STAT_CONSCIOUS)
-				stat = STATS_UNCONSCIOU
+				stat = STATS_UNCONSCIOUS
 				blind_eyes(1)
 				update_canmove()
 				update_headlamp()
 		else
-			if(stat == STATS_UNCONSCIOU)
+			if(stat == STATS_UNCONSCIOUS)
 				stat = STAT_CONSCIOUS
 				adjust_blindness(-1)
 				update_canmove()

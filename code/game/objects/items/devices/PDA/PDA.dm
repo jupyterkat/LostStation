@@ -555,7 +555,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 	else
 		L = get(src, /mob/living/silicon)
 
-	if(L && L.stat != STATS_UNCONSCIOU)
+	if(L && L.stat != STATS_UNCONSCIOUS)
 
 		var/hrefstart
 		var/hrefend

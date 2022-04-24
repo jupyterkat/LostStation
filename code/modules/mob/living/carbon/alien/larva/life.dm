@@ -22,11 +22,11 @@
 			return
 		if(IsUnconscious() || IsSleeping() || getOxyLoss() > 50 || (status_flags & FAKEDEATH) || health <= HEALTH_THRESHOLD_CRIT)
 			if(stat == STAT_CONSCIOUS)
-				stat = STATS_UNCONSCIOU
+				stat = STATS_UNCONSCIOUS
 				blind_eyes(1)
 				update_canmove()
 		else
-			if(stat == STATS_UNCONSCIOU)
+			if(stat == STATS_UNCONSCIOUS)
 				stat = STAT_CONSCIOUS
 				resting = 0
 				adjust_blindness(-1)

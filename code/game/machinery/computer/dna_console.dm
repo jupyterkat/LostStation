@@ -87,7 +87,7 @@
 				switch(viable_occupant.stat)
 					if(STAT_CONSCIOUS)
 						occupant_status += "<span class='good'>Conscious</span>"
-					if(STATS_UNCONSCIOU)
+					if(STATS_UNCONSCIOUS)
 						occupant_status += "<span class='average'>Unconscious</span>"
 					else
 						occupant_status += "<span class='bad'>STAT_DEAD</span>"

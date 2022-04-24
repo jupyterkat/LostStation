@@ -439,7 +439,7 @@
 				msg += "<b>[L.name]</b> ([L.ckey]), the [L.job] (<font color='#ffcc00'><b>Connected, Inactive</b></font>)\n"
 				continue //AFK client
 			if(L.stat)
-				if(L.stat == STATS_UNCONSCIOU)
+				if(L.stat == STATS_UNCONSCIOUS)
 					msg += "<b>[L.name]</b> ([L.ckey]), the [L.job] (Dying)\n"
 					continue //Unconscious
 				if(L.stat == STAT_DEAD)

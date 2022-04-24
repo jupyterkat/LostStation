@@ -24,6 +24,7 @@
 	power_channel = ENVIRON
 	var/detecting = 1
 	var/buildstage = 2 // 2 = complete, 1 = no wires, 0 = circuit gone
+	var/alarmstate = 0
 	resistance_flags = FIRE_PROOF
 
 
@@ -96,6 +97,7 @@
 		return
 	var/area/A = get_area(src)
 	A.firealert(src)
+	alarmstate = 1
 	playsound(src.loc, 'goon/sound/machinery/FireAlarm.ogg', 75)
 
 /obj/machinery/firealarm/proc/alarm_in(time)
@@ -106,40 +108,21 @@
 		return
 	var/area/A = get_area(src)
 	A.firereset(src)
+	alarmstate = 0
 
 /obj/machinery/firealarm/proc/reset_in(time)
 	addtimer(CALLBACK(src, .proc/reset), time)
 
-/obj/machinery/firealarm/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-									datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
-	if(!ui)
-		ui = new(user, src, ui_key, "firealarm", name, 300, 150, master_ui, state)
-		ui.open()
-
-/obj/machinery/firealarm/ui_data(mob/user)
-	var/list/data = list()
-	data["emagged"] = emagged
-
-	if(src.z in GLOB.station_z_levels)
-		data["seclevel"] = get_security_level()
-	else
-		data["seclevel"] = "green"
-
-	var/area/A = get_area(src)
-	data["alarm"] = A.fire
-
-	return data
-
-/obj/machinery/firealarm/ui_act(action, params)
-	if(..() || buildstage != 2)
+/obj/machinery/firealarm/attack_hand(mob/living/user)
+	if(!is_operational())
 		return
-	switch(action)
-		if("reset")
-			reset()
-			. = TRUE
-		if("alarm")
+
+	switch(alarmstate)
+		if(0)
 			alarm()
+			. = TRUE
+		if(1)
+			reset()
 			. = TRUE
 
 /obj/machinery/firealarm/attackby(obj/item/W, mob/user, params)

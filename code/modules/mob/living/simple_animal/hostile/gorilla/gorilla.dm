@@ -29,7 +29,7 @@
 	possible_a_intents = list(INTENT_HELP, INTENT_GRAB, INTENT_DISARM, INTENT_HARM)
 	faction = list("jungle")
 	robust_searching = TRUE
-	stat_attack = STATS_UNCONSCIOU
+	stat_attack = STATS_UNCONSCIOUS
 	minbodytemp = 270
 	maxbodytemp = 350
 	unique_name = TRUE
@@ -42,7 +42,7 @@
 	var/list/parts = list()
 	if(iscarbon(the_target))
 		var/mob/living/carbon/C = the_target
-		if(C.stat >= STATS_UNCONSCIOU)
+		if(C.stat >= STATS_UNCONSCIOUS)
 			for(var/X in C.bodyparts)
 				var/obj/item/bodypart/BP = X
 				if(BP.body_part != HEAD && BP.body_part != CHEST)
@@ -65,7 +65,7 @@
 		var/mob/living/L = target
 		if(prob(80))
 			var/atom/throw_target = get_edge_target_turf(L, dir)
-			L.throw_at(throw_target, rand(1,2), 7, src) 
+			L.throw_at(throw_target, rand(1,2), 7, src)
 		else
 			L.Knockdown(20)
 			visible_message("<span class='danger'>[src] knocks [L] down!</span>")

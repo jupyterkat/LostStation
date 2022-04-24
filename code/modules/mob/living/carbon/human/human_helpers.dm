@@ -1,6 +1,6 @@
 
 /mob/living/carbon/human/restrained(ignore_grab)
-	. = ((wear_suit && wear_suit.breakouttime) || ..())
+	return ((wear_suit && wear_suit.breakouttime) || ..())
 
 
 /mob/living/carbon/human/canBeHandcuffed()
@@ -108,7 +108,7 @@
 	return TRUE//Humans can use guns and such
 
 /mob/living/carbon/human/InCritical()
-	return (health <= HEALTH_THRESHOLD_CRIT && stat == STATS_UNCONSCIOU)
+	return (health <= HEALTH_THRESHOLD_CRIT && stat == STATS_UNCONSCIOUS)
 
 /mob/living/carbon/human/reagent_check(datum/reagent/R)
 	return dna.species.handle_chemicals(R,src)

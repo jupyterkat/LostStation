@@ -24,7 +24,7 @@
 	a_intent = INTENT_HELP
 	ventcrawler = VENTCRAWLER_ALWAYS
 	gold_core_spawnable = 2
-	stat_attack = STATS_UNCONSCIOU
+	stat_attack = STATS_UNCONSCIOUS
 	gender = NEUTER
 	stop_automated_movement = FALSE
 	stop_automated_movement_when_pulled = TRUE

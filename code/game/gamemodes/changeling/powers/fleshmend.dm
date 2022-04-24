@@ -4,7 +4,7 @@
 	helptext = "Heals a moderate amount of damage over a short period of time. Can be used while unconscious. Does not regrow limbs or restore lost blood."
 	chemical_cost = 20
 	dna_cost = 2
-	req_stat = STATS_UNCONSCIOU
+	req_stat = STATS_UNCONSCIOUS
 	var/recent_uses = 1 //The factor of which the healing should be divided by
 	var/healing_ticks = 10
 	// The ideal total healing amount,

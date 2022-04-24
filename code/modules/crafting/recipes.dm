@@ -8,7 +8,7 @@
 	var/parts[] = list() //type paths of items that will be placed in the result
 	var/chem_catalysts[] = list() //like tools but for reagents
 	var/category = CAT_NONE //where it shows up in the crafting UI
-	var/subcategory = CAT_NONE
+	var/always_available = TRUE
 
 /datum/crafting_recipe/IED
 	name = "IED"
@@ -20,7 +20,6 @@
 	parts = list(/obj/item/reagent_containers/food/drinks/soda_cans = 1)
 	time = 15
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
 
 /datum/crafting_recipe/lance
 	name = "explosive lance (grenade)"
@@ -31,7 +30,6 @@
 				/obj/item/grenade = 1)
 	time = 15
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
 
 /datum/crafting_recipe/strobeshield
 	name = "strobe shield"
@@ -41,7 +39,6 @@
 				/obj/item/shield/riot = 1)
 	time = 40
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
 
 /datum/crafting_recipe/molotov
 	name = "Molotov"
@@ -51,7 +48,6 @@
 	parts = list(/obj/item/reagent_containers/food/drinks/bottle = 1)
 	time = 40
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
 
 /datum/crafting_recipe/stunprod
 	name = "Stunprod"
@@ -61,7 +57,6 @@
 				/obj/item/device/assembly/igniter = 1)
 	time = 40
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
 
 /datum/crafting_recipe/teleprod
 	name = "Teleprod"
@@ -72,7 +67,6 @@
 				/obj/item/ore/bluespace_crystal = 1)
 	time = 40
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
 
 /datum/crafting_recipe/bola
 	name = "Bola"
@@ -81,7 +75,6 @@
 				/obj/item/stack/sheet/metal = 6)
 	time = 20//15 faster than crafting them by hand!
 	category= CAT_WEAPON
-	subcategory = CAT_WEAPON
 
 /datum/crafting_recipe/tailclub
 	name = "Tail Club"
@@ -90,7 +83,6 @@
 	            /obj/item/stack/sheet/metal = 1)
 	time = 40
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
 
 /datum/crafting_recipe/tailwhip
 	name = "Liz O' Nine Tails"
@@ -99,7 +91,6 @@
 	            /obj/item/stack/cable_coil = 1)
 	time = 40
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
 
 /datum/crafting_recipe/catwhip
 	name = "Cat O' Nine Tails"
@@ -108,7 +99,6 @@
 	            /obj/item/stack/cable_coil = 1)
 	time = 40
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
 
 /datum/crafting_recipe/ed209
 	name = "ED209"
@@ -178,7 +168,6 @@
 				/obj/item/pipe = 2)
 	time = 300
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
 
 /datum/crafting_recipe/flamethrower
 	name = "Flamethrower"
@@ -191,7 +180,6 @@
 	tools = list(/obj/item/screwdriver)
 	time = 10
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
 
 /datum/crafting_recipe/meteorslug
 	name = "Meteorslug Shell"
@@ -201,8 +189,7 @@
 				/obj/item/stock_parts/manipulator = 2)
 	tools = list(/obj/item/screwdriver)
 	time = 5
-	category = CAT_WEAPONRY
-	subcategory = CAT_AMMO
+	category = CAT_AMMO
 
 /datum/crafting_recipe/pulseslug
 	name = "Pulse Slug Shell"
@@ -212,8 +199,7 @@
 				/obj/item/stock_parts/micro_laser/ultra = 1)
 	tools = list(/obj/item/screwdriver)
 	time = 5
-	category = CAT_WEAPONRY
-	subcategory = CAT_AMMO
+	category = CAT_AMMO
 
 /datum/crafting_recipe/dragonsbreath
 	name = "Dragonsbreath Shell"
@@ -221,8 +207,7 @@
 	reqs = list(/obj/item/ammo_casing/shotgun/techshell = 1, /datum/reagent/phosphorus = 5)
 	tools = list(/obj/item/screwdriver)
 	time = 5
-	category = CAT_WEAPONRY
-	subcategory = CAT_AMMO
+	category = CAT_AMMO
 
 /datum/crafting_recipe/frag12
 	name = "FRAG-12 Shell"
@@ -233,8 +218,7 @@
 				/datum/reagent/toxin/acid/fluacid = 5)
 	tools = list(/obj/item/screwdriver)
 	time = 5
-	category = CAT_WEAPONRY
-	subcategory = CAT_AMMO
+	category = CAT_AMMO
 
 /datum/crafting_recipe/ionslug
 	name = "Ion Scatter Shell"
@@ -244,8 +228,7 @@
 				/obj/item/stock_parts/subspace/crystal = 1)
 	tools = list(/obj/item/screwdriver)
 	time = 5
-	category = CAT_WEAPONRY
-	subcategory = CAT_AMMO
+	category = CAT_AMMO
 
 /datum/crafting_recipe/improvisedslug
 	name = "Improvised Shotgun Shell"
@@ -256,8 +239,7 @@
 				/datum/reagent/fuel = 10)
 	tools = list(/obj/item/screwdriver)
 	time = 5
-	category = CAT_WEAPONRY
-	subcategory = CAT_AMMO
+	category = CAT_AMMO
 
 /datum/crafting_recipe/laserslug
 	name = "Laser Slug Shell"
@@ -267,8 +249,7 @@
 				/obj/item/stock_parts/micro_laser/high = 1)
 	tools = list(/obj/item/screwdriver)
 	time = 5
-	category = CAT_WEAPONRY
-	subcategory = CAT_AMMO
+	category = CAT_AMMO
 
 /datum/crafting_recipe/ishotgun
 	name = "Improvised Shotgun"
@@ -279,8 +260,7 @@
 				/obj/item/stack/packageWrap = 5)
 	tools = list(/obj/item/screwdriver)
 	time = 100
-	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	category = CAT_AMMO
 
 /datum/crafting_recipe/chainsaw
 	name = "Chainsaw"
@@ -290,8 +270,7 @@
 				/obj/item/stack/sheet/plasteel = 1)
 	tools = list(/obj/item/weldingtool)
 	time = 50
-	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	category = CAT_AMMO
 
 /datum/crafting_recipe/spear
 	name = "Spear"
@@ -300,8 +279,7 @@
 				/obj/item/shard = 1,
 				/obj/item/stack/rods = 1)
 	time = 40
-	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	category = CAT_AMMO
 
 /datum/crafting_recipe/spooky_camera
 	name = "Camera Obscura"
@@ -413,7 +391,6 @@
 	parts = list(/obj/item/stock_parts/matter_bin = 1, /obj/item/grenade/chem_grenade = 2)
 	time = 30
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
 
 /datum/crafting_recipe/chemical_payload2
 	name = "Chemical Payload (gibtonite)"
@@ -426,7 +403,6 @@
 	parts = list(/obj/item/stock_parts/matter_bin = 1, /obj/item/grenade/chem_grenade = 2)
 	time = 50
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
 
 /datum/crafting_recipe/bonearmor
 	name = "Bone Armor"

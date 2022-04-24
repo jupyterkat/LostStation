@@ -66,10 +66,10 @@ GLOBAL_LIST_EMPTY(alldepartments)
 	else
 		to_chat(user, "<span class='warning'>You swipe the card through [src], but nothing happens.</span>")
 
-/obj/machinery/photocopier/faxmachine/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = 0, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/photocopier/faxmachine/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "faxmachine", "Fax Machine UI", 540, 450, master_ui, state)
+		ui = new(user, src, "FaxMachine", "Fax Machine UI")
 		ui.open()
 
 /obj/machinery/photocopier/faxmachine/ui_data(mob/user)
